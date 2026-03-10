@@ -1,7 +1,4 @@
 name = "adsr-final"
-main = ".open-next/worker.js"
+pages_build_output_dir = ".open-next"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
-
-# Static assets
-assets = { directory = ".open-next/assets", binding = "ASSETS" }
