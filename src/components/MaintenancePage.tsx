@@ -66,10 +66,10 @@ function CountdownDigit({ value, label }: { value: number; label: string }) {
     <div className="flex flex-col items-center">
       <div className="relative group">
         {/* Glow on hover */}
-        <div className="absolute -inset-1.5 sm:-inset-2 lg:-inset-3 rounded-xl sm:rounded-2xl bg-yellow-400/0 group-hover:bg-yellow-400/15 blur-xl transition-all duration-500" />
+        <div className="absolute -inset-1 sm:-inset-2 lg:-inset-3 rounded-lg sm:rounded-2xl bg-yellow-400/0 group-hover:bg-yellow-400/15 blur-xl transition-all duration-500" />
         <div className={`
-          relative w-[60px] h-[72px] sm:w-[76px] sm:h-[88px] md:w-[90px] md:h-[104px] lg:w-[80px] lg:h-[92px] xl:w-[88px] xl:h-[100px]
-          rounded-xl sm:rounded-2xl
+          relative w-[52px] h-[62px] sm:w-[76px] sm:h-[88px] md:w-[90px] md:h-[104px] lg:w-[80px] lg:h-[92px] xl:w-[88px] xl:h-[100px]
+          rounded-lg sm:rounded-2xl
           bg-gradient-to-b from-white/[0.12] to-white/[0.03]
           backdrop-blur-xl border border-white/10
           flex items-center justify-center
@@ -79,11 +79,11 @@ function CountdownDigit({ value, label }: { value: number; label: string }) {
           ${flip ? 'scale-95' : 'scale-100'}
         `}>
           {/* Top shine */}
-          <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/[0.06] to-transparent rounded-t-xl sm:rounded-t-2xl" />
+          <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/[0.06] to-transparent rounded-t-lg sm:rounded-t-2xl" />
           {/* Digit */}
           <span className={`
             relative font-display font-black
-            text-3xl sm:text-4xl md:text-5xl lg:text-[2.5rem] xl:text-[2.75rem]
+            text-2xl sm:text-4xl md:text-5xl lg:text-[2.5rem] xl:text-[2.75rem]
             text-white tabular-nums tracking-tight
             transition-all duration-300
             ${flip ? 'text-yellow-400 scale-110' : ''}
@@ -91,10 +91,10 @@ function CountdownDigit({ value, label }: { value: number; label: string }) {
             {str}
           </span>
           {/* Center divider line */}
-          <div className="absolute left-2 right-2 top-1/2 h-px bg-white/[0.06]" />
+          <div className="absolute left-1.5 right-1.5 sm:left-2 sm:right-2 top-1/2 h-px bg-white/[0.06]" />
         </div>
       </div>
-      <span className="mt-2 sm:mt-3 lg:mt-2 text-[10px] sm:text-[11px] md:text-xs lg:text-[10px] font-bold uppercase tracking-[0.25em] text-blue-300/50">
+      <span className="mt-1.5 sm:mt-3 lg:mt-2 text-[8px] sm:text-[11px] md:text-xs lg:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-blue-300/50">
         {label}
       </span>
     </div>
@@ -268,7 +268,7 @@ export const MaintenancePage: React.FC = () => {
 
       {/* ═══════ TOP PHOTO STRIP ═══════ */}
       <div
-        className="absolute top-[5%] sm:top-[7%] lg:top-[1%] left-0 right-0 z-[3] opacity-25 sm:opacity-35 lg:opacity-30 pointer-events-none"
+        className="absolute top-[3%] sm:top-[7%] lg:top-[1%] left-0 right-0 z-[3] opacity-15 sm:opacity-35 lg:opacity-30 pointer-events-none hidden sm:block"
         style={{
           transform: `translateY(${parallaxY * -0.3}px) rotate(-2deg) scale(1.1)`,
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
@@ -280,7 +280,7 @@ export const MaintenancePage: React.FC = () => {
 
       {/* ═══════ BOTTOM PHOTO STRIP ═══════ */}
       <div
-        className="absolute bottom-[5%] sm:bottom-[7%] lg:bottom-[1%] left-0 right-0 z-[3] opacity-20 sm:opacity-30 lg:opacity-25 pointer-events-none"
+        className="absolute bottom-[3%] sm:bottom-[7%] lg:bottom-[1%] left-0 right-0 z-[3] opacity-10 sm:opacity-30 lg:opacity-25 pointer-events-none hidden sm:block"
         style={{
           transform: `translateY(${parallaxY * 0.3}px) rotate(1.5deg) scale(1.1)`,
           maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
@@ -291,61 +291,61 @@ export const MaintenancePage: React.FC = () => {
       </div>
 
       {/* ═══════ MAIN CONTENT ═══════ */}
-      <div className="relative z-[10] flex flex-col items-center justify-center text-center px-5 max-w-4xl xl:max-w-5xl mx-auto w-full min-h-full py-6 sm:py-8 lg:py-5">
+      <div className="relative z-[10] flex flex-col items-center justify-center text-center px-4 sm:px-5 max-w-4xl xl:max-w-5xl mx-auto w-full min-h-full py-4 sm:py-8 lg:py-5">
 
         {/* ── Logo ── */}
         <div
-          className="mb-3 sm:mb-4 md:mb-5 lg:mb-2 relative"
+          className="mb-2 sm:mb-4 md:mb-5 lg:mb-2 relative"
           style={{ animation: mounted ? 'entrance-drop 1s cubic-bezier(0.16,1,0.3,1) 0.1s both' : 'none' }}
         >
-          <div className="absolute inset-0 bg-yellow-400/25 blur-[50px] rounded-full animate-pulse scale-[2.5]" />
-          <div className="absolute inset-0 bg-blue-500/15 blur-[35px] rounded-full animate-pulse scale-[1.5]" style={{ animationDelay: '1s' }} />
+          <div className="absolute inset-0 bg-yellow-400/25 blur-[40px] sm:blur-[50px] rounded-full animate-pulse scale-[2]" />
+          <div className="absolute inset-0 bg-blue-500/15 blur-[30px] sm:blur-[35px] rounded-full animate-pulse scale-[1.3]" style={{ animationDelay: '1s' }} />
           <img
             src={LOGO_URL}
             alt="AD São Romão"
-            className="w-18 h-18 sm:w-22 sm:h-22 md:w-28 md:h-28 lg:w-20 lg:h-20 xl:w-22 xl:h-22 object-contain relative z-10 drop-shadow-[0_0_50px_rgba(250,204,21,0.35)]"
+            className="w-16 h-16 sm:w-22 sm:h-22 md:w-28 md:h-28 lg:w-20 lg:h-20 xl:w-22 xl:h-22 object-contain relative z-10 drop-shadow-[0_0_40px_rgba(250,204,21,0.3)] sm:drop-shadow-[0_0_50px_rgba(250,204,21,0.35)]"
           />
         </div>
 
         {/* ── Overline ── */}
         <div style={{ animation: mounted ? 'entrance-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both' : 'none' }}>
-          <div className="inline-flex items-center gap-2 sm:gap-2.5 mb-1.5 sm:mb-2 lg:mb-1">
-            <div className="w-5 sm:w-8 lg:w-14 h-px bg-gradient-to-r from-transparent to-yellow-400/60" />
-            <span className="text-yellow-400/80 font-bold tracking-[0.25em] sm:tracking-[0.3em] lg:tracking-[0.35em] text-[10px] sm:text-[11px] md:text-xs lg:text-sm uppercase">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2.5 mb-1 sm:mb-2 lg:mb-1">
+            <div className="w-4 sm:w-8 lg:w-14 h-px bg-gradient-to-r from-transparent to-yellow-400/60" />
+            <span className="text-yellow-400/80 font-bold tracking-[0.18em] sm:tracking-[0.3em] lg:tracking-[0.35em] text-[9px] sm:text-[11px] md:text-xs lg:text-sm uppercase">
               Associação Desportiva
             </span>
-            <div className="w-5 sm:w-8 lg:w-14 h-px bg-gradient-to-l from-transparent to-yellow-400/60" />
+            <div className="w-4 sm:w-8 lg:w-14 h-px bg-gradient-to-l from-transparent to-yellow-400/60" />
           </div>
         </div>
 
         {/* ── Club Name ── */}
         <div
-          className="mb-2 sm:mb-3 lg:mb-1"
+          className="mb-1.5 sm:mb-3 lg:mb-1"
           style={{ animation: mounted ? 'entrance-up 1s cubic-bezier(0.16,1,0.3,1) 0.3s both' : 'none' }}
         >
-          <h1 className="font-display font-black text-[2.6rem] leading-none sm:text-5xl md:text-7xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-white uppercase tracking-tighter">
+          <h1 className="font-display font-black text-[2.2rem] leading-none sm:text-5xl md:text-7xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-white uppercase tracking-tighter">
             SÃO ROMÃO
           </h1>
         </div>
 
         {/* ── Hero Phrase ── */}
         <div
-          className="mb-4 sm:mb-5 md:mb-7 lg:mb-2 max-w-2xl lg:max-w-3xl"
+          className="mb-3 sm:mb-5 md:mb-7 lg:mb-2 max-w-2xl lg:max-w-3xl"
           style={{ animation: mounted ? 'entrance-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.45s both' : 'none' }}
         >
           {isLaunched ? (
-            <div className="flex flex-col items-center gap-3">
-              <Shield size={36} className="text-yellow-400 animate-bounce" />
-              <h2 className="font-display font-black text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide">
+            <div className="flex flex-col items-center gap-2 sm:gap-3">
+              <Shield size={28} className="text-yellow-400 animate-bounce sm:w-9 sm:h-9" />
+              <h2 className="font-display font-black text-xl sm:text-3xl md:text-5xl lg:text-6xl text-white uppercase tracking-wide">
                 A Conquista Chegou!
               </h2>
             </div>
           ) : (
             <>
-              <h2 className="font-display font-bold text-[20px] leading-tight sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.75rem] text-white uppercase tracking-wide">
+              <h2 className="font-display font-bold text-[17px] leading-tight sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.75rem] text-white uppercase tracking-wide">
                 Está quase na hora de
                 <br />
-                <span className="relative inline-block mt-1 sm:mt-2">
+                <span className="relative inline-block mt-0.5 sm:mt-2">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 font-black">
                     mais uma conquista!
                   </span>
@@ -356,7 +356,7 @@ export const MaintenancePage: React.FC = () => {
                   />
                 </span>
               </h2>
-              <p className="text-blue-200/50 text-[12px] sm:text-sm md:text-base lg:text-base mt-2.5 sm:mt-3 lg:mt-2 leading-relaxed">
+              <p className="text-blue-200/50 text-[11px] sm:text-sm md:text-base lg:text-base mt-2 sm:mt-3 lg:mt-2 leading-relaxed px-2 sm:px-0">
                 Algo grandioso está a ser preparado para a família
                 <span className="text-white/70 font-semibold"> ADSR</span>.
               </p>
@@ -367,36 +367,36 @@ export const MaintenancePage: React.FC = () => {
         {/* ── Countdown ── */}
         {!isLaunched && (
           <div
-            className="mb-4 sm:mb-5 md:mb-7 lg:mb-2"
+            className="mb-3 sm:mb-5 md:mb-7 lg:mb-2"
             style={{ animation: mounted ? 'entrance-up 1s cubic-bezier(0.16,1,0.3,1) 0.6s both' : 'none' }}
           >
             {/* Date label */}
-            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4 lg:mb-2">
-              <Clock size={12} className="text-blue-400/50" />
-              <span className="text-blue-300/40 text-[10px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em]">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 lg:mb-2">
+              <Clock size={10} className="text-blue-400/50 sm:w-3 sm:h-3" />
+              <span className="text-blue-300/40 text-[9px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                 Data prevista
               </span>
             </div>
 
             {/* Date badge */}
-            <div className="mb-4 sm:mb-5 lg:mb-3">
-              <div className="inline-flex items-center gap-2 bg-yellow-400/[0.06] border border-yellow-400/15 rounded-full px-4 sm:px-5 py-1.5 sm:py-2">
-                <Star size={10} className="text-yellow-400 animate-pulse flex-shrink-0" />
-                <span className="text-yellow-400 font-bold text-[11px] sm:text-xs md:text-sm tracking-[0.12em] sm:tracking-[0.15em] uppercase">
+            <div className="mb-3 sm:mb-5 lg:mb-3">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-yellow-400/[0.06] border border-yellow-400/15 rounded-full px-3 sm:px-5 py-1 sm:py-2">
+                <Star size={8} className="text-yellow-400 animate-pulse flex-shrink-0 sm:w-2.5 sm:h-2.5" />
+                <span className="text-yellow-400 font-bold text-[10px] sm:text-xs md:text-sm tracking-[0.1em] sm:tracking-[0.15em] uppercase">
                   {launchDateFormatted}
                 </span>
-                <Star size={10} className="text-yellow-400 animate-pulse flex-shrink-0" style={{ animationDelay: '0.5s' }} />
+                <Star size={8} className="text-yellow-400 animate-pulse flex-shrink-0 sm:w-2.5 sm:h-2.5" style={{ animationDelay: '0.5s' }} />
               </div>
             </div>
 
             {/* Countdown blocks */}
-            <div className="flex items-start justify-center gap-1.5 sm:gap-2.5 md:gap-4 lg:gap-5 xl:gap-6">
+            <div className="flex items-start justify-center gap-1 sm:gap-2.5 md:gap-4 lg:gap-5 xl:gap-6">
               {countdownItems.map((item, idx) => (
                 <React.Fragment key={item.label}>
                   {idx > 0 && (
-                    <div className="flex flex-col gap-1.5 sm:gap-2 lg:gap-2.5 mt-5 sm:mt-7 md:mt-8 lg:mt-8 xl:mt-9">
-                      <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-yellow-400/30 animate-pulse" />
-                      <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-yellow-400/30 animate-pulse" style={{ animationDelay: '0.4s' }} />
+                    <div className="flex flex-col gap-1 sm:gap-2 lg:gap-2.5 mt-4 sm:mt-7 md:mt-8 lg:mt-8 xl:mt-9">
+                      <div className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-yellow-400/30 animate-pulse" />
+                      <div className="w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full bg-yellow-400/30 animate-pulse" style={{ animationDelay: '0.4s' }} />
                     </div>
                   )}
                   <CountdownDigit value={item.value} label={item.label} />
@@ -408,25 +408,25 @@ export const MaintenancePage: React.FC = () => {
 
         {/* ── Club Quote ── */}
         <div
-          className="mb-3 sm:mb-4 md:mb-5 lg:mb-2"
+          className="mb-2 sm:mb-4 md:mb-5 lg:mb-2"
           style={{ animation: mounted ? 'entrance-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.75s both' : 'none' }}
         >
-          <div className="flex items-center justify-center gap-3 mb-1">
-            <div className="w-5 sm:w-8 lg:w-10 h-px bg-gradient-to-r from-transparent to-yellow-400/30" />
-            <Trophy size={14} className="text-yellow-400/60" />
-            <div className="w-5 sm:w-8 lg:w-10 h-px bg-gradient-to-l from-transparent to-yellow-400/30" />
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-0.5 sm:mb-1">
+            <div className="w-4 sm:w-8 lg:w-10 h-px bg-gradient-to-r from-transparent to-yellow-400/30" />
+            <Trophy size={12} className="text-yellow-400/60 sm:w-3.5 sm:h-3.5" />
+            <div className="w-4 sm:w-8 lg:w-10 h-px bg-gradient-to-l from-transparent to-yellow-400/30" />
           </div>
-          <p className="text-white/70 font-display font-bold text-sm sm:text-lg md:text-xl lg:text-lg italic tracking-wide">
+          <p className="text-white/70 font-display font-bold text-[13px] sm:text-lg md:text-xl lg:text-lg italic tracking-wide">
             &ldquo;Juntos e Fortes&rdquo;
           </p>
-          <p className="text-blue-400/30 text-[9px] sm:text-[10px] md:text-xs lg:text-xs mt-1 tracking-[0.2em] uppercase">
+          <p className="text-blue-400/30 text-[8px] sm:text-[10px] md:text-xs lg:text-xs mt-0.5 sm:mt-1 tracking-[0.15em] sm:tracking-[0.2em] uppercase">
             Desde 1962 &bull; São Romão
           </p>
         </div>
 
         {/* ── Social Links ── */}
         <div style={{ animation: mounted ? 'entrance-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.85s both' : 'none' }}>
-          <p className="text-blue-300/30 text-[10px] sm:text-[11px] lg:text-[10px] font-semibold uppercase tracking-[0.25em] mb-2 sm:mb-2.5 lg:mb-1.5">
+          <p className="text-blue-300/30 text-[9px] sm:text-[11px] lg:text-[10px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-1.5 sm:mb-2.5 lg:mb-1.5">
             Acompanha-nos
           </p>
           <div className="flex items-center justify-center gap-2 sm:gap-2.5 lg:gap-3">
@@ -441,9 +441,9 @@ export const MaintenancePage: React.FC = () => {
                 href={href}
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className={`w-10 h-10 sm:w-11 sm:h-11 lg:w-10 lg:h-10 rounded-xl bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] flex items-center justify-center ${hover} transition-all duration-300 group min-w-[44px] min-h-[44px]`}
+                className={`w-9 h-9 sm:w-11 sm:h-11 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] flex items-center justify-center ${hover} transition-all duration-300 group min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px]`}
               >
-                <Icon size={16} className="text-blue-300/60 group-hover:text-white transition-colors sm:w-[18px] sm:h-[18px] lg:w-[20px] lg:h-[20px]" />
+                <Icon size={14} className="text-blue-300/60 group-hover:text-white transition-colors sm:w-[18px] sm:h-[18px] lg:w-[20px] lg:h-[20px]" />
               </a>
             ))}
           </div>
@@ -451,24 +451,24 @@ export const MaintenancePage: React.FC = () => {
 
         {/* ── Footer ── */}
         <div
-          className="mt-2 sm:mt-3 md:mt-4 lg:mt-2"
+          className="mt-1.5 sm:mt-3 md:mt-4 lg:mt-2"
           style={{ animation: mounted ? 'entrance-up 0.8s cubic-bezier(0.16,1,0.3,1) 0.95s both' : 'none' }}
         >
-          <p className="text-blue-400/20 text-[10px] sm:text-[11px] lg:text-[10px]">
+          <p className="text-blue-400/20 text-[9px] sm:text-[11px] lg:text-[10px]">
             &copy; {new Date().getFullYear()} AD São Romão &mdash; Todos os direitos reservados.
           </p>
-          <div className="mt-2 sm:mt-3 flex items-center justify-center">
+          <div className="mt-1.5 sm:mt-3 flex items-center justify-center">
             <a
               href="https://elementgroup.pt"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 sm:gap-2.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] hover:border-yellow-400/30 rounded-full px-4 sm:px-5 py-2 sm:py-2.5 transition-all duration-400 backdrop-blur-sm"
+              className="group inline-flex items-center gap-1.5 sm:gap-2.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] hover:border-yellow-400/30 rounded-full px-3 sm:px-5 py-1.5 sm:py-2.5 transition-all duration-400 backdrop-blur-sm"
             >
-              <span className="text-blue-300/70 group-hover:text-yellow-400 transition-colors text-xs sm:text-sm font-mono font-bold">{'</>'}</span>
-              <span className="text-white/50 group-hover:text-white/70 transition-colors text-[11px] sm:text-xs lg:text-sm font-medium tracking-wide">
+              <span className="text-blue-300/70 group-hover:text-yellow-400 transition-colors text-[10px] sm:text-sm font-mono font-bold">{'</>'}</span>
+              <span className="text-white/50 group-hover:text-white/70 transition-colors text-[10px] sm:text-xs lg:text-sm font-medium tracking-wide">
                 Desenvolvido por
               </span>
-              <span className="font-bold text-white/80 group-hover:text-yellow-400 transition-colors text-[11px] sm:text-xs lg:text-sm tracking-wide">
+              <span className="font-bold text-white/80 group-hover:text-yellow-400 transition-colors text-[10px] sm:text-xs lg:text-sm tracking-wide">
                 Elementgroup.pt
               </span>
             </a>
