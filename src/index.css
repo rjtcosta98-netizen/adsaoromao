@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #032d61;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+/* Navbar mobile menu slide-in */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Loading screen animations */
+@keyframes loading-progress {
+  0% { transform: scaleX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+.animate-loading-progress {
+  animation: loading-progress 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fade-in-down {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.6s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-20px) translateX(10px); }
+  50% { transform: translateY(-40px) translateX(-10px); }
+  75% { transform: translateY(-20px) translateX(15px); }
+}
+
+@keyframes slide-left {
+  0% { width: 0; }
+  100% { width: 32px; }
+}
+
+.animate-slide-left {
+  animation: slide-left 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slide-right {
+  0% { width: 0; }
+  100% { width: 32px; }
+}
+
+.animate-slide-right {
+  animation: slide-right 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* ═══════════════════════════════════════════════
+   PERFORMANCE: Reduced motion
+   ═══════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   PERFORMANCE: Content visibility for offscreen
+   ═══════════════════════════════════════════════ */
+
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR HIDE UTILITY
+   ═══════════════════════════════════════════════ */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE TOUCH OPTIMIZATION
+   ═══════════════════════════════════════════════ */
+
+@media (hover: none) {
+  .group:hover .group-hover\:scale-110,
+  .group:hover .group-hover\:scale-105,
+  .hover\:scale-110:hover,
+  .hover\:scale-105:hover {
+    transform: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   IMAGE OPTIMIZATION
+   ═══════════════════════════════════════════════ */
+
+img {
+  content-visibility: auto;
+}
