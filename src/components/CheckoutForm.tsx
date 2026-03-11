@@ -168,7 +168,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   name="nome"
                   value={formData.nome}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                   placeholder="João Silva"
                 />
               </div>
@@ -180,7 +180,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                   placeholder="joao@exemplo.com"
                 />
               </div>
@@ -192,7 +192,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                   placeholder="+351 910 123 456"
                 />
               </div>
@@ -213,7 +213,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   name="morada"
                   value={formData.morada}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                   placeholder="Rua Principal, nº 123"
                 />
               </div>
@@ -225,7 +225,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   name="codPostal"
                   value={formData.codPostal}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                   placeholder="1234-567"
                 />
               </div>
@@ -237,7 +237,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   name="cidade"
                   value={formData.cidade}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                   placeholder="Lisboa"
                 />
               </div>
@@ -269,7 +269,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                       name="moradaEnvio"
                       value={formData.moradaEnvio}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                       placeholder="Rua Principal, nº 123"
                     />
                   </div>
@@ -281,7 +281,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                       name="codPostalEnvio"
                       value={formData.codPostalEnvio}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                       placeholder="1234-567"
                     />
                   </div>
@@ -293,7 +293,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                       name="cidadeEnvio"
                       value={formData.cidadeEnvio}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all"
                       placeholder="Lisboa"
                     />
                   </div>
@@ -308,7 +308,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
                   value={formData.observacoes}
                   onChange={handleChange}
                   rows={2}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all resize-none"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm sm:text-base text-navy-900 focus:outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition-all resize-none"
                   placeholder="Mensagens especiais ou instruções..."
                 ></textarea>
               </div>
