@@ -39,16 +39,34 @@ export const ContactsContent: React.FC = () => {
     setStatus('sending');
     setErrorMessage('');
 
+    const subjectLabels: Record<string, string> = {
+      geral: 'Informações Gerais',
+      inscricao: 'Inscrição de Atleta',
+      socios: 'Sócios / Quotas',
+      loja: 'Loja / Encomendas',
+      media: 'Comunicação / Media',
+      outro: 'Outro Assunto',
+    };
+
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://formsubmit.co/ajax/geral@adsaoromao.pt', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[ADSR Contacto] ${subjectLabels[formData.subject] || formData.subject} - ${formData.name}`,
+          Nome: formData.name,
+          Email: formData.email,
+          Telefone: formData.phone || 'Não indicado',
+          Assunto: subjectLabels[formData.subject] || formData.subject,
+          Mensagem: formData.message,
+        }),
       });
 
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Erro ao enviar mensagem.');
+        throw new Error('Erro ao enviar mensagem.');
       }
 
       setStatus('success');

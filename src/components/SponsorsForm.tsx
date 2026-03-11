@@ -30,16 +30,26 @@ export const SponsorsForm: React.FC = () => {
       setErrorMsg('');
 
       try {
-         const res = await fetch('/api/sponsor', {
+         const res = await fetch('https://formsubmit.co/ajax/geral@adsaoromao.pt', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+               _subject: `[ADSR Patrocínio] Proposta de ${formData.empresa}`,
+               Empresa: formData.empresa,
+               Responsavel: formData.responsavel,
+               Email: formData.email,
+               Telemovel: formData.telemovel || 'Não indicado',
+               'Area de Negocio': formData.areaNegocio || 'Não indicada',
+               Localidade: formData.localidade || 'Não indicada',
+               Mensagem: formData.mensagem || 'Sem mensagem adicional',
+            }),
          });
 
-         const data = await res.json();
-
          if (!res.ok) {
-            throw new Error(data.error || 'Erro ao enviar pedido.');
+            throw new Error('Erro ao enviar pedido.');
          }
 
          setStatus('success');

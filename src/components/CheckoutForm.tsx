@@ -63,30 +63,34 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
     setErrorMsg('');
 
     try {
-      const payload = {
-        ...formData,
-        moradaEnvio: moradaEnvioIgual ? '' : formData.moradaEnvio,
-        codPostalEnvio: moradaEnvioIgual ? '' : formData.codPostalEnvio,
-        cidadeEnvio: moradaEnvioIgual ? '' : formData.cidadeEnvio,
-        items: items.map(item => ({
-          name: item.name,
-          selectedSize: item.selectedSize,
-          quantity: item.quantity,
-          price: item.price,
-        })),
-        total,
-      };
+      const itemsList = items.map(item => 
+        `- ${item.name} (Tam: ${item.selectedSize}, Qtd: ${item.quantity})`
+      ).join('\n');
 
-      const res = await fetch('/api/order', {
+      const moradaEnvioFinal = moradaEnvioIgual 
+        ? 'Igual à morada de faturação' 
+        : `${formData.moradaEnvio}, ${formData.codPostalEnvio} ${formData.cidadeEnvio}`;
+
+      const res = await fetch('https://formsubmit.co/ajax/geral@adsaoromao.pt', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[ADSR Loja] Nova Encomenda - ${formData.nome}`,
+          Nome: formData.nome,
+          Email: formData.email,
+          Telefone: formData.telefone || 'Não indicado',
+          'Morada Faturacao': `${formData.morada}, ${formData.codPostal} ${formData.cidade}`,
+          'Morada Envio': moradaEnvioFinal,
+          Produtos: itemsList,
+          Observacoes: formData.observacoes || 'Sem observações',
+        }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
-        throw new Error(data.error || 'Erro ao enviar encomenda.');
+        throw new Error('Erro ao enviar encomenda.');
       }
 
       setStatus('success');
