@@ -47,11 +47,10 @@ export const SponsorsList: React.FC = () => {
                    className="block bg-gradient-to-br from-navy-800/80 via-navy-900/90 to-navy-800/80 rounded-3xl border-2 border-yellow-400/30 relative shadow-2xl shadow-yellow-400/10 hover:shadow-yellow-400/30 hover:-translate-y-2 transition-all duration-500 group overflow-hidden"
                  >
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 via-transparent to-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="h-56 md:h-64 relative flex items-center justify-center p-8">
-                      <img 
-                        src={sponsor.logo} 
-                        alt={sponsor.name} 
-                        className="max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                    <div className="h-56 md:h-64 relative">
+                      <div 
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
+                        style={{ backgroundImage: `url("${sponsor.logo}")` }}
                       />
                     </div>
                     {sponsor.name && (
