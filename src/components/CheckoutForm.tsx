@@ -111,10 +111,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
     }
 
     const itemsList = items.map(item => 
-      `- ${item.name} (Tamanho: ${item.selectedSize}, Qtd: ${item.quantity}) - ${item.price}`
-    ).join('\n');
+      `• ${item.name}\n  Tamanho: ${item.selectedSize} | Qtd: ${item.quantity}\n  Imagem: ${item.imageUrl}`
+    ).join('\n\n');
 
-    const whatsappMessage = `Olá! Gostaria de fazer uma encomenda.\n\nDADOS:\nNome: ${formData.nome}\nEmail: ${formData.email}\nTelefone: ${formData.telefone}\nMorada: ${formData.morada}, ${formData.codPostal} ${formData.cidade}\nMorada de Envio: ${moradaEnvioIgual ? `${formData.morada}, ${formData.codPostal} ${formData.cidade}` : `${formData.moradaEnvio}, ${formData.codPostalEnvio} ${formData.cidadeEnvio}`}\nObservações: ${formData.observacoes || 'Nenhuma'}\n\nRESUMO DA ENCOMENDA:\n\n${itemsList}\n\nTOTAL: ${total.toFixed(2)}€`;
+    const whatsappMessage = `🛒 *NOVA ENCOMENDA - AD SÃO ROMÃO*\n\n📋 *DADOS DO CLIENTE*\nNome: ${formData.nome}\nEmail: ${formData.email}\nTelefone: ${formData.telefone || 'Não indicado'}\n\n📍 *MORADA DE FATURAÇÃO*\n${formData.morada}, ${formData.codPostal} ${formData.cidade}\n\n📦 *MORADA DE ENVIO*\n${moradaEnvioIgual ? 'Igual à morada de faturação' : `${formData.moradaEnvio}, ${formData.codPostalEnvio} ${formData.cidadeEnvio}`}\n\n🛍️ *PRODUTOS*\n\n${itemsList}\n\n📝 *Observações:* ${formData.observacoes || 'Nenhuma'}`;
 
     const whatsappLink = `https://wa.me/351968966375?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappLink, '_blank');
