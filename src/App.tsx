@@ -32,7 +32,7 @@ import { getPageRoute } from '@/lib/routes';
 // ══════════════════════════════════════════════════════════
 //  MODO MANUTENÇÃO — Alterar para false para desativar
 // ══════════════════════════════════════════════════════════
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 function AppShell() {
   const [loading, setLoading] = useState(true);
