@@ -90,9 +90,24 @@ export const SponsorsList: React.FC = () => {
            
            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {SPONSORS_DATA.local.map((sponsor) => (
-                 <div key={sponsor.id} className="bg-navy-800/20 h-24 rounded border border-white/5 flex items-center justify-center hover:bg-navy-800 transition-colors group cursor-pointer px-2 text-center">
-                    <span className="text-white/20 font-display text-xs uppercase group-hover:text-white/40 transition-colors">{sponsor.name}</span>
-                 </div>
+                 <a 
+                   key={sponsor.id} 
+                   href={sponsor.url}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="bg-navy-800/20 h-24 rounded border border-white/5 flex items-center justify-center hover:bg-navy-800 transition-colors group cursor-pointer px-2 text-center overflow-hidden"
+                 >
+                    {sponsor.logo ? (
+                      <img 
+                        src={sponsor.logo} 
+                        alt={sponsor.name} 
+                        loading="lazy" 
+                        className="w-full h-full object-contain p-2 opacity-60 group-hover:opacity-100 transition-opacity" 
+                      />
+                    ) : (
+                      <span className="text-white/20 font-display text-xs uppercase group-hover:text-white/40 transition-colors">{sponsor.name}</span>
+                    )}
+                 </a>
               ))}
            </div>
         </div>
