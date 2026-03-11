@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { LOGO_URL } from '../constants';
-import { Menu, X, Home, Trophy, Users, UserPlus, Heart, Handshake, Image, Phone, ShoppingBag, Facebook, Instagram, Newspaper } from 'lucide-react';
+import { Menu, X, Home, Trophy, Users, UserPlus, Heart, Handshake, Image, Phone, ShoppingBag, Newspaper } from 'lucide-react';
 
 interface NavbarProps {
   activePage: string;
@@ -165,55 +165,29 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
               </button>
             </div>
 
-            {/* Divider */}
-            <div className="px-6 my-6">
-              <div className="h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent" />
-            </div>
-
-            {/* Social Media */}
-            <div className="px-6">
-              <p className="text-gray-400 text-xs uppercase tracking-widest mb-4 font-bold">Conecta-te connosco</p>
-              <div className="flex gap-4">
-                <a 
-                  href="https://facebook.com/adsaoromao" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex-1 h-14 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl flex items-center justify-center text-white transition-all hover:shadow-lg hover:shadow-blue-600/50 active:scale-95"
-                >
-                  <Facebook size={24} strokeWidth={2} />
-                </a>
-                <a 
-                  href="https://instagram.com/adsaoromao" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex-1 h-14 bg-gradient-to-br from-pink-600 via-purple-600 to-indigo-600 hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 rounded-xl flex items-center justify-center text-white transition-all hover:shadow-lg hover:shadow-pink-600/50 active:scale-95"
-                >
-                  <Instagram size={24} strokeWidth={2} />
-                </a>
-              </div>
-            </div>
-
-            {/* Footer Text */}
-            <div className="px-6 mt-8 pt-6 border-t border-white/10">
-              <p className="text-gray-400 text-xs text-center leading-relaxed mb-4">
-                AD São Romão © 2026 | Todos os direitos reservados
-              </p>
-              
+            {/* Footer with Developer Credit */}
+            <div className="px-6 mt-6 pt-6 border-t border-white/10 pb-6">
               {/* Developer Credit - Destacado */}
               <a 
                 href="https://elementgroup.pt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 border border-blue-500/30 hover:border-yellow-400/50 rounded-full px-5 py-3 transition-all duration-300 mx-auto max-w-xs"
+                className="group flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-navy-800/80 to-navy-900/80 border border-white/10 hover:border-yellow-400/40 rounded-2xl px-6 py-5 transition-all duration-300 mb-4"
               >
-                <span className="text-blue-400 group-hover:text-yellow-400 transition-colors text-base font-mono font-bold">{'</>'}</span>
-                <span className="text-gray-400 group-hover:text-white/80 transition-colors text-xs font-medium">
-                  Desenvolvido por
-                </span>
-                <span className="font-bold text-white group-hover:text-yellow-400 transition-colors text-sm tracking-wide">
-                  ELEMENTGROUP.PT
-                </span>
+                <span className="text-blue-400 group-hover:text-yellow-400 transition-colors text-2xl font-mono font-bold">{'</>'}</span>
+                <div className="flex flex-col items-center gap-1">
+                  <span className="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-medium">
+                    Desenvolvido por
+                  </span>
+                  <span className="font-bold text-white group-hover:text-yellow-400 transition-colors text-base tracking-wider">
+                    ELEMENTGROUP.PT
+                  </span>
+                </div>
               </a>
+              
+              <p className="text-gray-500 text-[10px] text-center leading-relaxed">
+                AD São Romão © 2026 | Todos os direitos reservados
+              </p>
             </div>
           </div>
         </div>
