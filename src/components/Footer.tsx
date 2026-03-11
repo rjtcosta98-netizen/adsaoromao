@@ -78,7 +78,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                </li>
                <li className="flex items-center gap-2 md:gap-3">
                  <Phone className="text-yellow-400 shrink-0 w-4 md:w-4" />
-                 <span>+351 925 228 934</span>
+                 <span>+351 968 966 375</span>
                </li>
                <li className="flex items-center gap-2 md:gap-3">
                  <Mail className="text-yellow-400 shrink-0 w-4 md:w-4" />
@@ -91,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Livro de Reclamações & Credits & Legal */}
         <div className="border-t border-navy-800 mt-8 md:mt-12 pt-4 md:pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 text-[11px] md:text-xs text-gray-500 flex-wrap">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-4 text-[11px] md:text-xs text-gray-500 flex-wrap">
             {/* Left: Copyright */}
             <p>&copy; 2026 ADSR. Todos os direitos reservados.</p>
 
@@ -114,18 +114,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </a>
             </div>
 
-            {/* Right: Credits */}
-            <div className="flex items-center gap-1.5">
-              <span>Desenvolvido por:</span>
-              <a 
-                href="https://elementgroup.pt" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 px-1.5 py-0.5 text-white  transition-colors font-bold"
-              >
-                <span className="sm:inline">ELEMENTGROUP</span>
-              </a>
-            </div>
+            {/* Right: Developer Credits - Destacado */}
+            <a 
+              href="https://elementgroup.pt" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 border border-blue-500/30 hover:border-yellow-400/50 rounded-full px-4 py-2 transition-all duration-300"
+            >
+              <span className="text-blue-400 group-hover:text-yellow-400 transition-colors text-sm font-mono font-bold">{'</>'}</span>
+              <span className="text-gray-400 group-hover:text-white/80 transition-colors text-xs font-medium">
+                Desenvolvido por
+              </span>
+              <span className="font-bold text-white group-hover:text-yellow-400 transition-colors text-xs tracking-wide">
+                ELEMENTGROUP.PT
+              </span>
+            </a>
           </div>
         </div>
 

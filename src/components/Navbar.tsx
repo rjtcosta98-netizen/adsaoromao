@@ -195,9 +195,25 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
 
             {/* Footer Text */}
             <div className="px-6 mt-8 pt-6 border-t border-white/10">
-              <p className="text-gray-400 text-xs text-center leading-relaxed">
+              <p className="text-gray-400 text-xs text-center leading-relaxed mb-4">
                 AD São Romão © 2026 | Todos os direitos reservados
               </p>
+              
+              {/* Developer Credit - Destacado */}
+              <a 
+                href="https://elementgroup.pt" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 border border-blue-500/30 hover:border-yellow-400/50 rounded-full px-5 py-3 transition-all duration-300 mx-auto max-w-xs"
+              >
+                <span className="text-blue-400 group-hover:text-yellow-400 transition-colors text-base font-mono font-bold">{'</>'}</span>
+                <span className="text-gray-400 group-hover:text-white/80 transition-colors text-xs font-medium">
+                  Desenvolvido por
+                </span>
+                <span className="font-bold text-white group-hover:text-yellow-400 transition-colors text-sm tracking-wide">
+                  ELEMENTGROUP.PT
+                </span>
+              </a>
             </div>
           </div>
         </div>
