@@ -207,16 +207,16 @@ export const LatestResults: React.FC = () => {
                     {isDefeat && <span className="ml-2 text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full">DERROTA</span>}
                   </div>
                   <div className="p-5 flex items-center justify-between">
-                    <div className="flex flex-col items-center gap-2 w-1/3">
+                    <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
                       <img src={match.logoHome} loading="lazy" width={40} height={40} className={`w-10 h-10 object-contain ${match.homeTeam === 'AD São Romão' ? 'scale-125' : ''}`} alt="Home" />
-                      <span className={`text-[11px] font-bold text-center uppercase line-clamp-2 h-6 ${match.homeTeam === 'AD São Romão' ? 'text-blue-600 font-black' : 'text-navy-900'}`}>{match.homeTeam}</span>
+                      <span className={`text-[10px] font-bold text-center uppercase leading-tight px-1 ${match.homeTeam === 'AD São Romão' ? 'text-blue-600 font-black' : 'text-navy-900'}`}>{match.homeTeam}</span>
                     </div>
                     <div className="flex items-center gap-1 font-display text-2xl font-bold text-navy-900">
                       <span>{match.homeScore}</span><span>-</span><span>{match.awayScore}</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2 w-1/3">
+                    <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
                       <img src={match.logoAway} loading="lazy" width={40} height={40} className={`w-10 h-10 object-contain ${match.awayTeam === 'AD São Romão' ? 'scale-125' : ''}`} alt="Away" />
-                      <span className={`text-[11px] font-bold text-center uppercase line-clamp-2 h-6 ${match.awayTeam === 'AD São Romão' ? 'text-blue-600 font-black' : 'text-navy-900'}`}>{match.awayTeam}</span>
+                      <span className={`text-[10px] font-bold text-center uppercase leading-tight px-1 ${match.awayTeam === 'AD São Romão' ? 'text-blue-600 font-black' : 'text-navy-900'}`}>{match.awayTeam}</span>
                     </div>
                   </div>
                   <div className="px-4 py-2 bg-white border-t text-center text-[11px] text-gray-400 font-bold uppercase">

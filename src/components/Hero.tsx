@@ -117,9 +117,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
              {/* Glow effect behind teams */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl"></div>
 
-            <div className="flex flex-col items-center gap-1 sm:gap-2 relative z-10 flex-1">
+            <div className="flex flex-col items-center gap-1 sm:gap-2 relative z-10 flex-1 min-w-0">
               {nextMatch.homeLogo && <img src={nextMatch.homeLogo} alt={nextMatch.homeTeam} loading="lazy" width={80} height={80} className={`w-14 h-14 sm:w-20 sm:h-20 object-contain drop-shadow-lg ${nextMatch.homeTeam === 'AD São Romão' ? 'scale-125' : ''}`} />}
-              <span className={`font-bold text-[11px] sm:text-sm text-center text-shadow leading-tight ${nextMatch.homeTeam === 'AD São Romão' ? 'text-blue-300 font-black' : 'text-white'}`}>{nextMatch.homeTeam || 'Equipa Casa'}</span>
+              <span className={`font-bold text-[10px] sm:text-sm text-center text-shadow leading-tight px-1 ${nextMatch.homeTeam === 'AD São Romão' ? 'text-blue-300 font-black' : 'text-white'}`}>{nextMatch.homeTeam || 'Equipa Casa'}</span>
             </div>
 
             <div className="flex flex-col items-center relative z-10 mx-2 sm:mx-4">
@@ -128,9 +128,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <div className="flex flex-col items-center gap-1 sm:gap-2 relative z-10 flex-1">
+            <div className="flex flex-col items-center gap-1 sm:gap-2 relative z-10 flex-1 min-w-0">
               {nextMatch.awayLogo && <img src={nextMatch.awayLogo} alt={nextMatch.awayTeam} loading="lazy" width={80} height={80} className={`w-14 h-14 sm:w-20 sm:h-20 object-contain drop-shadow-lg ${nextMatch.awayTeam === 'AD São Romão' ? 'scale-125' : ''}`} />}
-              <span className={`font-bold text-[11px] sm:text-sm text-center text-shadow leading-tight ${nextMatch.awayTeam === 'AD São Romão' ? 'text-blue-300 font-black' : 'text-white'}`}>{nextMatch.awayTeam || 'Equipa Visitante'}</span>
+              <span className={`font-bold text-[10px] sm:text-sm text-center text-shadow leading-tight px-1 ${nextMatch.awayTeam === 'AD São Romão' ? 'text-blue-300 font-black' : 'text-white'}`}>{nextMatch.awayTeam || 'Equipa Visitante'}</span>
             </div>
           </div>
 
