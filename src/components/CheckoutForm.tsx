@@ -63,19 +63,10 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
     setErrorMsg('');
 
     try {
-      const itemsList = items.map(item => 
-        `- ${item.name} (Tam: ${item.selectedSize}, Qtd: ${item.quantity})`
-      ).join('\n');
-
-      const itemsWithImages = items.map(item => 
-        `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:12px;background:#f5f5f5;border-radius:8px;">
-          <img src="${item.imageUrl}" alt="${item.name}" style="width:60px;height:60px;object-fit:cover;border-radius:6px;" />
-          <div>
-            <strong>${item.name}</strong><br/>
-            <span style="color:#666;">Tamanho: ${item.selectedSize} | Qtd: ${item.quantity}</span>
-          </div>
-        </div>`
-      ).join('');
+      // Lista de produtos com links das imagens para o email
+      const itemsWithLinks = items.map((item, index) => 
+        `${index + 1}. ${item.name}\n   Tamanho: ${item.selectedSize} | Quantidade: ${item.quantity}\n   Imagem: ${item.imageUrl}`
+      ).join('\n\n');
 
       const moradaEnvioFinal = moradaEnvioIgual 
         ? 'Igual à morada de faturação' 
@@ -90,13 +81,13 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
         body: JSON.stringify({
           _subject: `[ADSR Loja] Nova Encomenda - ${formData.nome}`,
           _cc: formData.email,
-          _template: 'box',
+          _template: 'table',
           Nome: formData.nome,
           Email: formData.email,
           Telefone: formData.telefone || 'Não indicado',
           'Morada Faturacao': `${formData.morada}, ${formData.codPostal} ${formData.cidade}`,
           'Morada Envio': moradaEnvioFinal,
-          'Produtos (texto)': itemsList,
+          Produtos: itemsWithLinks,
           Observacoes: formData.observacoes || 'Sem observações',
         }),
       });
@@ -125,7 +116,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
 
     const whatsappMessage = `Olá! Gostaria de fazer uma encomenda.\n\nDADOS:\nNome: ${formData.nome}\nEmail: ${formData.email}\nTelefone: ${formData.telefone}\nMorada: ${formData.morada}, ${formData.codPostal} ${formData.cidade}\nMorada de Envio: ${moradaEnvioIgual ? `${formData.morada}, ${formData.codPostal} ${formData.cidade}` : `${formData.moradaEnvio}, ${formData.codPostalEnvio} ${formData.cidadeEnvio}`}\nObservações: ${formData.observacoes || 'Nenhuma'}\n\nRESUMO DA ENCOMENDA:\n\n${itemsList}\n\nTOTAL: ${total.toFixed(2)}€`;
 
-    const whatsappLink = `https://wa.me/351925228934?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappLink = `https://wa.me/351968966375?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappLink, '_blank');
     onClose();
   };
