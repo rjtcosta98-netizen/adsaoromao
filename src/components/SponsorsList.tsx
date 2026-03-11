@@ -10,17 +10,17 @@ const SPONSORS_DATA = {
     { id: 2, name: "", logo: "", url: "#" },
   ],
   silver: [
-    { id: 3, name: "", logo: "", url: "#" },
+    { id: 3, name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", url: "https://www.alvesbandeira.pt/pt/" },
     { id: 4, name: "", logo: "", url: "#" },
     { id: 5, name: "", logo: "", url: "#" },
     { id: 6, name: "", logo: "", url: "#" },
   ],
   local: [
-    { id: 7, name: "", logo: "", url: "#" },
-    { id: 8, name: "", logo: "", url: "#" },
-    { id: 9, name: "", logo: "", url: "#" },
-    { id: 10, name: "", logo: "", url: "#" },
-    { id: 11, name: "", logo: "", url: "#" },
+    { id: 7, name: "Municipio de Seia", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/WhatsApp%20Image%202026-03-11%20at%2008.41.46%20(1).jpeg", url: "https://cm-seia.pt/" },
+    { id: 8, name: "Solar do Mimo", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png", url: "https://www.solardomimo.org/" },
+    { id: 9, name: "Agrupamento de Escolas de Seia", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg", url: "https://www.aeseia.pt/" },
+    { id: 10, name: "Bombeiros Voluntários São Romão", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg", url: "https://www.facebook.com/BombeirosVoluntariosdeSaoRomao/" },
+    { id: 11, name: "Vila de S. Romão", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg", url: "#" },
   ]
 };
 
