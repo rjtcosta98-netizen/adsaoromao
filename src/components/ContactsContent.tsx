@@ -262,8 +262,8 @@ export const ContactsContent: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <Phone size={16} className="text-yellow-500 shrink-0" />
                   <div>
-                    <a href="tel:+351925228934" className="text-sm font-semibold text-gray-800 hover:text-navy-900 transition-colors">
-                      +351 925 228 934
+                    <a href="tel:+351968966375" className="text-sm font-semibold text-gray-800 hover:text-navy-900 transition-colors">
+                      +351 968 966 375
                     </a>
                     <p className="text-[10px] text-gray-400">Chamada para rede móvel nacional</p>
                   </div>
@@ -294,18 +294,6 @@ export const ContactsContent: React.FC = () => {
                 Departamentos
               </h3>
               <div className="space-y-3">
-                <div className="bg-gray-50 rounded-xl p-4 hover:bg-yellow-50 transition-colors group">
-                  <p className="text-xs font-bold text-navy-900 uppercase tracking-wider mb-1">Futebol & Formação</p>
-                  <a href="mailto:formacao.adsr@gmail.com" className="text-sm text-gray-500 group-hover:text-navy-900 transition-colors break-all">
-                    formacao.adsr@gmail.com
-                  </a>
-                </div>
-                <div className="bg-gray-50 rounded-xl p-4 hover:bg-yellow-50 transition-colors group">
-                  <p className="text-xs font-bold text-navy-900 uppercase tracking-wider mb-1">Comunicação & Media</p>
-                  <a href="mailto:media.adsr@gmail.com" className="text-sm text-gray-500 group-hover:text-navy-900 transition-colors break-all">
-                    media.adsr@gmail.com
-                  </a>
-                </div>
                 <div className="bg-gray-50 rounded-xl p-4 hover:bg-yellow-50 transition-colors group">
                   <p className="text-xs font-bold text-navy-900 uppercase tracking-wider mb-1">Direção / Geral</p>
                   <a href="mailto:geral@adsaoromao.pt" className="text-sm text-gray-500 group-hover:text-navy-900 transition-colors break-all">
