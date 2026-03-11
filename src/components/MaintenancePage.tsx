@@ -496,7 +496,7 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col items-center overflow-y-auto overflow-x-hidden font-sans select-none"
+      className="fixed inset-0 z-[100] flex flex-col items-center overflow-hidden font-sans select-none"
       onMouseMove={handleMouseMove}
       style={{ background: '#020a18' }}
     >
