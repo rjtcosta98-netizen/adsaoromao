@@ -4,9 +4,11 @@ import React from 'react';
 
 // --- DADOS DOS PATROCINADORES ---
 const SPONSORS_DATA = {
+  principal: [
+    { id: 0, name: "Element Group - Solutions", logo: "https://ik.imagekit.io/elementgroup/ADSR/Element%20Group%20Solucoes%20Digitais", url: "https://elementgroup.pt" },
+  ],
   gold: [
-    // Usei imagens de exemplo que funcionam bem como "fundo"
-    { id: 1, name: "Element Group - Solutions", logo: "https://ik.imagekit.io/elementgroup/ADSR/Element%20Group%20Solucoes%20Digitais", url: "https://elementgroup.pt" },
+    { id: 1, name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg", url: "#" },
     { id: 2, name: "", logo: "", url: "#" },
   ],
   silver: [
@@ -28,8 +30,41 @@ export const SponsorsList: React.FC = () => {
    return (
       <div id="sponsors-list" className="py-24 border-t border-white/5">
       <div className="container mx-auto px-4 space-y-24">
+
+        {/* --- SECÇÃO SPONSOR PRINCIPAL --- */}
+        <div className="text-center">
+           <div className="inline-block border-2 border-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 rounded-full px-10 py-3 mb-10 bg-gradient-to-r from-yellow-400/10 via-amber-300/10 to-yellow-400/10 shadow-lg shadow-yellow-400/20">
+              <span className="text-yellow-400 text-sm font-bold uppercase tracking-[0.3em]">✦ Sponsor Principal ✦</span>
+           </div>
+           
+           <div className="max-w-3xl mx-auto">
+              {SPONSORS_DATA.principal.map((sponsor) => (
+                 <a 
+                   key={sponsor.id} 
+                   href={sponsor.url}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="block bg-gradient-to-br from-navy-800/80 via-navy-900/90 to-navy-800/80 rounded-3xl border-2 border-yellow-400/30 relative shadow-2xl shadow-yellow-400/10 hover:shadow-yellow-400/30 hover:-translate-y-2 transition-all duration-500 group overflow-hidden"
+                 >
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 via-transparent to-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="h-56 md:h-64 relative flex items-center justify-center p-8">
+                      <img 
+                        src={sponsor.logo} 
+                        alt={sponsor.name} 
+                        className="max-w-full max-h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    {sponsor.name && (
+                      <div className="bg-gradient-to-t from-navy-900 via-navy-900/95 to-transparent px-6 py-4 border-t border-yellow-400/20">
+                        <span className="text-white font-display text-lg uppercase tracking-widest group-hover:text-yellow-400 transition-colors">{sponsor.name}</span>
+                      </div>
+                    )}
+                 </a>
+              ))}
+           </div>
+        </div>
         
-        {/* --- SECÇÃO GOLD (MODIFICADA PARA PREENCHER TUDO) --- */}
+        {/* --- SECÇÃO GOLD --- */}
         <div className="text-center">
            <div className="inline-block border border-yellow-400 rounded-full px-8 py-2 mb-10 bg-yellow-400/5">
               <span className="text-yellow-400 text-xs font-bold uppercase tracking-[0.2em]">Parceiros Gold</span>
