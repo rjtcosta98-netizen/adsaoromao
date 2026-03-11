@@ -22,7 +22,7 @@ const SPONSORS_DATA = {
     { id: 8, name: "Solar do Mimo", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png", url: "https://www.solardomimo.org/" },
     { id: 9, name: "Agrupamento Escolas de Seia", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg", url: "https://www.aeseia.pt/" },
     { id: 10, name: "Bombeiros Voluntários São Romão", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg", url: "https://www.facebook.com/BombeirosVoluntariosdeSaoRomao/" },
-    { id: 11, name: "Vila de S. Romão", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg", url: "#" },
+    { id: 11, name: "Junta de Freguesia de S. Romão", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg", url: "#" },
   ]
 };
 
