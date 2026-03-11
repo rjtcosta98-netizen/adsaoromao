@@ -81,7 +81,7 @@ export const SponsorsList: React.FC = () => {
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="bg-navy-800/30 rounded-xl border border-white/5 hover:bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
+                   className="rounded-xl border border-white/5 bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
                  >
                     {sponsor.logo ? (
                       <>
@@ -90,7 +90,7 @@ export const SponsorsList: React.FC = () => {
                             src={sponsor.logo} 
                             alt={sponsor.name} 
                             loading="lazy" 
-                            className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105" 
+                            className="w-full h-full object-cover opacity-100 transition-all duration-300" 
                           />
                         </div>
                         {sponsor.name && (
@@ -122,7 +122,7 @@ export const SponsorsList: React.FC = () => {
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="bg-navy-800/20 rounded border border-white/5 hover:bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
+                   className="rounded border border-white/5 bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
                  >
                     {sponsor.logo ? (
                       <>
@@ -131,7 +131,7 @@ export const SponsorsList: React.FC = () => {
                             src={sponsor.logo} 
                             alt={sponsor.name} 
                             loading="lazy" 
-                            className="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" 
+                            className="max-w-full max-h-full object-contain opacity-100 transition-opacity" 
                           />
                         </div>
                         {sponsor.name && (
