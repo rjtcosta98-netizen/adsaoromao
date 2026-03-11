@@ -122,7 +122,7 @@ export const SponsorsList: React.FC = () => {
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="rounded border border-white/5 bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
+                   className="rounded border border-white/5 bg-navy-800/30 transition-colors group cursor-pointer overflow-hidden flex flex-col"
                  >
                     {sponsor.logo ? (
                       <>
