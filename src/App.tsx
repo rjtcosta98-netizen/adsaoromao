@@ -32,10 +32,11 @@ import { getPageRoute } from '@/lib/routes';
 // ══════════════════════════════════════════════════════════
 //  MODO MANUTENÇÃO — Alterar para false para desativar
 // ══════════════════════════════════════════════════════════
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 function AppShell() {
   const [loading, setLoading] = useState(true);
+  const [maintenanceActive, setMaintenanceActive] = useState(MAINTENANCE_MODE);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [previousCartLength, setPreviousCartLength] = useState(0);
@@ -53,14 +54,20 @@ function AppShell() {
   const isAdmin = pathname === '/admin';
   const isMaintenance = pathname === '/manutencao';
 
+  // Handler para quando o countdown terminar e o site for lançado
+  const handleSiteLaunch = useCallback(() => {
+    setMaintenanceActive(false);
+    routerNavigate('/');
+  }, [routerNavigate]);
+
   useEffect(() => {
-    if (MAINTENANCE_MODE || isMaintenance) {
+    if (maintenanceActive || isMaintenance) {
       setLoading(false);
       return;
     }
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
-  }, [isMaintenance]);
+  }, [maintenanceActive, isMaintenance]);
 
   // Auto open cart when item added
   useEffect(() => {
@@ -71,12 +78,12 @@ function AppShell() {
   }, [cartItems.length, previousCartLength]);
 
   // Modo manutenção ativo — mostrar coming soon em todas as páginas (exceto admin)
-  if (MAINTENANCE_MODE && !isAdmin) {
-    return <MaintenancePage />;
+  if (maintenanceActive && !isAdmin) {
+    return <MaintenancePage onLaunch={handleSiteLaunch} />;
   }
 
   if (isMaintenance) {
-    return <MaintenancePage />;
+    return <MaintenancePage onLaunch={handleSiteLaunch} />;
   }
 
   if (isAdmin) {
