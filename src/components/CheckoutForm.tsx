@@ -67,6 +67,16 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
         `- ${item.name} (Tam: ${item.selectedSize}, Qtd: ${item.quantity})`
       ).join('\n');
 
+      const itemsWithImages = items.map(item => 
+        `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:12px;background:#f5f5f5;border-radius:8px;">
+          <img src="${item.imageUrl}" alt="${item.name}" style="width:60px;height:60px;object-fit:cover;border-radius:6px;" />
+          <div>
+            <strong>${item.name}</strong><br/>
+            <span style="color:#666;">Tamanho: ${item.selectedSize} | Qtd: ${item.quantity}</span>
+          </div>
+        </div>`
+      ).join('');
+
       const moradaEnvioFinal = moradaEnvioIgual 
         ? 'Igual à morada de faturação' 
         : `${formData.moradaEnvio}, ${formData.codPostalEnvio} ${formData.cidadeEnvio}`;
@@ -79,12 +89,14 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({ isOpen, onClose, ite
         },
         body: JSON.stringify({
           _subject: `[ADSR Loja] Nova Encomenda - ${formData.nome}`,
+          _cc: formData.email,
+          _template: 'box',
           Nome: formData.nome,
           Email: formData.email,
           Telefone: formData.telefone || 'Não indicado',
           'Morada Faturacao': `${formData.morada}, ${formData.codPostal} ${formData.cidade}`,
           'Morada Envio': moradaEnvioFinal,
-          Produtos: itemsList,
+          'Produtos (texto)': itemsList,
           Observacoes: formData.observacoes || 'Sem observações',
         }),
       });

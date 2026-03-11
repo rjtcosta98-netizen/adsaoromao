@@ -38,6 +38,8 @@ export const SponsorsForm: React.FC = () => {
             },
             body: JSON.stringify({
                _subject: `[ADSR Patrocínio] Proposta de ${formData.empresa}`,
+               _cc: formData.email,
+               _template: 'table',
                Empresa: formData.empresa,
                Responsavel: formData.responsavel,
                Email: formData.email,

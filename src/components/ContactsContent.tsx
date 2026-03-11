@@ -57,6 +57,8 @@ export const ContactsContent: React.FC = () => {
         },
         body: JSON.stringify({
           _subject: `[ADSR Contacto] ${subjectLabels[formData.subject] || formData.subject} - ${formData.name}`,
+          _cc: formData.email,
+          _template: 'table',
           Nome: formData.name,
           Email: formData.email,
           Telefone: formData.phone || 'Não indicado',
