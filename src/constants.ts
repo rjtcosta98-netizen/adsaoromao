@@ -427,8 +427,9 @@ export const SPONSORS: Sponsor[] = [
   { id: 4, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg' },
   { id: 5, name: 'Município de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png' },
   { id: 6, name: 'Solar do Mimo', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png' },
-  { id: 7, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg' },
+  { id: 7, name: 'Escola Evaristo Nogueira', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/hpkvbu9sn/416085974_893147459487726_7890513589601136074_n.jpg' },
   { id: 8, name: 'Bombeiros Voluntários São Romão', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg' },
+  { id: 9, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg' },
 ];
 
 export const HISTORY_STATS = [

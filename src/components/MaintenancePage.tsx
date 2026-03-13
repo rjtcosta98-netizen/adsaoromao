@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { LOGO_URL } from '../constants';
-import { Facebook, Instagram, Youtube, Mail, Trophy, Clock, Star, Shield, Rocket, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Mail, Trophy, Clock, Star, Shield, Rocket, Sparkles, Volume2, VolumeX, Lock, Eye, EyeOff, X } from 'lucide-react';
 
 interface MaintenancePageProps {
   onLaunch?: () => void;
@@ -12,7 +12,7 @@ interface MaintenancePageProps {
 //  CONFIGURAÇÃO — Altera aqui as fotos e a data de lançamento
 // ══════════════════════════════════════════════════════════════
 
-const LAUNCH_DATE = new Date('2026-03-14T21:00:00');
+const LAUNCH_DATE = new Date('2026-03-21T21:00:00');
 
 // Fotos para o slideshow de fundo (substitui pelos URLs reais)
 const SLIDESHOW_PHOTOS = [
@@ -201,6 +201,59 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
   const totalSeconds = Math.floor(time.total / 1000);
   const isUnder40Sec = totalSeconds <= 40 && totalSeconds > 0;
   const isUnder3Sec = totalSeconds <= 3 && totalSeconds > 0;
+  
+  // Hidden login state
+  const [logoClickCount, setLogoClickCount] = useState(0);
+  const [showHiddenLogin, setShowHiddenLogin] = useState(false);
+  const [loginPassword, setLoginPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const logoClickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  // Secret password for admin access
+  const SECRET_PASSWORD = 'adsr2026';
+  
+  // Handle logo click for hidden login
+  const handleLogoClick = useCallback(() => {
+    if (logoClickTimeoutRef.current) {
+      clearTimeout(logoClickTimeoutRef.current);
+    }
+    
+    setLogoClickCount(prev => {
+      const newCount = prev + 1;
+      if (newCount >= 5) {
+        setShowHiddenLogin(true);
+        return 0;
+      }
+      return newCount;
+    });
+    
+    // Reset click count after 2 seconds of inactivity
+    logoClickTimeoutRef.current = setTimeout(() => {
+      setLogoClickCount(0);
+    }, 2000);
+  }, []);
+  
+  // Handle login submission
+  const handleLoginSubmit = useCallback((e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginPassword === SECRET_PASSWORD) {
+      setShowHiddenLogin(false);
+      if (onLaunch) {
+        onLaunch();
+      }
+    } else {
+      setLoginError(true);
+      setTimeout(() => setLoginError(false), 2000);
+    }
+  }, [loginPassword, onLaunch]);
+  
+  // Close hidden login modal
+  const handleCloseLogin = useCallback(() => {
+    setShowHiddenLogin(false);
+    setLoginPassword('');
+    setLoginError(false);
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -647,17 +700,20 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
       {/* ═══════ MAIN CONTENT ═══════ */}
       <div className="relative z-[10] flex flex-col items-center justify-center text-center px-4 sm:px-5 max-w-4xl xl:max-w-5xl mx-auto w-full min-h-full py-4 sm:py-8 lg:py-5">
 
-        {/* ── Logo ── */}
+        {/* ── Logo (clickable for hidden login) ── */}
         <div
-          className="mb-2 sm:mb-4 md:mb-5 lg:mb-2 relative"
+          className="mb-2 sm:mb-4 md:mb-5 lg:mb-2 relative cursor-pointer"
           style={{ animation: mounted ? 'entrance-drop 1s cubic-bezier(0.16,1,0.3,1) 0.1s both' : 'none' }}
+          onClick={handleLogoClick}
+          title=""
         >
           <div className="absolute inset-0 bg-yellow-400/25 blur-[40px] sm:blur-[50px] rounded-full animate-pulse scale-[2]" />
           <div className="absolute inset-0 bg-blue-500/15 blur-[30px] sm:blur-[35px] rounded-full animate-pulse scale-[1.3]" style={{ animationDelay: '1s' }} />
           <img
             src={LOGO_URL}
             alt="AD São Romão"
-            className="w-16 h-16 sm:w-22 sm:h-22 md:w-28 md:h-28 lg:w-20 lg:h-20 xl:w-22 xl:h-22 object-contain relative z-10 drop-shadow-[0_0_40px_rgba(250,204,21,0.3)] sm:drop-shadow-[0_0_50px_rgba(250,204,21,0.35)]"
+            className="w-16 h-16 sm:w-22 sm:h-22 md:w-28 md:h-28 lg:w-20 lg:h-20 xl:w-22 xl:h-22 object-contain relative z-10 drop-shadow-[0_0_40px_rgba(250,204,21,0.3)] sm:drop-shadow-[0_0_50px_rgba(250,204,21,0.35)] select-none"
+            draggable="false"
           />
         </div>
 
@@ -1398,7 +1454,124 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
             transition-duration: 0.01ms !important;
           }
         }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+          20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+
+        @keyframes modal-enter {
+          0% { opacity: 0; transform: scale(0.9) translateY(-20px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
       `}</style>
+
+      {/* ═══════ HIDDEN LOGIN MODAL ═══════ */}
+      {showHiddenLogin && (
+        <div 
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+          onClick={(e) => e.target === e.currentTarget && handleCloseLogin()}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+          
+          {/* Modal */}
+          <div 
+            className="relative w-full max-w-sm bg-gradient-to-b from-[#0a1929] to-[#051525] rounded-2xl border border-white/10 shadow-2xl overflow-hidden"
+            style={{ animation: 'modal-enter 0.3s ease-out' }}
+          >
+            {/* Close button */}
+            <button
+              onClick={handleCloseLogin}
+              className="absolute top-4 right-4 p-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
+            >
+              <X className="w-4 h-4 text-white/60" />
+            </button>
+            
+            {/* Header glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-yellow-400/20 blur-[60px] rounded-full" />
+            
+            {/* Content */}
+            <div className="relative p-8 pt-10">
+              {/* Lock icon */}
+              <div className="flex justify-center mb-5">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-yellow-400/30 blur-xl rounded-full scale-150" />
+                  <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-yellow-400/20 to-yellow-400/5 border border-yellow-400/30 flex items-center justify-center">
+                    <Lock className="w-6 h-6 text-yellow-400" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Title */}
+              <h3 className="text-center text-lg font-bold text-white mb-1">
+                Acesso Administrativo
+              </h3>
+              <p className="text-center text-xs text-white/40 mb-6">
+                Introduza a palavra-passe para aceder ao website
+              </p>
+              
+              {/* Form */}
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    placeholder="Palavra-passe"
+                    autoFocus
+                    className={`
+                      w-full px-4 py-3 pr-12
+                      bg-white/5 border rounded-xl
+                      text-white placeholder-white/30
+                      focus:outline-none focus:ring-2 focus:ring-yellow-400/50
+                      transition-all duration-200
+                      ${loginError 
+                        ? 'border-red-500/50 ring-2 ring-red-500/30' 
+                        : 'border-white/10 hover:border-white/20'
+                      }
+                    `}
+                    style={{ animation: loginError ? 'shake 0.5s ease-in-out' : 'none' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-white/40 hover:text-white/60 transition-colors"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+                
+                {loginError && (
+                  <p className="text-red-400 text-xs text-center">
+                    Palavra-passe incorreta
+                  </p>
+                )}
+                
+                <button
+                  type="submit"
+                  className="
+                    w-full py-3 rounded-xl
+                    bg-gradient-to-r from-yellow-500 to-yellow-400
+                    text-navy-900 font-bold text-sm
+                    hover:from-yellow-400 hover:to-yellow-300
+                    focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:ring-offset-2 focus:ring-offset-[#0a1929]
+                    transition-all duration-200
+                    shadow-lg shadow-yellow-400/20
+                  "
+                >
+                  Entrar
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
