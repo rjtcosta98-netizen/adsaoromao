@@ -54,10 +54,13 @@ export const ClubStadium: React.FC = () => {
                 </div>
              </div>
 
-             <button className="w-full bg-white hover:bg-gray-100 text-navy-900 font-bold py-3 px-6 rounded-full shadow-lg flex items-center justify-center gap-2 text-xs uppercase tracking-widest transition-colors">
-                <MapPin size={16} className="text-yellow-500" />
-                Como Chegar
-             </button>
+<button 
+  onClick={() => window.open('https://maps.app.goo.gl/SKtjuHyhzjYa8MuL8', '_blank')}
+  className="w-full bg-white hover:bg-gray-100 text-navy-900 font-bold py-3 px-6 rounded-full shadow-lg flex items-center justify-center gap-2 text-xs uppercase tracking-widest transition-colors pointer-events-auto cursor-pointer"
+>
+  <MapPin size={16} className="text-yellow-500" />
+  Como Chegar
+</button>
           </div>
         </div>
       </div>
@@ -111,7 +114,10 @@ export const ClubStadium: React.FC = () => {
                 </div>
              </div>
 
-             <button className="w-full md:w-auto bg-white hover:bg-gray-100 text-navy-900 font-bold py-2 md:py-3 px-6 md:px-8 rounded-full shadow-lg flex items-center justify-center md:justify-start gap-2 text-xs uppercase tracking-widest transition-colors">
+             <button 
+               onClick={() => window.open('https://maps.app.goo.gl/SKtjuHyhzjYa8MuL8', '_blank')}
+               className="w-full md:w-auto bg-white hover:bg-gray-100 text-navy-900 font-bold py-2 md:py-3 px-6 md:px-8 rounded-full shadow-lg flex items-center justify-center md:justify-start gap-2 text-xs uppercase tracking-widest transition-colors cursor-pointer"
+             >
                 <MapPin size={16} className="text-yellow-500" />
                 Como Chegar
              </button>

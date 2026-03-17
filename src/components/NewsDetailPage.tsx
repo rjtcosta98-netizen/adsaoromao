@@ -1,8 +1,8 @@
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NEWS_ITEMS } from '../constants';
-import { ArrowLeft, Share2, Calendar, Tag } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, Facebook } from 'lucide-react';
 
 interface NewsDetailPageProps {
   newsId: number;
@@ -11,6 +11,56 @@ interface NewsDetailPageProps {
 
 export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNavigate }) => {
   const news = NEWS_ITEMS.find(item => item.id === newsId);
+
+  // Dynamically update document <title> and OG meta tags for client-side navigation
+  useEffect(() => {
+    if (!news) return;
+
+    const pageUrl = `https://www.adsaoromao.pt/noticias/${newsId}`;
+    const originalTitle = document.title;
+
+    document.title = `${news.title} | AD São Romão`;
+
+    const setMeta = (property: string, content: string) => {
+      let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute('property', property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    setMeta('og:title', news.title);
+    setMeta('og:description', news.excerpt.substring(0, 200));
+    setMeta('og:image', news.imageUrl);
+    setMeta('og:url', pageUrl);
+    setMeta('og:type', 'article');
+
+    return () => {
+      document.title = originalTitle;
+      setMeta('og:title', 'AD São Romão - Juntos e Fortes');
+      setMeta('og:description', 'Associação Desportiva São Romão. 60+ anos de história, paixão e dedicação ao futebol português.');
+      setMeta('og:image', 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20.jpeg');
+      setMeta('og:url', 'https://www.adsaoromao.pt');
+      setMeta('og:type', 'website');
+    };
+  }, [news, newsId]);
+
+  const SITE_URL = 'https://www.adsaoromao.pt';
+
+  const getNewsUrl = () => {
+    return `${SITE_URL}/noticias/${newsId}`;
+  };
+
+  const shareOnFacebook = () => {
+    const url = encodeURIComponent(getNewsUrl());
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      'facebook-share',
+      'width=626,height=436'
+    );
+  };
 
   if (!news) {
     return (
@@ -111,11 +161,14 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
 
         {/* Share Section */}
         <div className="py-8 md:py-12 border-t border-b border-gray-200">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <span className="text-gray-600 font-semibold">Partilhe esta notícia:</span>
-            <button className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold text-sm md:text-base px-5 md:px-6 py-3 rounded transition-colors">
-              <Share2 size={18} />
-              Partilhar
+            <button
+              onClick={shareOnFacebook}
+              className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer"
+            >
+              <Facebook size={18} />
+              Partilhar no Facebook
             </button>
           </div>
         </div>

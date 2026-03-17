@@ -255,8 +255,8 @@ export const ContactsContent: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <MapPin size={16} className="text-yellow-500 mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-sm font-semibold text-gray-800">Estádio Nossa Senhora da Conceição</p>
-                    <p className="text-xs text-gray-500 mt-0.5">Av. do Estádio, 6270-273 São Romão, Seia</p>
+                    <p className="text-sm font-semibold text-gray-800">Praça de São Pedro, N°1</p>
+                    <p className="text-xs text-gray-500 mt-0.5">6270-287 São Romão</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -339,7 +339,7 @@ export const ContactsContent: React.FC = () => {
           </div>
           <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-gray-200 h-[300px] sm:h-[400px] md:h-[450px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6076.451629063816!2d-7.728179097175617!3d40.40384802718619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd3cd5c76ac1575d%3A0xd1eb4b72faab685!2sCampo%20de%20futebol%20de%20S%C3%A3o%20Rom%C3%A3o!5e0!3m2!1spt-PT!2spt!4v1772031988248!5m2!1spt-PT!2spt"
+              src="https://www.google.com/maps/embed?pb=!4v1773749544180!6m8!1m7!1sZhMIopDBOSEKKjnHhaOj0g!2m2!1d40.39980197942756!2d-7.712482668286935!3f348.23433165212236!4f-5.706182752141103!5f0.7820865974627469"
               width="100%"
               height="100%"
               style={{ border: 0 }}

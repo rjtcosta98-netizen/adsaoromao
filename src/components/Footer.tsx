@@ -74,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
              <ul className="space-y-2 md:space-y-4 text-xs md:text-sm text-gray-400">
                <li className="flex items-start gap-2 md:gap-3">
                  <MapPin className="text-yellow-400 shrink-0 mt-0.5 md:mt-1 w-4 md:w-4" />
-                 <span>Estádio Nossa Senhora da Conceição<br/>6270-273 São Romão</span>
+                 <span>Praça de São Pedro, N°1 A<br/> 6270-287 São Romão</span>
                </li>
                <li className="flex items-center gap-2 md:gap-3">
                  <Phone className="text-yellow-400 shrink-0 w-4 md:w-4" />

@@ -1,0 +1,7 @@
+[build]
+  publish = "dist"
+  command = "pnpm run build"
+
+[[edge_functions]]
+  path = "/noticias/*"
+  function = "og-news"

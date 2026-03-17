@@ -63,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url("https://ik.imagekit.io/elementgroup/ADSR/Estadio%20ADSR")' }}
+        style={{ backgroundImage: 'url("https://ik.imagekit.io/hpkvbu9sn/IDG_20260308_155005_637.jpeg")' }}
       >
         <div className="absolute inset-0 bg-navy-900/70 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>

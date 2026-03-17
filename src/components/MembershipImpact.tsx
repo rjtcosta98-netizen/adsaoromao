@@ -91,7 +91,7 @@ export const MembershipImpact: React.FC = () => {
                   Objetivo 2026
                </h3>
                <p className="text-navy-900 text-sm md:text-base leading-relaxed font-medium">
-                  Este ano, o objetivo das quotas extraordinárias é a renovação da iluminação do campo para treinos noturnos com mais qualidade.
+                  Este ano, o objetivo das quotas extraordinárias é permitir a continuidade da colocação da cor amarela e azul pelo nosso estádio! 
                </p>
             </div>
          </div>
