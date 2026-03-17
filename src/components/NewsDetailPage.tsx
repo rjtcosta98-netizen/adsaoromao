@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { NEWS_ITEMS } from '../constants';
-import { ArrowLeft, Calendar, Tag, Facebook } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag } from 'lucide-react';
 
 interface NewsDetailPageProps {
   newsId: number;
@@ -46,21 +46,6 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
       setMeta('og:type', 'website');
     };
   }, [news, newsId]);
-
-  const SITE_URL = 'https://www.adsaoromao.pt';
-
-  const getNewsUrl = () => {
-    return `${SITE_URL}/noticias/${newsId}`;
-  };
-
-  const shareOnFacebook = () => {
-    const url = encodeURIComponent(getNewsUrl());
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-      'facebook-share',
-      'width=626,height=436'
-    );
-  };
 
   if (!news) {
     return (
@@ -159,19 +144,6 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
           </p>
         </div>
 
-        {/* Share Section */}
-        <div className="py-8 md:py-12 border-t border-b border-gray-200">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <span className="text-gray-600 font-semibold">Partilhe esta notícia:</span>
-            <button
-              onClick={shareOnFacebook}
-              className="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold text-sm px-5 py-3 rounded-lg transition-colors cursor-pointer"
-            >
-              <Facebook size={18} />
-              Partilhar no Facebook
-            </button>
-          </div>
-        </div>
       </article>
 
       {/* Related News Section */}
