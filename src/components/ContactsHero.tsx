@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const ContactsHero: React.FC = () => {
   const contactCards = [
-    { icon: MapPin, label: 'Morada', value: 'Estádio N. Sra. Conceição, São Romão', href: 'https://maps.google.com/?q=Estádio+Nossa+Senhora+da+Conceição+São+Romão+Seia' },
+    { icon: MapPin, label: 'Morada', value: 'Praça de São Pedro, N°1 A 6270-287 São Romão', href: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d759.6021070313888!2d-7.712482668286935!3d40.39980197942756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd3cd5c76ac1575d%3A0xd1eb4b72faab685!2sCampo%20de%20futebol%20de%20S%C3%A3o%20Rom%C3%A3o!5e0!3m2!1spt-PT!2spt!4v1773752166776!5m2!1spt-PT!2spt' },
     { icon: Phone, label: 'Telefone', value: '+351 925 228 934', href: 'tel:+351925228934' },
     { icon: Mail, label: 'Email', value: 'geral@adsaoromao.pt', href: 'mailto:geral@adsaoromao.pt' },
     { icon: Clock, label: 'Secretaria', value: 'Seg-Sex 18h-20h · Sáb 10h-12h30', href: undefined },
