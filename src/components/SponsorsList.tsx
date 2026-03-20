@@ -18,12 +18,12 @@ const SPONSORS_DATA = {
     { id: 6, name: "", logo: "", url: "#" },
   ],
   local: [
-    { id: 7, name: "Junta de Freguesia de S. Romão", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg", url: "#" },
-    { id: 8, name: "Municipio de Seia", logo: "https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png", url: "https://cm-seia.pt/" },
-    { id: 9, name: "Solar do Mimo", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png", url: "https://www.solardomimo.org/" },
-    { id: 10, name: "Agrupamento Escolas de Seia", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg", url: "https://www.aeseia.pt/" },
-    { id: 11, name: "Bombeiros Voluntários São Romão", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg", url: "https://www.facebook.com/BombeirosVoluntariosdeSaoRomao/" },
-
+   { id: 4, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg', url: "#" },
+  { id: 5, name: 'Município de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png', url: "#" },
+  { id: 6, name: 'Solar do Mimo', category: 'Apoio Local',logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png', url: "#" },
+  { id: 7, name: 'Escola Evaristo Nogueira', category: 'Apoio Local', logo: 'https://ik.imagekit.io/hpkvbu9sn/416085974_893147459487726_7890513589601136074_n.jpg', url: "#" },
+  { id: 8, name: 'Bombeiros Voluntários São Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg', url: "#" },
+  { id: 9, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg', url: "#" },
   ]
 };
 
