@@ -1,13 +1,14 @@
-
-
 import React, { useEffect, useRef } from 'react';
 import { Instagram, Facebook, ExternalLink } from 'lucide-react';
 
-// Coloca aqui os URLs dos posts de Instagram que queres mostrar
-const INSTAGRAM_POSTS = [
-  'https://rss.app/embed/v1/carousel/6zRmNoW8o7Oa231Z',
-
-];
+// 1. Declaração TypeScript para aceitar o custom element do RSS.app sem erros
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'rssapp-carousel': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { id: string };
+    }
+  }
+}
 
 // Links das redes sociais
 const SOCIAL_LINKS = {
@@ -16,29 +17,28 @@ const SOCIAL_LINKS = {
 };
 
 export const SocialFeed: React.FC = () => {
-  const embedsLoaded = useRef(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const scriptLoaded = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (embedsLoaded.current) return;
+    if (scriptLoaded.current) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !embedsLoaded.current) {
-          embedsLoaded.current = true;
+        if (entries[0].isIntersecting && !scriptLoaded.current) {
+          scriptLoaded.current = true;
+          
+          // Injeção assíncrona do script do RSS.app para proteger os Core Web Vitals
           const script = document.createElement('script');
-          script.src = 'https://www.instagram.com/embed.js';
+          script.src = 'https://widget.rss.app/v1/carousel.js';
+          script.type = 'text/javascript';
           script.async = true;
-          script.onload = () => {
-            if ((window as any).instgrm) {
-              (window as any).instgrm.Embeds.process();
-            }
-          };
           document.body.appendChild(script);
+          
           observer.disconnect();
         }
       },
-      { rootMargin: '200px' }
+      { rootMargin: '200px' } // Pre-load 200px antes de aparecer no ecrã
     );
 
     if (sectionRef.current) {
@@ -49,7 +49,7 @@ export const SocialFeed: React.FC = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="bg-white py-16 md:py-20 lg:py-24 border-t border-gray-100">
+    <section ref={sectionRef} className="bg-white py-16 md:py-20 lg:py-24 border-t border-gray-100">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
@@ -84,29 +84,9 @@ export const SocialFeed: React.FC = () => {
           </div>
         </div>
 
-        {/* Instagram Embeds Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-10">
-          {INSTAGRAM_POSTS.map((postUrl, index) => (
-            <div key={index} className="flex justify-center">
-              <blockquote
-                className="instagram-media"
-                data-instgrm-captioned
-                data-instgrm-permalink={postUrl}
-                data-instgrm-version="14"
-                style={{
-                  background: '#FFF',
-                  border: 0,
-                  borderRadius: '12px',
-                  boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
-                  margin: '0',
-                  maxWidth: '540px',
-                  minWidth: '280px',
-                  width: '100%',
-                }}
-              >
-              </blockquote>
-            </div>
-          ))}
+        {/* RSS.APP Carousel Widget */}
+        <div className="max-w-6xl mx-auto mb-10 min-h-[300px] flex justify-center">
+          <rssapp-carousel id="6zRmNoW8o7Oa231Z"></rssapp-carousel>
         </div>
 
         {/* CTA para ver mais */}
@@ -122,6 +102,6 @@ export const SocialFeed: React.FC = () => {
           </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
