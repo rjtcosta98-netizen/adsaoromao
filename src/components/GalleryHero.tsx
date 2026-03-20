@@ -55,7 +55,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
               {/* Featured Image */}
               <div className="aspect-video relative group cursor-pointer overflow-hidden">
                  <img 
-                    src="https://ik.imagekit.io/elementgroup/ADSR/649607114_1520282620098047_8821892702949244881_n.jpg" 
+                    src="https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653440820_1535281548598154_8861647900528153290_n.jpg" 
                     alt="Destaque" 
                     loading="lazy"
                     width={600}
@@ -67,23 +67,23 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
 
               {/* Card Body */}
               <div className="p-8 text-center bg-navy-800">
-                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">Vitoria em Casa vs Os Vilanovenses</h3>
+                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">Empate Fora vs TRANCOSO</h3>
                  
                  <div className="flex items-center justify-center gap-6 text-gray-400 text-xs mb-8">
                     <div className="flex items-center gap-2">
                        <Calendar size={14} className="text-red-500" />
-                       <span>8 de Março, 2026</span>
+                       <span>15 de Março, 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                        <ImageIcon size={14} className="text-yellow-400" />
-                       <span>24 Fotos</span>
+                       <span>23 Fotos</span>
                     </div>
                  </div>
                  
                  <button 
                     onClick={(e) => {
                       e.stopPropagation();
-                      onNavigate?.('album-detalhe', 1);
+                      onNavigate?.('album-detalhe', 3);
                     }}
                     className="w-full bg-white hover:bg-gray-100 text-navy-900 font-bold py-4 rounded uppercase text-xs tracking-widest transition-colors shadow-lg"
                  >

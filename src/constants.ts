@@ -665,4 +665,38 @@ export const GALLERY_ALBUMS = [
       // Adicione mais fotos aqui...
     ]
   },
+  {
+    id: 3,
+    title: 'SENIORES: ADSR VS TRANCOSO',
+    subtitle: 'Campeonato Distrital 2025/26',
+    date: '15 Março 2026',
+    coverImage: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653370668_1535281551931487_5847939112126442793_n.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/651231826_1535281081931534_7604635708807627390_n.jpg' },
+      { id: 2, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/654129363_1535281078598201_8469047388396412015_n.jpg' },
+      { id: 3, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653710692_1535282991931343_2172734458447474330_n.jpg' },
+      { id: 4, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653387317_1535281575264818_6615301992811896769_n.jpg' },
+      { id: 5, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653043207_1535281545264821_3021540793149656379_n.jpg' },
+      { id: 6, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/651161200_1535281568598152_3241965146491060242_n.jpg' },
+      { id: 7, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/651765722_1535283015264674_5556667749168433091_n.jpg' },
+      { id: 8, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/650797099_1535283065264669_4141141357266645883_n.jpg' },
+      { id: 9, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/650797099_1535283065264669_4141141357266645883_n.jpg' },
+      { id: 10, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/650797099_1535283065264669_4141141357266645883_n.jpg' },
+      { id: 11, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653698448_1535282685264707_2938139612342533587_n.jpg' },
+      { id: 12, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/651236246_1535282731931369_2867098979692778043_n.jpg' },
+      { id: 13, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653399646_1535282778598031_2569577475205599086_n.jpg' },
+      { id: 14, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/651763556_1535281661931476_7399327415813773473_n.jpg' },
+      { id: 15, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653370668_1535281551931487_5847939112126442793_n.jpg' },
+      { id: 16, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/652227331_1535282908598018_4695423720803672575_n.jpg' },
+      { id: 17, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/652227331_1535282908598018_4695423720803672575_n.jpg' },
+      { id: 18, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/652384763_1535282745264701_3484532611506314959_n.jpg' },
+      { id: 19, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/652909333_1535282885264687_3041691874604131503_n.jpg' },
+      { id: 20, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/652329717_1535282725264703_2108209086121545789_n.jpg' },
+      { id: 21, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/652897243_1535282931931349_4849728715225646532_n.jpg' },
+      { id: 22, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/653440820_1535281548598154_8861647900528153290_n.jpg' },
+      { id: 23, url: 'https://ik.imagekit.io/hpkvbu9sn/ADSR%20NEW%20VS/650979999_1535282728598036_899068552873647137_n.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
 ];
