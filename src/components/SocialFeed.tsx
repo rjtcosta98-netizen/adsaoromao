@@ -5,10 +5,8 @@ import { Instagram, Facebook, ExternalLink } from 'lucide-react';
 
 // Coloca aqui os URLs dos posts de Instagram que queres mostrar
 const INSTAGRAM_POSTS = [
-  'https://www.instagram.com/p/DVqdlZDjGXP/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-  'https://www.instagram.com/p/DVpG5NCjGQe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-  'https://www.instagram.com/p/DVo95KGDHeY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-  'https://www.instagram.com/p/DVofBGRDPE3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+  'https://rss.app/embed/v1/carousel/6zRmNoW8o7Oa231Z',
+
 ];
 
 // Links das redes sociais
