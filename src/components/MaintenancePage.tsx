@@ -12,7 +12,7 @@ interface MaintenancePageProps {
 //  CONFIGURAÇÃO — Altera aqui as fotos e a data de lançamento
 // ══════════════════════════════════════════════════════════════
 
-const LAUNCH_DATE = new Date('2026-03-21T19:00:00');
+const LAUNCH_DATE = new Date('2026-03-21T22:00:00');
 
 // Fotos para o slideshow de fundo (substitui pelos URLs reais)
 const SLIDESHOW_PHOTOS = [
