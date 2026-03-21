@@ -478,7 +478,7 @@ export const SQUAD_DATA = {
         { id: 20, name: 'FRIIKIQUE', role: 'Defesa Central', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(1).jpeg' },
         { id: 21, name: 'AFONSO CLARA', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28%20(1).jpeg' },
         { id: 22, name: 'JOÃO FREIRE', role: 'Defesa Central', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(4).jpeg' },
-        { id: 23, name: 'MIGUEL BRITO', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(4).jpeg' },
+        { id: 23, name: 'MIGUEL BRITO', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.25%20(1).jpeg?updatedAt=1773052555510' },
         { id: 24, name: 'ALBANO FERRÃO', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(5).jpeg' },
         { id: 25, name: 'JOÃO COSTA', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28%20(3).jpeg' },
         { id: 27, name: 'BERNARDO', role: 'Defesa Central', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28%20(2).jpeg' },
