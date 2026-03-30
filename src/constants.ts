@@ -4,6 +4,9 @@ import { Trophy, Users, MapPin, Shield } from 'lucide-react';
 
 // Placeholder Logo URL (using a generic shield for demo purposes)
 export const LOGO_URL = "https://cdn-img.zerozero.pt/img/logos/equipas/8062_imgbank.png"; 
+
+export const LATEST_RESULTS: MatchResult[] = [];
+export const UPCOMING_MATCHES: MatchResult[] = [];
 export const OPPONENT_LOGO_1 = "https://cdn-icons-png.flaticon.com/512/1273/1273736.png";
 export const OPPONENT_LOGO_2 = "https://cdn-icons-png.flaticon.com/512/3135/3135768.png";
 export const OPPONENT_LOGO_3 = "https://cdn-icons-png.flaticon.com/512/1828/1828884.png";
@@ -33,7 +36,7 @@ export const TEAM_LOGOS: Record<string, string> = {
   'Sp. Mêda': 'https://cdn-img.zerozero.pt/img/logos/equipas/6841_imgbank.png',
   'Vilar Formoso': 'https://cdn-img.zerozero.pt/img/logos/equipas/6838_imgbank.png',
   'GD Foz Côa': 'https://cdn-img.zerozero.pt/img/logos/equipas/6846_imgbank.png',
-  'VF Naves': 'https://cdn-img.zerozero.pt/img/logos/equipas/11083_imgbank.png',
+  'VF Naves': '/images/VFNAVES.png',
   'CD Gouveia': 'https://cdn-img.zerozero.pt/img/logos/equipas/4344_imgbank.png',
   'NDS Guarda': 'https://cdn-img.zerozero.pt/img/logos/equipas/10044_imgbank.png',
   'Penaverdense': 'https://cdn-img.zerozero.pt/img/logos/equipas/11072_imgbank_1741687922.png',
