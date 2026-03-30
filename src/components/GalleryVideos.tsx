@@ -14,6 +14,11 @@ export const GalleryVideos: React.FC = () => {
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
   const videos = [
+     {
+      url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.mp4',
+      title: 'Apresentação Website Oficial AD São Romão',
+      subtitle: 'Website Oficial'
+    },
     {
       url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1773058821/FDownloader.Net_AQM8YjVeL3RA_YPdMnFh5PqadfRypS8d16sx3hWqnsIBAfEZXChrJNj_FOe4xiCenuF1vq3ZRYwNO6xsLwvFEZgjMuSKLdb2sleNVo-eLpwFaw_720p__HD_n7idaz.mp4',
       title: 'Patrocinadores AD São Romão 2025',

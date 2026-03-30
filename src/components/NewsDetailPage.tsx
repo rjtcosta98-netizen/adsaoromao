@@ -123,25 +123,35 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
 
         {/* Article Content */}
         <div className="prose prose-lg max-w-none mb-12 md:mb-16">
-          <p className="text-gray-800 text-lg md:text-xl leading-relaxed mb-8 font-medium">
-            {news.excerpt}
-          </p>
+          {news.content ? (
+            news.content.split('\n\n').map((paragraph, index) => (
+              <p key={index} className="text-gray-800 text-lg md:text-xl leading-relaxed mb-8 font-medium">
+                {paragraph}
+              </p>
+            ))
+          ) : (
+            <>
+              <p className="text-gray-800 text-lg md:text-xl leading-relaxed mb-8 font-medium">
+                {news.excerpt}
+              </p>
 
-          <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
-            A Associação Desportiva de São Romão continua a trabalhar com dedicação nos seus objetivos institucionais. Este desenvolvimento representa mais um passo importante na história do nosso clube, refletindo o compromisso com a excelência tanto no desemporto como na gestão organizacional.
-          </p>
+              <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
+                A Associação Desportiva de São Romão continua a trabalhar com dedicação nos seus objetivos institucionais. Este desenvolvimento representa mais um passo importante na história do nosso clube, refletindo o compromisso com a excelência tanto no desemporto como na gestão organizacional.
+              </p>
 
-          <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
-            Os membros, adeptos e comunidade permanecem informados sobre todos os desenvolvimentos significativos através dos nossos canais de comunicação. A transparência e a partilha de informação são valores fundamentais que guiam a nossa organização.
-          </p>
+              <p className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8">
+                Os membros, adeptos e comunidade permanecem informados sobre todos os desenvolvimentos significativos através dos nossos canais de comunicação. A transparência e a partilha de informação são valores fundamentais que guiam a nossa organização.
+              </p>
 
-          <blockquote className="border-l-4 border-yellow-400 pl-6 md:pl-8 my-10 md:my-12 italic text-gray-700 text-lg">
-            "A dedicação, o trabalho em equipa e a visão clara são os pilares que sustentam o crescimento contínuo da Associação Desportiva de São Romão."
-          </blockquote>
+              <blockquote className="border-l-4 border-yellow-400 pl-6 md:pl-8 my-10 md:my-12 italic text-gray-700 text-lg">
+                "A dedicação, o trabalho em equipa e a visão clara são os pilares que sustentam o crescimento contínuo da Associação Desportiva de São Romão."
+              </blockquote>
 
-          <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
-            Continuamos comprometidos em manter a comunidade informada e envolvida em todos os aspetos da vida do clube. Acompanhe as próximas atualizações e desenvolvimentos que moldarão o futuro da instituição.
-          </p>
+              <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
+                Continuamos comprometidos em manter a comunidade informada e envolvida em todos os aspetos da vida do clube. Acompanhe as próximas atualizações e desenvolvimentos que moldarão o futuro da instituição.
+              </p>
+            </>
+          )}
         </div>
 
       </article>

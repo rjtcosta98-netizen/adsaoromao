@@ -45,174 +45,18 @@ export const TEAM_LOGOS: Record<string, string> = {
   // Adiciona as restantes equipas da liga
 };
 
-export const LATEST_RESULTS: MatchResult[] = [
-  {
-    id: 1,
-    category: 'SENIORES',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'G. Figueirense',
-    homeScore: 1,
-    awayScore: 1,
-    status: 'Finalizado',
-    location: 'Casa',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_1
-  },
-  {
-    id: 2,
-    category: 'SUB 18 (JUNIORES)',
-    homeTeam: 'Vilanovenses',
-    awayTeam: 'AD São Romão',
-    homeScore: 1,
-    awayScore: 0,
-    status: 'Finalizado',
-    location: 'Fora',
-    logoHome: OPPONENT_LOGO_2,
-    logoAway: LOGO_URL
-  },
-  {
-    id: 3,
-    category: 'SUB 16 (JUVENIS)',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'SC Sabugal',
-    homeScore: 3,
-    awayScore: 1,
-    status: 'Finalizado',
-    location: 'Casa',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_1
-  },
-  {
-    id: 4,
-    category: 'SUB 14 (INICIADOS)',
-    homeTeam: 'Trancoso',
-    awayTeam: 'AD São Romão',
-    homeScore: 0,
-    awayScore: 4,
-    status: 'Finalizado',
-    location: 'Fora',
-    logoHome: OPPONENT_LOGO_2,
-    logoAway: LOGO_URL
-  },
-  {
-    id: 5,
-    category: 'SUB 12 (INFANTIS)',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'NDS Guarda',
-    homeScore: 2,
-    awayScore: 2,
-    status: 'Finalizado',
-    location: 'Casa',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_3
-  },
-  {
-    id: 6,
-    category: 'SUB 10 (BENJAMINS)',
-    homeTeam: 'Seia FC',
-    awayTeam: 'AD São Romão',
-    homeScore: 1,
-    awayScore: 5,
-    status: 'Finalizado',
-    location: 'Fora',
-    logoHome: OPPONENT_LOGO_1,
-    logoAway: LOGO_URL
-  },
-  {
-    id: 7,
-    category: 'SUB 8 (TRAQUINAS)',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'Gouveia',
-    homeScore: 8,
-    awayScore: 8,
-    status: 'Finalizado',
-    location: 'Casa',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_2
-  },
-];
-
-export const UPCOMING_MATCHES: MatchResult[] = [
-  {
-    id: 101,
-    category: 'SENIORES',
-    homeTeam: 'SC Sabugal',
-    awayTeam: 'AD São Romão',
-    homeScore: 0,
-    awayScore: 0,
-    status: 'Em Breve',
-    location: 'Fora',
-    date: 'DOM, 25 JAN',
-    time: '15:15',
-    competition: 'AF GUARDA 1ª DIVISÃO',
-    logoHome: OPPONENT_LOGO_1,
-    logoAway: LOGO_URL
-  },
-  {
-    id: 102,
-    category: 'SUB 18 (JUNIORES)',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'Guarda FC',
-    homeScore: 0,
-    awayScore: 0,
-    status: 'Em Breve',
-    location: 'Casa',
-    date: 'SÁB, 24 JAN',
-    time: '17:00',
-    competition: 'CAMPEONATO DISTRITAL',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_3
-  },
-  {
-    id: 103,
-    category: 'SUB 14 (INICIADOS)',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'Vilar Formoso',
-    homeScore: 0,
-    awayScore: 0,
-    status: 'Em Breve',
-    location: 'Casa',
-    date: 'SÁB, 24 JAN',
-    time: '10:30',
-    competition: 'CAMPEONATO DISTRITAL',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_2
-  },
-  {
-    id: 104,
-    category: 'SUB 10 (BENJAMINS)',
-    homeTeam: 'Nogueirense',
-    awayTeam: 'AD São Romão',
-    homeScore: 0,
-    awayScore: 0,
-    status: 'Em Breve',
-    location: 'Fora',
-    date: 'DOM, 25 JAN',
-    time: '11:00',
-    competition: 'LIGA DE PRATA',
-    logoHome: OPPONENT_LOGO_1,
-    logoAway: LOGO_URL
-  },
-   {
-    id: 105,
-    category: 'SENIORES',
-    homeTeam: 'AD São Romão',
-    awayTeam: 'Trancoso',
-    homeScore: 0,
-    awayScore: 0,
-    status: 'Em Breve',
-    location: 'Casa',
-    date: 'DOM, 01 FEV',
-    time: '15:00',
-    competition: 'AF GUARDA 1ª DIVISÃO',
-    logoHome: LOGO_URL,
-    logoAway: OPPONENT_LOGO_2
-  },
-];
-
 export const NEWS_ITEMS: NewsItem[] = [
   {
     id: 1,
+    category: 'CLUBE',
+    title: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão',
+    date: 'Março, 2026',
+    excerpt: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão reconhecida pelo IPDJ - Instituto Português do Desporto e Juventude, I.P. PNED',
+    imageUrl: '/images/NEWS/ADSR1.jpg',
+    content: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão reconhecida pelo IPDJ - Instituto Português do Desporto e Juventude, I.P. PNED representa um importante marco no compromisso do clube com os valores do desporto responsável.\n\nEste reconhecimento destaca o trabalho desenvolvido na promoção do respeito, do fair play, da inclusão e da formação cívica dos seus atletas, reforçando o papel do clube como espaço educativo e de desenvolvimento.\n\nMuitos parabéns, bem hajam a todos! 💙💛'
+  },
+  {
+    id: 2,
     category: 'CLUBE',
     title: 'Associação Desportiva de São Romão conquista Galardão de Entidade Formadora 3 estrelas, atribuído pela FPF',
     date: 'Maio, 2025',
@@ -220,7 +64,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CERTIFICADO'
   },
   {
-    id: 2,
+    id: 3,
     category: 'EVENTO',
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
@@ -228,7 +72,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026'
   },
   {
-    id: 3,
+    id: 4,
     category: 'RENOVAÇÃO',
     title: 'Grandes Mudanças na ADSR',
     date: '12 Jan, 2026',
@@ -596,8 +440,70 @@ export const SQUAD_DATA = {
 
 // GALLERY ALBUMS - Adicione aqui os seus álbuns de fotos
 export const GALLERY_ALBUMS = [
-   {
+    {
     id: 1,
+    title: 'SENIORES: ADSR VS VF NAVES',
+    subtitle: 'Campeonato Distrital 2025/26',
+    date: '29 Março 2026',
+    coverImage: '/images/SENIORESVFNACES/1.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/SENIORESVFNACES/1.jpg' },
+      { id: 2, url: '/images/SENIORESVFNACES/2.jpg' },
+      { id: 3, url: '/images/SENIORESVFNACES/3.jpg' },
+      { id: 4, url: '/images/SENIORESVFNACES/4.jpg' },
+      { id: 5, url: '/images/SENIORESVFNACES/5.jpg' },
+      { id: 6, url: '/images/SENIORESVFNACES/6.jpg' },
+      { id: 7, url: '/images/SENIORESVFNACES/7.jpg' },
+      { id: 8, url: '/images/SENIORESVFNACES/8.jpg' },
+      { id: 9, url: '/images/SENIORESVFNACES/9.jpg' },
+      { id: 10, url: '/images/SENIORESVFNACES/10.jpg' },
+      { id: 11, url: '/images/SENIORESVFNACES/11.jpg' },
+      { id: 12, url: '/images/SENIORESVFNACES/12.jpg' },
+      { id: 13, url: '/images/SENIORESVFNACES/13.jpg' },
+      { id: 14, url: '/images/SENIORESVFNACES/14.jpg' },
+      { id: 15, url: '/images/SENIORESVFNACES/15.jpg' },
+      { id: 16, url: '/images/SENIORESVFNACES/16.jpg' },
+      { id: 17, url: '/images/SENIORESVFNACES/17.jpg' },
+      { id: 18, url: '/images/SENIORESVFNACES/18.jpg' },
+      { id: 19, url: '/images/SENIORESVFNACES/19.jpg' },
+      { id: 20, url: '/images/SENIORESVFNACES/20.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+  {
+    id: 2,
+    title: 'SUB14: ADSR VS ED GOUVEIA',
+    subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
+    date: '29 Março 2026',
+    coverImage: '/images/SUB14GOUVEIA/1.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/SUB14GOUVEIA/1.jpg' },
+      { id: 2, url: '/images/SUB14GOUVEIA/2.jpg' },
+      { id: 3, url: '/images/SUB14GOUVEIA/3.jpg' },
+      { id: 4, url: '/images/SUB14GOUVEIA/4.jpg' },
+      { id: 5, url: '/images/SUB14GOUVEIA/5.jpg' },
+      { id: 6, url: '/images/SUB14GOUVEIA/6.jpg' },
+      { id: 7, url: '/images/SUB14GOUVEIA/7.jpg' },
+      { id: 8, url: '/images/SUB14GOUVEIA/8.jpg' },
+      { id: 9, url: '/images/SUB14GOUVEIA/9.jpg' },
+      { id: 10, url: '/images/SUB14GOUVEIA/10.jpg' },
+      { id: 11, url: '/images/SUB14GOUVEIA/11.jpg' },
+      { id: 12, url: '/images/SUB14GOUVEIA/12.jpg' },
+      { id: 13, url: '/images/SUB14GOUVEIA/13.jpg' },
+      { id: 14, url: '/images/SUB14GOUVEIA/14.jpg' },
+      { id: 15, url: '/images/SUB14GOUVEIA/15.jpg' },
+      { id: 16, url: '/images/SUB14GOUVEIA/16.jpg' },
+      { id: 17, url: '/images/SUB14GOUVEIA/17.jpg' },
+      { id: 18, url: '/images/SUB14GOUVEIA/18.jpg' },
+      { id: 19, url: '/images/SUB14GOUVEIA/19.jpg' },
+      { id: 20, url: '/images/SUB14GOUVEIA/20.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+   {
+    id: 3,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -635,7 +541,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -666,7 +572,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 3,
+    id: 5,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',

@@ -22,6 +22,7 @@ export interface NewsItem {
   category: string;
   excerpt: string;
   imageUrl: string;
+  content?: string;
 }
 
 export interface Photo {
