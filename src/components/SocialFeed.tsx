@@ -1,14 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Instagram, Facebook, ExternalLink } from 'lucide-react';
-
-// 1. Declaração TypeScript para aceitar o custom element do RSS.app sem erros
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'rssapp-carousel': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { id: string };
-    }
-  }
-}
 
 // Links das redes sociais
 const SOCIAL_LINKS = {
@@ -16,29 +7,29 @@ const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/adsaoromao/',
 };
 
+// Posts do Instagram para mostrar (atualizar periodicamente com os URLs dos posts)
+const INSTAGRAM_POSTS = [
+  'https://www.instagram.com/p/DWioNxzjB8q/',
+  'https://www.instagram.com/p/DWhonL4jIWv/',
+  'https://www.instagram.com/p/DWgfbC7jGNE/',
+  'https://www.instagram.com/p/DWe_w1IDMig/',
+  'https://www.instagram.com/p/DWe55YCjLiQ/?img_index=1',
+  'https://www.instagram.com/p/DWevGb_DNQC/',
+];
+
 export const SocialFeed: React.FC = () => {
-  const scriptLoaded = useRef(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (scriptLoaded.current) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !scriptLoaded.current) {
-          scriptLoaded.current = true;
-          
-          // Injeção assíncrona do script do RSS.app para proteger os Core Web Vitals
-          const script = document.createElement('script');
-          script.src = 'https://widget.rss.app/v1/carousel.js';
-          script.type = 'text/javascript';
-          script.async = true;
-          document.body.appendChild(script);
-          
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
           observer.disconnect();
         }
       },
-      { rootMargin: '200px' } // Pre-load 200px antes de aparecer no ecrã
+      { rootMargin: '200px' }
     );
 
     if (sectionRef.current) {
@@ -47,6 +38,20 @@ export const SocialFeed: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    // Carrega o script de embeds do Instagram
+    if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://www.instagram.com/embed.js';
+      script.async = true;
+      document.body.appendChild(script);
+    } else if ((window as any).instgrm) {
+      (window as any).instgrm.Embeds.process();
+    }
+  }, [isVisible]);
 
   return (
     <section ref={sectionRef} className="bg-white py-16 md:py-20 lg:py-24 border-t border-gray-100">
@@ -84,9 +89,33 @@ export const SocialFeed: React.FC = () => {
           </div>
         </div>
 
-        {/* RSS.APP Carousel Widget */}
-        <div className="max-w-6xl mx-auto mb-10 min-h-[300px] flex justify-center">
-          <rssapp-carousel id="6zRmNoW8o7Oa231Z"></rssapp-carousel>
+        {/* Instagram Posts Grid */}
+        <div className="max-w-6xl mx-auto mb-10">
+          {isVisible && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+              {INSTAGRAM_POSTS.map((postUrl, index) => (
+                <div key={index} className="w-full max-w-[350px]">
+                  <blockquote
+                    className="instagram-media"
+                    data-instgrm-captioned
+                    data-instgrm-permalink={postUrl}
+                    data-instgrm-version="14"
+                    style={{
+                      background: '#FFF',
+                      border: 0,
+                      borderRadius: '12px',
+                      boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+                      margin: '0 auto',
+                      maxWidth: '350px',
+                      minWidth: '280px',
+                      padding: 0,
+                      width: '100%',
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* CTA para ver mais */}

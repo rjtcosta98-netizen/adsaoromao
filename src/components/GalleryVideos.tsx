@@ -7,25 +7,29 @@ interface Video {
   url: string;
   title: string;
   subtitle: string;
+  poster: string;
 }
 
 export const GalleryVideos: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
-  const videos = [
+  const videos: Video[] = [
      {
       url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.mp4',
+      poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.jpg',
       title: 'Apresentação Website Oficial AD São Romão',
       subtitle: 'Website Oficial'
     },
     {
       url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1773058821/FDownloader.Net_AQM8YjVeL3RA_YPdMnFh5PqadfRypS8d16sx3hWqnsIBAfEZXChrJNj_FOe4xiCenuF1vq3ZRYwNO6xsLwvFEZgjMuSKLdb2sleNVo-eLpwFaw_720p__HD_n7idaz.mp4',
+      poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1773058821/FDownloader.Net_AQM8YjVeL3RA_YPdMnFh5PqadfRypS8d16sx3hWqnsIBAfEZXChrJNj_FOe4xiCenuF1vq3ZRYwNO6xsLwvFEZgjMuSKLdb2sleNVo-eLpwFaw_720p__HD_n7idaz.jpg',
       title: 'Patrocinadores AD São Romão 2025',
       subtitle: 'Patrocinadores'
     },
     {
       url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1773059307/ADSR_Presi_b5jzsg.mp4',
+      poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1773059307/ADSR_Presi_b5jzsg.jpg',
       title: 'Pós-Jogo: Declarações do Presidente',
       subtitle: 'Entrevista'
     }
@@ -66,8 +70,14 @@ export const GalleryVideos: React.FC = () => {
            >
               <video 
                  src={videos[0].url}
+                 poster={videos[0].poster}
                  preload="metadata"
                  playsInline
+                 className="absolute inset-0 w-full h-full object-cover"
+              />
+              <img 
+                 src={videos[0].poster} 
+                 alt={videos[0].title}
                  className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
@@ -86,30 +96,58 @@ export const GalleryVideos: React.FC = () => {
               </div>
            </div>
 
-           {/* Secondary Video (9:16) */}
-           <div 
-              onClick={() => openVideoModal(videos[1])}
-              className="w-full lg:flex-[1] relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[400px] md:min-h-[450px] lg:min-h-[500px] max-w-[350px] mx-auto lg:mx-0 lg:max-w-none"
-           >
-              <video 
-                 src={videos[1].url}
-                 preload="metadata"
-                 playsInline
-                 className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
-              
-              <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="text-yellow-400 fill-yellow-400 ml-1" size={24} />
+           {/* Side Videos Column */}
+           <div className="w-full lg:flex-[1] flex flex-col gap-6 md:gap-8">
+              {/* Secondary Video (9:16) */}
+              <div 
+                 onClick={() => openVideoModal(videos[1])}
+                 className="w-full relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[250px] md:min-h-[250px] lg:min-h-[240px] max-w-[350px] mx-auto lg:mx-0 lg:max-w-none"
+              >
+                 <img 
+                    src={videos[1].poster} 
+                    alt={videos[1].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                 />
+                 <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
+                 
+                 <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                       <Play className="text-yellow-400 fill-yellow-400 ml-1" size={24} />
+                    </div>
+                 </div>
+
+                 <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
+                    <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 block">{videos[1].subtitle}</span>
+                    <h3 className="font-display font-bold text-base md:text-lg lg:text-xl text-white uppercase leading-tight">
+                       {videos[1].title}
+                    </h3>
                  </div>
               </div>
 
-              <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
-                 <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 block">{videos[1].subtitle}</span>
-                 <h3 className="font-display font-bold text-base md:text-lg lg:text-xl text-white uppercase leading-tight">
-                    {videos[1].title}
-                 </h3>
+              {/* Third Video */}
+              <div 
+                 onClick={() => openVideoModal(videos[2])}
+                 className="w-full relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[250px] md:min-h-[250px] lg:min-h-[240px] max-w-[350px] mx-auto lg:mx-0 lg:max-w-none"
+              >
+                 <img 
+                    src={videos[2].poster} 
+                    alt={videos[2].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                 />
+                 <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
+                 
+                 <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                       <Play className="text-yellow-400 fill-yellow-400 ml-1" size={24} />
+                    </div>
+                 </div>
+
+                 <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
+                    <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 block">{videos[2].subtitle}</span>
+                    <h3 className="font-display font-bold text-base md:text-lg lg:text-xl text-white uppercase leading-tight">
+                       {videos[2].title}
+                    </h3>
+                 </div>
               </div>
            </div>
 
