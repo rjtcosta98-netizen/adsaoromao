@@ -9,6 +9,7 @@ import { WhatsAppWidget } from '@/components/WhatsAppWidget';
 import { CookieConsent } from '@/components/CookieConsent';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { MaintenancePage } from '@/components/MaintenancePage';
+import { TacaPopup } from '@/components/TacaPopup';
 
 // Pages
 import { HomePage } from '@/components/HomePage';
@@ -163,6 +164,7 @@ function AppShell() {
       <Footer onNavigate={navigate} />
       <WhatsAppWidget />
       <CookieConsent />
+      <TacaPopup />
     </div>
   );
 }
