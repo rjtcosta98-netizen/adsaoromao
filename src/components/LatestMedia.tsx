@@ -13,7 +13,7 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
   const latestAlbum = GALLERY_ALBUMS.find(a => a.id === 1) || GALLERY_ALBUMS[0];
   const latestVideo = {
     url: 'https://res.cloudinary.com/dzcwhljmz/video/upload/q_auto/f_auto/v1775296663/ADSR_Flash_Interview_qavcsw.mp4',
-    poster: 'https://res.cloudinary.com/dzcwhljmz/image/upload/q_auto/f_auto/v1775296827/Screenshot_2026-04-04_at_11.00.03_ezyjxr.png',
+    poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775298633/FLASH_INTERVIEW_r06owp.png',
     title: 'Flash Interview: Mister Rui Pedro após vitória nos oitavos da Taça',
     subtitle: 'Oitavos Taça',
   };
