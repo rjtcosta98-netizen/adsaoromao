@@ -10,7 +10,7 @@ interface LatestMediaProps {
 export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  const latestAlbum = GALLERY_ALBUMS[1];
+  const latestAlbum = GALLERY_ALBUMS.find(a => a.id === 1) || GALLERY_ALBUMS[0];
   const latestVideo = {
     url: 'https://res.cloudinary.com/dzcwhljmz/video/upload/q_auto/f_auto/v1775296663/ADSR_Flash_Interview_qavcsw.mp4',
     poster: 'https://res.cloudinary.com/dzcwhljmz/image/upload/q_auto/f_auto/v1775296827/Screenshot_2026-04-04_at_11.00.03_ezyjxr.png',
