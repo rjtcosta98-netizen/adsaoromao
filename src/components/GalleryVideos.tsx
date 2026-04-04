@@ -15,6 +15,12 @@ export const GalleryVideos: React.FC = () => {
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
   const videos: Video[] = [
+       {
+      url: 'https://res.cloudinary.com/dzcwhljmz/video/upload/q_auto/f_auto/v1775296663/ADSR_Flash_Interview_qavcsw.mp4',
+      poster: 'https://res.cloudinary.com/dzcwhljmz/image/upload/q_auto/f_auto/v1775296827/Screenshot_2026-04-04_at_11.00.03_ezyjxr.png',
+      title: 'Flash Interview: Mister Rui Pedro após vitória nos oitavos da Taça',
+      subtitle: 'Oitavos Taça'
+    },
      {
       url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.mp4',
       poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.jpg',

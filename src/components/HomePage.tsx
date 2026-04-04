@@ -3,6 +3,7 @@
 
 import React, { lazy, Suspense } from 'react';
 import { Hero } from './Hero';
+import { LatestMedia } from './LatestMedia';
 import { EventsSection } from './EventsSection';
 import { LatestResults } from './LatestResults';
 import { Calendar } from './Calendar';
@@ -30,6 +31,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <>
       <Hero onNavigate={onNavigate} />
+      <LatestMedia onNavigate={onNavigate} />
       <EventsSection />
       <LatestResults />
       <Calendar />

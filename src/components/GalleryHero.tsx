@@ -72,11 +72,11 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
                  <div className="flex items-center justify-center gap-6 text-gray-400 text-xs mb-8">
                     <div className="flex items-center gap-2">
                        <Calendar size={14} className="text-red-500" />
-                       <span>29 de Março, 2026</span>
+                       <span>3 de Abril, 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                        <ImageIcon size={14} className="text-yellow-400" />
-                       <span>20 Fotos</span>
+                       <span>19 Fotos</span>
                     </div>
                  </div>
                  

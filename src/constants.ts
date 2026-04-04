@@ -446,6 +446,36 @@ export const GALLERY_ALBUMS = [
     {
     id: 1,
     title: 'SENIORES: ADSR VS VF NAVES',
+    subtitle: 'TACA DE HONRA COMUNLIGO',
+    date: '3 Abril 2026',
+    coverImage: '/images/VFNAVESTACA/1.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/VFNAVESTACA/1.jpg' },
+      { id: 2, url: '/images/VFNAVESTACA/2.jpg' },
+      { id: 3, url: '/images/VFNAVESTACA/3.jpg' },
+      { id: 4, url: '/images/VFNAVESTACA/4.jpg' },
+      { id: 5, url: '/images/VFNAVESTACA/5.jpg' },
+      { id: 6, url: '/images/VFNAVESTACA/6.jpg' },
+      { id: 7, url: '/images/VFNAVESTACA/7.jpg' },
+      { id: 8, url: '/images/VFNAVESTACA/8.jpg' },
+      { id: 9, url: '/images/VFNAVESTACA/9.jpg' },
+      { id: 10, url: '/images/VFNAVESTACA/10.jpg' },
+      { id: 11, url: '/images/VFNAVESTACA/11.jpg' },
+      { id: 12, url: '/images/VFNAVESTACA/12.jpg' },
+      { id: 13, url: '/images/VFNAVESTACA/13.jpg' },
+      { id: 14, url: '/images/VFNAVESTACA/14.jpg' },
+      { id: 15, url: '/images/VFNAVESTACA/15.jpg' },
+      { id: 16, url: '/images/VFNAVESTACA/16.jpg' },
+      { id: 17, url: '/images/VFNAVESTACA/17.jpg' },
+      { id: 18, url: '/images/VFNAVESTACA/18.jpg' },
+      { id: 19, url: '/images/VFNAVESTACA/19.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+    {
+    id: 2,
+    title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '29 Março 2026',
     coverImage: '/images/VFNAVES/1.jpg',
@@ -475,7 +505,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     title: 'SUB14: ADSR VS ED GOUVEIA',
     subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
     date: '29 Março 2026',
@@ -506,7 +536,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 3,
+    id: 4,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -544,7 +574,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -575,7 +605,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',
