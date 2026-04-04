@@ -446,7 +446,7 @@ export const GALLERY_ALBUMS = [
     {
     id: 1,
     title: 'SENIORES: ADSR VS VF NAVES',
-    subtitle: 'TACA DE HONRA COMUNLIGO',
+    subtitle: 'TACA DE HONRA COMUNILOG 2025/26',
     date: '3 Abril 2026',
     coverImage: '/images/VFNAVESTACA/1.jpg',
     photos: [
