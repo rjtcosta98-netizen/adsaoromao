@@ -445,6 +445,36 @@ export const SQUAD_DATA = {
 export const GALLERY_ALBUMS = [
     {
     id: 1,
+    title: 'SUB14: ADSR VS SC SABUGAL',
+    subtitle: 'SUB-14 ALLIANZ 1ª DIVISÃO (2ª JORNADA)',
+    date: '3 Abril 2026',
+    coverImage: '/images/SUB14SABUGAL/00.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/SUB14SABUGAL/00.jpg' },
+      { id: 2, url: '/images/SUB14SABUGAL/01.jpg' },
+      { id: 3, url: '/images/SUB14SABUGAL/02.jpg' },
+      { id: 4, url: '/images/SUB14SABUGAL/03.jpg' },
+      { id: 5, url: '/images/SUB14SABUGAL/04.jpg' },
+      { id: 6, url: '/images/SUB14SABUGAL/05.jpg' },
+      { id: 7, url: '/images/SUB14SABUGAL/06.jpg' },
+      { id: 8, url: '/images/SUB14SABUGAL/07.jpg' },
+      { id: 9, url: '/images/SUB14SABUGAL/08.jpg' },
+      { id: 10, url: '/images/SUB14SABUGAL/09.jpg' },
+      { id: 11, url: '/images/SUB14SABUGAL/010.jpg' },
+      { id: 12, url: '/images/SUB14SABUGAL/011.jpg' },
+      { id: 13, url: '/images/SUB14SABUGAL/012.jpg' },
+      { id: 14, url: '/images/SUB14SABUGAL/013.jpg' },
+      { id: 15, url: '/images/SUB14SABUGAL/014.jpg' },
+      { id: 16, url: '/images/SUB14SABUGAL/015.jpg' },
+      { id: 17, url: '/images/SUB14SABUGAL/016.jpg' },
+      { id: 18, url: '/images/SUB14SABUGAL/017.jpg' },
+      { id: 19, url: '/images/SUB14SABUGAL/018.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+   {
+    id: 2,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'TACA DE HONRA COMUNILOG 2025/26',
     date: '3 Abril 2026',
@@ -474,7 +504,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 2,
+    id: 3,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '29 Março 2026',
@@ -505,7 +535,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: 'SUB14: ADSR VS ED GOUVEIA',
     subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
     date: '29 Março 2026',
@@ -536,7 +566,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 4,
+    id: 5,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -574,7 +604,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -605,7 +635,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',

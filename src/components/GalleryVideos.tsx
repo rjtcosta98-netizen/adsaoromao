@@ -15,6 +15,12 @@ export const GalleryVideos: React.FC = () => {
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
 
   const videos: Video[] = [
+    {
+      url: 'https://res.cloudinary.com/di8qh6rc0/video/upload/q_auto/f_auto/v1775386390/FDownloader.net-1655148628996808-_1080p_ncpbvm.mp4',
+      poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775386847/FLASH_INTERVIEW_p4vw82.png',
+      title: 'Flash Interview: Mister Davide Oliveira',
+      subtitle: 'SUB-14 Allianz 1ª Divisão'
+    },
        {
       url: 'https://res.cloudinary.com/dzcwhljmz/video/upload/q_auto/f_auto/v1775296663/ADSR_Flash_Interview_qavcsw.mp4',
       poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775298633/FLASH_INTERVIEW_r06owp.png',
