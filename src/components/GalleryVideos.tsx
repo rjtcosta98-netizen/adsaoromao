@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Play, X } from 'lucide-react';
+import { Play, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface Video {
   url: string;
@@ -13,6 +13,7 @@ interface Video {
 export const GalleryVideos: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const videos: Video[] = [
     {
@@ -164,6 +165,53 @@ export const GalleryVideos: React.FC = () => {
            </div>
 
         </div>
+
+        {/* Remaining Videos Grid */}
+        {videos.length > 3 && (
+          <>
+            {showAll && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
+                {videos.slice(3).map((video, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => openVideoModal(video)}
+                    className="relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[220px] md:min-h-[260px]"
+                  >
+                    <img
+                      src={video.poster}
+                      alt={video.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
+
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 md:w-16 md:h-16 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        <Play className="text-yellow-400 fill-yellow-400 ml-1" size={24} />
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
+                      <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 block">{video.subtitle}</span>
+                      <h3 className="font-display font-bold text-base md:text-lg text-white uppercase leading-tight">
+                        {video.title}
+                      </h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="text-center mt-10">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="inline-flex items-center gap-2 bg-transparent border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-navy-900 font-bold py-3 px-8 rounded-full uppercase text-xs tracking-widest transition-all duration-300"
+              >
+                {showAll ? 'Ver Menos' : `Ver Mais (${videos.length - 3})`}
+                {showAll ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
+            </div>
+          </>
+        )}
 
         {/* Video Modal/Popup */}
         {isModalOpen && currentVideo && (
