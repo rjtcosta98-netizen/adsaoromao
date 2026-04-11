@@ -444,11 +444,11 @@ export const SQUAD_DATA = {
 // GALLERY ALBUMS - Adicione aqui os seus álbuns de fotos
 export const GALLERY_ALBUMS = [
    {
-    id: 0,
+    id: 1,
     title: 'SUB10: ADSR VS SC CELORICENSE',
     subtitle: 'LIGA FUTEBOL SUB-10 CONDENTE (13ª JORNADA)',
     date: '11 Abril 2026',
-    coverImage: '/images/SUB10/01.jpg',
+    coverImage: '/images/SUB10/012.jpg',
     photos: [
       // Adicione apenas o URL da foto, sem necessidade de thumbnail
       { id: 1, url: '/images/SUB10/01.jpg' },
@@ -470,7 +470,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 1,
+    id: 2,
     title: 'SUB14: ADSR VS SC SABUGAL',
     subtitle: 'SUB-14 ALLIANZ 1ª DIVISÃO (2ª JORNADA)',
     date: '3 Abril 2026',
@@ -500,7 +500,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 2,
+    id: 3,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'TACA DE HONRA COMUNILOG 2025/26',
     date: '3 Abril 2026',
@@ -530,7 +530,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 3,
+    id: 4,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '29 Março 2026',
@@ -561,7 +561,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'SUB14: ADSR VS ED GOUVEIA',
     subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
     date: '29 Março 2026',
@@ -592,7 +592,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 5,
+    id: 6,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -630,7 +630,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 6,
+    id: 7,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -661,7 +661,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 7,
+    id: 8,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',
