@@ -443,6 +443,32 @@ export const SQUAD_DATA = {
 
 // GALLERY ALBUMS - Adicione aqui os seus álbuns de fotos
 export const GALLERY_ALBUMS = [
+   {
+    id: 0,
+    title: 'SUB10: ADSR VS SC CELORICENSE',
+    subtitle: 'LIGA FUTEBOL SUB-10 CONDENTE (13ª JORNADA)',
+    date: '11 Abril 2026',
+    coverImage: '/images/SUB10/01.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/SUB10/01.jpg' },
+      { id: 2, url: '/images/SUB10/02.jpg' },
+      { id: 3, url: '/images/SUB10/03.jpg' },
+      { id: 4, url: '/images/SUB10/04.jpg' },
+      { id: 5, url: '/images/SUB10/05.jpg' },
+      { id: 6, url: '/images/SUB10/06.jpg' },
+      { id: 7, url: '/images/SUB10/07.jpg' },
+      { id: 8, url: '/images/SUB10/08.jpg' },
+      { id: 9, url: '/images/SUB10/09.jpg' },
+      { id: 10, url: '/images/SUB10/010.jpg' },
+      { id: 11, url: '/images/SUB10/011.jpg' },
+      { id: 12, url: '/images/SUB10/012.jpg' },
+      { id: 13, url: '/images/SUB10/013.jpg' },
+      { id: 14, url: '/images/SUB10/014.jpg' },
+      { id: 15, url: '/images/SUB10/015.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
     {
     id: 1,
     title: 'SUB14: ADSR VS SC SABUGAL',
