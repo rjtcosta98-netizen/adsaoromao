@@ -55,7 +55,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
               {/* Featured Image */}
               <div className="aspect-video relative group cursor-pointer overflow-hidden">
                  <img 
-                    src="/images/SUB10/012.jpg" 
+                    src="/images/JOGOSSENIORES/018.jpg" 
                     alt="Destaque" 
                     loading="lazy"
                     width={600}
@@ -67,16 +67,16 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
 
               {/* Card Body */}
               <div className="p-8 text-center bg-navy-800">
-                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">SUB10: ADSR VS SC CELORICENSE</h3>
+                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">SENIORES: SP MEDA VS AD SÃO ROMÃO</h3>
                  
                  <div className="flex items-center justify-center gap-6 text-gray-400 text-xs mb-8">
                     <div className="flex items-center gap-2">
                        <Calendar size={14} className="text-red-500" />
-                       <span>11 de Abril, 2026</span>
+                       <span>12 de Abril, 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                        <ImageIcon size={14} className="text-yellow-400" />
-                       <span>15 Fotos</span>
+                       <span>20 Fotos</span>
                     </div>
                  </div>
                  

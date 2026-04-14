@@ -443,8 +443,70 @@ export const SQUAD_DATA = {
 
 // GALLERY ALBUMS - Adicione aqui os seus álbuns de fotos
 export const GALLERY_ALBUMS = [
-   {
+  {
     id: 1,
+    title: 'SENIORES: ADSR VS SP MÊDA',
+    subtitle: 'Campeonato Distrital 2025/26',
+    date: '13 Abril 2026',
+    coverImage: '/images/JOGOSSENIORES/018.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/JOGOSSENIORES/01.jpg' },
+      { id: 2, url: '/images/JOGOSSENIORES/02.jpg' },
+      { id: 3, url: '/images/JOGOSSENIORES/03.jpg' },
+      { id: 4, url: '/images/JOGOSSENIORES/04.jpg' },
+      { id: 5, url: '/images/JOGOSSENIORES/05.jpg' },
+      { id: 6, url: '/images/JOGOSSENIORES/06.jpg' },
+      { id: 7, url: '/images/JOGOSSENIORES/07.jpg' },
+      { id: 8, url: '/images/JOGOSSENIORES/08.jpg' },
+      { id: 9, url: '/images/JOGOSSENIORES/09.jpg' },
+      { id: 10, url: '/images/JOGOSSENIORES/010.jpg' },
+      { id: 11, url: '/images/JOGOSSENIORES/011.jpg' },
+      { id: 12, url: '/images/JOGOSSENIORES/012.jpg' },
+      { id: 13, url: '/images/JOGOSSENIORES/013.jpg' },
+      { id: 14, url: '/images/JOGOSSENIORES/014.jpg' },
+      { id: 15, url: '/images/JOGOSSENIORES/015.jpg' },
+      { id: 16, url: '/images/JOGOSSENIORES/016.jpg' },
+      { id: 17, url: '/images/JOGOSSENIORES/017.jpg' },
+      { id: 18, url: '/images/JOGOSSENIORES/018.jpg' },
+      { id: 19, url: '/images/JOGOSSENIORES/019.jpg' },
+      { id: 20, url: '/images/JOGOSSENIORES/020.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+  {
+    id: 2,
+    title: 'SUB16: ADSR VS NDS GUARDA',
+    subtitle: 'AF Guarda Juniores B Sub-16 2ª Fase Apuramento de Campeão 2025/2026',
+    date: '11 Abril 2026',
+    coverImage: '/images/JOGOSSUB16/09.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/JOGOSSUB16/01.jpg' },
+      { id: 2, url: '/images/JOGOSSUB16/02.jpg' },
+      { id: 3, url: '/images/JOGOSSUB16/03.jpg' },
+      { id: 4, url: '/images/JOGOSSUB16/04.jpg' },
+      { id: 5, url: '/images/JOGOSSUB16/05.jpg' },
+      { id: 6, url: '/images/JOGOSSUB16/06.jpg' },
+      { id: 7, url: '/images/JOGOSSUB16/07.jpg' },
+      { id: 8, url: '/images/JOGOSSUB16/08.jpg' },
+      { id: 9, url: '/images/JOGOSSUB16/09.jpg' },
+      { id: 10, url: '/images/JOGOSSUB16/010.jpg' },
+      { id: 11, url: '/images/JOGOSSUB16/011.jpg' },
+      { id: 12, url: '/images/JOGOSSUB16/012.jpg' },
+      { id: 13, url: '/images/JOGOSSUB16/013.jpg' },
+      { id: 14, url: '/images/JOGOSSUB16/014.jpg' },
+      { id: 15, url: '/images/JOGOSSUB16/015.jpg' },
+      { id: 16, url: '/images/JOGOSSUB16/016.jpg' },
+      { id: 17, url: '/images/JOGOSSUB16/017.jpg' },
+      { id: 18, url: '/images/JOGOSSUB16/018.jpg' },
+      { id: 19, url: '/images/JOGOSSUB16/019.jpg' },
+      { id: 20, url: '/images/JOGOSSUB16/020.jpg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+   {
+    id: 3,
     title: 'SUB10: ADSR VS SC CELORICENSE',
     subtitle: 'LIGA FUTEBOL SUB-10 CONDENTE (13ª JORNADA)',
     date: '11 Abril 2026',
@@ -470,7 +532,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 2,
+    id: 4,
     title: 'SUB14: ADSR VS SC SABUGAL',
     subtitle: 'SUB-14 ALLIANZ 1ª DIVISÃO (2ª JORNADA)',
     date: '3 Abril 2026',
@@ -500,7 +562,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 3,
+    id: 5,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'TACA DE HONRA COMUNILOG 2025/26',
     date: '3 Abril 2026',
@@ -530,7 +592,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 4,
+    id: 6,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '29 Março 2026',
@@ -561,7 +623,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 5,
+    id: 7,
     title: 'SUB14: ADSR VS ED GOUVEIA',
     subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
     date: '29 Março 2026',
@@ -592,7 +654,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 6,
+    id: 8,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -630,7 +692,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 7,
+    id: 9,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -661,7 +723,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 8,
+    id: 10,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',
