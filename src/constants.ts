@@ -445,7 +445,7 @@ export const SQUAD_DATA = {
 export const GALLERY_ALBUMS = [
   {
     id: 1,
-    title: 'SENIORES: ADSR VS SP MÊDA',
+    title: 'SENIORES: SP MEDA VS AD SÃO ROMÃO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '13 Abril 2026',
     coverImage: '/images/JOGOSSENIORES/018.jpg',
