@@ -9,10 +9,10 @@ const SOCIAL_LINKS = {
 
 // Posts do Instagram para mostrar (atualizar periodicamente com os URLs dos posts)
 const INSTAGRAM_POSTS = [
-  'https://www.instagram.com/p/DWtLTNvDPp2/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-  'https://www.instagram.com/p/DWrUyI6DP4i/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-  'https://www.instagram.com/p/DWqTw_CDBJf/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-  'https://www.instagram.com/p/DWpCRrKDBlF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+  'https://www.instagram.com/p/DXTiQ0uDHSZ/',
+  'https://www.instagram.com/p/DXTh6pujH9J/',
+  'https://www.instagram.com/p/DXSiJ_0jFDz/?img_index=1',
+  'https://www.instagram.com/p/DXSKJg9jCGw/?img_index=1',
 ];
 
 export const SocialFeed: React.FC = () => {
