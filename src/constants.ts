@@ -445,6 +445,99 @@ export const SQUAD_DATA = {
 export const GALLERY_ALBUMS = [
   {
     id: 1,
+    title: 'FUT&FUN KIDS: TRAQUINAS SUB8',
+    subtitle: 'ERA GUARDA TRAQUINAS SUB8 - AFG 2025/26',
+    date: '18 Abril 2026',
+    coverImage: '/images/SUB8/04.jpeg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/SUB8/01.jpeg' },
+      { id: 2, url: '/images/SUB8/02.jpeg' },
+      { id: 3, url: '/images/SUB8/03.jpeg' },
+      { id: 4, url: '/images/SUB8/04.jpeg' },
+      { id: 5, url: '/images/SUB8/05.jpeg' },
+      { id: 6, url: '/images/SUB8/06.jpeg' },
+      { id: 7, url: '/images/SUB8/07.jpeg' },
+      { id: 8, url: '/images/SUB8/08.jpeg' },
+      { id: 9, url: '/images/SUB8/09.jpeg' },
+      { id: 10, url: '/images/SUB8/010.jpeg' },
+      { id: 11, url: '/images/SUB8/011.jpeg' },
+      { id: 12, url: '/images/SUB8/012.jpeg' },
+      { id: 13, url: '/images/SUB8/013.jpeg' },
+      { id: 14, url: '/images/SUB8/014.jpeg' },
+      { id: 15, url: '/images/SUB8/015.jpeg' },
+      { id: 16, url: '/images/SUB8/016.jpeg' },
+      { id: 17, url: '/images/SUB8/017.jpeg' },
+      { id: 18, url: '/images/SUB8/018.jpeg' },
+      { id: 19, url: '/images/SUB8/019.jpeg' },
+      { id: 20, url: '/images/SUB8/020.jpeg' },
+      { id: 21, url: '/images/SUB8/021.jpeg' },
+      { id: 22, url: '/images/SUB8/022.jpeg' },
+      { id: 23, url: '/images/SUB8/023.jpeg' },
+      { id: 24, url: '/images/SUB8/024.jpeg' },
+      { id: 25, url: '/images/SUB8/025.jpeg' },
+      { id: 26, url: '/images/SUB8/026.jpeg' },
+      { id: 27, url: '/images/SUB8/027.jpeg' },
+      { id: 28, url: '/images/SUB8/028.jpeg' },
+      { id: 29, url: '/images/SUB8/029.jpeg' },
+      { id: 30, url: '/images/SUB8/030.jpeg' },
+      { id: 31, url: '/images/SUB8/031.jpeg' },
+      { id: 32, url: '/images/SUB8/032.jpeg' },
+      { id: 33, url: '/images/SUB8/033.jpeg' },
+      { id: 34, url: '/images/SUB8/034.jpeg' },
+      { id: 35, url: '/images/SUB8/035.jpeg' },
+      { id: 36, url: '/images/SUB8/036.jpeg' },
+      { id: 37, url: '/images/SUB8/037.jpeg' },
+      { id: 38, url: '/images/SUB8/038.jpeg' },
+      { id: 39, url: '/images/SUB8/039.jpeg' },
+      { id: 40, url: '/images/SUB8/040.jpeg' },
+      { id: 41, url: '/images/SUB8/041.jpeg' },
+      { id: 42, url: '/images/SUB8/042.jpeg' },
+      { id: 43, url: '/images/SUB8/043.jpeg' },
+      { id: 44, url: '/images/SUB8/044.jpeg' },
+      { id: 45, url: '/images/SUB8/045.jpeg' },
+      { id: 46, url: '/images/SUB8/046.jpeg' },
+      { id: 47, url: '/images/SUB8/047.jpeg' },
+      { id: 48, url: '/images/SUB8/048.jpeg' },
+      { id: 49, url: '/images/SUB8/049.jpeg' },
+      { id: 50, url: '/images/SUB8/050.jpeg' },
+      { id: 51, url: '/images/SUB8/051.jpeg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+  {
+    id: 2,
+    title: 'SUB14: AD SÃO ROMÃO VS NDS GUARDA',
+    subtitle: 'SUB14 ALLIANZA 1º DIVISÃO',
+    date: '19 Abril 2026',
+    coverImage: '/images/SUB14/06.jpeg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/SUB14/01.jpeg' },
+      { id: 2, url: '/images/SUB14/02.jpeg' },
+      { id: 3, url: '/images/SUB14/03.jpeg' },
+      { id: 4, url: '/images/SUB14/04.jpeg' },
+      { id: 5, url: '/images/SUB14/05.jpeg' },
+      { id: 6, url: '/images/SUB14/06.jpeg' },
+      { id: 7, url: '/images/SUB14/07.jpeg' },
+      { id: 8, url: '/images/SUB14/08.jpeg' },
+      { id: 9, url: '/images/SUB14/09.jpeg' },
+      { id: 10, url: '/images/SUB14/010.jpeg' },
+      { id: 11, url: '/images/SUB14/011.jpeg' },
+      { id: 12, url: '/images/SUB14/012.jpeg' },
+      { id: 13, url: '/images/SUB14/013.jpeg' },
+      { id: 14, url: '/images/SUB14/014.jpeg' },
+      { id: 15, url: '/images/SUB14/015.jpeg' },
+      { id: 16, url: '/images/SUB14/016.jpeg' },
+      { id: 17, url: '/images/SUB14/017.jpeg' },
+      { id: 18, url: '/images/SUB14/019.jpeg' },
+      { id: 19, url: '/images/SUB14/020.jpeg' },
+      { id: 20, url: '/images/SUB14/021.jpeg' },
+      // Adicione mais fotos aqui...
+    ]
+  },
+  {
+    id: 3,
     title: 'SENIORES: SP MEDA VS AD SÃO ROMÃO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '13 Abril 2026',
@@ -475,7 +568,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 2,
+    id: 4,
     title: 'SUB16: ADSR VS NDS GUARDA',
     subtitle: 'AF Guarda Juniores B Sub-16 2ª Fase Apuramento de Campeão 2025/2026',
     date: '11 Abril 2026',
@@ -506,7 +599,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 3,
+    id: 5,
     title: 'SUB10: ADSR VS SC CELORICENSE',
     subtitle: 'LIGA FUTEBOL SUB-10 CONDENTE (13ª JORNADA)',
     date: '11 Abril 2026',
@@ -532,7 +625,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 4,
+    id: 6,
     title: 'SUB14: ADSR VS SC SABUGAL',
     subtitle: 'SUB-14 ALLIANZ 1ª DIVISÃO (2ª JORNADA)',
     date: '3 Abril 2026',
@@ -562,7 +655,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 5,
+    id: 7,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'TACA DE HONRA COMUNILOG 2025/26',
     date: '3 Abril 2026',
@@ -592,7 +685,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 6,
+    id: 8,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '29 Março 2026',
@@ -623,7 +716,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 7,
+    id: 9,
     title: 'SUB14: ADSR VS ED GOUVEIA',
     subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
     date: '29 Março 2026',
@@ -654,7 +747,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 8,
+    id: 10,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -692,7 +785,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 9,
+    id: 11,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -723,7 +816,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 10,
+    id: 12,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',
