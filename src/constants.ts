@@ -449,7 +449,7 @@ export const GALLERY_ALBUMS = [
     title: 'SENIORES: ADSR VS FORNOS DE ALGODRES',
     subtitle: 'AF Guarda 1ª Divisão 2025/26',
     date: '19 Abril 2026',
-    coverImage: '/images/JOGOSSENIORES/FORNO/07.jpg',
+    coverImage: '/images/JOGOSSENIORES/FORNOS/07.jpg',
     photos: [
       // Adicione apenas o URL da foto, sem necessidade de thumbnail
       { id: 1, url: '/images/JOGOSSENIORES/FORNOS/01.jpg' },
@@ -473,6 +473,8 @@ export const GALLERY_ALBUMS = [
       { id: 19, url: '/images/JOGOSSENIORES/FORNOS/19.jpg' },
       { id: 20, url: '/images/JOGOSSENIORES/FORNOS/20.jpg' },
       { id: 21, url: '/images/JOGOSSENIORES/FORNOS/21.jpg' },
+    ]
+  },
   {
     id: 2,
     title: 'FUT&FUN KIDS: TRAQUINAS SUB8',
