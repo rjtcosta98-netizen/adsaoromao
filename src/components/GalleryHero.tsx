@@ -55,7 +55,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
               {/* Featured Image */}
               <div className="aspect-video relative group cursor-pointer overflow-hidden">
                  <img 
-                    src="/images/JOGOSSENIORES/FORNO/07.jpg" 
+                    src="/images/JOGOSSENIORES/FORNOS/07.jpg" 
                     alt="Destaque" 
                     loading="lazy"
                     width={600}
