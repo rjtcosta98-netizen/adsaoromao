@@ -472,7 +472,6 @@ export const GALLERY_ALBUMS = [
       { id: 18, url: '/images/JOGOSSENIORES/FORNOS/018.jpg' },
       { id: 19, url: '/images/JOGOSSENIORES/FORNOS/019.jpg' },
       { id: 20, url: '/images/JOGOSSENIORES/FORNOS/020.jpg' },
-      { id: 21, url: '/images/JOGOSSENIORES/FORNOS/021.jpg' },
     ]
   },
   {
