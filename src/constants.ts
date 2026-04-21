@@ -85,6 +85,7 @@ export const NEWS_ITEMS: NewsItem[] = [
 ];
 
 export const PRODUCTS: Product[] = [
+
   {
     id: 1,
     name: 'CACHECOL OFICIAL 25/26',
@@ -445,6 +446,35 @@ export const SQUAD_DATA = {
 export const GALLERY_ALBUMS = [
   {
     id: 1,
+    title: 'SENIORES: ADSR VS FORNOS DE ALGODRES',
+    subtitle: 'AF Guarda 1ª Divisão 2025/26',
+    date: '19 Abril 2026',
+    coverImage: '/images/JOGOSSENIORES/FORNO/07.jpg',
+    photos: [
+      // Adicione apenas o URL da foto, sem necessidade de thumbnail
+      { id: 1, url: '/images/JOGOSSENIORES/FORNOS/01.jpg' },
+      { id: 2, url: '/images/JOGOSSENIORES/FORNOS/02.jpg' },
+      { id: 3, url: '/images/JOGOSSENIORES/FORNOS/03.jpg' },
+      { id: 4, url: '/images/JOGOSSENIORES/FORNOS/04.jpg' },
+      { id: 5, url: '/images/JOGOSSENIORES/FORNOS/05.jpg' },
+      { id: 6, url: '/images/JOGOSSENIORES/FORNOS/06.jpg' },
+      { id: 7, url: '/images/JOGOSSENIORES/FORNOS/07.jpg' },
+      { id: 8, url: '/images/JOGOSSENIORES/FORNOS/08.jpg' },
+      { id: 9, url: '/images/JOGOSSENIORES/FORNOS/09.jpg' },
+      { id: 10, url: '/images/JOGOSSENIORES/FORNOS/10.jpg' },
+      { id: 11, url: '/images/JOGOSSENIORES/FORNOS/11.jpg' },
+      { id: 12, url: '/images/JOGOSSENIORES/FORNOS/12.jpg' },
+      { id: 13, url: '/images/JOGOSSENIORES/FORNOS/13.jpg' },
+      { id: 14, url: '/images/JOGOSSENIORES/FORNOS/14.jpg' },
+      { id: 15, url: '/images/JOGOSSENIORES/FORNOS/15.jpg' },
+      { id: 16, url: '/images/JOGOSSENIORES/FORNOS/16.jpg' },
+      { id: 17, url: '/images/JOGOSSENIORES/FORNOS/17.jpg' },
+      { id: 18, url: '/images/JOGOSSENIORES/FORNOS/18.jpg' },
+      { id: 19, url: '/images/JOGOSSENIORES/FORNOS/19.jpg' },
+      { id: 20, url: '/images/JOGOSSENIORES/FORNOS/20.jpg' },
+      { id: 21, url: '/images/JOGOSSENIORES/FORNOS/21.jpg' },
+  {
+    id: 2,
     title: 'FUT&FUN KIDS: TRAQUINAS SUB8',
     subtitle: 'ERA GUARDA TRAQUINAS SUB8 - AFG 2025/26',
     date: '18 Abril 2026',
@@ -506,7 +536,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 2,
+    id: 3,
     title: 'SUB14: AD SÃO ROMÃO VS NDS GUARDA',
     subtitle: 'SUB14 ALLIANZA 1º DIVISÃO',
     date: '19 Abril 2026',
@@ -537,7 +567,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: 'SENIORES: SP MEDA VS AD SÃO ROMÃO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '13 Abril 2026',
@@ -568,7 +598,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'SUB16: ADSR VS NDS GUARDA',
     subtitle: 'AF Guarda Juniores B Sub-16 2ª Fase Apuramento de Campeão 2025/2026',
     date: '11 Abril 2026',
@@ -599,7 +629,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 5,
+    id: 6,
     title: 'SUB10: ADSR VS SC CELORICENSE',
     subtitle: 'LIGA FUTEBOL SUB-10 CONDENTE (13ª JORNADA)',
     date: '11 Abril 2026',
@@ -625,7 +655,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 6,
+    id: 7,
     title: 'SUB14: ADSR VS SC SABUGAL',
     subtitle: 'SUB-14 ALLIANZ 1ª DIVISÃO (2ª JORNADA)',
     date: '3 Abril 2026',
@@ -655,7 +685,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 7,
+    id: 8,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'TACA DE HONRA COMUNILOG 2025/26',
     date: '3 Abril 2026',
@@ -685,7 +715,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
     {
-    id: 8,
+    id: 9,
     title: 'SENIORES: ADSR VS VF NAVES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '29 Março 2026',
@@ -716,7 +746,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 9,
+    id: 10,
     title: 'SUB14: ADSR VS ED GOUVEIA',
     subtitle: 'SUB-14 ALLIANZ 1ªDIVISÃO',
     date: '29 Março 2026',
@@ -747,7 +777,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
    {
-    id: 10,
+    id: 11,
     title: 'SENIORES: ADSR VS OS VILANOVENSES',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '8 Março 2026',
@@ -785,7 +815,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     title: 'SENIORES: ADSR VS GD Foz Coa',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '1 Março 2026',
@@ -816,7 +846,7 @@ export const GALLERY_ALBUMS = [
     ]
   },
   {
-    id: 12,
+    id: 13,
     title: 'SENIORES: ADSR VS TRANCOSO',
     subtitle: 'Campeonato Distrital 2025/26',
     date: '15 Março 2026',

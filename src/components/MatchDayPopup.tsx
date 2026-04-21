@@ -54,29 +54,31 @@ export const MatchDayPopup: React.FC = () => {
 
       {/* Modal */}
       <div
-        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl bg-gradient-to-b from-navy-900 to-navy-950 border border-yellow-400/30 animate-scale-up"
+        className="relative w-full max-w-lg max-h-[85vh] flex flex-col rounded-2xl shadow-2xl bg-gradient-to-b from-navy-900 to-navy-950 border border-yellow-400/30 animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+        {/* Close button — always visible, outside scroll */}
         <button
           onClick={close}
-          className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-black/50 text-white/80 hover:text-white hover:bg-black/70 transition-colors"
+          className="absolute top-2 right-2 z-20 p-2 rounded-full bg-black/70 text-white hover:bg-black/90 transition-colors shadow-lg"
           aria-label="Fechar"
         >
-          <X size={20} />
+          <X size={22} />
         </button>
 
-        {/* Image */}
-        <div className="w-full">
-          <img
-            src="/images/NEWS/festa-da-taca.jpg"
-            alt="Festa da Taça — ¼ Final Taça de Honra Comunilog AFG 25/26 — GFC vs AD São Romão — 03 Maio 2026 15h15"
-            className="w-full rounded-t-2xl object-cover"
-          />
-        </div>
+        {/* Scrollable content */}
+        <div className="overflow-y-auto flex-1 rounded-2xl">
+          {/* Image */}
+          <div className="w-full">
+            <img
+              src="/images/NEWS/festa-da-taca.jpg"
+              alt="Festa da Taça — ¼ Final Taça de Honra Comunilog AFG 25/26 — GFC vs AD São Romão — 03 Maio 2026 15h15"
+              className="w-full rounded-t-2xl object-cover max-h-[35vh] sm:max-h-none"
+            />
+          </div>
 
-        {/* Content */}
-        <div className="p-5 md:p-6 space-y-4">
+          {/* Content */}
+          <div className="p-4 md:p-6 space-y-3 md:space-y-4">
           {/* Headline */}
           <h2 className="text-xl md:text-2xl font-display font-bold text-yellow-400 uppercase leading-tight text-center">
             Dia de fazer história! 💛🖤
@@ -136,6 +138,7 @@ export const MatchDayPopup: React.FC = () => {
             <span className="text-yellow-400">JUNTOS & FORTES!</span><br />
             <span className="text-xl md:text-2xl">VAMOS SÃO ROMÃO! 💛🖤</span>
           </p>
+        </div>
         </div>
       </div>
     </div>
