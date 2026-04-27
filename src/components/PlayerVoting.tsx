@@ -2,12 +2,11 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { getDeviceFingerprint } from '@/lib/fingerprint';
 import { SQUAD_DATA } from '../constants';
 
 const SEASON = '25/26';
 const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
-
-// Only show players (not technical staff)
 const PLAYER_SECTIONS = ['Guarda-Redes', 'Defesas', 'Médios', 'Avançados'];
 
 interface PlayerItem {
@@ -17,18 +16,6 @@ interface PlayerItem {
   image: string;
 }
 
-/** Generate a stable per-device fingerprint stored in localStorage */
-function getDeviceFingerprint(): string {
-  const key = 'adsr_device_fp';
-  let fp = localStorage.getItem(key);
-  if (!fp) {
-    fp = `${Date.now()}-${Math.random().toString(36).slice(2)}-${navigator.userAgent.length}`;
-    localStorage.setItem(key, fp);
-  }
-  return fp;
-}
-
-/** Fisher-Yates shuffle — returns a new shuffled array */
 function shuffleArray<T>(arr: T[]): T[] {
   const copy = [...arr];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -49,7 +36,6 @@ export const PlayerVoting: React.FC = () => {
 
   const itemsToShow = isMobile ? 2 : 5;
 
-  // Build the player list once (shuffled randomly — never sorted by votes)
   const players: PlayerItem[] = useMemo(() => {
     const raw = (SQUAD_DATA['SENIORES'] ?? [])
       .filter(section => PLAYER_SECTIONS.includes(section.title))
@@ -58,9 +44,12 @@ export const PlayerVoting: React.FC = () => {
     return shuffleArray(raw);
   }, []);
 
-  /** Check Supabase whether this device fingerprint has already voted */
+  /**
+   * Always checks Supabase using the hardware fingerprint.
+   * This blocks votes from incognito/cleared-storage sessions on the same device.
+   */
   const checkExistingVote = useCallback(async () => {
-    const fp = getDeviceFingerprint();
+    const fp = await getDeviceFingerprint();
     try {
       const { data } = await supabase
         .from('votacoes_melhor_jogador')
@@ -74,19 +63,19 @@ export const PlayerVoting: React.FC = () => {
         localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
       }
     } catch {
-      // If column doesn't exist yet or network error, fall back to localStorage
+      // Network/DB unavailable — fall back to localStorage hint only
+      const stored = localStorage.getItem(VOTE_STORAGE_KEY);
+      if (stored) setVotedPlayerId(parseInt(stored, 10));
     }
   }, []);
 
   useEffect(() => {
-    // 1. Check localStorage first (instant, no network round-trip)
+    // Show a cached result instantly while the real async check runs in parallel.
     const stored = localStorage.getItem(VOTE_STORAGE_KEY);
-    if (stored) {
-      setVotedPlayerId(parseInt(stored, 10));
-      setLoading(false);
-      return;
-    }
-    // 2. Then verify against Supabase (covers same user on cleared storage)
+    if (stored) setVotedPlayerId(parseInt(stored, 10));
+
+    // Always verify against Supabase using the hardware fingerprint.
+    // This catches incognito / cleared storage on the same device.
     checkExistingVote().finally(() => setLoading(false));
   }, [checkExistingVote]);
 
@@ -103,23 +92,40 @@ export const PlayerVoting: React.FC = () => {
     if (votedPlayerId !== null || voting) return;
     setVoting(true);
 
-    const fp = getDeviceFingerprint();
+    const fp = await getDeviceFingerprint();
 
     try {
       const { error } = await supabase
         .from('votacoes_melhor_jogador')
         .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
 
-      if (error) throw error;
+      if (error) {
+        // Unique constraint violation means the device already voted server-side
+        if (error.code === '23505') {
+          const { data } = await supabase
+            .from('votacoes_melhor_jogador')
+            .select('player_id')
+            .eq('season', SEASON)
+            .eq('voter_fingerprint', fp)
+            .maybeSingle();
+          if (data) {
+            localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
+            setVotedPlayerId(data.player_id);
+            setVoting(false);
+            return;
+          }
+        }
+        throw error;
+      }
     } catch {
-      // Network/DB error: still record locally so UX is smooth
-    } finally {
-      localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
-      setVotedPlayerId(playerId);
-      setJustVoted(true);
-      setTimeout(() => setJustVoted(false), 3000);
-      setVoting(false);
+      // Silent: record locally so UX is smooth if it was a transient error
     }
+
+    localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
+    setVotedPlayerId(playerId);
+    setJustVoted(true);
+    setTimeout(() => setJustVoted(false), 3000);
+    setVoting(false);
   };
 
   const canGoPrev = startIndex > 0;

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trophy, CheckCircle, Loader2, ArrowLeft, Users } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { getDeviceFingerprint } from '@/lib/fingerprint';
 import { SQUAD_DATA } from '../constants';
 
 const SEASON = '25/26';
@@ -13,16 +14,6 @@ interface PlayerItem {
   name: string;
   role: string;
   image: string;
-}
-
-function getDeviceFingerprint(): string {
-  const key = 'adsr_device_fp';
-  let fp = localStorage.getItem(key);
-  if (!fp) {
-    fp = `${Date.now()}-${Math.random().toString(36).slice(2)}-${navigator.userAgent.length}`;
-    localStorage.setItem(key, fp);
-  }
-  return fp;
 }
 
 function shuffleArray<T>(arr: T[]): T[] {
@@ -57,8 +48,12 @@ export function VotingPage() {
     return shuffleArray(raw);
   }, [activeSection, allPlayers]);
 
+  /**
+   * Always checks Supabase using the hardware fingerprint.
+   * Blocks votes from incognito / cleared-storage sessions on the same device.
+   */
   const checkExistingVote = useCallback(async () => {
-    const fp = getDeviceFingerprint();
+    const fp = await getDeviceFingerprint();
     try {
       const { data } = await supabase
         .from('votacoes_melhor_jogador')
@@ -70,36 +65,62 @@ export function VotingPage() {
         setVotedPlayerId(data.player_id);
         localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
       }
-    } catch { /* fallback to localStorage */ }
+    } catch {
+      // Network/DB unavailable — fall back to localStorage hint
+      const stored = localStorage.getItem(VOTE_STORAGE_KEY);
+      if (stored) setVotedPlayerId(parseInt(stored, 10));
+    }
   }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Show cached result instantly while the async fingerprint check runs.
     const stored = localStorage.getItem(VOTE_STORAGE_KEY);
-    if (stored) {
-      setVotedPlayerId(parseInt(stored, 10));
-      setLoading(false);
-      return;
-    }
+    if (stored) setVotedPlayerId(parseInt(stored, 10));
+
+    // Always verify via Supabase — catches incognito / same device, different session.
     checkExistingVote().finally(() => setLoading(false));
   }, [checkExistingVote]);
 
   const handleVote = async (playerId: number) => {
     if (votedPlayerId !== null || voting) return;
     setVoting(true);
-    const fp = getDeviceFingerprint();
+
+    const fp = await getDeviceFingerprint();
+
     try {
-      await supabase
+      const { error } = await supabase
         .from('votacoes_melhor_jogador')
         .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
-    } catch { /* record locally anyway */ }
-    finally {
-      localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
-      setVotedPlayerId(playerId);
-      setJustVoted(true);
-      setTimeout(() => setJustVoted(false), 3000);
-      setVoting(false);
+
+      if (error) {
+        // Unique constraint violation: device already has a vote on the server
+        if (error.code === '23505') {
+          const { data } = await supabase
+            .from('votacoes_melhor_jogador')
+            .select('player_id')
+            .eq('season', SEASON)
+            .eq('voter_fingerprint', fp)
+            .maybeSingle();
+          if (data) {
+            localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
+            setVotedPlayerId(data.player_id);
+            setVoting(false);
+            return;
+          }
+        }
+        throw error;
+      }
+    } catch {
+      // Transient error: record locally so UX is smooth
     }
+
+    localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
+    setVotedPlayerId(playerId);
+    setJustVoted(true);
+    setTimeout(() => setJustVoted(false), 3000);
+    setVoting(false);
   };
 
   const tabs = ['Todos', ...PLAYER_SECTIONS];
