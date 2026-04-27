@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 import { SQUAD_DATA } from '../constants';
 
@@ -25,6 +26,28 @@ function shuffleArray<T>(arr: T[]): T[] {
   return copy;
 }
 
+/** Save vote directly to Supabase (always reliable) */
+async function saveVoteToSupabase(playerId: number, fp: string): Promise<'ok' | 'already_voted' | 'error'> {
+  const { error } = await supabase
+    .from('votacoes_melhor_jogador')
+    .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
+
+  if (!error) return 'ok';
+  if (error.code === '23505') return 'already_voted'; // unique constraint
+  return 'error';
+}
+
+/** Check Supabase directly for an existing vote by fingerprint */
+async function checkVoteInSupabase(fp: string): Promise<number | null> {
+  const { data } = await supabase
+    .from('votacoes_melhor_jogador')
+    .select('player_id')
+    .eq('season', SEASON)
+    .eq('voter_fingerprint', fp)
+    .maybeSingle();
+  return data ? data.player_id : null;
+}
+
 export const PlayerVoting: React.FC = () => {
   const navigate = useNavigate();
   const [votedPlayerId, setVotedPlayerId] = useState<number | null>(null);
@@ -44,35 +67,38 @@ export const PlayerVoting: React.FC = () => {
     return shuffleArray(raw);
   }, []);
 
-  /**
-   * Checks via the server-side Edge Function.
-   * The server checks by IP (unforgeable) AND fingerprint — either match blocks the vote.
-   */
   const checkExistingVote = useCallback(async () => {
     const fp = await getDeviceFingerprint();
+
+    // 1. Try Edge Function (also checks by IP — server-side, unforgeable)
     try {
       const res = await fetch(
         `${VOTE_API}?season=${encodeURIComponent(SEASON)}&fp=${encodeURIComponent(fp)}`,
+        { signal: AbortSignal.timeout(4000) },
       );
-      if (!res.ok) throw new Error('network');
-      const data = await res.json();
-      if (data.voted) {
-        setVotedPlayerId(data.player_id);
-        localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
+      if (res.ok) {
+        const data = await res.json();
+        if (data.voted) {
+          setVotedPlayerId(data.player_id);
+          localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
+        }
+        return; // Edge Function responded — trust it
       }
-    } catch {
-      // Server unavailable — fall back to localStorage cache
-      const stored = localStorage.getItem(VOTE_STORAGE_KEY);
-      if (stored) setVotedPlayerId(parseInt(stored, 10));
+    } catch { /* Edge Function not available yet */ }
+
+    // 2. Fallback: check Supabase directly by fingerprint
+    const existingId = await checkVoteInSupabase(fp);
+    if (existingId !== null) {
+      setVotedPlayerId(existingId);
+      localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
     }
   }, []);
 
   useEffect(() => {
-    // Show cached state immediately for instant UI
+    // Show cached state instantly while async check runs
     const stored = localStorage.getItem(VOTE_STORAGE_KEY);
     if (stored) setVotedPlayerId(parseInt(stored, 10));
 
-    // Always verify server-side (IP + fingerprint check)
     checkExistingVote().finally(() => setLoading(false));
   }, [checkExistingVote]);
 
@@ -90,26 +116,46 @@ export const PlayerVoting: React.FC = () => {
     setVoting(true);
 
     const fp = await getDeviceFingerprint();
+    let voted = false;
 
+    // 1. Try Edge Function (adds IP-level blocking on top of fingerprint)
     try {
       const res = await fetch(VOTE_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ playerId, season: SEASON, fingerprint: fp }),
+        signal: AbortSignal.timeout(5000),
       });
 
-      const data = await res.json();
+      if (res.ok) {
+        voted = true; // saved via Edge Function (includes IP + fingerprint check)
+      } else {
+        const data = await res.json().catch(() => ({}));
+        if (data.reason === 'already_voted') {
+          const existingId: number = data.player_id ?? playerId;
+          localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
+          setVotedPlayerId(existingId);
+          setVoting(false);
+          return;
+        }
+        // Edge Function returned an error — fall through to Supabase
+      }
+    } catch { /* Edge Function unavailable — fall through */ }
 
-      if (!res.ok || data.reason === 'already_voted') {
-        // Server says already voted — update local state
-        const existingId = data.player_id ?? playerId;
-        localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
-        setVotedPlayerId(existingId);
+    // 2. Fallback: save directly to Supabase (guaranteed to work)
+    if (!voted) {
+      const result = await saveVoteToSupabase(playerId, fp);
+
+      if (result === 'already_voted') {
+        // Fingerprint constraint hit — fetch which player was voted
+        const existingId = await checkVoteInSupabase(fp);
+        const id = existingId ?? playerId;
+        localStorage.setItem(VOTE_STORAGE_KEY, String(id));
+        setVotedPlayerId(id);
         setVoting(false);
         return;
       }
-    } catch {
-      // Transient error — still record locally
+      // 'ok' or 'error' — proceed (on transient error we still mark locally)
     }
 
     localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
@@ -126,7 +172,6 @@ export const PlayerVoting: React.FC = () => {
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
             <Trophy size={14} />
