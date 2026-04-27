@@ -5,3 +5,7 @@
 [[edge_functions]]
   path = "/noticias/*"
   function = "og-news"
+
+[[edge_functions]]
+  path = "/api/vote-player"
+  function = "vote-player"

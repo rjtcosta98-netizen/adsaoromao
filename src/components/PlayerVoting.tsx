@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 import { SQUAD_DATA } from '../constants';
 
 const SEASON = '25/26';
 const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const PLAYER_SECTIONS = ['Guarda-Redes', 'Defesas', 'Médios', 'Avançados'];
+const VOTE_API = '/api/vote-player';
 
 interface PlayerItem {
   id: number;
@@ -45,37 +45,34 @@ export const PlayerVoting: React.FC = () => {
   }, []);
 
   /**
-   * Always checks Supabase using the hardware fingerprint.
-   * This blocks votes from incognito/cleared-storage sessions on the same device.
+   * Checks via the server-side Edge Function.
+   * The server checks by IP (unforgeable) AND fingerprint — either match blocks the vote.
    */
   const checkExistingVote = useCallback(async () => {
     const fp = await getDeviceFingerprint();
     try {
-      const { data } = await supabase
-        .from('votacoes_melhor_jogador')
-        .select('player_id')
-        .eq('season', SEASON)
-        .eq('voter_fingerprint', fp)
-        .maybeSingle();
-
-      if (data) {
+      const res = await fetch(
+        `${VOTE_API}?season=${encodeURIComponent(SEASON)}&fp=${encodeURIComponent(fp)}`,
+      );
+      if (!res.ok) throw new Error('network');
+      const data = await res.json();
+      if (data.voted) {
         setVotedPlayerId(data.player_id);
         localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
       }
     } catch {
-      // Network/DB unavailable — fall back to localStorage hint only
+      // Server unavailable — fall back to localStorage cache
       const stored = localStorage.getItem(VOTE_STORAGE_KEY);
       if (stored) setVotedPlayerId(parseInt(stored, 10));
     }
   }, []);
 
   useEffect(() => {
-    // Show a cached result instantly while the real async check runs in parallel.
+    // Show cached state immediately for instant UI
     const stored = localStorage.getItem(VOTE_STORAGE_KEY);
     if (stored) setVotedPlayerId(parseInt(stored, 10));
 
-    // Always verify against Supabase using the hardware fingerprint.
-    // This catches incognito / cleared storage on the same device.
+    // Always verify server-side (IP + fingerprint check)
     checkExistingVote().finally(() => setLoading(false));
   }, [checkExistingVote]);
 
@@ -95,30 +92,24 @@ export const PlayerVoting: React.FC = () => {
     const fp = await getDeviceFingerprint();
 
     try {
-      const { error } = await supabase
-        .from('votacoes_melhor_jogador')
-        .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
+      const res = await fetch(VOTE_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ playerId, season: SEASON, fingerprint: fp }),
+      });
 
-      if (error) {
-        // Unique constraint violation means the device already voted server-side
-        if (error.code === '23505') {
-          const { data } = await supabase
-            .from('votacoes_melhor_jogador')
-            .select('player_id')
-            .eq('season', SEASON)
-            .eq('voter_fingerprint', fp)
-            .maybeSingle();
-          if (data) {
-            localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
-            setVotedPlayerId(data.player_id);
-            setVoting(false);
-            return;
-          }
-        }
-        throw error;
+      const data = await res.json();
+
+      if (!res.ok || data.reason === 'already_voted') {
+        // Server says already voted — update local state
+        const existingId = data.player_id ?? playerId;
+        localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
+        setVotedPlayerId(existingId);
+        setVoting(false);
+        return;
       }
     } catch {
-      // Silent: record locally so UX is smooth if it was a transient error
+      // Transient error — still record locally
     }
 
     localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
@@ -149,7 +140,6 @@ export const PlayerVoting: React.FC = () => {
           </p>
         </div>
 
-        {/* Voted confirmation banner */}
         {justVoted && (
           <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto animate-fade-in-down">
             <CheckCircle size={18} />
@@ -163,22 +153,18 @@ export const PlayerVoting: React.FC = () => {
           </div>
         ) : (
           <>
-            {/* Carousel */}
             <div className="relative">
               <div className="flex gap-4 overflow-hidden">
                 {visiblePlayers.map(player => {
                   const isVoted = votedPlayerId === player.id;
-
                   return (
                     <div
                       key={player.id}
                       className={`flex-1 min-w-0 bg-white rounded-2xl shadow-sm border-2 transition-all duration-300 overflow-hidden flex flex-col
                         ${isVoted
                           ? 'border-yellow-400 shadow-lg shadow-yellow-100'
-                          : 'border-gray-100 hover:border-navy-800/20 hover:shadow-md'}
-                      `}
+                          : 'border-gray-100 hover:border-navy-800/20 hover:shadow-md'}`}
                     >
-                      {/* Photo */}
                       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
                         <img
                           src={player.image}
@@ -194,8 +180,6 @@ export const PlayerVoting: React.FC = () => {
                           </div>
                         )}
                       </div>
-
-                      {/* Info */}
                       <div className="p-3 flex flex-col flex-1">
                         <p className="font-display font-bold text-navy-900 text-sm uppercase leading-tight truncate">
                           {player.name}
@@ -203,8 +187,6 @@ export const PlayerVoting: React.FC = () => {
                         {player.role && (
                           <p className="text-gray-400 text-xs mt-0.5 truncate">{player.role}</p>
                         )}
-
-                        {/* Vote button */}
                         <button
                           onClick={() => handleVote(player.id)}
                           disabled={votedPlayerId !== null || voting}
@@ -213,9 +195,7 @@ export const PlayerVoting: React.FC = () => {
                               ? 'bg-yellow-400 text-navy-900 cursor-default'
                               : votedPlayerId !== null
                                 ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                                : 'bg-navy-900 hover:bg-navy-800 text-white active:scale-95'
-                            }
-                          `}
+                                : 'bg-navy-900 hover:bg-navy-800 text-white active:scale-95'}`}
                         >
                           {isVoted ? '✓ Votado' : voting ? '...' : 'Votar'}
                         </button>
@@ -225,7 +205,6 @@ export const PlayerVoting: React.FC = () => {
                 })}
               </div>
 
-              {/* Nav buttons */}
               {canGoPrev && (
                 <button
                   onClick={() => setStartIndex(i => Math.max(0, i - 1))}
@@ -246,7 +225,6 @@ export const PlayerVoting: React.FC = () => {
               )}
             </div>
 
-            {/* Dot indicators */}
             {players.length > itemsToShow && (
               <div className="flex justify-center gap-1.5 mt-6">
                 {Array.from({ length: players.length - itemsToShow + 1 }).map((_, i) => (
@@ -261,14 +239,12 @@ export const PlayerVoting: React.FC = () => {
               </div>
             )}
 
-            {/* Already voted note */}
             {votedPlayerId !== null && !justVoted && (
               <p className="text-center text-gray-400 text-xs mt-6">
                 Já votaste nesta época. Obrigado pela tua participação!
               </p>
             )}
 
-            {/* Ver todos os jogadores */}
             <div className="flex justify-center mt-8">
               <button
                 onClick={() => navigate('/votacao')}
