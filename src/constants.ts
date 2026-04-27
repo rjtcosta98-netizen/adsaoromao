@@ -106,7 +106,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 3,
-    name: 'SWEATSHIRT ADSR C/SIMBOLO',
+    name: 'SWEATSHIRT ADSR COM SIMBOLO',
     category: 'OFICIAL',
     price: "Sob Consulta",
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Sweet%20ADSR%20Logo',
