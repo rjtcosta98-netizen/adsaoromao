@@ -1,6 +1,5 @@
 
 
-
 import React, { lazy, Suspense } from 'react';
 import { Hero } from './Hero';
 import { LatestMedia } from './LatestMedia';
@@ -29,8 +28,9 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
-    <>
+    <div className="relative">
       <Hero onNavigate={onNavigate} />
+      <PlayerVoting />
       <LatestMedia onNavigate={onNavigate} />
       <EventsSection />
       <LatestResults />
@@ -67,6 +67,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <Suspense fallback={<LazyFallback />}>
         <SocialFeed />
       </Suspense>
-    </>
+    </div>
   );
 };

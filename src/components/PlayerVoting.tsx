@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Trophy, Star, ChevronLeft, ChevronRight, CheckCircle, Loader2 } from 'lucide-react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { SQUAD_DATA } from '../constants';
 
@@ -9,21 +10,36 @@ const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 // Only show players (not technical staff)
 const PLAYER_SECTIONS = ['Guarda-Redes', 'Defesas', 'Médios', 'Avançados'];
 
-interface PlayerVote {
-  player_id: number;
-  vote_count: number;
-}
-
-interface PlayerWithVotes {
+interface PlayerItem {
   id: number;
   name: string;
   role: string;
   image: string;
-  votes: number;
+}
+
+/** Generate a stable per-device fingerprint stored in localStorage */
+function getDeviceFingerprint(): string {
+  const key = 'adsr_device_fp';
+  let fp = localStorage.getItem(key);
+  if (!fp) {
+    fp = `${Date.now()}-${Math.random().toString(36).slice(2)}-${navigator.userAgent.length}`;
+    localStorage.setItem(key, fp);
+  }
+  return fp;
+}
+
+/** Fisher-Yates shuffle — returns a new shuffled array */
+function shuffleArray<T>(arr: T[]): T[] {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
 }
 
 export const PlayerVoting: React.FC = () => {
-  const [players, setPlayers] = useState<PlayerWithVotes[]>([]);
+  const navigate = useNavigate();
   const [votedPlayerId, setVotedPlayerId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [voting, setVoting] = useState(false);
@@ -33,57 +49,46 @@ export const PlayerVoting: React.FC = () => {
 
   const itemsToShow = isMobile ? 2 : 5;
 
-  // Get all senior players (excluding technical staff)
-  const seniorPlayers = (SQUAD_DATA['SENIORES'] ?? [])
-    .filter(section => PLAYER_SECTIONS.includes(section.title))
-    .flatMap(section => section.members);
+  // Build the player list once (shuffled randomly — never sorted by votes)
+  const players: PlayerItem[] = useMemo(() => {
+    const raw = (SQUAD_DATA['SENIORES'] ?? [])
+      .filter(section => PLAYER_SECTIONS.includes(section.title))
+      .flatMap(section => section.members)
+      .map(p => ({ id: p.id, name: p.name, role: p.role, image: p.image }));
+    return shuffleArray(raw);
+  }, []);
 
-  const fetchVotes = useCallback(async () => {
+  /** Check Supabase whether this device fingerprint has already voted */
+  const checkExistingVote = useCallback(async () => {
+    const fp = getDeviceFingerprint();
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('votacoes_melhor_jogador')
         .select('player_id')
-        .eq('season', SEASON);
+        .eq('season', SEASON)
+        .eq('voter_fingerprint', fp)
+        .maybeSingle();
 
-      if (error) throw error;
-
-      const voteCounts: Record<number, number> = {};
-      (data ?? []).forEach((row: { player_id: number }) => {
-        voteCounts[row.player_id] = (voteCounts[row.player_id] ?? 0) + 1;
-      });
-
-      const playersWithVotes: PlayerWithVotes[] = seniorPlayers.map(p => ({
-        id: p.id,
-        name: p.name,
-        role: p.role,
-        image: p.image,
-        votes: voteCounts[p.id] ?? 0,
-      }));
-
-      // Sort by votes descending
-      playersWithVotes.sort((a, b) => b.votes - a.votes);
-      setPlayers(playersWithVotes);
+      if (data) {
+        setVotedPlayerId(data.player_id);
+        localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
+      }
     } catch {
-      // If table doesn't exist yet, show players with 0 votes
-      const playersWithVotes: PlayerWithVotes[] = seniorPlayers.map(p => ({
-        id: p.id,
-        name: p.name,
-        role: p.role,
-        image: p.image,
-        votes: 0,
-      }));
-      setPlayers(playersWithVotes);
-    } finally {
-      setLoading(false);
+      // If column doesn't exist yet or network error, fall back to localStorage
     }
   }, []);
 
   useEffect(() => {
+    // 1. Check localStorage first (instant, no network round-trip)
     const stored = localStorage.getItem(VOTE_STORAGE_KEY);
-    if (stored) setVotedPlayerId(parseInt(stored, 10));
-
-    fetchVotes();
-  }, [fetchVotes]);
+    if (stored) {
+      setVotedPlayerId(parseInt(stored, 10));
+      setLoading(false);
+      return;
+    }
+    // 2. Then verify against Supabase (covers same user on cleared storage)
+    checkExistingVote().finally(() => setLoading(false));
+  }, [checkExistingVote]);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 1024);
@@ -96,41 +101,29 @@ export const PlayerVoting: React.FC = () => {
 
   const handleVote = async (playerId: number) => {
     if (votedPlayerId !== null || voting) return;
-
     setVoting(true);
+
+    const fp = getDeviceFingerprint();
+
     try {
       const { error } = await supabase
         .from('votacoes_melhor_jogador')
-        .insert({ player_id: playerId, season: SEASON });
+        .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
 
       if (error) throw error;
-
-      localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
-      setVotedPlayerId(playerId);
-      setJustVoted(true);
-      setTimeout(() => setJustVoted(false), 3000);
-      await fetchVotes();
     } catch {
-      // Fallback: store vote locally so UX is not broken
+      // Network/DB error: still record locally so UX is smooth
+    } finally {
       localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
       setVotedPlayerId(playerId);
-      setPlayers(prev =>
-        prev.map(p => p.id === playerId ? { ...p, votes: p.votes + 1 } : p)
-          .sort((a, b) => b.votes - a.votes)
-      );
       setJustVoted(true);
       setTimeout(() => setJustVoted(false), 3000);
-    } finally {
       setVoting(false);
     }
   };
 
-  const totalVotes = players.reduce((sum, p) => sum + p.votes, 0);
-  const maxVotes = players.length > 0 ? Math.max(...players.map(p => p.votes), 1) : 1;
-
   const canGoPrev = startIndex > 0;
   const canGoNext = startIndex + itemsToShow < players.length;
-
   const visiblePlayers = players.slice(startIndex, startIndex + itemsToShow);
 
   return (
@@ -148,11 +141,6 @@ export const PlayerVoting: React.FC = () => {
           <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
             Vota no teu jogador sénior favorito da época {SEASON}. Cada fã pode votar uma vez.
           </p>
-          {totalVotes > 0 && (
-            <p className="mt-1 text-navy-900 font-semibold text-sm">
-              {totalVotes.toLocaleString('pt-PT')} {totalVotes === 1 ? 'voto' : 'votos'} registados
-            </p>
-          )}
         </div>
 
         {/* Voted confirmation banner */}
@@ -172,27 +160,18 @@ export const PlayerVoting: React.FC = () => {
             {/* Carousel */}
             <div className="relative">
               <div className="flex gap-4 overflow-hidden">
-                {visiblePlayers.map((player, idx) => {
+                {visiblePlayers.map(player => {
                   const isVoted = votedPlayerId === player.id;
-                  const isTopVoted = players[0]?.id === player.id && player.votes > 0;
-                  const barWidth = totalVotes > 0 ? Math.round((player.votes / maxVotes) * 100) : 0;
-                  const rank = players.findIndex(p => p.id === player.id) + 1;
 
                   return (
                     <div
                       key={player.id}
                       className={`flex-1 min-w-0 bg-white rounded-2xl shadow-sm border-2 transition-all duration-300 overflow-hidden flex flex-col
-                        ${isVoted ? 'border-yellow-400 shadow-lg shadow-yellow-100' : 'border-gray-100 hover:border-navy-800/20 hover:shadow-md'}
-                        ${isTopVoted ? 'ring-2 ring-yellow-400 ring-offset-2' : ''}
+                        ${isVoted
+                          ? 'border-yellow-400 shadow-lg shadow-yellow-100'
+                          : 'border-gray-100 hover:border-navy-800/20 hover:shadow-md'}
                       `}
                     >
-                      {/* Top badge */}
-                      {isTopVoted && (
-                        <div className="bg-yellow-400 text-navy-900 text-xs font-display font-bold text-center py-1 tracking-widest uppercase flex items-center justify-center gap-1">
-                          <Star size={11} fill="currentColor" /> Líder
-                        </div>
-                      )}
-
                       {/* Photo */}
                       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
                         <img
@@ -201,10 +180,6 @@ export const PlayerVoting: React.FC = () => {
                           loading="lazy"
                           className="w-full h-full object-cover object-top"
                         />
-                        {/* Rank badge */}
-                        <div className="absolute top-2 left-2 bg-navy-900/80 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center backdrop-blur-sm">
-                          {rank}
-                        </div>
                         {isVoted && (
                           <div className="absolute inset-0 bg-yellow-400/10 flex items-end justify-center pb-3">
                             <span className="bg-yellow-400 text-navy-900 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
@@ -223,27 +198,11 @@ export const PlayerVoting: React.FC = () => {
                           <p className="text-gray-400 text-xs mt-0.5 truncate">{player.role}</p>
                         )}
 
-                        {/* Vote bar */}
-                        <div className="mt-2 mb-3">
-                          <div className="flex justify-between text-xs text-gray-400 mb-1">
-                            <span>{player.votes} {player.votes === 1 ? 'voto' : 'votos'}</span>
-                            {totalVotes > 0 && (
-                              <span>{Math.round((player.votes / totalVotes) * 100)}%</span>
-                            )}
-                          </div>
-                          <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-yellow-400 rounded-full transition-all duration-700"
-                              style={{ width: `${barWidth}%` }}
-                            />
-                          </div>
-                        </div>
-
                         {/* Vote button */}
                         <button
                           onClick={() => handleVote(player.id)}
                           disabled={votedPlayerId !== null || voting}
-                          className={`mt-auto w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200
+                          className={`mt-auto w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200 mt-4
                             ${isVoted
                               ? 'bg-yellow-400 text-navy-900 cursor-default'
                               : votedPlayerId !== null
@@ -302,6 +261,17 @@ export const PlayerVoting: React.FC = () => {
                 Já votaste nesta época. Obrigado pela tua participação!
               </p>
             )}
+
+            {/* Ver todos os jogadores */}
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => navigate('/votacao')}
+                className="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-display font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-2xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
+              >
+                <Users size={16} />
+                Ver todos os jogadores
+              </button>
+            </div>
           </>
         )}
       </div>

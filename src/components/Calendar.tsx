@@ -31,6 +31,8 @@ export const Calendar: React.FC = () => {
   const [activeTab, setActiveTab] = useState('ALL');
   const [isMobile, setIsMobile] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
+  const [availableCategories, setAvailableCategories] = useState<typeof CATEGORIES>(CATEGORIES);
+  const [checkingTabs, setCheckingTabs] = useState(true);
 
   const itemsToShow = isMobile ? 1 : 3;
 
@@ -52,6 +54,39 @@ export const Calendar: React.FC = () => {
       window.removeEventListener('resize', debouncedCheck);
     };
   }, []);
+
+  // Verificar quais escalões têm jogos futuros
+  useEffect(() => {
+    const checkAvailableTabs = async () => {
+      setCheckingTabs(true);
+      try {
+        const results = await Promise.all(
+          CATEGORIES.map(async (cat) => {
+            const { count } = await supabase
+              .from(cat.table)
+              .select('id', { count: 'exact', head: true });
+            return { cat, hasGames: (count ?? 0) > 0 };
+          })
+        );
+        const available = results.filter((r) => r.hasGames).map((r) => r.cat);
+        setAvailableCategories(available.length > 0 ? available : CATEGORIES);
+        // Ajustar activeTab se a aba selecionada não tiver jogos
+        setActiveTab((prev) => {
+          const stillAvailable = available.find((c) => c.id === prev);
+          return stillAvailable ? prev : (available[0]?.id ?? 'ALL');
+        });
+      } catch {
+        // Se falhar, mantém todas as categorias
+        setAvailableCategories(CATEGORIES);
+      } finally {
+        setCheckingTabs(false);
+      }
+    };
+
+    checkAvailableTabs();
+  }, []);
+
+
 
   // Buscar eventos do Supabase
   useEffect(() => {
@@ -176,21 +211,32 @@ export const Calendar: React.FC = () => {
         {/* Category Tabs */}
         <div className="mb-10 pb-4">
           <div className="flex flex-wrap gap-2 justify-center px-4">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveTab(cat.id)}
-                className={`px-3 sm:px-5 py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide sm:tracking-widest transition-all whitespace-nowrap ${
-                  activeTab === cat.id
-                    ? 'bg-yellow-400 text-navy-900 shadow-lg scale-105'
-                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+            {checkingTabs ? (
+              // Skeleton enquanto verifica as tabs disponíveis
+              Array.from({ length: 4 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="h-8 w-20 bg-gray-200 animate-pulse rounded-full"
+                />
+              ))
+            ) : (
+              availableCategories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveTab(cat.id)}
+                  className={`px-3 sm:px-5 py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide sm:tracking-widest transition-all whitespace-nowrap ${
+                    activeTab === cat.id
+                      ? 'bg-yellow-400 text-navy-900 shadow-lg scale-105'
+                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))
+            )}
           </div>
         </div>
+
 
         {loading ? (
           <div className="py-20 flex justify-center bg-white" role="status">
