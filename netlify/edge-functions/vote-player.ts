@@ -1,12 +1,11 @@
 /**
  * Netlify Edge Function — /api/vote-player
  *
- * Handles voting with server-side IP extraction.
- * The client JS cannot spoof the IP — only the server reads it.
- *
- * POST  — submit a vote
- * GET   — check if already voted (by IP or fingerprint)
+ * Uses context.ip (Netlify's reliable server-side IP) — cannot be spoofed by the client.
+ * Blocks duplicate votes by IP OR fingerprint — either match is enough.
  */
+
+// deno-lint-ignore-file no-explicit-any
 
 const SUPABASE_URL = 'https://hwfgehcmvggpdskrbzja.supabase.co';
 const SUPABASE_KEY =
@@ -25,129 +24,94 @@ function json(body: unknown, status = 200) {
   });
 }
 
-/** Extract the real client IP from Netlify headers */
-function getClientIp(req: Request): string {
-  return (
-    req.headers.get('x-nf-client-connection-ip') ??
-    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
-    req.headers.get('x-real-ip') ??
-    'unknown'
-  );
-}
-
-async function supabaseQuery(
-  table: string,
-  method: 'GET' | 'POST',
-  params?: Record<string, string>,
-  body?: unknown,
-) {
-  const url = new URL(`${SUPABASE_URL}/rest/v1/${table}`);
-  if (params) Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-
-  const res = await fetch(url.toString(), {
-    method,
+async function sbFetch(path: string, opts: RequestInit = {}) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    ...opts,
     headers: {
       apikey: SUPABASE_KEY,
       Authorization: `Bearer ${SUPABASE_KEY}`,
       'Content-Type': 'application/json',
-      Prefer: method === 'POST' ? 'return=minimal' : 'return=representation',
+      Prefer: opts.method === 'POST' ? 'return=minimal' : 'return=representation',
+      ...(opts.headers ?? {}),
     },
-    body: body ? JSON.stringify(body) : undefined,
   });
-
   const text = await res.text();
   return { status: res.status, data: text ? JSON.parse(text) : null };
 }
 
-export default async (request: Request) => {
-  // Preflight
+async function findVote(field: string, value: string, season: string) {
+  const params = new URLSearchParams({
+    select: 'player_id',
+    season: `eq.${season}`,
+    [field]: `eq.${value}`,
+    limit: '1',
+  });
+  const { status, data } = await sbFetch(`votacoes_melhor_jogador?${params}`);
+  if (status === 200 && Array.isArray(data) && data.length > 0) return data[0].player_id as number;
+  return null;
+}
+
+export default async (request: Request, context: any) => {
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: CORS });
   }
 
-  const ip = getClientIp(request);
+  // context.ip is the real client IP provided by Netlify — cannot be faked by the browser
+  const ip: string = context?.ip ?? request.headers.get('x-nf-client-connection-ip') ?? request.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? 'unknown';
 
-  // ── GET: check if already voted ────────────────────────────────────────────
+  // ── GET: check if already voted ──────────────────────────────────────────
   if (request.method === 'GET') {
     const url = new URL(request.url);
     const season = url.searchParams.get('season') ?? '';
     const fp = url.searchParams.get('fp') ?? '';
 
-    // Check by IP
-    const byIp = await supabaseQuery('votacoes_melhor_jogador', 'GET', {
-      select: 'player_id',
-      season: `eq.${season}`,
-      voter_ip: `eq.${ip}`,
-      limit: '1',
-    });
+    const byIp = await findVote('voter_ip', ip, season);
+    if (byIp !== null) return json({ voted: true, player_id: byIp });
 
-    if (byIp.status === 200 && Array.isArray(byIp.data) && byIp.data.length > 0) {
-      return json({ voted: true, player_id: byIp.data[0].player_id });
-    }
-
-    // Check by fingerprint
     if (fp) {
-      const byFp = await supabaseQuery('votacoes_melhor_jogador', 'GET', {
-        select: 'player_id',
-        season: `eq.${season}`,
-        voter_fingerprint: `eq.${fp}`,
-        limit: '1',
-      });
-      if (byFp.status === 200 && Array.isArray(byFp.data) && byFp.data.length > 0) {
-        return json({ voted: true, player_id: byFp.data[0].player_id });
-      }
+      const byFp = await findVote('voter_fingerprint', fp, season);
+      if (byFp !== null) return json({ voted: true, player_id: byFp });
     }
 
     return json({ voted: false });
   }
 
-  // ── POST: submit vote ───────────────────────────────────────────────────────
+  // ── POST: submit vote ─────────────────────────────────────────────────────
   if (request.method === 'POST') {
-    let body: { playerId: number; season: string; fingerprint: string };
+    let playerId: number, season: string, fingerprint: string;
     try {
-      body = await request.json();
+      ({ playerId, season, fingerprint } = await request.json());
     } catch {
       return json({ ok: false, reason: 'bad_request' }, 400);
     }
 
-    const { playerId, season, fingerprint } = body;
+    // Block by IP
+    const byIp = await findVote('voter_ip', ip, season);
+    if (byIp !== null) return json({ ok: false, reason: 'already_voted', player_id: byIp }, 409);
 
-    // 1. Check IP
-    const byIp = await supabaseQuery('votacoes_melhor_jogador', 'GET', {
-      select: 'player_id',
-      season: `eq.${season}`,
-      voter_ip: `eq.${ip}`,
-      limit: '1',
+    // Block by fingerprint
+    const byFp = await findVote('voter_fingerprint', fingerprint, season);
+    if (byFp !== null) return json({ ok: false, reason: 'already_voted', player_id: byFp }, 409);
+
+    // Insert vote
+    const { status, data } = await sbFetch('votacoes_melhor_jogador', {
+      method: 'POST',
+      body: JSON.stringify({
+        player_id: playerId,
+        season,
+        voter_fingerprint: fingerprint,
+        voter_ip: ip,
+      }),
     });
-    if (byIp.status === 200 && Array.isArray(byIp.data) && byIp.data.length > 0) {
-      return json({ ok: false, reason: 'already_voted', player_id: byIp.data[0].player_id }, 409);
+
+    if (status === 409 || data?.code === '23505') {
+      const existing = await findVote('voter_fingerprint', fingerprint, season)
+        ?? await findVote('voter_ip', ip, season);
+      return json({ ok: false, reason: 'already_voted', player_id: existing }, 409);
     }
 
-    // 2. Check fingerprint
-    const byFp = await supabaseQuery('votacoes_melhor_jogador', 'GET', {
-      select: 'player_id',
-      season: `eq.${season}`,
-      voter_fingerprint: `eq.${fingerprint}`,
-      limit: '1',
-    });
-    if (byFp.status === 200 && Array.isArray(byFp.data) && byFp.data.length > 0) {
-      return json({ ok: false, reason: 'already_voted', player_id: byFp.data[0].player_id }, 409);
-    }
-
-    // 3. Insert vote
-    const insert = await supabaseQuery('votacoes_melhor_jogador', 'POST', undefined, {
-      player_id: playerId,
-      season,
-      voter_fingerprint: fingerprint,
-      voter_ip: ip,
-    });
-
-    if (insert.status >= 400) {
-      // Unique constraint violation caught here too
-      if (insert.status === 409 || (Array.isArray(insert.data) ? false : insert.data?.code === '23505')) {
-        return json({ ok: false, reason: 'already_voted' }, 409);
-      }
-      return json({ ok: false, reason: 'db_error' }, 500);
+    if (status >= 400) {
+      return json({ ok: false, reason: 'db_error', detail: data }, 500);
     }
 
     return json({ ok: true });
