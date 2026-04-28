@@ -122,9 +122,10 @@ export const PlayerVoting: React.FC = () => {
         body: JSON.stringify({ playerId, season: SEASON, fingerprint: fp }),
         signal: AbortSignal.timeout(5000),
       });
-      if (res.ok) {
+      const isJson = res.headers.get('content-type')?.includes('application/json') ?? false;
+      if (res.ok && isJson) {
         voted = true;
-      } else {
+      } else if (!res.ok && isJson) {
         const data = await res.json().catch(() => ({}));
         if (data.reason === 'already_voted') {
           const existingId: number = data.player_id ?? playerId;
@@ -138,6 +139,7 @@ export const PlayerVoting: React.FC = () => {
           return;
         }
       }
+      // non-JSON response = SPA fallback (Cloudflare), fall through to Supabase
     } catch { /* Edge Function unavailable */ }
 
     if (!voted) {
