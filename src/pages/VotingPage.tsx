@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Trophy, CheckCircle, Loader2, ArrowLeft, Users, Clock, Lock } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Trophy, CheckCircle, Loader2, ArrowLeft, Users, Clock, Lock, FlaskConical } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
-const SEASON = '25/26';
-const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
+const REAL_SEASON = '25/26';
 const VOTE_API = '/api/vote-player';
 
 // Portugal summer = UTC+1
@@ -42,20 +41,20 @@ function shuffleArray<T>(arr: T[]): T[] {
   return copy;
 }
 
-async function saveVoteToSupabase(playerId: number, fp: string): Promise<'ok' | 'already_voted' | 'error'> {
+async function saveVoteToSupabase(playerId: number, fp: string, season: string): Promise<'ok' | 'already_voted' | 'error'> {
   const { error } = await supabase
     .from('votacoes_melhor_jogador')
-    .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
+    .insert({ player_id: playerId, season, voter_fingerprint: fp });
   if (!error) return 'ok';
   if (error.code === '23505') return 'already_voted';
   return 'error';
 }
 
-async function checkVoteInSupabase(fp: string): Promise<number | null> {
+async function checkVoteInSupabase(fp: string, season: string): Promise<number | null> {
   const { data } = await supabase
     .from('votacoes_melhor_jogador')
     .select('player_id')
-    .eq('season', SEASON)
+    .eq('season', season)
     .eq('voter_fingerprint', fp)
     .maybeSingle();
   return data ? data.player_id : null;
@@ -63,13 +62,18 @@ async function checkVoteInSupabase(fp: string): Promise<number | null> {
 
 export function VotingPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const isTestMode = searchParams.get('vtest') === '1';
+  const SEASON = isTestMode ? 'TEST' : REAL_SEASON;
+  const VOTE_STORAGE_KEY = isTestMode ? 'adsr_voted_melhor_jogador_test' : 'adsr_voted_melhor_jogador_2526';
+
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [votedPlayerId, setVotedPlayerId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [voting, setVoting] = useState(false);
   const [justVoted, setJustVoted] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('Todos');
-  const [voteStatus] = useState<VoteStatus>(getVoteStatus);
+  const [voteStatus] = useState<VoteStatus>(() => isTestMode ? 'open' : getVoteStatus());
 
   const tabs = useMemo(() => {
     const groups = ['Guarda-Redes', 'Defesas', 'Médios', 'Avançados'];
@@ -110,12 +114,12 @@ export function VotingPage() {
         return;
       }
     } catch { /* Edge Function unavailable */ }
-    const existingId = await checkVoteInSupabase(fp);
+    const existingId = await checkVoteInSupabase(fp, SEASON);
     if (existingId !== null) {
       setVotedPlayerId(existingId);
       localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
     }
-  }, []);
+  }, [SEASON, VOTE_STORAGE_KEY]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -130,8 +134,9 @@ export function VotingPage() {
     const fp = await getDeviceFingerprint();
     let voted = false;
 
+    const voteApiUrl = isTestMode ? `${VOTE_API}?vtest=1` : VOTE_API;
     try {
-      const res = await fetch(VOTE_API, {
+      const res = await fetch(voteApiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ playerId, season: SEASON, fingerprint: fp }),
@@ -156,9 +161,9 @@ export function VotingPage() {
     } catch { /* Edge Function unavailable */ }
 
     if (!voted) {
-      const result = await saveVoteToSupabase(playerId, fp);
+      const result = await saveVoteToSupabase(playerId, fp, SEASON);
       if (result === 'already_voted') {
-        const existingId = await checkVoteInSupabase(fp);
+        const existingId = await checkVoteInSupabase(fp, SEASON);
         const id = existingId ?? playerId;
         localStorage.setItem(VOTE_STORAGE_KEY, String(id));
         setVotedPlayerId(id);
@@ -178,8 +183,14 @@ export function VotingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {isTestMode && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-xs font-bold font-display text-center py-1.5 flex items-center justify-center gap-2">
+          <FlaskConical size={13} />
+          MODO TESTE — os votos usam season=TEST e podem ser apagados com: DELETE FROM votacoes_melhor_jogador WHERE season=&apos;TEST&apos;
+        </div>
+      )}
       {/* Header */}
-      <div className="bg-navy-900 pt-24 pb-12">
+      <div className={`bg-navy-900 pb-12 ${isTestMode ? 'pt-28' : 'pt-24'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => navigate(-1)}
@@ -191,9 +202,9 @@ export function VotingPage() {
 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
-                <Trophy size={14} />
-                Época {SEASON}
+              <div className={`inline-flex items-center gap-2 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 ${isTestMode ? 'bg-orange-500 text-white' : 'bg-yellow-400 text-navy-900'}`}>
+                {isTestMode ? <FlaskConical size={14} /> : <Trophy size={14} />}
+                {isTestMode ? 'Modo Teste' : `Época ${SEASON}`}
               </div>
               <h1 className="font-display text-4xl sm:text-5xl font-bold text-white uppercase tracking-tight">
                 Jogador do Ano
