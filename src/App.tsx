@@ -37,7 +37,7 @@ import { getPageRoute } from '@/lib/routes';
 // ══════════════════════════════════════════════════════════
 const MAINTENANCE_MODE = false;
 
-const GLOBAL_PARTY_CONFETTI = Array.from({ length: 36 }, (_, i) => ({
+const GLOBAL_PARTY_CONFETTI = Array.from({ length: 24 }, (_, i) => ({
   id: i,
   left: `${2 + (i * 2.7) % 96}%`,
   delay: `${(i * 0.23) % 5}s`,
@@ -49,7 +49,7 @@ const GLOBAL_PARTY_CONFETTI = Array.from({ length: 36 }, (_, i) => ({
   opacity: 0.35 + (i % 5) * 0.1,
 }));
 
-const GLOBAL_PARTY_SPARKS = Array.from({ length: 44 }, (_, i) => ({
+const GLOBAL_PARTY_SPARKS = Array.from({ length: 30 }, (_, i) => ({
   id: i,
   left: `${1 + (i * 2.25) % 98}%`,
   delay: `${(i * 0.19) % 4.2}s`,
@@ -59,7 +59,7 @@ const GLOBAL_PARTY_SPARKS = Array.from({ length: 44 }, (_, i) => ({
   opacity: 0.45 + (i % 4) * 0.12,
 }));
 
-const GLOBAL_PARTY_STREAMERS = Array.from({ length: 14 }, (_, i) => ({
+const GLOBAL_PARTY_STREAMERS = Array.from({ length: 10 }, (_, i) => ({
   id: i,
   left: `${3 + (i * 7.1) % 94}%`,
   delay: `${(i * 0.31) % 4}s`,
@@ -201,7 +201,7 @@ function AppShell() {
   return (
     <div className="min-h-screen font-sans bg-gray-50 animate-fade-in">
       {/* Festa global da Taça — camadas atrás do conteúdo */}
-      <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden>
+      <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden global-party-layer" aria-hidden>
         <div className="absolute inset-0">
           {GLOBAL_STADIUM_BEAMS.map((beam, index) => (
             <div
@@ -267,7 +267,7 @@ function AppShell() {
       </div>
 
       {/* Só confettis passam à frente do texto */}
-      <div className="fixed inset-0 z-[30] pointer-events-none overflow-hidden" aria-hidden>
+      <div className="fixed inset-0 z-[30] pointer-events-none overflow-hidden global-party-layer" aria-hidden>
         <div className="absolute inset-0">
           {GLOBAL_PARTY_CONFETTI.map(piece => (
             <div

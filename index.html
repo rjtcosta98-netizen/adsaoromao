@@ -29,7 +29,11 @@
     <link rel="preconnect" href="https://ik.imagekit.io" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <!-- Non-blocking font load — eliminates render-blocking LCP penalty -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" /></noscript>
+    <!-- Preload hero image — critical for LCP -->
+    <link rel="preload" href="https://ik.imagekit.io/hpkvbu9sn/IDG_20260308_155005_637.jpeg" as="image" fetchpriority="high" />
     
     <title>AD São Romão | Associação Desportiva Oficial desde 1962</title>
   </head>

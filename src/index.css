@@ -157,6 +157,13 @@ body {
 }
 
 /* Global football party ambiance (all pages) */
+
+/* Isolate repaint of the fixed overlay layers — prevents layout recalculation on the rest of the page */
+.global-party-layer {
+  contain: paint layout;
+  will-change: contents;
+}
+
 @keyframes global-party-confetti-fall {
   0% {
     transform: translate3d(0, -10px, 0) rotate(0deg);
@@ -175,6 +182,8 @@ body {
 
 .global-party-confetti {
   animation: global-party-confetti-fall linear infinite;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 @keyframes global-party-spark-fall {
@@ -195,6 +204,8 @@ body {
 
 .global-party-spark {
   animation: global-party-spark-fall linear infinite;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 @keyframes global-party-streamer-sway {
@@ -214,6 +225,8 @@ body {
 .global-party-streamer {
   filter: blur(1px);
   animation: global-party-streamer-sway ease-in-out infinite;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 @keyframes global-party-chant-pop {
@@ -430,6 +443,8 @@ body {
 
 .global-stadium-beam {
   animation: global-stadium-beam-sway 3.8s ease-in-out infinite;
+  will-change: transform, opacity;
+  contain: layout style;
 }
 
 @keyframes global-party-flares-pulse {
