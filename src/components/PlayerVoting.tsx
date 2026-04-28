@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users, Clock } from 'lucide-react';
+import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users, FlaskConical } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
@@ -8,20 +8,10 @@ const SEASON = '25/26';
 const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const VOTE_API = '/api/vote-player';
 
-const VOTE_START = new Date('2026-05-03T00:00:00+01:00');
-const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');
+const VOTE_END = new Date('2026-06-03T23:59:59+01:00');
 
-type VoteStatus = 'not_open' | 'open' | 'closed';
-
-function getVoteStatus(): VoteStatus {
-  const now = new Date();
-  if (now < VOTE_START) return 'not_open';
-  if (now > VOTE_END)   return 'closed';
-  return 'open';
-}
-
-function daysUntil(date: Date): number {
-  return Math.ceil((date.getTime() - Date.now()) / 86_400_000);
+function isVotingOpen(): boolean {
+  return new Date() <= VOTE_END;
 }
 
 interface Candidate {
@@ -68,7 +58,7 @@ export const PlayerVoting: React.FC = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [justVoted, setJustVoted] = useState(false);
-  const [voteStatus] = useState<VoteStatus>(getVoteStatus);
+  const [open] = useState(isVotingOpen);
 
   const itemsToShow = isMobile ? 2 : 5;
 
@@ -96,7 +86,7 @@ export const PlayerVoting: React.FC = () => {
         }
         return;
       }
-    } catch { /* Edge Function not available yet */ }
+    } catch { /* Edge Function not available */ }
     const existingId = await checkVoteInSupabase(fp);
     if (existingId !== null) {
       setVotedPlayerId(existingId);
@@ -120,13 +110,11 @@ export const PlayerVoting: React.FC = () => {
   }, []);
 
   const handleVote = async (playerId: number) => {
-    if (votedPlayerId !== null || voting || voteStatus !== 'open') return;
+    if (votedPlayerId !== null || voting || !open) return;
     setVoting(true);
-
     const fp = await getDeviceFingerprint();
     let voted = false;
 
-    // 1. Try Edge Function (adds IP-level blocking on top of fingerprint)
     try {
       const res = await fetch(VOTE_API, {
         method: 'POST',
@@ -134,7 +122,6 @@ export const PlayerVoting: React.FC = () => {
         body: JSON.stringify({ playerId, season: SEASON, fingerprint: fp }),
         signal: AbortSignal.timeout(5000),
       });
-
       if (res.ok) {
         voted = true;
       } else {
@@ -146,19 +133,16 @@ export const PlayerVoting: React.FC = () => {
           setVoting(false);
           return;
         }
-        if (data.reason === 'not_open' || data.reason === 'closed') {
+        if (data.reason === 'closed') {
           setVoting(false);
           return;
         }
       }
-    } catch { /* Edge Function unavailable — fall through */ }
+    } catch { /* Edge Function unavailable */ }
 
-    // 2. Fallback: save directly to Supabase (guaranteed to work)
     if (!voted) {
       const result = await saveVoteToSupabase(playerId, fp);
-
       if (result === 'already_voted') {
-        // Fingerprint constraint hit — fetch which player was voted
         const existingId = await checkVoteInSupabase(fp);
         const id = existingId ?? playerId;
         localStorage.setItem(VOTE_STORAGE_KEY, String(id));
@@ -166,7 +150,6 @@ export const PlayerVoting: React.FC = () => {
         setVoting(false);
         return;
       }
-      // 'ok' or 'error' — proceed (on transient error we still mark locally)
     }
 
     localStorage.setItem(VOTE_STORAGE_KEY, String(playerId));
@@ -179,11 +162,13 @@ export const PlayerVoting: React.FC = () => {
   const canGoPrev = startIndex > 0;
   const canGoNext = startIndex + itemsToShow < players.length;
   const visiblePlayers = players.slice(startIndex, startIndex + itemsToShow);
+  const canVote = open && votedPlayerId === null;
 
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        {/* Header */}
+        <div className="text-center mb-4">
           <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
             <Trophy size={14} />
             Época {SEASON}
@@ -194,31 +179,22 @@ export const PlayerVoting: React.FC = () => {
           <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
             Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
           </p>
-          {voteStatus === 'not_open' && (
-            <p className="mt-2 text-yellow-600 text-xs font-medium">
-              Votação abre a 3 de Maio · faltam {daysUntil(VOTE_START)} dia{daysUntil(VOTE_START) !== 1 ? 's' : ''}
-            </p>
-          )}
         </div>
 
-        {/* Ainda não abriu — mini teaser */}
-        {voteStatus === 'not_open' && (
-          <div className="flex flex-col items-center gap-3 py-10 text-center">
-            <div className="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center">
-              <Clock size={24} className="text-yellow-500" />
-            </div>
-            <p className="text-gray-500 text-sm">A votação abre a <strong>3 de Maio de 2026</strong></p>
-          </div>
-        )}
+        {/* Banner fase de teste */}
+        <div className="flex items-center justify-center gap-2 bg-orange-50 border border-orange-200 text-orange-700 rounded-xl py-2.5 px-5 mb-8 max-w-lg mx-auto text-xs font-medium">
+          <FlaskConical size={14} className="flex-shrink-0" />
+          Fase de teste — os votos podem ser resetados antes do arranque oficial
+        </div>
 
-        {justVoted && voteStatus === 'open' && (
+        {justVoted && (
           <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto animate-fade-in-down">
             <CheckCircle size={18} />
             <span className="font-semibold text-sm">Voto registado com sucesso!</span>
           </div>
         )}
 
-        {voteStatus !== 'not_open' && (loading ? (
+        {loading ? (
           <div className="flex justify-center items-center h-64">
             <Loader2 className="animate-spin text-navy-900" size={36} />
           </div>
@@ -228,7 +204,6 @@ export const PlayerVoting: React.FC = () => {
               <div className="flex gap-4 overflow-hidden">
                 {visiblePlayers.map(player => {
                   const isVoted = votedPlayerId === player.id;
-                  const canVote = voteStatus === 'open' && votedPlayerId === null;
                   return (
                     <div
                       key={player.id}
@@ -311,7 +286,7 @@ export const PlayerVoting: React.FC = () => {
               </div>
             )}
 
-            {votedPlayerId !== null && !justVoted && voteStatus === 'open' && (
+            {votedPlayerId !== null && !justVoted && (
               <p className="text-center text-gray-400 text-xs mt-6">
                 Já votaste nesta época. Obrigado pela tua participação!
               </p>
@@ -327,7 +302,7 @@ export const PlayerVoting: React.FC = () => {
               </button>
             </div>
           </>
-        ))}
+        )}
       </div>
     </section>
   );
