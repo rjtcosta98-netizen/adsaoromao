@@ -25,25 +25,23 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
   const fetchVoteResults = useCallback(async () => {
     setVotesLoading(true);
-    const { data } = await supabase
-      .from('votacoes_melhor_jogador')
-      .select('player_id, candidatos_melhor_jogador(name)')
-      .eq('season', SEASON);
-    if (data) {
-      const counts: Record<number, { name: string; votes: number }> = {};
-      for (const row of data) {
-        const id = row.player_id;
-        const name = (row as any).candidatos_melhor_jogador?.name ?? `Jogador #${id}`;
-        if (!counts[id]) counts[id] = { name, votes: 0 };
-        counts[id].votes++;
-      }
-      const sorted = Object.values(counts).sort((a, b) => b.votes - a.votes);
-      setVoteResults(sorted);
-      setTotalVotes(data.length);
-    } else {
-      setVoteResults([]);
-      setTotalVotes(0);
+    const [votesRes, candidatesRes] = await Promise.all([
+      supabase.from('votacoes_melhor_jogador').select('player_id').eq('season', SEASON),
+      supabase.from('candidatos_melhor_jogador').select('id, name').eq('season', SEASON),
+    ]);
+    const votes = votesRes.data ?? [];
+    const nameMap: Record<number, string> = {};
+    for (const c of candidatesRes.data ?? []) nameMap[c.id] = c.name;
+
+    const counts: Record<number, { name: string; votes: number }> = {};
+    for (const row of votes) {
+      const id = row.player_id;
+      if (!counts[id]) counts[id] = { name: nameMap[id] ?? `Jogador #${id}`, votes: 0 };
+      counts[id].votes++;
     }
+    const sorted = Object.values(counts).sort((a, b) => b.votes - a.votes);
+    setVoteResults(sorted);
+    setTotalVotes(votes.length);
     setVotesLoading(false);
   }, []);
 

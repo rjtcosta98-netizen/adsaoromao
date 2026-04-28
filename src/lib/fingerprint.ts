@@ -37,8 +37,8 @@ export async function getDeviceFingerprint(): Promise<string> {
   const signals = [
     // Physical screen resolution — hardware, never changes per browser
     `${screen.width}x${screen.height}`,
-    // Device pixel ratio — hardware (2 on Retina, 1 on normal displays)
-    `dpr:${window.devicePixelRatio ?? 1}`,
+    // Device pixel ratio — rounded to nearest integer to ignore browser zoom
+    `dpr:${Math.round(window.devicePixelRatio ?? 1)}`,
     // Color depth — hardware
     `cd:${screen.colorDepth}`,
     // CPU core count — hardware
