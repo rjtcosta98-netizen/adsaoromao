@@ -35,7 +35,7 @@ import { getPageRoute } from '@/lib/routes';
 // ══════════════════════════════════════════════════════════
 //  MODO MANUTENÇÃO — Alterar para false para desativar
 // ══════════════════════════════════════════════════════════
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 
 const GLOBAL_PARTY_CONFETTI = Array.from({ length: 36 }, (_, i) => ({
   id: i,
