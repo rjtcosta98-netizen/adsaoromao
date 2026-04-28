@@ -43,7 +43,7 @@ export const MatchDayPopup: React.FC = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 animate-fade-in"
       onClick={close}
       role="dialog"
       aria-modal="true"
@@ -52,93 +52,97 @@ export const MatchDayPopup: React.FC = () => {
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
-      {/* Modal */}
+      {/* Modal — bottom sheet on mobile, centered card on sm+ */}
       <div
-        className="relative w-full max-w-lg max-h-[85vh] flex flex-col rounded-2xl shadow-2xl bg-gradient-to-b from-navy-900 to-navy-950 border border-yellow-400/30 animate-scale-up"
+        className="relative w-full sm:max-w-lg flex flex-col rounded-t-2xl sm:rounded-2xl shadow-2xl bg-gradient-to-b from-navy-900 to-navy-950 border border-yellow-400/30 animate-scale-up max-h-[88vh] sm:max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button — always visible, outside scroll */}
+        {/* Close button — large touch target, always on top */}
         <button
           onClick={close}
-          className="absolute top-2 right-2 z-20 p-2 rounded-full bg-black/70 text-white hover:bg-black/90 transition-colors shadow-lg"
+          className="absolute top-3 right-3 z-20 flex items-center justify-center w-10 h-10 rounded-full bg-black/80 text-white hover:bg-black transition-colors shadow-lg"
           aria-label="Fechar"
         >
-          <X size={22} />
+          <X size={20} />
         </button>
 
+        {/* Drag handle (mobile visual cue) */}
+        <div className="flex justify-center pt-3 pb-1 sm:hidden">
+          <div className="w-10 h-1 rounded-full bg-white/20" />
+        </div>
+
         {/* Scrollable content */}
-        <div className="overflow-y-auto flex-1 rounded-2xl">
-          {/* Image */}
-          <div className="w-full">
+        <div className="overflow-y-auto flex-1 rounded-t-2xl sm:rounded-2xl">
+          {/* Image — hidden on very small screens, short on normal mobile */}
+          <div className="w-full hidden xs:block sm:block">
             <img
               src="/images/NEWS/festa-da-taca.jpg"
               alt="Festa da Taça — ¼ Final Taça de Honra Comunilog AFG 25/26 — GFC vs AD São Romão — 03 Maio 2026 15h15"
-              className="w-full rounded-t-2xl object-cover max-h-[35vh] sm:max-h-none"
+              className="w-full object-cover object-top rounded-t-2xl sm:rounded-t-2xl max-h-[22vh] sm:max-h-[30vh]"
             />
           </div>
 
           {/* Content */}
-          <div className="p-4 md:p-6 space-y-3 md:space-y-4">
-          {/* Headline */}
-          <h2 className="text-xl md:text-2xl font-display font-bold text-yellow-400 uppercase leading-tight text-center">
-            Dia de fazer história! 💛🖤
-          </h2>
+          <div className="p-4 sm:p-6 space-y-3">
+            {/* Headline */}
+            <h2 className="text-lg sm:text-2xl font-display font-bold text-yellow-400 uppercase leading-tight text-center pr-8 sm:pr-0">
+              Dia de fazer história! 💛🖤
+            </h2>
 
-          {/* Body text */}
-          <p className="text-sm md:text-base text-gray-200 leading-relaxed">
-            Dia de fazer história e mostrar a força da nossa união! A Associação Desportiva de São Romão entra em campo na Guarda 🏟️ para disputar a <strong className="text-yellow-400">Taça de Honra Comunilog</strong> da Associação de Futebol da Guarda frente à Guarda Futebol Clube.
-          </p>
-
-          <p className="text-sm md:text-base text-gray-200 leading-relaxed">
-            Vamos pintar as bancadas, cantar mais alto e empurrar a nossa equipa até à vitória! 🏆
-          </p>
-
-          {/* Event details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2.5">
-              <Calendar size={18} className="text-yellow-400 shrink-0" />
-              <span className="text-sm text-white font-semibold">03 Maio 2026 — 15h15</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2.5">
-              <MapPin size={18} className="text-yellow-400 shrink-0" />
-              <span className="text-sm text-white font-semibold">Guarda</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2.5">
-              <Trophy size={18} className="text-yellow-400 shrink-0" />
-              <span className="text-sm text-white font-semibold">¼ Final Taça de Honra</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/5 rounded-lg px-3 py-2.5">
-              <Bus size={18} className="text-yellow-400 shrink-0" />
-              <span className="text-sm text-white font-semibold">Autocarro — 10€/pessoa</span>
-            </div>
-          </div>
-
-          {/* Reservation CTA */}
-          <div className="bg-yellow-400/10 border border-yellow-400/30 rounded-xl p-4 text-center space-y-2">
-            <p className="text-sm text-yellow-300 font-bold uppercase tracking-wide">
-              🚌 Reserva o teu lugar no autocarro!
+            {/* Body text — condensed on mobile */}
+            <p className="text-xs sm:text-sm text-gray-200 leading-relaxed">
+              A AD São Romão entra em campo na Guarda 🏟️ para disputar a{' '}
+              <strong className="text-yellow-400">Taça de Honra Comunilog</strong> frente à Guarda FC.
+              Vamos pintar as bancadas e empurrar a nossa equipa até à vitória! 🏆
             </p>
-            <p className="text-xs text-gray-300">
-              Faz já a tua reserva no <strong className="text-white">Bar ADSR</strong> ou liga:
-            </p>
-            <a
-              href="https://wa.me/351969711269"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-400 text-navy-900 font-bold rounded-lg hover:bg-yellow-500 transition-colors text-sm"
+
+            {/* Event details */}
+            <div className="grid grid-cols-2 gap-2">
+              <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                <Calendar size={15} className="text-yellow-400 shrink-0" />
+                <span className="text-xs text-white font-semibold">03 Mai — 15h15</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                <MapPin size={15} className="text-yellow-400 shrink-0" />
+                <span className="text-xs text-white font-semibold">Guarda</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                <Trophy size={15} className="text-yellow-400 shrink-0" />
+                <span className="text-xs text-white font-semibold">¼ Final</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/5 rounded-lg px-2.5 py-2">
+                <Bus size={15} className="text-yellow-400 shrink-0" />
+                <span className="text-xs text-white font-semibold">Autocarro 10€</span>
+              </div>
+            </div>
+
+            {/* Reservation CTA */}
+            <div className="bg-yellow-400/10 border border-yellow-400/30 rounded-xl p-3 text-center space-y-2">
+              <p className="text-xs text-yellow-300 font-bold uppercase tracking-wide">
+                🚌 Reserva o teu lugar no autocarro!
+              </p>
+              <p className="text-xs text-gray-300">
+                No <strong className="text-white">Bar ADSR</strong> ou liga:
+              </p>
+              <a
+                href="https://wa.me/351969711269"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-400 text-navy-900 font-bold rounded-lg hover:bg-yellow-500 transition-colors text-sm"
+              >
+                <Phone size={16} />
+                969 711 269
+              </a>
+            </div>
+
+            {/* Close button at bottom — easy to reach on mobile */}
+            <button
+              onClick={close}
+              className="w-full py-3 rounded-xl bg-white/5 text-white/60 text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors"
             >
-              <Phone size={16} />
-              969 711 269
-            </a>
+              Fechar
+            </button>
           </div>
-
-          {/* Closing line */}
-          <p className="text-center text-base md:text-lg font-display font-bold text-white uppercase tracking-wide">
-            Contamos contigo! 💪<br />
-            <span className="text-yellow-400">JUNTOS & FORTES!</span><br />
-            <span className="text-xl md:text-2xl">VAMOS SÃO ROMÃO! 💛🖤</span>
-          </p>
-        </div>
         </div>
       </div>
     </div>
