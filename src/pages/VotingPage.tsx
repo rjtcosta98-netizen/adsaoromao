@@ -8,14 +8,14 @@ const SEASON = '25/26';
 const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const VOTE_API = '/api/vote-player';
 
-type VoteStatus = 'open' | 'closed';
+type VoteStatus = 'soon' | 'open' | 'closed';
 
 const VOTE_START = new Date('2026-05-03T00:00:00+01:00');
 const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');
 
 function getVoteStatus(): VoteStatus {
   const now = new Date();
-  if (now < VOTE_START) return 'closed';
+  if (now < VOTE_START) return 'soon';
   if (now > VOTE_END)   return 'closed';
   return 'open';
 }
@@ -207,6 +207,11 @@ export function VotingPage() {
               <p className="mt-3 text-white/50 text-sm sm:text-base max-w-xl">
                 Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
               </p>
+              {voteStatus === 'soon' && (
+                <p className="mt-2 text-yellow-400/80 text-xs font-medium">
+                  Votação abre a {VOTE_START.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long' })}
+                </p>
+              )}
               {voteStatus === 'open' && (
                 <p className="mt-2 text-green-400/80 text-xs font-medium">
                   Votação aberta até 3 de Junho
@@ -250,7 +255,7 @@ export function VotingPage() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Encerrada */}
+        {/* Encerrada — só depois da data de fim */}
         {voteStatus === 'closed' && (
           <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
             <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
@@ -266,9 +271,15 @@ export function VotingPage() {
           </div>
         )}
 
-        {/* Aberta */}
-        {voteStatus === 'open' && (
+        {/* Em breve / Aberta — mostra sempre os candidatos */}
+        {(voteStatus === 'soon' || voteStatus === 'open') && (
           <>
+            {voteStatus === 'soon' && (
+              <div className="flex items-center justify-center gap-2 bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto text-sm font-medium">
+                🗓️ Votação abre a {VOTE_START.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long' })} — conhece já os candidatos!
+              </div>
+            )}
+
             {justVoted && (
               <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto">
                 <CheckCircle size={18} />
@@ -276,7 +287,7 @@ export function VotingPage() {
               </div>
             )}
 
-            {votedPlayerId !== null && !justVoted && (
+            {voteStatus === 'open' && votedPlayerId !== null && !justVoted && (
               <p className="text-center text-gray-400 text-xs mb-8">
                 Já votaste nesta época. Obrigado pela tua participação!
               </p>
@@ -320,18 +331,25 @@ export function VotingPage() {
                         {player.role && (
                           <p className="text-gray-400 text-xs mt-0.5 truncate">{player.role}</p>
                         )}
-                        <button
-                          onClick={() => handleVote(player.id)}
-                          disabled={!canVote || voting}
-                          className={`mt-3 w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200
-                            ${isVoted
-                              ? 'bg-yellow-400 text-navy-900 cursor-default'
-                              : !canVote
-                                ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                                : 'bg-navy-900 hover:bg-navy-800 text-white active:scale-95'}`}
-                        >
-                          {isVoted ? '✓ Votado' : voting ? '...' : 'Votar'}
-                        </button>
+                        {voteStatus === 'open' && (
+                          <button
+                            onClick={() => handleVote(player.id)}
+                            disabled={!canVote || voting}
+                            className={`mt-3 w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200
+                              ${isVoted
+                                ? 'bg-yellow-400 text-navy-900 cursor-default'
+                                : !canVote
+                                  ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                                  : 'bg-navy-900 hover:bg-navy-800 text-white active:scale-95'}`}
+                          >
+                            {isVoted ? '✓ Votado' : voting ? '...' : 'Votar'}
+                          </button>
+                        )}
+                        {voteStatus === 'soon' && (
+                          <div className="mt-3 w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider text-center bg-gray-100 text-gray-400">
+                            Em breve
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
