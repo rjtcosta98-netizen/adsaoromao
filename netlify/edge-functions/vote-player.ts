@@ -3,9 +3,14 @@
  *
  * Uses context.ip (Netlify's reliable server-side IP) — cannot be spoofed by the client.
  * Blocks duplicate votes by IP OR fingerprint — either match is enough.
+ * Voting window: 2026-05-03 – 2026-06-03 (Portugal / WEST = UTC+1)
  */
 
 // deno-lint-ignore-file no-explicit-any
+
+// Portugal summer is UTC+1 (WEST)
+const VOTE_START = new Date('2026-05-03T00:00:00+01:00').getTime();
+const VOTE_END   = new Date('2026-06-03T23:59:59+01:00').getTime();
 
 const SUPABASE_URL = 'https://hwfgehcmvggpdskrbzja.supabase.co';
 const SUPABASE_KEY =
@@ -78,6 +83,10 @@ export default async (request: Request, context: any) => {
 
   // ── POST: submit vote ─────────────────────────────────────────────────────
   if (request.method === 'POST') {
+    const now = Date.now();
+    if (now < VOTE_START) return json({ ok: false, reason: 'not_open' }, 403);
+    if (now > VOTE_END)   return json({ ok: false, reason: 'closed' }, 403);
+
     let playerId: number, season: string, fingerprint: string;
     try {
       ({ playerId, season, fingerprint } = await request.json());
