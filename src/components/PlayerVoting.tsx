@@ -78,11 +78,15 @@ export const PlayerVoting: React.FC = () => {
         `${VOTE_API}?season=${encodeURIComponent(SEASON)}&fp=${encodeURIComponent(fp)}`,
         { signal: AbortSignal.timeout(4000) },
       );
-      if (res.ok) {
+      const isJson = res.headers.get('content-type')?.includes('application/json') ?? false;
+      if (res.ok && isJson) {
         const data = await res.json();
         if (data.voted) {
           setVotedPlayerId(data.player_id);
           localStorage.setItem(VOTE_STORAGE_KEY, String(data.player_id));
+        } else {
+          setVotedPlayerId(null);
+          localStorage.removeItem(VOTE_STORAGE_KEY);
         }
         return;
       }
@@ -91,6 +95,9 @@ export const PlayerVoting: React.FC = () => {
     if (existingId !== null) {
       setVotedPlayerId(existingId);
       localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
+    } else {
+      setVotedPlayerId(null);
+      localStorage.removeItem(VOTE_STORAGE_KEY);
     }
   }, []);
 
