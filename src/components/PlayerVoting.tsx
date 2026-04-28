@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users, FlaskConical } from 'lucide-react';
+import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
@@ -8,11 +8,13 @@ const SEASON = '25/26';
 const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const VOTE_API = '/api/vote-player';
 
-const VOTE_END = new Date('2026-06-03T23:59:59+01:00');
-
-function isVotingOpen(): boolean {
-  return new Date() <= VOTE_END;
-}
+const VOTE_START = new Date('2026-05-03T00:00:00+01:00');
+const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');                                                             
+   
+  function isVotingOpen(): boolean {                                                                                    
+    const now = new Date();                                 
+    return now >= VOTE_START && now <= VOTE_END;
+  }       
 
 interface Candidate {
   id: number;
@@ -188,12 +190,6 @@ export const PlayerVoting: React.FC = () => {
           <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
             Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
           </p>
-        </div>
-
-        {/* Banner fase de teste */}
-        <div className="flex items-center justify-center gap-2 bg-orange-50 border border-orange-200 text-orange-700 rounded-xl py-2.5 px-5 mb-8 max-w-lg mx-auto text-xs font-medium">
-          <FlaskConical size={14} className="flex-shrink-0" />
-          Fase de teste — os votos podem ser resetados antes do arranque oficial
         </div>
 
         {justVoted && (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, CheckCircle, Loader2, ArrowLeft, Users, Lock, FlaskConical } from 'lucide-react';
+import { Trophy, CheckCircle, Loader2, ArrowLeft, Users, Lock } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
@@ -8,13 +8,16 @@ const SEASON = '25/26';
 const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const VOTE_API = '/api/vote-player';
 
-// Votação aberta a partir de 28 Abr, encerra 3 Jun 2026 (Portugal = UTC+1)
-const VOTE_END = new Date('2026-06-03T23:59:59+01:00');
-
 type VoteStatus = 'open' | 'closed';
 
+const VOTE_START = new Date('2026-05-03T00:00:00+01:00');
+const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');
+
 function getVoteStatus(): VoteStatus {
-  return new Date() > VOTE_END ? 'closed' : 'open';
+  const now = new Date();
+  if (now < VOTE_START) return 'closed';
+  if (now > VOTE_END)   return 'closed';
+  return 'open';
 }
 
 interface Candidate {
@@ -181,12 +184,6 @@ export function VotingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Banner fase de teste */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-xs font-bold font-display text-center py-1.5 flex items-center justify-center gap-2">
-        <FlaskConical size={13} />
-        FASE DE TESTE — os votos podem ser resetados antes do arranque oficial
-      </div>
-
       {/* Header */}
       <div className="bg-navy-900 pt-28 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
