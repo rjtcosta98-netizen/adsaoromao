@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users } from 'lucide-react';
+import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users, Clock } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
@@ -9,12 +9,34 @@ const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const VOTE_API = '/api/vote-player';
 
 const VOTE_START = new Date('2026-05-03T00:00:00+01:00');
-const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');                                                             
-   
-  function isVotingOpen(): boolean {                                                                                    
-    const now = new Date();                                 
-    return now >= VOTE_START && now <= VOTE_END;
-  }       
+const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');
+
+function getVotingState(): 'soon' | 'open' | 'closed' {
+  const now = new Date();
+  if (now < VOTE_START) return 'soon';
+  if (now > VOTE_END)   return 'closed';
+  return 'open';
+}
+
+// Countdown hook
+function useCountdown(target: Date) {
+  const calc = () => {
+    const diff = target.getTime() - Date.now();
+    if (diff <= 0) return { d: 0, h: 0, m: 0, s: 0 };
+    return {
+      d: Math.floor(diff / 86_400_000),
+      h: Math.floor((diff % 86_400_000) / 3_600_000),
+      m: Math.floor((diff % 3_600_000) / 60_000),
+      s: Math.floor((diff % 60_000) / 1_000),
+    };
+  };
+  const [time, setTime] = useState(calc);
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
 
 interface Candidate {
   id: number;
@@ -51,6 +73,16 @@ async function checkVoteInSupabase(fp: string): Promise<number | null> {
   return data ? data.player_id : null;
 }
 
+// Countdown unit box
+const Unit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
+  <div className="flex flex-col items-center gap-1">
+    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-navy-900 rounded-xl flex items-center justify-center font-display font-black text-2xl sm:text-3xl text-yellow-400 shadow-sm">
+      {String(value).padStart(2, '0')}
+    </div>
+    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{label}</span>
+  </div>
+);
+
 export const PlayerVoting: React.FC = () => {
   const navigate = useNavigate();
   const [players, setPlayers] = useState<Candidate[]>([]);
@@ -60,7 +92,8 @@ export const PlayerVoting: React.FC = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [justVoted, setJustVoted] = useState(false);
-  const [open] = useState(isVotingOpen);
+  const [votingState] = useState(getVotingState);
+  const countdown = useCountdown(VOTE_START);
 
   const itemsToShow = isMobile ? 2 : 5;
 
@@ -119,7 +152,7 @@ export const PlayerVoting: React.FC = () => {
   }, []);
 
   const handleVote = async (playerId: number) => {
-    if (votedPlayerId !== null || voting || !open) return;
+    if (votedPlayerId !== null || voting || votingState !== 'open') return;
     setVoting(true);
     const fp = await getDeviceFingerprint();
     let voted = false;
@@ -143,12 +176,8 @@ export const PlayerVoting: React.FC = () => {
           setVoting(false);
           return;
         }
-        if (data.reason === 'closed') {
-          setVoting(false);
-          return;
-        }
+        if (data.reason === 'closed') { setVoting(false); return; }
       }
-      // non-JSON response = SPA fallback (Cloudflare), fall through to Supabase
     } catch { /* Edge Function unavailable */ }
 
     if (!voted) {
@@ -173,24 +202,81 @@ export const PlayerVoting: React.FC = () => {
   const canGoPrev = startIndex > 0;
   const canGoNext = startIndex + itemsToShow < players.length;
   const visiblePlayers = players.slice(startIndex, startIndex + itemsToShow);
-  const canVote = open && votedPlayerId === null;
+  const canVote = votingState === 'open' && votedPlayerId === null;
 
+  // ── Shared header ────────────────────────────────────────────────────────────
+  const header = (
+    <div className="text-center mb-8">
+      <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+        <Trophy size={14} />
+        Época {SEASON}
+      </div>
+      <h2 className="font-display text-4xl sm:text-5xl font-bold text-navy-900 uppercase tracking-tight">
+        Jogador do Ano
+      </h2>
+      <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
+        Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
+      </p>
+    </div>
+  );
+
+  // ── "Em breve" state ─────────────────────────────────────────────────────────
+  if (votingState === 'soon') {
+    return (
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {header}
+
+          <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-8 flex flex-col items-center gap-6 text-center">
+            <div className="w-16 h-16 rounded-full bg-navy-900/5 flex items-center justify-center">
+              <Clock size={32} className="text-navy-900" />
+            </div>
+
+            <div>
+              <p className="font-display font-bold text-navy-900 text-lg uppercase tracking-wide">
+                Votação em breve
+              </p>
+              <p className="text-gray-400 text-sm mt-1">
+                Abre a{' '}
+                <span className="text-navy-900 font-semibold">
+                  {VOTE_START.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </span>
+              </p>
+            </div>
+
+            {/* Countdown */}
+            <div className="flex items-end gap-2 sm:gap-3">
+              <Unit value={countdown.d} label="dias" />
+              <span className="text-navy-900/30 font-black text-2xl mb-4">:</span>
+              <Unit value={countdown.h} label="horas" />
+              <span className="text-navy-900/30 font-black text-2xl mb-4">:</span>
+              <Unit value={countdown.m} label="min" />
+              <span className="text-navy-900/30 font-black text-2xl mb-4">:</span>
+              <Unit value={countdown.s} label="seg" />
+            </div>
+
+            <p className="text-gray-400 text-xs max-w-xs">
+              Prepara o teu voto! Os candidatos já estão definidos — descobre-os abaixo.
+            </p>
+
+            <button
+              onClick={() => navigate('/votacao')}
+              className="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-display font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-2xl transition-all duration-200 active:scale-95 shadow-sm hover:shadow-md"
+            >
+              <Users size={16} />
+              Ver os candidatos
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Open / closed state ──────────────────────────────────────────────────────
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-4">
-          <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
-            <Trophy size={14} />
-            Época {SEASON}
-          </div>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-navy-900 uppercase tracking-tight">
-            Jogador do Ano
-          </h2>
-          <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
-            Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
-          </p>
-        </div>
+        {header}
 
         {justVoted && (
           <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto animate-fade-in-down">
