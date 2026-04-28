@@ -1,27 +1,20 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Trophy, CheckCircle, Loader2, ArrowLeft, Users, Clock, Lock, FlaskConical } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Trophy, CheckCircle, Loader2, ArrowLeft, Users, Lock, FlaskConical } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
-const REAL_SEASON = '25/26';
+const SEASON = '25/26';
+const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
 const VOTE_API = '/api/vote-player';
 
-// Portugal summer = UTC+1
-const VOTE_START = new Date('2026-05-03T00:00:00+01:00');
-const VOTE_END   = new Date('2026-06-03T23:59:59+01:00');
+// Votação aberta a partir de 28 Abr, encerra 3 Jun 2026 (Portugal = UTC+1)
+const VOTE_END = new Date('2026-06-03T23:59:59+01:00');
 
-type VoteStatus = 'not_open' | 'open' | 'closed';
+type VoteStatus = 'open' | 'closed';
 
 function getVoteStatus(): VoteStatus {
-  const now = new Date();
-  if (now < VOTE_START) return 'not_open';
-  if (now > VOTE_END)   return 'closed';
-  return 'open';
-}
-
-function daysUntil(date: Date): number {
-  return Math.ceil((date.getTime() - Date.now()) / 86_400_000);
+  return new Date() > VOTE_END ? 'closed' : 'open';
 }
 
 interface Candidate {
@@ -41,20 +34,20 @@ function shuffleArray<T>(arr: T[]): T[] {
   return copy;
 }
 
-async function saveVoteToSupabase(playerId: number, fp: string, season: string): Promise<'ok' | 'already_voted' | 'error'> {
+async function saveVoteToSupabase(playerId: number, fp: string): Promise<'ok' | 'already_voted' | 'error'> {
   const { error } = await supabase
     .from('votacoes_melhor_jogador')
-    .insert({ player_id: playerId, season, voter_fingerprint: fp });
+    .insert({ player_id: playerId, season: SEASON, voter_fingerprint: fp });
   if (!error) return 'ok';
   if (error.code === '23505') return 'already_voted';
   return 'error';
 }
 
-async function checkVoteInSupabase(fp: string, season: string): Promise<number | null> {
+async function checkVoteInSupabase(fp: string): Promise<number | null> {
   const { data } = await supabase
     .from('votacoes_melhor_jogador')
     .select('player_id')
-    .eq('season', season)
+    .eq('season', SEASON)
     .eq('voter_fingerprint', fp)
     .maybeSingle();
   return data ? data.player_id : null;
@@ -62,18 +55,13 @@ async function checkVoteInSupabase(fp: string, season: string): Promise<number |
 
 export function VotingPage() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const isTestMode = searchParams.get('vtest') === '1';
-  const SEASON = isTestMode ? 'TEST' : REAL_SEASON;
-  const VOTE_STORAGE_KEY = isTestMode ? 'adsr_voted_melhor_jogador_test' : 'adsr_voted_melhor_jogador_2526';
-
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [votedPlayerId, setVotedPlayerId] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [voting, setVoting] = useState(false);
   const [justVoted, setJustVoted] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('Todos');
-  const [voteStatus] = useState<VoteStatus>(() => isTestMode ? 'open' : getVoteStatus());
+  const [voteStatus] = useState<VoteStatus>(getVoteStatus);
 
   const tabs = useMemo(() => {
     const groups = ['Guarda-Redes', 'Defesas', 'Médios', 'Avançados'];
@@ -114,12 +102,12 @@ export function VotingPage() {
         return;
       }
     } catch { /* Edge Function unavailable */ }
-    const existingId = await checkVoteInSupabase(fp, SEASON);
+    const existingId = await checkVoteInSupabase(fp);
     if (existingId !== null) {
       setVotedPlayerId(existingId);
       localStorage.setItem(VOTE_STORAGE_KEY, String(existingId));
     }
-  }, [SEASON, VOTE_STORAGE_KEY]);
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -134,9 +122,8 @@ export function VotingPage() {
     const fp = await getDeviceFingerprint();
     let voted = false;
 
-    const voteApiUrl = isTestMode ? `${VOTE_API}?vtest=1` : VOTE_API;
     try {
-      const res = await fetch(voteApiUrl, {
+      const res = await fetch(VOTE_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ playerId, season: SEASON, fingerprint: fp }),
@@ -153,7 +140,7 @@ export function VotingPage() {
           setVoting(false);
           return;
         }
-        if (data.reason === 'not_open' || data.reason === 'closed') {
+        if (data.reason === 'closed') {
           setVoting(false);
           return;
         }
@@ -161,9 +148,9 @@ export function VotingPage() {
     } catch { /* Edge Function unavailable */ }
 
     if (!voted) {
-      const result = await saveVoteToSupabase(playerId, fp, SEASON);
+      const result = await saveVoteToSupabase(playerId, fp);
       if (result === 'already_voted') {
-        const existingId = await checkVoteInSupabase(fp, SEASON);
+        const existingId = await checkVoteInSupabase(fp);
         const id = existingId ?? playerId;
         localStorage.setItem(VOTE_STORAGE_KEY, String(id));
         setVotedPlayerId(id);
@@ -183,14 +170,14 @@ export function VotingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {isTestMode && (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-xs font-bold font-display text-center py-1.5 flex items-center justify-center gap-2">
-          <FlaskConical size={13} />
-          MODO TESTE — os votos usam season=TEST e podem ser apagados com: DELETE FROM votacoes_melhor_jogador WHERE season=&apos;TEST&apos;
-        </div>
-      )}
+      {/* Banner fase de teste */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-xs font-bold font-display text-center py-1.5 flex items-center justify-center gap-2">
+        <FlaskConical size={13} />
+        FASE DE TESTE — os votos podem ser resetados antes do arranque oficial
+      </div>
+
       {/* Header */}
-      <div className={`bg-navy-900 pb-12 ${isTestMode ? 'pt-28' : 'pt-24'}`}>
+      <div className="bg-navy-900 pt-28 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => navigate(-1)}
@@ -202,9 +189,9 @@ export function VotingPage() {
 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
-              <div className={`inline-flex items-center gap-2 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4 ${isTestMode ? 'bg-orange-500 text-white' : 'bg-yellow-400 text-navy-900'}`}>
-                {isTestMode ? <FlaskConical size={14} /> : <Trophy size={14} />}
-                {isTestMode ? 'Modo Teste' : `Época ${SEASON}`}
+              <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+                <Trophy size={14} />
+                Época {SEASON}
               </div>
               <h1 className="font-display text-4xl sm:text-5xl font-bold text-white uppercase tracking-tight">
                 Jogador do Ano
@@ -212,11 +199,6 @@ export function VotingPage() {
               <p className="mt-3 text-white/50 text-sm sm:text-base max-w-xl">
                 Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
               </p>
-              {voteStatus === 'not_open' && (
-                <p className="mt-2 text-yellow-400/80 text-xs font-medium">
-                  Votação abre a 3 de Maio · faltam {daysUntil(VOTE_START)} dia{daysUntil(VOTE_START) !== 1 ? 's' : ''}
-                </p>
-              )}
               {voteStatus === 'open' && (
                 <p className="mt-2 text-green-400/80 text-xs font-medium">
                   Votação aberta até 3 de Junho
@@ -237,9 +219,9 @@ export function VotingPage() {
         </div>
       </div>
 
-      {/* Tabs — só visíveis quando está aberta ou encerrada */}
-      {voteStatus !== 'not_open' && candidates.length > 0 && (
-        <div className="sticky top-[64px] z-20 bg-white border-b border-gray-100 shadow-sm">
+      {/* Tabs */}
+      {candidates.length > 0 && (
+        <div className="sticky top-[22px] z-20 bg-white border-b border-gray-100 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
               {tabs.map(tab => (
@@ -260,28 +242,6 @@ export function VotingPage() {
       )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Ainda não abriu */}
-        {voteStatus === 'not_open' && (
-          <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
-            <div className="w-16 h-16 rounded-full bg-yellow-50 flex items-center justify-center">
-              <Clock size={32} className="text-yellow-500" />
-            </div>
-            <h2 className="font-display text-2xl font-bold text-navy-900 uppercase">
-              A votação ainda não abriu
-            </h2>
-            <p className="text-gray-500 text-sm max-w-sm">
-              A votação para Jogador do Ano da época {SEASON} abre a{' '}
-              <strong>3 de Maio de 2026</strong>. Volta cá nesse dia!
-            </p>
-            <p className="text-yellow-600 font-bold font-display text-5xl mt-2">
-              {daysUntil(VOTE_START)}
-            </p>
-            <p className="text-gray-400 text-sm -mt-1">
-              dia{daysUntil(VOTE_START) !== 1 ? 's' : ''} até à abertura
-            </p>
-          </div>
-        )}
-
         {/* Encerrada */}
         {voteStatus === 'closed' && (
           <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
@@ -298,7 +258,7 @@ export function VotingPage() {
           </div>
         )}
 
-        {/* Votação aberta */}
+        {/* Aberta */}
         {voteStatus === 'open' && (
           <>
             {justVoted && (
