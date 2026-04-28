@@ -1,10 +1,10 @@
 
 
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useData } from '../context/DataContext';
-import { Settings, Newspaper, ShoppingBag, Trophy, Save, Trash2, Plus, LogOut } from 'lucide-react';
+import { Settings, Newspaper, ShoppingBag, Trophy, Save, Trash2, Plus, LogOut, Vote, RefreshCw, AlertTriangle } from 'lucide-react';
 import { MatchResult, NewsItem, Product } from '../types';
+import { supabase } from '../lib/supabase';
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -12,7 +12,81 @@ interface AdminDashboardProps {
 
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const { matches, news, products, updateMatch, updateNews, addNews, deleteNews, updateProduct, addProduct, deleteProduct } = useData();
-  const [activeTab, setActiveTab] = useState<'matches' | 'news' | 'store'>('matches');
+  const [activeTab, setActiveTab] = useState<'matches' | 'news' | 'store' | 'voting'>('matches');
+
+  // Voting state
+  const [voteResults, setVoteResults] = useState<{ name: string; votes: number }[]>([]);
+  const [totalVotes, setTotalVotes] = useState(0);
+  const [votesLoading, setVotesLoading] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [resetDone, setResetDone] = useState(false);
+  const SEASON = '25/26';
+  const VOTE_STORAGE_KEY = 'adsr_voted_melhor_jogador_2526';
+
+  const fetchVoteResults = useCallback(async () => {
+    setVotesLoading(true);
+    const { data } = await supabase
+      .from('votacoes_melhor_jogador')
+      .select('player_id, candidatos_melhor_jogador(name)')
+      .eq('season', SEASON);
+    if (data) {
+      const counts: Record<number, { name: string; votes: number }> = {};
+      for (const row of data) {
+        const id = row.player_id;
+        const name = (row as any).candidatos_melhor_jogador?.name ?? `Jogador #${id}`;
+        if (!counts[id]) counts[id] = { name, votes: 0 };
+        counts[id].votes++;
+      }
+      const sorted = Object.values(counts).sort((a, b) => b.votes - a.votes);
+      setVoteResults(sorted);
+      setTotalVotes(data.length);
+    } else {
+      setVoteResults([]);
+      setTotalVotes(0);
+    }
+    setVotesLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (activeTab === 'voting') fetchVoteResults();
+  }, [activeTab, fetchVoteResults]);
+
+  const [resetSecret, setResetSecret] = useState('');
+  const [showSecretInput, setShowSecretInput] = useState(false);
+  const [deletedCount, setDeletedCount] = useState(0);
+
+  const handleResetVotes = async () => {
+    if (!showSecretInput) { setShowSecretInput(true); return; }
+    if (!resetSecret) { alert('Introduz o código de segurança.'); return; }
+    if (!window.confirm(`Tens a certeza? Esta ação apaga TODOS os ${totalVotes} votos da época ${SEASON} e não pode ser desfeita.`)) return;
+    setResetting(true);
+    try {
+      const res = await fetch('/api/admin-reset-votes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ season: SEASON, secret: resetSecret }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setDeletedCount(data.deleted ?? 0);
+        setVoteResults([]);
+        setTotalVotes(0);
+        setResetDone(true);
+        setShowSecretInput(false);
+        setResetSecret('');
+        setTimeout(() => setResetDone(false), 8000);
+      } else if (data.reason === 'unauthorized') {
+        alert('Código de segurança incorreto.');
+      } else if (data.reason === 'service_key_not_configured') {
+        alert('Falta configurar a variável SUPABASE_SERVICE_ROLE_KEY no Netlify. Ver instruções abaixo.');
+      } else {
+        alert('Erro ao apagar votos: ' + (data.detail ?? data.reason));
+      }
+    } catch (e) {
+      alert('Erro de ligação: ' + e);
+    }
+    setResetting(false);
+  };
   
   // Login State (Simple simulation)
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -79,11 +153,17 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
              >
                 <Newspaper size={18} /> Notícias
              </button>
-             <button 
+             <button
                 onClick={() => setActiveTab('store')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-bold uppercase tracking-wide transition-colors ${activeTab === 'store' ? 'bg-yellow-400 text-navy-900' : 'hover:bg-navy-800 text-gray-300'}`}
              >
                 <ShoppingBag size={18} /> Loja
+             </button>
+             <button
+                onClick={() => setActiveTab('voting')}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-bold uppercase tracking-wide transition-colors ${activeTab === 'voting' ? 'bg-yellow-400 text-navy-900' : 'hover:bg-navy-800 text-gray-300'}`}
+             >
+                <Vote size={18} /> Votação
              </button>
           </nav>
           <div className="p-4 border-t border-navy-800">
@@ -97,7 +177,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
        <main className="md:ml-64 flex-1 p-8 overflow-y-auto">
           <header className="flex justify-between items-center mb-8">
              <h1 className="text-3xl font-bold text-navy-900 uppercase">
-                Gestão de {activeTab === 'matches' ? 'Resultados' : activeTab === 'news' ? 'Notícias' : 'Loja'}
+                Gestão de {activeTab === 'matches' ? 'Resultados' : activeTab === 'news' ? 'Notícias' : activeTab === 'store' ? 'Loja' : 'Votação'}
              </h1>
              <div className="md:hidden">
                 <button onClick={onLogout} className="text-red-500 font-bold text-sm">Sair</button>
@@ -315,6 +395,97 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                          </div>
                       ))}
                    </div>
+                </div>
+             )}
+
+             {/* Voting Manager */}
+             {activeTab === 'voting' && (
+                <div className="p-6 space-y-6">
+                   {/* Stats bar */}
+                   <div className="flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                         <span className="text-2xl font-bold text-navy-900">{totalVotes}</span>
+                         <span className="text-gray-500 text-sm">votos registados • Época {SEASON}</span>
+                         <button
+                            onClick={fetchVoteResults}
+                            disabled={votesLoading}
+                            className="ml-2 text-gray-400 hover:text-navy-900 transition-colors"
+                            title="Atualizar"
+                         >
+                            <RefreshCw size={16} className={votesLoading ? 'animate-spin' : ''} />
+                         </button>
+                      </div>
+                      <div className="flex items-center gap-2">
+                         {showSecretInput && (
+                            <input
+                               type="password"
+                               value={resetSecret}
+                               onChange={e => setResetSecret(e.target.value)}
+                               onKeyDown={e => e.key === 'Enter' && handleResetVotes()}
+                               placeholder="Código de segurança"
+                               className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-red-400"
+                            />
+                         )}
+                         <button
+                            onClick={handleResetVotes}
+                            disabled={resetting}
+                            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-sm uppercase px-4 py-2 rounded-lg transition-colors"
+                         >
+                            <Trash2 size={16} />
+                            {resetting ? 'A apagar...' : showSecretInput ? 'Confirmar reset' : 'Resetar todos os votos'}
+                         </button>
+                         {showSecretInput && (
+                            <button onClick={() => { setShowSecretInput(false); setResetSecret(''); }} className="text-gray-400 hover:text-gray-600 text-sm">Cancelar</button>
+                         )}
+                      </div>
+                   </div>
+
+                   {resetDone && (
+                      <div className="flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-lg px-4 py-3 text-sm font-medium">
+                         ✓ {deletedCount} voto{deletedCount !== 1 ? 's' : ''} apagado{deletedCount !== 1 ? 's' : ''} com sucesso!
+                         Os utilizadores podem votar novamente — o browser deles atualiza automaticamente ao recarregar a página.
+                      </div>
+                   )}
+
+                   <div className="flex items-start gap-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-lg px-4 py-3 text-xs">
+                      <AlertTriangle size={14} className="mt-0.5 flex-shrink-0" />
+                      <span>
+                         Após o reset, os utilizadores podem votar novamente <strong>sem qualquer ação da parte deles</strong> —
+                         basta recarregarem a página de votação. O sistema deteta automaticamente que o voto já não existe e liberta o formulário.
+                      </span>
+                   </div>
+
+                   {/* Results table */}
+                   {votesLoading ? (
+                      <p className="text-gray-400 text-sm text-center py-8">A carregar resultados...</p>
+                   ) : voteResults.length === 0 ? (
+                      <p className="text-gray-400 text-sm text-center py-8">Sem votos registados.</p>
+                   ) : (
+                      <div className="overflow-hidden rounded-xl border border-gray-100">
+                         <table className="w-full text-sm">
+                            <thead className="bg-gray-50 text-xs font-bold uppercase tracking-widest text-gray-400">
+                               <tr>
+                                  <th className="px-5 py-3 text-left">#</th>
+                                  <th className="px-5 py-3 text-left">Jogador</th>
+                                  <th className="px-5 py-3 text-right">Votos</th>
+                                  <th className="px-5 py-3 text-right">%</th>
+                               </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-50">
+                               {voteResults.map((r, i) => (
+                                  <tr key={r.name} className="hover:bg-gray-50 transition-colors">
+                                     <td className="px-5 py-3 text-gray-400 font-bold">{i + 1}</td>
+                                     <td className="px-5 py-3 font-bold text-navy-900">{r.name}</td>
+                                     <td className="px-5 py-3 text-right font-bold">{r.votes}</td>
+                                     <td className="px-5 py-3 text-right text-gray-400">
+                                        {totalVotes > 0 ? ((r.votes / totalVotes) * 100).toFixed(1) : 0}%
+                                     </td>
+                                  </tr>
+                               ))}
+                            </tbody>
+                         </table>
+                      </div>
+                   )}
                 </div>
              )}
 
