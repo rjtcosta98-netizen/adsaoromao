@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Calendar, Trophy, MapPin, Star, Bus } from 'lucide-react';
+import { Calendar, Trophy, MapPin, Star } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { TEAM_LOGOS } from '../constants';
 
@@ -381,26 +381,6 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="flex items-center justify-center gap-1.5 text-gray-400 text-[11px] mb-3">
                   <MapPin size={12} className="text-red-400 flex-shrink-0" />
                   <span className="truncate">{FEATURED_MATCH.location}</span>
-                </div>
-
-                {/* Autocarro */}
-                <div className="mt-1 rounded-lg border border-green-400/30 bg-green-400/8 px-3 py-2.5">
-                  <div className="flex items-center justify-center gap-1.5 mb-1">
-                    <Bus size={13} className="text-green-400 flex-shrink-0" />
-                    <span className="text-green-300 font-bold text-[11px] uppercase tracking-wider">
-                      Autocarro disponível
-                    </span>
-                  </div>
-                  <p className="text-gray-300 text-[10px] text-center leading-snug">
-                    A Associação disponibiliza autocarro para apoiar os jogadores
-                  </p>
-                  <div className="mt-1.5 flex items-center justify-center gap-1">
-                    <span className="text-[10px] text-gray-400">💶 Valor:</span>
-                    <span className="bg-green-400 text-navy-900 font-black text-[11px] px-2 py-0.5 rounded-full">
-                      10€ por pessoa
-                    </span>
-                    <span className="text-[10px] text-gray-400">· ida e volta</span>
-                  </div>
                 </div>
               </>
             )}
