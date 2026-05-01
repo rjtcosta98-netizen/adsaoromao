@@ -23,6 +23,7 @@ export interface NewsItem {
   excerpt: string;
   imageUrl: string;
   content?: string;
+  contentImageUrl?: string;
 }
 
 export interface Photo {

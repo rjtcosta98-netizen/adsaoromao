@@ -49,8 +49,18 @@ export const TEAM_LOGOS: Record<string, string> = {
 };
 
 export const NEWS_ITEMS: NewsItem[] = [
-  {
+    {
     id: 1,
+    category: 'SÓCIOS',
+    title: ' Eleições para os Órgãos Sociais da ADSR 26/28 ',
+    date: 'Maio, 2026',
+    excerpt: 'Os orgãos sociais da Associação Desportiva de São Romão vem por este meio informar,',
+    imageUrl: '/images/INFO.png',
+    content: 'A Associação Desportiva de São Romão (ADSR), em harmonia com o disposto nos estatutos e no exercício da competência consignada, vem por este meio informar, que as eleições para os Órgãos Sociais da ADSR para o biénio 26/28, irão decorrer no dia 29 de maio de 2026, na sede da instituição situada na Praça de São Pedro, Nº1ª, aquando da realização da Assembleia Geral ordinária de sócios, estando no último ponto da ordem de trabalhos.',
+    contentImageUrl: '/images/infosocios.png'
+  },
+  {
+    id: 2,
     category: 'CLUBE',
     title: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão',
     date: 'Março, 2026',
@@ -59,7 +69,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     content: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão reconhecida pelo IPDJ - Instituto Português do Desporto e Juventude, I.P. PNED representa um importante marco no compromisso do clube com os valores do desporto responsável.\n\nEste reconhecimento destaca o trabalho desenvolvido na promoção do respeito, do fair play, da inclusão e da formação cívica dos seus atletas, reforçando o papel do clube como espaço educativo e de desenvolvimento.\n\nMuitos parabéns, bem hajam a todos! 💙💛'
   },
   {
-    id: 2,
+    id: 3,
     category: 'CLUBE',
     title: 'Associação Desportiva de São Romão conquista Galardão de Entidade Formadora 3 estrelas, atribuído pela FPF',
     date: 'Maio, 2025',
@@ -67,7 +77,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CERTIFICADO'
   },
   {
-    id: 3,
+    id: 4,
     category: 'EVENTO',
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
@@ -75,7 +85,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026'
   },
   {
-    id: 4,
+    id: 5,
     category: 'RENOVAÇÃO',
     title: 'Grandes Mudanças na ADSR',
     date: '12 Jan, 2026',

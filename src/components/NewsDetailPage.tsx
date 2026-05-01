@@ -152,6 +152,16 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
               </p>
             </>
           )}
+
+          {news.contentImageUrl && (
+            <div className="mt-12 rounded-3xl overflow-hidden shadow-lg">
+              <img
+                src={news.contentImageUrl}
+                alt={`${news.title} — imagem de conteúdo`}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          )}
         </div>
 
       </article>
