@@ -6,6 +6,8 @@ import { LatestMedia } from './LatestMedia';
 import { EventsSection } from './EventsSection';
 import { LatestResults } from './LatestResults';
 import { Calendar } from './Calendar';
+import { LivestreamSection } from './LivestreamSection';
+import { LIVESTREAM_CONFIG } from '../constants';
 
 // Lazy load below-fold components for faster initial paint
 const Standings = lazy(() => import('./Standings').then(m => ({ default: m.Standings })));
@@ -30,6 +32,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="relative">
       <Hero onNavigate={onNavigate} />
+      {LIVESTREAM_CONFIG.enabled && <LivestreamSection />}
       <PlayerVoting />
       <LatestMedia onNavigate={onNavigate} />
       <EventsSection />
