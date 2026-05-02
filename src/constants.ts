@@ -53,7 +53,7 @@ export const TEAM_LOGOS: Record<string, string> = {
 // Replace `youtubeId` with the actual YouTube video/stream ID when available.
 export const LIVESTREAM_CONFIG = {
   enabled: true,
-  youtubeId: 'live_placeholder', // substitui pelo ID do YouTube quando tiveres o link
+  youtubeId: 'https://www.youtube.com/watch?v=r2OmZqQ9FNo', // substitui pelo ID do YouTube quando tiveres o link
   homeTeam: 'SC Celoricense', // substitui pelo nome real da equipa adversária
   awayTeam: 'AD São Romão',   // substitui pelo nome real da equipa adversária
   competition: 'Liga Futebol Sub-14 Allianza - Mário Sequeira',
