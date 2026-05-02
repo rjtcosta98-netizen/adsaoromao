@@ -132,9 +132,9 @@ export const LivestreamSection: React.FC = () => {
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=0&rel=0&modestbranding=1&color=white`}
+                  src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=0&rel=0&modestbranding=1&color=white&fs=1&volume=100`}
                   title={`${homeTeam} vs ${awayTeam} — ${competition}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                   allowFullScreen
                   referrerPolicy="strict-origin-when-cross-origin"
                   style={{ border: 'none' }}
