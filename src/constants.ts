@@ -52,7 +52,7 @@ export const TEAM_LOGOS: Record<string, string> = {
 // Set `enabled: true` before the match and `false` after to show/hide the section.
 // Replace `youtubeId` with the actual YouTube video/stream ID when available.
 export const LIVESTREAM_CONFIG = {
-  enabled: true,
+  enabled: false,
   youtubeId: 'r2OmZqQ9FNo', // ID extraído de https://www.youtube.com/watch?v=r2OmZqQ9FNo
   homeTeam: 'SC Celoricense', // substitui pelo nome real da equipa adversária
   awayTeam: 'AD São Romão',   // substitui pelo nome real da equipa adversária
