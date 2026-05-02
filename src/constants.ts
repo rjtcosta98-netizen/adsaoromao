@@ -56,7 +56,7 @@ export const LIVESTREAM_CONFIG = {
   youtubeId: 'live_placeholder', // substitui pelo ID do YouTube quando tiveres o link
   homeTeam: 'SC Celoricense', // substitui pelo nome real da equipa adversária
   awayTeam: 'AD São Romão',   // substitui pelo nome real da equipa adversária
-  competition: '𝐋𝐢𝐠𝐚 𝐅𝐮𝐭𝐞𝐛𝐨𝐥 𝐒𝐮𝐛-𝟏𝟒 𝐀𝐥𝐥𝐢𝐚𝐧𝐳 - 𝐌á𝐫𝐢𝐨 𝐒𝐞𝐪𝐮𝐞𝐢𝐫𝐚',
+  competition: 'Liga Futebol Sub-14 Allianza - Mário Sequeira',
   matchDate: '2026-05-02',       // formato YYYY-MM-DD
   matchTime: '14:15',
 };
