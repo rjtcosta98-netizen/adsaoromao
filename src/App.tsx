@@ -36,6 +36,11 @@ import { getPageRoute } from '@/lib/routes';
 // ══════════════════════════════════════════════════════════
 const MAINTENANCE_MODE = false;
 
+// ══════════════════════════════════════════════════════════
+//  MODO TAÇA — Alterar para true para ativar
+// ══════════════════════════════════════════════════════════
+const CUP_MODE = false;
+
 const GLOBAL_PARTY_CONFETTI = Array.from({ length: 24 }, (_, i) => ({
   id: i,
   left: `${2 + (i * 2.7) % 96}%`,
@@ -200,7 +205,7 @@ function AppShell() {
   return (
     <div className="min-h-screen font-sans bg-gray-50 animate-fade-in">
       {/* Festa global da Taça — camadas atrás do conteúdo */}
-      <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden global-party-layer" aria-hidden>
+      {CUP_MODE && <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden global-party-layer" aria-hidden>
         <div className="absolute inset-0">
           {GLOBAL_STADIUM_BEAMS.map((beam, index) => (
             <div
@@ -263,10 +268,10 @@ function AppShell() {
         <div className="absolute inset-0 global-party-grain" />
         <div className="absolute inset-0 global-party-crowd-wave" />
         <div className="absolute inset-0 global-party-goal-flash" />
-      </div>
+      </div>}
 
       {/* Só confettis passam à frente do texto */}
-      <div className="fixed inset-0 z-[30] pointer-events-none overflow-hidden global-party-layer" aria-hidden>
+      {CUP_MODE && <div className="fixed inset-0 z-[30] pointer-events-none overflow-hidden global-party-layer" aria-hidden>
         <div className="absolute inset-0">
           {GLOBAL_PARTY_CONFETTI.map(piece => (
             <div
@@ -320,7 +325,7 @@ function AppShell() {
             </div>
           </div>
         )}
-      </div>
+      </div>}
 
       <div className="relative z-[10]">
       <Navbar
@@ -329,7 +334,7 @@ function AppShell() {
         onOpenCart={() => setIsCartOpen(true)}
         cartCount={cartCount}
       />
-      <CupSupportBanner />
+      {/* <CupSupportBanner /> */}
 
       <main>
         <Routes>
