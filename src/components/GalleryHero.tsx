@@ -55,7 +55,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
               {/* Featured Image */}
               <div className="aspect-video relative group cursor-pointer overflow-hidden">
                  <img 
-                    src="/images/JOGOSSENIORES/FORNOS/CAPA.jpg" 
+                    src="/images/JOGOSSENIORES/TACAQUARTOS/09.jpg" 
                     alt="Destaque" 
                     loading="lazy"
                     width={600}
@@ -67,12 +67,12 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
 
               {/* Card Body */}
               <div className="p-8 text-center bg-navy-800">
-                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">SENIORES: ADSR VS FORNOS DE ALGODRES</h3>
+                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">1/4 FINAL TAÇA DE HONRA - Guarda FC vs AD São Romão</h3>
                  
                  <div className="flex items-center justify-center gap-6 text-gray-400 text-xs mb-8">
                     <div className="flex items-center gap-2">
                        <Calendar size={14} className="text-red-500" />
-                       <span>19 de Abril, 2026</span>
+                       <span>3 de Maio, 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                        <ImageIcon size={14} className="text-yellow-400" />
