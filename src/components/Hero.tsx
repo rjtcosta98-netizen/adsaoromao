@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { MapPin } from 'lucide-react';
+import { LOGO_URL } from '../constants';
 
 interface HeroProps {
   onNavigate?: (page: string) => void;
@@ -76,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right Content - ADSR CUP 2026 Event Card */}
-        <div className="w-full max-w-sm lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0">
+        <div className="w-full max-w-sm lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
           <style>{`
             @keyframes shimmer {
               0% { background-position: -200% center; }
@@ -86,16 +87,21 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               0%, 100% { box-shadow: 0 0 20px 2px rgba(250,204,21,0.25), 0 0 60px 10px rgba(250,204,21,0.08); }
               50% { box-shadow: 0 0 30px 6px rgba(250,204,21,0.45), 0 0 80px 20px rgba(250,204,21,0.18); }
             }
-            @keyframes float-cup {
-              0%, 100% { transform: translateY(0px) rotate(-4deg); }
-              50% { transform: translateY(-6px) rotate(-4deg); }
+            @keyframes float-mascot {
+              0%, 100% { transform: translateY(0px) scaleX(-1); }
+              50% { transform: translateY(-8px) scaleX(-1); }
+            }
+            @keyframes spin-logo {
+              0%, 100% { transform: rotate(-3deg) scale(1); }
+              50% { transform: rotate(3deg) scale(1.05); }
             }
             @keyframes tick-in {
               from { transform: translateY(8px); opacity: 0; }
               to { transform: translateY(0); opacity: 1; }
             }
             .cup-card { animation: pulse-glow 3s ease-in-out infinite; }
-            .cup-trophy { animation: float-cup 2.8s ease-in-out infinite; }
+            .mascot-float { animation: float-mascot 3s ease-in-out infinite; }
+            .logo-spin { animation: spin-logo 4s ease-in-out infinite; }
             .shimmer-text {
               background: linear-gradient(90deg, #facc15 0%, #fef08a 40%, #facc15 60%, #eab308 100%);
               background-size: 200% auto;
@@ -109,11 +115,18 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             }
           `}</style>
 
+          {/* Mascot — floats outside card, peeking from top-right */}
+          <img
+            src="/images/TACA/mascote.png"
+            alt="Mascote ADSR"
+            className="mascot-float absolute -top-14 -right-6 w-24 h-auto object-contain drop-shadow-[0_4px_16px_rgba(250,204,21,0.5)] z-20 pointer-events-none select-none"
+          />
+
           <div
-            className="cup-card relative rounded-2xl overflow-hidden border border-yellow-400/40"
-            style={{ background: 'linear-gradient(145deg, rgba(10,18,40,0.92) 0%, rgba(5,12,30,0.97) 100%)', backdropFilter: 'blur(20px)' }}
+            className="cup-card relative rounded-2xl border border-yellow-400/40 z-10"
+            style={{ background: 'linear-gradient(145deg, rgba(10,18,40,0.92) 0%, rgba(5,12,30,0.97) 100%)', backdropFilter: 'blur(20px)', overflow: 'hidden' }}
           >
-            {/* Diagonal gold stripe top */}
+            {/* Top gold stripe */}
             <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, #facc15 30%, #fef08a 50%, #facc15 70%, transparent)' }} />
 
             {/* Watermark football */}
@@ -125,9 +138,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
 
             <div className="p-5 sm:p-6">
-              {/* Trophy + Title */}
-              <div className="flex items-start gap-3 mb-4">
-                <div className="cup-trophy text-3xl select-none flex-shrink-0">🏆</div>
+              {/* Logo + Title */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="logo-spin flex-shrink-0">
+                  <img
+                    src={LOGO_URL}
+                    alt="AD São Romão"
+                    className="w-12 h-12 object-contain drop-shadow-[0_2px_10px_rgba(250,204,21,0.6)]"
+                  />
+                </div>
                 <div>
                   <p className="text-yellow-400/70 text-[10px] font-bold tracking-[0.25em] uppercase mb-0.5">Torneio Futebol de Formação</p>
                   <h3 className="shimmer-text font-black text-2xl sm:text-3xl leading-none tracking-tight uppercase">
