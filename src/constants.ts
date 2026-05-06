@@ -69,9 +69,9 @@ export const NEWS_ITEMS: NewsItem[] = [
     title: 'ADSR distinguida novamente como Entidade Formadora Certificada ⭐⭐⭐ pela FPF',
     date: 'Maio, 2026',
     excerpt: 'A Associação Desportiva de São Romão volta a fazer história ao ser distinguida novamente como entidade formadora de 3 estrelas pela Federação Portuguesa de Futebol.',
-    imageUrl: '/images/NEWS/entidade-formadora-2526.jpg',
+    imageUrl: '/images/NEWS/entidade-formadora-3.jpg',
     content: 'A Associação Desportiva de São Romão volta a fazer história ao ser distinguida novamente como entidade formadora de ⭐️⭐️⭐️ pela Federação Portuguesa de Futebol.\n\nUm reconhecimento que reflete muito mais do que resultados, celebra o trabalho diário a dedicação incansável dos seus treinadores, atletas, diretores, direção e a paixão que move toda uma comunidade em redor do nosso clube.\n\nEste selo de qualidade é a prova de que com compromisso, união e amor ao clube, continua a construir-se um futuro sólido para o futebol, dentro e fora das quatro linhas.\n\nMuitos parabéns a todos os intervenientes!\n\nJuntos fazemos história! ADSR SEMPRE!',
-    contentImageUrl: '/images/NEWS/entidade-formadora-2526.jpg'
+    contentImageUrl: '/images/NEWS/entidade-formadora-3.jpg'
   },
     {
     id: 1,
