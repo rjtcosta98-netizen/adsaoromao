@@ -77,126 +77,176 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right Content - ADSR CUP 2026 Event Card */}
-        <div className="w-full max-w-sm lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
+        <div className="w-full max-w-xs lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
           <style>{`
             @keyframes mascot-bob {
-              0%, 100% { transform: translateY(0px); }
-              50% { transform: translateY(-6px); }
+              0%, 100% { transform: translateY(0px) rotate(-2deg); }
+              50% { transform: translateY(-8px) rotate(2deg); }
             }
             @keyframes tick-flip {
               0% { transform: translateY(6px) scale(0.9); opacity: 0; }
               100% { transform: translateY(0) scale(1); opacity: 1; }
             }
-            @keyframes stripe-slide {
-              0% { background-position: 0 0; }
-              100% { background-position: 28px 0; }
+            @keyframes cup-pulse {
+              0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0.0); }
+              50% { box-shadow: 0 0 0 6px rgba(250,204,21,0.12); }
             }
-            .mascot-bob { animation: mascot-bob 2.4s ease-in-out infinite; }
+            .mascot-bob { animation: mascot-bob 3s ease-in-out infinite; }
             .tick-flip { animation: tick-flip 0.18s ease-out; }
-            .diagonal-stripes {
-              background-image: repeating-linear-gradient(
-                -45deg,
-                rgba(255,255,255,0.07) 0px,
-                rgba(255,255,255,0.07) 4px,
-                transparent 4px,
-                transparent 14px
-              );
-              animation: stripe-slide 1.2s linear infinite;
+            .cup-card { animation: cup-pulse 3s ease-in-out infinite; }
+            .noise-overlay {
+              background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+              background-size: 120px;
+              opacity: 0.04;
+              mix-blend-mode: overlay;
             }
           `}</style>
 
-          {/* Mascot */}
+          {/* Floating Mascot */}
           <img
             src="/images/TACA/mascote.png"
             alt="Mascote ADSR"
-            className="mascot-bob absolute -top-12 -right-4 w-20 h-auto object-contain z-20 pointer-events-none select-none drop-shadow-lg"
+            className="mascot-bob absolute -top-14 -right-3 w-[72px] h-auto object-contain z-20 pointer-events-none select-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           />
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl z-10" style={{ fontFamily: "'Bebas Neue', 'Impact', sans-serif" }}>
+          {/* Card */}
+          <div
+            className="cup-card relative rounded-2xl overflow-hidden z-10 border border-white/10"
+            style={{
+              background: 'linear-gradient(160deg, #0f2265 0%, #0a1845 55%, #060e2e 100%)',
+              boxShadow: '0 24px 60px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07)',
+            }}
+          >
+            {/* Noise texture */}
+            <div className="noise-overlay absolute inset-0 pointer-events-none z-0 rounded-2xl" />
 
-            {/* ── HEADER BLOCK ── */}
-            <div className="relative bg-[#1a3a8f] px-5 pt-5 pb-4">
-              {/* diagonal texture overlay */}
-              <div className="diagonal-stripes absolute inset-0 pointer-events-none" />
+            {/* Glowing radial accent */}
+            <div
+              className="absolute -top-8 -right-8 w-40 h-40 rounded-full pointer-events-none z-0"
+              style={{ background: 'radial-gradient(circle, rgba(250,204,21,0.12) 0%, transparent 70%)' }}
+            />
 
-              {/* IV Edição ribbon */}
-              <div className="absolute top-3 right-3 bg-[#facc15] text-[#1a3a8f] text-[9px] font-black px-2.5 py-0.5 rounded tracking-[0.18em] uppercase shadow">
+            {/* ── TOP BADGE ROW ── */}
+            <div className="relative z-10 flex items-center justify-between px-4 pt-4 pb-2">
+              <div className="flex items-center gap-2">
+                <img src={LOGO_URL} alt="AD São Romão" className="w-8 h-8 object-contain drop-shadow" />
+                <div className="leading-none">
+                  <p className="text-white/40 text-[8px] tracking-[0.2em] uppercase font-semibold" style={{ fontFamily: 'system-ui, sans-serif' }}>AD São Romão</p>
+                  <p className="text-white/70 text-[9px] tracking-[0.15em] uppercase font-bold" style={{ fontFamily: 'system-ui, sans-serif' }}>Apresenta</p>
+                </div>
+              </div>
+              <div
+                className="text-[#0a1845] text-[8px] font-black px-2 py-0.5 rounded-sm tracking-[0.15em] uppercase"
+                style={{ background: '#facc15', fontFamily: 'system-ui, sans-serif' }}
+              >
                 IV EDIÇÃO
               </div>
-
-              <div className="relative flex items-center gap-3">
-                <img src={LOGO_URL} alt="AD São Romão" className="w-11 h-11 object-contain flex-shrink-0" />
-                <div>
-                  <p className="text-white/60 text-[9px] tracking-[0.22em] uppercase leading-none mb-1" style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 600 }}>
-                    Torneio Futebol de Formação
-                  </p>
-                  <div className="flex items-baseline gap-2 leading-none">
-                    <span className="text-[#facc15] text-3xl sm:text-4xl font-black tracking-tight leading-none">ADSR CUP</span>
-                    <span className="text-white text-2xl sm:text-3xl font-black tracking-widest leading-none">2026</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* yellow bottom accent bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#facc15]" />
             </div>
 
-            {/* ── BODY ── */}
-            <div className="bg-white px-5 py-4 space-y-3.5">
+            {/* ── TITLE BLOCK ── */}
+            <div className="relative z-10 px-4 pb-3">
+              <p
+                className="text-white/50 text-[10px] tracking-[0.3em] uppercase leading-none mb-1"
+                style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 700 }}
+              >
+                TORNEIO FUTEBOL · SUB 8.10.12.14.16
+              </p>
+              <div className="flex items-baseline gap-2 leading-none">
+                <span
+                  className="font-black leading-none tracking-tight"
+                  style={{
+                    fontFamily: "'Bebas Neue', 'Impact', 'Arial Black', sans-serif",
+                    fontSize: 'clamp(2rem, 6vw, 2.6rem)',
+                    color: '#facc15',
+                    textShadow: '0 2px 12px rgba(250,204,21,0.35)',
+                  }}
+                >
+                  ADSR CUP
+                </span>
+                <span
+                  className="font-black leading-none tracking-widest text-white"
+                  style={{
+                    fontFamily: "'Bebas Neue', 'Impact', 'Arial Black', sans-serif",
+                    fontSize: 'clamp(1.4rem, 4vw, 1.8rem)',
+                    WebkitTextStroke: '1px rgba(255,255,255,0.6)',
+                  }}
+                >
+                  2026
+                </span>
+              </div>
+            </div>
 
-              {/* Date blocks */}
+            {/* Yellow divider */}
+            <div className="relative z-10 mx-4 h-[2px] rounded-full" style={{ background: 'linear-gradient(90deg, #facc15, rgba(250,204,21,0.2))' }} />
+
+            {/* ── DATES ── */}
+            <div className="relative z-10 px-4 pt-3 pb-3">
               <div className="flex gap-2">
                 {[{ days: '13/14', phase: '1ª Fase' }, { days: '20/21', phase: '2ª Fase' }].map((block) => (
-                  <div key={block.days} className="flex-1 bg-[#1a3a8f] rounded-lg text-center py-2.5">
-                    <p className="text-[#facc15] text-xl font-black leading-none tracking-tight">{block.days}</p>
-                    <p className="text-white/70 text-[9px] font-bold tracking-widest uppercase mt-0.5" style={{ fontFamily: 'system-ui, sans-serif' }}>JUNHO</p>
-                    <p className="text-white/50 text-[9px] mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{block.phase}</p>
+                  <div
+                    key={block.days}
+                    className="flex-1 rounded-lg text-center py-2.5 border border-white/10"
+                    style={{ background: 'rgba(255,255,255,0.06)' }}
+                  >
+                    <p
+                      className="text-[#facc15] leading-none font-black"
+                      style={{ fontFamily: "'Bebas Neue', 'Impact', sans-serif", fontSize: '1.25rem' }}
+                    >
+                      {block.days}
+                    </p>
+                    <p className="text-white/60 text-[8px] font-bold tracking-[0.2em] uppercase mt-0.5" style={{ fontFamily: 'system-ui, sans-serif' }}>JUNHO</p>
+                    <p className="text-white/35 text-[8px] mt-0.5" style={{ fontFamily: 'system-ui, sans-serif' }}>{block.phase}</p>
                   </div>
                 ))}
               </div>
+            </div>
 
-              {/* Age categories */}
-              <div className="flex flex-wrap gap-1.5">
-                {['SUB 8', 'SUB 10', 'SUB 12', 'SUB 14', 'SUB 16'].map((cat) => (
-                  <span
-                    key={cat}
-                    className="text-[10px] font-bold px-2.5 py-0.5 rounded border-2 border-[#1a3a8f] text-[#1a3a8f] tracking-wide uppercase"
-                    style={{ fontFamily: 'system-ui, sans-serif' }}
+            {/* ── LOCATION ── */}
+            <div className="relative z-10 px-4 pb-3 flex items-center gap-1.5">
+              <MapPin size={10} className="text-[#facc15] flex-shrink-0" />
+              <span className="text-white/50 text-[10px]" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                Estádio N.S. Conceição · São Romão
+              </span>
+            </div>
+
+            {/* Yellow divider */}
+            <div className="relative z-10 mx-4 h-px" style={{ background: 'rgba(255,255,255,0.08)' }} />
+
+            {/* ── COUNTDOWN ── */}
+            <div className="relative z-10 px-4 pt-3 pb-4">
+              <p
+                className="text-center text-[8px] font-bold tracking-[0.25em] uppercase mb-2.5 text-white/35"
+                style={{ fontFamily: 'system-ui, sans-serif' }}
+              >
+                {countdown.days === 0 && countdown.hours === 0 ? '🟢 A DECORRER!' : 'CONTA-REGRESSIVA'}
+              </p>
+              <div className="grid grid-cols-4 gap-1.5 text-center">
+                {[
+                  { value: countdown.days, label: 'DIAS' },
+                  { value: countdown.hours, label: 'HRS' },
+                  { value: countdown.minutes, label: 'MIN' },
+                  { value: countdown.seconds, label: 'SEG' },
+                ].map(({ value, label }) => (
+                  <div
+                    key={label}
+                    className="flex flex-col items-center rounded-lg py-2 border border-white/10"
+                    style={{ background: 'rgba(255,255,255,0.05)' }}
                   >
-                    {cat}
-                  </span>
+                    <span
+                      key={value}
+                      className="tick-flip font-black leading-none tabular-nums"
+                      style={{
+                        color: '#facc15',
+                        fontFamily: "'Bebas Neue', 'Impact', sans-serif",
+                        fontSize: '1.4rem',
+                        textShadow: '0 1px 8px rgba(250,204,21,0.3)',
+                      }}
+                    >
+                      {String(value).padStart(2, '0')}
+                    </span>
+                    <span className="text-white/35 text-[7px] font-bold tracking-widest mt-0.5 uppercase" style={{ fontFamily: 'system-ui, sans-serif' }}>{label}</span>
+                  </div>
                 ))}
-              </div>
-
-              {/* Location */}
-              <div className="flex items-center gap-1.5 text-gray-500 text-[11px]" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                <MapPin size={11} className="text-[#1a3a8f] flex-shrink-0" />
-                <span>Estádio N.S. Conceição · São Romão</span>
-              </div>
-
-              {/* Countdown */}
-              <div className="bg-[#1a3a8f] rounded-xl p-3">
-                <p className="text-center text-[9px] font-bold tracking-[0.22em] uppercase text-white/50 mb-2.5" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                  {countdown.days === 0 && countdown.hours === 0 ? '🟢 A DECORRER!' : 'CONTA-REGRESSIVA'}
-                </p>
-                <div className="grid grid-cols-4 gap-1.5 text-center">
-                  {[
-                    { value: countdown.days, label: 'DIAS' },
-                    { value: countdown.hours, label: 'HRS' },
-                    { value: countdown.minutes, label: 'MIN' },
-                    { value: countdown.seconds, label: 'SEG' },
-                  ].map(({ value, label }) => (
-                    <div key={label} className="flex flex-col items-center bg-white/10 rounded-lg py-2">
-                      <span
-                        key={value}
-                        className="tick-flip text-[#facc15] text-2xl font-black leading-none tabular-nums"
-                      >
-                        {String(value).padStart(2, '0')}
-                      </span>
-                      <span className="text-white/50 text-[8px] font-bold tracking-widest mt-1 uppercase" style={{ fontFamily: 'system-ui, sans-serif' }}>{label}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
