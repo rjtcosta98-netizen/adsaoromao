@@ -63,6 +63,16 @@ export const LIVESTREAM_CONFIG = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const NEWS_ITEMS: NewsItem[] = [
+  {
+    id: 6,
+    category: 'CLUBE',
+    title: 'ADSR distinguida novamente como Entidade Formadora Certificada ⭐⭐⭐ pela FPF',
+    date: 'Maio, 2026',
+    excerpt: 'A Associação Desportiva de São Romão volta a fazer história ao ser distinguida novamente como entidade formadora de 3 estrelas pela Federação Portuguesa de Futebol.',
+    imageUrl: '/images/NEWS/entidade-formadora-2526.jpg',
+    content: 'A Associação Desportiva de São Romão volta a fazer história ao ser distinguida novamente como entidade formadora de ⭐️⭐️⭐️ pela Federação Portuguesa de Futebol.\n\nUm reconhecimento que reflete muito mais do que resultados, celebra o trabalho diário a dedicação incansável dos seus treinadores, atletas, diretores, direção e a paixão que move toda uma comunidade em redor do nosso clube.\n\nEste selo de qualidade é a prova de que com compromisso, união e amor ao clube, continua a construir-se um futuro sólido para o futebol, dentro e fora das quatro linhas.\n\nMuitos parabéns a todos os intervenientes!\n\nJuntos fazemos história! ADSR SEMPRE!',
+    contentImageUrl: '/images/NEWS/entidade-formadora-2526.jpg'
+  },
     {
     id: 1,
     category: 'SÓCIOS',
@@ -96,7 +106,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
     excerpt: 'A ADSR CUP 2026, na sua IV edição, promete voltar a reunir jovens talentos, clubes e famílias num ambiente de competição saudável, paixão pelo futebol e fair-play. O torneio decorrerá nos dias 13 e 14 de junho e 20 e 21 de junho de 2026, no Estádio N. S. Conceição, em São Romão.',
-    imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026'
+    imageUrl: '/images/NEWS/adsr-cup-2026.jpg'
   },
   {
     id: 5,
