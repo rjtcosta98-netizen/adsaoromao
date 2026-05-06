@@ -35,18 +35,30 @@ function useCountdown(targetDate: Date) {
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const countdown = useCountdown(new Date('2026-06-13T09:00:00'));
 
-  return (
-    <div className="relative min-h-screen md:min-h-[100vh] md:h-[85vh] w-full flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/adsrcuphero.png')" }}
-      >
-        <div className="absolute inset-0 bg-navy-900/70 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
-      </div>
+  // ─── IMAGENS DE FUNDO ──────────────────────────────────────────
+  // Para alterar a imagem mobile, substitui o caminho abaixo:
+  const HERO_BG_DESKTOP = '/images/adsrcuphero.png';
+  const HERO_BG_MOBILE  = '/images/adsrcuphero-mobile.png'; // ← coloca aqui o teu ficheiro
+  // ──────────────────────────────────────────────────────────────
 
-      <div className="relative z-10 container mx-auto px-4 py-8 h-full flex flex-col justify-center lg:flex-row lg:items-center lg:justify-between">
+  return (
+    <div className="relative w-full flex items-center justify-center overflow-hidden" style={{ minHeight: '100svh' }}>
+      {/* Background Image with Overlay */}
+      {/* Mobile background */}
+      <div
+        className="absolute inset-0 z-0 bg-contain bg-top bg-no-repeat lg:hidden bg-[#020a18]"
+        style={{ backgroundImage: `url('${HERO_BG_MOBILE}')` }}
+      />
+      {/* Desktop background */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat hidden lg:block"
+        style={{ backgroundImage: `url('${HERO_BG_DESKTOP}')` }}
+      />
+      {/* Overlays (shared) */}
+      <div className="absolute inset-0 z-[1] bg-navy-900/70 mix-blend-multiply" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-navy-900 via-transparent to-transparent" />
+
+      <div className="relative z-10 container mx-auto px-4 py-8 pt-40 lg:pt-8 h-full flex flex-col justify-center lg:flex-row lg:items-center lg:justify-between">
         {/* Left Content */}
         <div className="max-w-2xl mb-8 lg:mb-0">
           <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-7xl font-bold text-white leading-tight uppercase mb-4 sm:mb-6 drop-shadow-lg">
@@ -77,7 +89,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right Content - ADSR CUP 2026 Event Card */}
-        <div className="w-full max-w-xs lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
+        <div className="w-full max-w-xs mx-auto lg:mx-0 lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
           <style>{`
             @keyframes mascot-bob {
               0%, 100% { transform: translateY(0px) rotate(-2deg); }
