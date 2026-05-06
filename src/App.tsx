@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation, useNavigate as useRouterNavigate } from 'react-router-dom';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { DataProvider, useData } from '@/context/DataContext';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -9,26 +9,26 @@ import { WhatsAppWidget } from '@/components/WhatsAppWidget';
 import { CookieConsent } from '@/components/CookieConsent';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { MaintenancePage } from '@/components/MaintenancePage';
-
-// Pages
-import { HomePage } from '@/components/HomePage';
-import { ClubPage } from '@/components/ClubPage';
-import { TeamsPage } from '@/components/TeamsPage';
-import { RegistrationPage } from '@/components/RegistrationPage';
-import { MembershipPage } from '@/components/MembershipPage';
-import { SponsorsPage } from '@/components/SponsorsPage';
-import { GalleryPage } from '@/components/GalleryPage';
-import { AlbumDetailWrapper } from '@/pages/AlbumDetailWrapper';
-import { NewsPage } from '@/components/NewsPage';
-import { NewsDetailWrapper } from '@/pages/NewsDetailWrapper';
-import { ContactsPage } from '@/components/ContactsPage';
-import { StorePage } from '@/components/StorePage';
-import { AdminDashboard } from '@/components/AdminDashboard';
-import { PrivacyPolicyPage } from '@/components/PrivacyPolicyPage';
-import { TermsPage } from '@/components/TermsPage';
-import { VotingPage } from '@/pages/VotingPage';
-import { CookiePolicyPage } from '@/components/CookiePolicyPage';
 import { getPageRoute } from '@/lib/routes';
+
+// Pages — lazy loaded para reduzir o bundle inicial
+const HomePage         = lazy(() => import('@/components/HomePage').then(m => ({ default: m.HomePage })));
+const ClubPage         = lazy(() => import('@/components/ClubPage').then(m => ({ default: m.ClubPage })));
+const TeamsPage        = lazy(() => import('@/components/TeamsPage').then(m => ({ default: m.TeamsPage })));
+const RegistrationPage = lazy(() => import('@/components/RegistrationPage').then(m => ({ default: m.RegistrationPage })));
+const MembershipPage   = lazy(() => import('@/components/MembershipPage').then(m => ({ default: m.MembershipPage })));
+const SponsorsPage     = lazy(() => import('@/components/SponsorsPage').then(m => ({ default: m.SponsorsPage })));
+const GalleryPage      = lazy(() => import('@/components/GalleryPage').then(m => ({ default: m.GalleryPage })));
+const AlbumDetailWrapper = lazy(() => import('@/pages/AlbumDetailWrapper').then(m => ({ default: m.AlbumDetailWrapper })));
+const NewsPage         = lazy(() => import('@/components/NewsPage').then(m => ({ default: m.NewsPage })));
+const NewsDetailWrapper = lazy(() => import('@/pages/NewsDetailWrapper').then(m => ({ default: m.NewsDetailWrapper })));
+const ContactsPage     = lazy(() => import('@/components/ContactsPage').then(m => ({ default: m.ContactsPage })));
+const StorePage        = lazy(() => import('@/components/StorePage').then(m => ({ default: m.StorePage })));
+const AdminDashboard   = lazy(() => import('@/components/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
+const PrivacyPolicyPage = lazy(() => import('@/components/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const TermsPage        = lazy(() => import('@/components/TermsPage').then(m => ({ default: m.TermsPage })));
+const VotingPage       = lazy(() => import('@/pages/VotingPage').then(m => ({ default: m.VotingPage })));
+const CookiePolicyPage = lazy(() => import('@/components/CookiePolicyPage').then(m => ({ default: m.CookiePolicyPage })));
 
 // ══════════════════════════════════════════════════════════
 //  MODO MANUTENÇÃO — Alterar para false para desativar
@@ -94,9 +94,11 @@ function AppShell() {
   if (isAdmin) {
     return (
       <div className="min-h-screen font-sans bg-gray-50">
-        <Routes>
-          <Route path="/admin" element={<AdminDashboard onLogout={() => routerNavigate('/')} />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/admin" element={<AdminDashboard onLogout={() => routerNavigate('/')} />} />
+          </Routes>
+        </Suspense>
       </div>
     );
   }
@@ -131,24 +133,26 @@ function AppShell() {
         cartCount={cartCount}
       />
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage onNavigate={navigate} />} />
-          <Route path="/clube" element={<ClubPage />} />
-          <Route path="/equipas" element={<TeamsPage />} />
-          <Route path="/inscricoes" element={<RegistrationPage />} />
-          <Route path="/socios" element={<MembershipPage />} />
-          <Route path="/patrocinadores" element={<SponsorsPage />} />
-          <Route path="/galeria" element={<GalleryPage onNavigate={navigate} />} />
-          <Route path="/galeria/:id" element={<AlbumDetailWrapper onNavigate={navigate} />} />
-          <Route path="/noticias" element={<NewsPage onNavigate={navigate} />} />
-          <Route path="/noticias/:id" element={<NewsDetailWrapper onNavigate={navigate} />} />
-          <Route path="/contactos" element={<ContactsPage />} />
-          <Route path="/loja" element={<StorePage />} />
-          <Route path="/privacidade" element={<PrivacyPolicyPage />} />
-          <Route path="/termos" element={<TermsPage />} />
-          <Route path="/cookies" element={<CookiePolicyPage />} />
-          <Route path="/votacao" element={<VotingPage />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<HomePage onNavigate={navigate} />} />
+            <Route path="/clube" element={<ClubPage />} />
+            <Route path="/equipas" element={<TeamsPage />} />
+            <Route path="/inscricoes" element={<RegistrationPage />} />
+            <Route path="/socios" element={<MembershipPage />} />
+            <Route path="/patrocinadores" element={<SponsorsPage />} />
+            <Route path="/galeria" element={<GalleryPage onNavigate={navigate} />} />
+            <Route path="/galeria/:id" element={<AlbumDetailWrapper onNavigate={navigate} />} />
+            <Route path="/noticias" element={<NewsPage onNavigate={navigate} />} />
+            <Route path="/noticias/:id" element={<NewsDetailWrapper onNavigate={navigate} />} />
+            <Route path="/contactos" element={<ContactsPage />} />
+            <Route path="/loja" element={<StorePage />} />
+            <Route path="/privacidade" element={<PrivacyPolicyPage />} />
+            <Route path="/termos" element={<TermsPage />} />
+            <Route path="/cookies" element={<CookiePolicyPage />} />
+            <Route path="/votacao" element={<VotingPage />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <StoreCart
