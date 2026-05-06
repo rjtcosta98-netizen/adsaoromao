@@ -8,7 +8,7 @@ const NEWS_ITEMS = [
     title: 'ADSR distinguida novamente como Entidade Formadora Certificada ⭐⭐⭐ pela FPF',
     date: 'Maio, 2026',
     excerpt: 'A Associação Desportiva de São Romão volta a fazer história ao ser distinguida novamente como entidade formadora de 3 estrelas pela Federação Portuguesa de Futebol.',
-    imageUrl: 'https://www.adsaoromao.pt/images/NEWS/entidade-formadora-2526.jpg',
+    imageUrl: '/images/entidade-formadora-3.jpg',
   },
   {
     id: 1,
@@ -24,7 +24,7 @@ const NEWS_ITEMS = [
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
     excerpt: 'A ADSR CUP 2026, na sua IV edição, promete voltar a reunir jovens talentos, clubes e famílias num ambiente de competição saudável, paixão pelo futebol e fair-play. O torneio decorrerá nos dias 13 e 14 de junho e 20 e 21 de junho de 2026, no Estádio N. S. Conceição, em São Romão.',
-    imageUrl: 'https://www.adsaoromao.pt/images/NEWS/adsr-cup-2026.jpg',
+    imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026',
   },
   {
     id: 3,

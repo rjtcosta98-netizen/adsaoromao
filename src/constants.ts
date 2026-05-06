@@ -106,7 +106,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
     excerpt: 'A ADSR CUP 2026, na sua IV edição, promete voltar a reunir jovens talentos, clubes e famílias num ambiente de competição saudável, paixão pelo futebol e fair-play. O torneio decorrerá nos dias 13 e 14 de junho e 20 e 21 de junho de 2026, no Estádio N. S. Conceição, em São Romão.',
-    imageUrl: '/images/NEWS/adsr-cup-2026.jpg'
+    imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026'
   },
   {
     id: 5,

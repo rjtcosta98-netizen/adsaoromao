@@ -79,108 +79,89 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         {/* Right Content - ADSR CUP 2026 Event Card */}
         <div className="w-full max-w-sm lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
           <style>{`
-            @keyframes shimmer {
-              0% { background-position: -200% center; }
-              100% { background-position: 200% center; }
+            @keyframes mascot-bob {
+              0%, 100% { transform: translateY(0px); }
+              50% { transform: translateY(-6px); }
             }
-            @keyframes pulse-glow {
-              0%, 100% { box-shadow: 0 0 20px 2px rgba(250,204,21,0.25), 0 0 60px 10px rgba(250,204,21,0.08); }
-              50% { box-shadow: 0 0 30px 6px rgba(250,204,21,0.45), 0 0 80px 20px rgba(250,204,21,0.18); }
+            @keyframes tick-flip {
+              0% { transform: translateY(6px) scale(0.9); opacity: 0; }
+              100% { transform: translateY(0) scale(1); opacity: 1; }
             }
-            @keyframes float-mascot {
-              0%, 100% { transform: translateY(0px) scaleX(-1); }
-              50% { transform: translateY(-8px) scaleX(-1); }
+            @keyframes stripe-slide {
+              0% { background-position: 0 0; }
+              100% { background-position: 28px 0; }
             }
-            @keyframes spin-logo {
-              0%, 100% { transform: rotate(-3deg) scale(1); }
-              50% { transform: rotate(3deg) scale(1.05); }
-            }
-            @keyframes tick-in {
-              from { transform: translateY(8px); opacity: 0; }
-              to { transform: translateY(0); opacity: 1; }
-            }
-            .cup-card { animation: pulse-glow 3s ease-in-out infinite; }
-            .mascot-float { animation: float-mascot 3s ease-in-out infinite; }
-            .logo-spin { animation: spin-logo 4s ease-in-out infinite; }
-            .shimmer-text {
-              background: linear-gradient(90deg, #facc15 0%, #fef08a 40%, #facc15 60%, #eab308 100%);
-              background-size: 200% auto;
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-              animation: shimmer 2.5s linear infinite;
-            }
-            .countdown-digit {
-              animation: tick-in 0.2s ease-out;
+            .mascot-bob { animation: mascot-bob 2.4s ease-in-out infinite; }
+            .tick-flip { animation: tick-flip 0.18s ease-out; }
+            .diagonal-stripes {
+              background-image: repeating-linear-gradient(
+                -45deg,
+                rgba(255,255,255,0.07) 0px,
+                rgba(255,255,255,0.07) 4px,
+                transparent 4px,
+                transparent 14px
+              );
+              animation: stripe-slide 1.2s linear infinite;
             }
           `}</style>
 
-          {/* Mascot — floats outside card, peeking from top-right */}
+          {/* Mascot */}
           <img
             src="/images/TACA/mascote.png"
             alt="Mascote ADSR"
-            className="mascot-float absolute -top-14 -right-6 w-24 h-auto object-contain drop-shadow-[0_4px_16px_rgba(250,204,21,0.5)] z-20 pointer-events-none select-none"
+            className="mascot-bob absolute -top-12 -right-4 w-20 h-auto object-contain z-20 pointer-events-none select-none drop-shadow-lg"
           />
 
-          <div
-            className="cup-card relative rounded-2xl border border-yellow-400/40 z-10"
-            style={{ background: 'linear-gradient(145deg, rgba(10,18,40,0.92) 0%, rgba(5,12,30,0.97) 100%)', backdropFilter: 'blur(20px)', overflow: 'hidden' }}
-          >
-            {/* Top gold stripe */}
-            <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, #facc15 30%, #fef08a 50%, #facc15 70%, transparent)' }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl z-10" style={{ fontFamily: "'Bebas Neue', 'Impact', sans-serif" }}>
 
-            {/* Watermark football */}
-            <div className="absolute right-0 bottom-0 w-48 h-48 opacity-[0.04] select-none pointer-events-none" style={{ fontSize: '11rem', lineHeight: 1, transform: 'translate(20%, 20%)' }}>⚽</div>
+            {/* ── HEADER BLOCK ── */}
+            <div className="relative bg-[#1a3a8f] px-5 pt-5 pb-4">
+              {/* diagonal texture overlay */}
+              <div className="diagonal-stripes absolute inset-0 pointer-events-none" />
 
-            {/* IV Edição badge */}
-            <div className="absolute top-3 right-3 bg-yellow-400 text-[10px] font-black text-blue-950 px-2 py-0.5 rounded-full tracking-widest uppercase">
-              IV Edição
-            </div>
+              {/* IV Edição ribbon */}
+              <div className="absolute top-3 right-3 bg-[#facc15] text-[#1a3a8f] text-[9px] font-black px-2.5 py-0.5 rounded tracking-[0.18em] uppercase shadow">
+                IV EDIÇÃO
+              </div>
 
-            <div className="p-5 sm:p-6">
-              {/* Logo + Title */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="logo-spin flex-shrink-0">
-                  <img
-                    src={LOGO_URL}
-                    alt="AD São Romão"
-                    className="w-12 h-12 object-contain drop-shadow-[0_2px_10px_rgba(250,204,21,0.6)]"
-                  />
-                </div>
+              <div className="relative flex items-center gap-3">
+                <img src={LOGO_URL} alt="AD São Romão" className="w-11 h-11 object-contain flex-shrink-0" />
                 <div>
-                  <p className="text-yellow-400/70 text-[10px] font-bold tracking-[0.25em] uppercase mb-0.5">Torneio Futebol de Formação</p>
-                  <h3 className="shimmer-text font-black text-2xl sm:text-3xl leading-none tracking-tight uppercase">
-                    ADSR CUP
-                  </h3>
-                  <p className="text-white font-black text-xl sm:text-2xl leading-none tracking-widest">2026</p>
+                  <p className="text-white/60 text-[9px] tracking-[0.22em] uppercase leading-none mb-1" style={{ fontFamily: 'system-ui, sans-serif', fontWeight: 600 }}>
+                    Torneio Futebol de Formação
+                  </p>
+                  <div className="flex items-baseline gap-2 leading-none">
+                    <span className="text-[#facc15] text-3xl sm:text-4xl font-black tracking-tight leading-none">ADSR CUP</span>
+                    <span className="text-white text-2xl sm:text-3xl font-black tracking-widest leading-none">2026</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="h-px mb-4" style={{ background: 'linear-gradient(90deg, #facc15 0%, transparent 100%)' }} />
+              {/* yellow bottom accent bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#facc15]" />
+            </div>
+
+            {/* ── BODY ── */}
+            <div className="bg-white px-5 py-4 space-y-3.5">
 
               {/* Date blocks */}
-              <div className="flex gap-2 mb-4">
-                {[{ days: '13/14', weekend: '1ª Fase' }, { days: '20/21', weekend: '2ª Fase' }].map((block) => (
-                  <div
-                    key={block.days}
-                    className="flex-1 rounded-xl border border-yellow-400/30 text-center py-2.5 px-1"
-                    style={{ background: 'rgba(250,204,21,0.07)' }}
-                  >
-                    <p className="text-yellow-400 font-black text-lg sm:text-xl leading-none">{block.days}</p>
-                    <p className="text-yellow-400/50 text-[9px] font-bold tracking-widest uppercase mt-0.5">JUNHO</p>
-                    <p className="text-white/50 text-[9px] mt-1 tracking-wide">{block.weekend}</p>
+              <div className="flex gap-2">
+                {[{ days: '13/14', phase: '1ª Fase' }, { days: '20/21', phase: '2ª Fase' }].map((block) => (
+                  <div key={block.days} className="flex-1 bg-[#1a3a8f] rounded-lg text-center py-2.5">
+                    <p className="text-[#facc15] text-xl font-black leading-none tracking-tight">{block.days}</p>
+                    <p className="text-white/70 text-[9px] font-bold tracking-widest uppercase mt-0.5" style={{ fontFamily: 'system-ui, sans-serif' }}>JUNHO</p>
+                    <p className="text-white/50 text-[9px] mt-1" style={{ fontFamily: 'system-ui, sans-serif' }}>{block.phase}</p>
                   </div>
                 ))}
               </div>
 
               {/* Age categories */}
-              <div className="flex flex-wrap gap-1.5 mb-4">
+              <div className="flex flex-wrap gap-1.5">
                 {['SUB 8', 'SUB 10', 'SUB 12', 'SUB 14', 'SUB 16'].map((cat) => (
                   <span
                     key={cat}
-                    className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-blue-400/30 text-blue-300 tracking-wide"
-                    style={{ background: 'rgba(96,165,250,0.08)' }}
+                    className="text-[10px] font-bold px-2.5 py-0.5 rounded border-2 border-[#1a3a8f] text-[#1a3a8f] tracking-wide uppercase"
+                    style={{ fontFamily: 'system-ui, sans-serif' }}
                   >
                     {cat}
                   </span>
@@ -188,15 +169,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               </div>
 
               {/* Location */}
-              <div className="flex items-center gap-1.5 mb-5 text-gray-400 text-[11px]">
-                <MapPin size={11} className="text-yellow-400 flex-shrink-0" />
+              <div className="flex items-center gap-1.5 text-gray-500 text-[11px]" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                <MapPin size={11} className="text-[#1a3a8f] flex-shrink-0" />
                 <span>Estádio N.S. Conceição · São Romão</span>
               </div>
 
               {/* Countdown */}
-              <div className="rounded-xl p-3" style={{ background: 'rgba(250,204,21,0.06)', border: '1px solid rgba(250,204,21,0.15)' }}>
-                <p className="text-center text-[9px] font-bold tracking-[0.2em] uppercase text-yellow-400/60 mb-2">
-                  {countdown.days === 0 && countdown.hours === 0 ? 'A DECORRER!' : 'Conta-regressiva'}
+              <div className="bg-[#1a3a8f] rounded-xl p-3">
+                <p className="text-center text-[9px] font-bold tracking-[0.22em] uppercase text-white/50 mb-2.5" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                  {countdown.days === 0 && countdown.hours === 0 ? '🟢 A DECORRER!' : 'CONTA-REGRESSIVA'}
                 </p>
                 <div className="grid grid-cols-4 gap-1.5 text-center">
                   {[
@@ -205,22 +186,19 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     { value: countdown.minutes, label: 'MIN' },
                     { value: countdown.seconds, label: 'SEG' },
                   ].map(({ value, label }) => (
-                    <div key={label} className="flex flex-col items-center">
+                    <div key={label} className="flex flex-col items-center bg-white/10 rounded-lg py-2">
                       <span
                         key={value}
-                        className="countdown-digit font-black text-xl sm:text-2xl text-white leading-none tabular-nums"
+                        className="tick-flip text-[#facc15] text-2xl font-black leading-none tabular-nums"
                       >
                         {String(value).padStart(2, '0')}
                       </span>
-                      <span className="text-yellow-400/50 text-[8px] font-bold tracking-widest mt-0.5">{label}</span>
+                      <span className="text-white/50 text-[8px] font-bold tracking-widest mt-1 uppercase" style={{ fontFamily: 'system-ui, sans-serif' }}>{label}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
-
-            {/* Bottom gold stripe */}
-            <div className="h-1" style={{ background: 'linear-gradient(90deg, transparent, #facc15 30%, #fef08a 50%, #facc15 70%, transparent)' }} />
           </div>
         </div>
       </div>
