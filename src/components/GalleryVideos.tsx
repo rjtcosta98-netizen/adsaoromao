@@ -16,6 +16,12 @@ export const GalleryVideos: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
 
   const videos: Video[] = [
+      {
+      url: 'https://res.cloudinary.com/dytkvxus2/video/upload/v1778230435/Flash_Interview_wo8rmw.mp4',
+      poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778230488/FLASH_INTERVIEW_xm4sip.png',
+      title: 'Flash Interview: Gonçalo Tavares',
+      subtitle: 'SUB-16'
+    },
     {
       url: 'https://res.cloudinary.com/di8qh6rc0/video/upload/q_auto/f_auto/v1775386390/FDownloader.net-1655148628996808-_1080p_ncpbvm.mp4',
       poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775386847/FLASH_INTERVIEW_p4vw82.png',
@@ -74,96 +80,38 @@ export const GalleryVideos: React.FC = () => {
           <div className="w-16 h-1 bg-yellow-400 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
-           
-           {/* Main Video (16:9) */}
-           <div 
-              onClick={() => openVideoModal(videos[0])}
-              className="w-full lg:flex-[2] relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[300px] md:min-h-[400px] lg:min-h-[500px]"
-           >
-              <video 
-                 src={videos[0].url}
-                 poster={videos[0].poster}
-                 preload="metadata"
-                 playsInline
-                 className="absolute inset-0 w-full h-full object-cover"
+        {/* Top 3 Videos — uniform portrait 9:16 grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+          {videos.slice(0, 3).map((video, idx) => (
+            <div
+              key={idx}
+              onClick={() => openVideoModal(video)}
+              className="group relative aspect-[9/16] rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shadow-2xl cursor-pointer"
+            >
+              <img
+                src={video.poster}
+                alt={video.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <img 
-                 src={videos[0].poster} 
-                 alt={videos[0].title}
-                 className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
-              
+              <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors" />
+
+              {/* Play button */}
               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-navy-900/80 backdrop-blur border-2 md:border-3 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <Play className="text-yellow-400 fill-yellow-400 ml-1" size={32} />
-                 </div>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Play className="text-yellow-400 fill-yellow-400 ml-0.5" size={20} />
+                </div>
               </div>
 
-              <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 lg:p-8 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
-                 <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2 block">{videos[0].subtitle}</span>
-                 <h3 className="font-display font-bold text-lg md:text-2xl lg:text-3xl xl:text-4xl text-white uppercase leading-tight">
-                    {videos[0].title}
-                 </h3>
+              <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
+                <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                  {video.subtitle}
+                </span>
+                <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase leading-tight group-hover:text-yellow-400 transition-colors">
+                  {video.title}
+                </h3>
               </div>
-           </div>
-
-           {/* Side Videos Column */}
-           <div className="w-full lg:flex-[1] flex flex-col gap-6 md:gap-8">
-              {/* Secondary Video (9:16) */}
-              <div 
-                 onClick={() => openVideoModal(videos[1])}
-                 className="w-full relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[250px] md:min-h-[250px] lg:min-h-[240px] max-w-[350px] mx-auto lg:mx-0 lg:max-w-none"
-              >
-                 <img 
-                    src={videos[1].poster} 
-                    alt={videos[1].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                 />
-                 <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
-                 
-                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                       <Play className="text-yellow-400 fill-yellow-400 ml-1" size={24} />
-                    </div>
-                 </div>
-
-                 <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
-                    <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 block">{videos[1].subtitle}</span>
-                    <h3 className="font-display font-bold text-base md:text-lg lg:text-xl text-white uppercase leading-tight">
-                       {videos[1].title}
-                    </h3>
-                 </div>
-              </div>
-
-              {/* Third Video */}
-              <div 
-                 onClick={() => openVideoModal(videos[2])}
-                 className="w-full relative rounded-xl md:rounded-2xl overflow-hidden group shadow-2xl border border-white/10 cursor-pointer min-h-[250px] md:min-h-[250px] lg:min-h-[240px] max-w-[350px] mx-auto lg:mx-0 lg:max-w-none"
-              >
-                 <img 
-                    src={videos[2].poster} 
-                    alt={videos[2].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                 />
-                 <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-navy-900/50 transition-colors"></div>
-                 
-                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                       <Play className="text-yellow-400 fill-yellow-400 ml-1" size={24} />
-                    </div>
-                 </div>
-
-                 <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-navy-900 to-transparent pointer-events-none">
-                    <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 block">{videos[2].subtitle}</span>
-                    <h3 className="font-display font-bold text-base md:text-lg lg:text-xl text-white uppercase leading-tight">
-                       {videos[2].title}
-                    </h3>
-                 </div>
-              </div>
-           </div>
-
+            </div>
+          ))}
         </div>
 
         {/* Remaining Videos Grid */}

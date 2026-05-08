@@ -12,10 +12,10 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
 
   const latestAlbums = GALLERY_ALBUMS.slice(0, 3);
   const latestVideo = {
-      url: 'https://res.cloudinary.com/di8qh6rc0/video/upload/q_auto/f_auto/v1775386390/FDownloader.net-1655148628996808-_1080p_ncpbvm.mp4',
-      poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775386847/FLASH_INTERVIEW_p4vw82.png',
-      title: 'Flash Interview: Mister Davide Oliveira',
-      subtitle: 'SUB-14 Allianz 1ª Divisão'
+      url: 'https://res.cloudinary.com/dytkvxus2/video/upload/v1778230435/Flash_Interview_wo8rmw.mp4',
+      poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778230488/FLASH_INTERVIEW_xm4sip.png',
+      title: 'Flash Interview: Mister Gonçalo Tavares',
+      subtitle: 'SUB-16'
   };
 
   const openVideo = () => {
@@ -42,12 +42,13 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
           <div className="w-12 sm:w-16 h-1 bg-yellow-400 mx-auto mt-3 sm:mt-4 rounded-full"></div>
         </div>
 
-        {/* 3 Latest Photo Albums */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-5 sm:mb-6 md:mb-8">
+        {/* 3 Albums + 1 Portrait Video — unified grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+          {/* Album cards */}
           {latestAlbums.map((album) => (
             <div
               key={album.id}
-              className="group relative h-52 sm:h-64 md:h-72 rounded-xl md:rounded-2xl overflow-hidden border border-black/5 shadow-xl cursor-pointer"
+              className="group relative aspect-[9/16] lg:aspect-auto rounded-xl md:rounded-2xl overflow-hidden border border-black/5 shadow-xl cursor-pointer"
               onClick={() => onNavigate('album-detalhe', album.id)}
             >
               <img
@@ -81,44 +82,45 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
               </div>
             </div>
           ))}
-        </div>
 
-        {/* Latest Video */}
-        <div
-          className="group relative h-64 sm:h-80 md:h-96 rounded-xl md:rounded-2xl overflow-hidden border border-black/5 shadow-xl cursor-pointer"
-          onClick={openVideo}
-        >
-          <img
-            src={latestVideo.poster}
-            alt={latestVideo.title}
-            loading="lazy"
-            width={1200}
-            height={500}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1f398a] via-[#1f398a]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+          {/* Video card — portrait 9:16 */}
+          <div
+            className="group relative aspect-[9/16] rounded-xl md:rounded-2xl overflow-hidden border border-black/5 shadow-xl cursor-pointer"
+            onClick={openVideo}
+          >
+            <img
+              src={latestVideo.poster}
+              alt={latestVideo.title}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1f398a] via-[#1f398a]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
 
-          {/* Play Button */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-[#1f398a]/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              <Play className="text-yellow-400 fill-yellow-400 ml-1" size={28} />
+            {/* Play button */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1f398a]/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <Play className="text-yellow-400 fill-yellow-400 ml-0.5" size={20} />
+              </div>
             </div>
-          </div>
 
-          {/* Badge */}
-          <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-            <span className="bg-yellow-400 text-[#1f398a] text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
-              <Play size={13} /> Vídeo
-            </span>
-          </div>
+            {/* Badge */}
+            <div className="absolute top-3 left-3">
+              <span className="bg-yellow-400 text-[#1f398a] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                <Play size={12} /> Vídeo
+              </span>
+            </div>
 
-          <div className="absolute bottom-0 left-0 w-full p-5 sm:p-6 md:p-8">
-            <span className="text-yellow-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-1 sm:mb-2 block">
-              {latestVideo.subtitle}
-            </span>
-            <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-white uppercase leading-tight group-hover:text-yellow-400 transition-colors">
-              {latestVideo.title}
-            </h3>
+            <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5">
+              <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                {latestVideo.subtitle}
+              </span>
+              <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-yellow-400 transition-colors">
+                {latestVideo.title}
+              </h3>
+              <div className="mt-2 flex items-center gap-1.5 text-yellow-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                Assistir <ArrowRight size={13} />
+              </div>
+            </div>
           </div>
         </div>
 
