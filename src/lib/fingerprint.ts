@@ -80,16 +80,35 @@ function getGpuRenderer(): string {
 let cached: string | null = null;
 
 /**
- * Returns a hardware fingerprint stable across ALL browsers on the same device,
- * including incognito / private browsing (does NOT rely on storage).
+ * Returns a per-browser identifier stable across page loads on the same browser.
+ * Combines a persistent random UUID (localStorage) with hardware signals so that:
+ *   - Two identical phones → different fingerprints (UUID differs)
+ *   - Same browser across reloads → same fingerprint (UUID persists)
+ *   - Incognito → different fingerprint from normal mode (separate localStorage)
  *
- * v2 is significantly more unique than v1 — GPU model alone disambiguates
- * most "same hardware class" collisions (e.g. two 1080p laptops with different GPUs).
+ * Note: clearing localStorage resets the identifier and allows re-voting.
+ * This is intentional — hardware-only fingerprints cause false collisions on
+ * identical devices (same phone model, same country).
  */
+function getBrowserUUID(): string {
+  const KEY = 'adsr_browser_uid';
+  try {
+    let id = localStorage.getItem(KEY);
+    if (!id) {
+      id = crypto.randomUUID ? crypto.randomUUID() : Array.from(crypto.getRandomValues(new Uint8Array(16))).map(b => b.toString(16).padStart(2, '0')).join('');
+      localStorage.setItem(KEY, id);
+    }
+    return id;
+  } catch {
+    return 'no-storage';
+  }
+}
 export async function getDeviceFingerprint(): Promise<string> {
   if (cached) return cached;
 
   const signals = [
+    // Persistent random UUID — unique per browser instance, survives reloads
+    `uid:${getBrowserUUID()}`,
     // Physical screen resolution — hardware, never changes per browser
     `${screen.width}x${screen.height}`,
     // Device pixel ratio — rounded to nearest integer to ignore browser zoom
