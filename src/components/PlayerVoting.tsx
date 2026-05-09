@@ -93,6 +93,7 @@ export const PlayerVoting: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [justVoted, setJustVoted] = useState(false);
   const [votingState] = useState(getVotingState);
+  const [pendingVoteId, setPendingVoteId] = useState<number | null>(null);
   const countdown = useCountdown(VOTE_START);
 
   const itemsToShow = isMobile ? 2 : 5;
@@ -137,8 +138,11 @@ export const PlayerVoting: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const stored = localStorage.getItem(VOTE_STORAGE_KEY);
-    if (stored) setVotedPlayerId(parseInt(stored, 10));
+    // Do NOT pre-populate votedPlayerId from localStorage before the server
+    // confirms. A stale localStorage entry (e.g. left over from a shared
+    // device or a previous false-positive) would incorrectly show the "already
+    // voted" UI to someone who has never actually voted.
+    // The server check (checkExistingVote) is the single source of truth.
     Promise.all([fetchCandidates(), checkExistingVote()]).finally(() => setLoading(false));
   }, [fetchCandidates, checkExistingVote]);
 
@@ -326,7 +330,7 @@ export const PlayerVoting: React.FC = () => {
                           <p className="text-gray-400 text-xs mt-0.5 truncate">{player.role}</p>
                         )}
                         <button
-                          onClick={() => handleVote(player.id)}
+                          onClick={() => setPendingVoteId(player.id)}
                           disabled={!canVote || voting}
                           className={`mt-auto w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200 mt-4
                             ${isVoted
@@ -395,6 +399,57 @@ export const PlayerVoting: React.FC = () => {
           </>
         )}
       </div>
+
+      {/* ── Modal de confirmação de voto ──────────────────────────────────── */}
+      {pendingVoteId !== null && (() => {
+        const pendingPlayer = players.find(p => p.id === pendingVoteId);
+        if (!pendingPlayer) return null;
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 flex flex-col items-center gap-5 animate-fade-in-down">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-yellow-400 shadow-md">
+                <img
+                  src={pendingPlayer.image_url}
+                  alt={pendingPlayer.name}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="text-center">
+                <p className="text-gray-500 text-sm">Vais votar em</p>
+                <p className="font-display font-bold text-navy-900 text-xl uppercase tracking-tight mt-1">
+                  {pendingPlayer.name}
+                </p>
+                {pendingPlayer.role && (
+                  <p className="text-gray-400 text-xs mt-0.5">{pendingPlayer.role}</p>
+                )}
+              </div>
+              <p className="text-gray-400 text-xs text-center">
+                Só podes votar uma vez. Tens a certeza?
+              </p>
+              <div className="flex gap-3 w-full">
+                <button
+                  onClick={() => setPendingVoteId(null)}
+                  disabled={voting}
+                  className="flex-1 py-2.5 rounded-xl border border-gray-200 text-gray-500 text-sm font-semibold hover:bg-gray-50 transition-all duration-200 disabled:opacity-50"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={async () => {
+                    await handleVote(pendingVoteId);
+                    setPendingVoteId(null);
+                  }}
+                  disabled={voting}
+                  className="flex-1 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-navy-900 text-sm font-bold font-display uppercase tracking-wider transition-all duration-200 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+                >
+                  {voting ? <Loader2 size={16} className="animate-spin" /> : <Trophy size={16} />}
+                  {voting ? 'A votar...' : 'Confirmar'}
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </section>
   );
 };

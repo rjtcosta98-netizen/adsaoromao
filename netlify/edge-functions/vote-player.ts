@@ -63,13 +63,14 @@ export default async (request: Request, context: any) => {
   const ip: string = context?.ip ?? request.headers.get('x-nf-client-connection-ip') ?? request.headers.get('x-forwarded-for')?.split(',')[0].trim() ?? 'unknown';
 
   // ── GET: check if already voted ──────────────────────────────────────────
+  // NOTE: Only fingerprint is used here. IP is intentionally excluded because
+  // multiple users can share the same public IP (home router, office NAT) and
+  // we must not mark them all as voted when only one person from that network
+  // has voted. IP blocking is still enforced on POST to prevent duplicate submissions.
   if (request.method === 'GET') {
     const url = new URL(request.url);
     const season = url.searchParams.get('season') ?? '';
     const fp = url.searchParams.get('fp') ?? '';
-
-    const byIp = await findVote('voter_ip', ip, season);
-    if (byIp !== null) return json({ voted: true, player_id: byIp });
 
     if (fp) {
       const byFp = await findVote('voter_fingerprint', fp, season);
@@ -90,11 +91,7 @@ export default async (request: Request, context: any) => {
       return json({ ok: false, reason: 'bad_request' }, 400);
     }
 
-    // Block by IP
-    const byIp = await findVote('voter_ip', ip, season);
-    if (byIp !== null) return json({ ok: false, reason: 'already_voted', player_id: byIp }, 409);
-
-    // Block by fingerprint
+    // Block by fingerprint only — IP is stored for analytics but not used to block
     const byFp = await findVote('voter_fingerprint', fingerprint, season);
     if (byFp !== null) return json({ ok: false, reason: 'already_voted', player_id: byFp }, 409);
 
@@ -110,8 +107,7 @@ export default async (request: Request, context: any) => {
     });
 
     if (status === 409 || data?.code === '23505') {
-      const existing = await findVote('voter_fingerprint', fingerprint, season)
-        ?? await findVote('voter_ip', ip, season);
+      const existing = await findVote('voter_fingerprint', fingerprint, season);
       return json({ ok: false, reason: 'already_voted', player_id: existing }, 409);
     }
 
