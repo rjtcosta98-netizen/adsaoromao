@@ -13,7 +13,7 @@ const SPONSORS_DATA = {
   ],
   silver: [
     { id: 3, name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", url: "https://www.alvesbandeira.pt/pt/" },
-    { id: 4, name: "", logo: "", url: "#" },
+    { id: 4, name: "CDT Equipamentos", logo: "/images/rdt.svg", url: "https://www.cdt-equipamentos.com/" },
     { id: 5, name: "", logo: "", url: "#" },
     { id: 6, name: "", logo: "", url: "#" },
   ],
