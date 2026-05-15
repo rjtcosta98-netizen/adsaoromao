@@ -66,18 +66,24 @@ export const Standings: React.FC = () => {
     </div>
   );
 
-  const displayedData = showAll ? data : data.slice(0, 10);
+  const displayedData = showAll ? data : data.slice(0, 5);
   const totalTeams = data.length;
 
   return (
     <div id="classificacoes" className="bg-white py-10 sm:py-16">
       <div className="container mx-auto px-4">
         {/* Cabeçalho */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-5">
           <div className="flex items-center gap-3">
              <div className="w-1.5 h-8 sm:w-2 sm:h-10 bg-yellow-400"></div>
              <div>
-               <h2 className="text-2xl sm:text-4xl font-display font-bold text-navy-900 uppercase leading-none">Classificação</h2>
+               <div className="flex items-center gap-2 flex-wrap">
+                 <h2 className="text-2xl sm:text-4xl font-display font-bold text-navy-900 uppercase leading-none">Classificação</h2>
+                 <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider border border-amber-300">
+                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block"></span>
+                   Época 2025/26 Concluída
+                 </span>
+               </div>
                <span className="text-gray-400 text-[11px] sm:text-sm font-bold uppercase tracking-widest">Campeonato Distrital 1ª Divisão</span>
              </div>
           </div>
@@ -184,13 +190,13 @@ export const Standings: React.FC = () => {
         </div>
 
         {/* Botão Ver Mais */}
-        {!showAll && data.length > 10 && (
+        {!showAll && data.length > 5 && (
           <div className="text-center mt-6">
             <button
               onClick={() => setShowAll(true)}
               className="bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 px-8 rounded-lg uppercase text-sm tracking-widest transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95"
             >
-              Ver Mais ({totalTeams - 10} equipas)
+              Ver Tabela Completa ({totalTeams - 5} equipas)
             </button>
           </div>
         )}

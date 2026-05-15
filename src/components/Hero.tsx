@@ -261,6 +261,26 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 ))}
               </div>
             </div>
+
+            {/* ── CTA BUTTON ── */}
+            <div className="relative z-10 px-4 pb-4">
+              <button
+                onClick={() => {
+                  const el = document.getElementById('adsr-cup');
+                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg font-black text-[11px] tracking-[0.12em] uppercase transition-all active:scale-95"
+                style={{
+                  background: 'linear-gradient(135deg, #facc15 0%, #f59e0b 100%)',
+                  color: '#0a1845',
+                  fontFamily: 'system-ui, sans-serif',
+                  boxShadow: '0 4px 16px rgba(250,204,21,0.35)',
+                }}
+              >
+                <span style={{ fontSize: '13px' }}>⚽</span>
+                Equipas Confirmadas SUB-14
+              </button>
+            </div>
           </div>
         </div>
       </div>

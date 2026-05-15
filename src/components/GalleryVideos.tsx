@@ -2,59 +2,16 @@
 
 import React, { useState } from 'react';
 import { Play, X, ChevronDown, ChevronUp } from 'lucide-react';
-
-interface Video {
-  url: string;
-  title: string;
-  subtitle: string;
-  poster: string;
-}
+import { GALLERY_VIDEOS, GalleryVideo } from '../constants';
 
 export const GalleryVideos: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
+  const [currentVideo, setCurrentVideo] = useState<GalleryVideo | null>(null);
   const [showAll, setShowAll] = useState(false);
 
-  const videos: Video[] = [
-      {
-      url: 'https://res.cloudinary.com/dytkvxus2/video/upload/v1778230435/Flash_Interview_wo8rmw.mp4',
-      poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778230488/FLASH_INTERVIEW_xm4sip.png',
-      title: 'Flash Interview: Gonçalo Tavares',
-      subtitle: 'SUB-16'
-    },
-    {
-      url: 'https://res.cloudinary.com/di8qh6rc0/video/upload/q_auto/f_auto/v1775386390/FDownloader.net-1655148628996808-_1080p_ncpbvm.mp4',
-      poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775386847/FLASH_INTERVIEW_p4vw82.png',
-      title: 'Flash Interview: Mister Davide Oliveira',
-      subtitle: 'SUB-14 Allianz 1ª Divisão'
-    },
-       {
-      url: 'https://res.cloudinary.com/dzcwhljmz/video/upload/q_auto/f_auto/v1775296663/ADSR_Flash_Interview_qavcsw.mp4',
-      poster: 'https://res.cloudinary.com/di8qh6rc0/image/upload/q_auto/f_auto/v1775298633/FLASH_INTERVIEW_r06owp.png',
-      title: 'Flash Interview: Mister Rui Pedro após vitória nos oitavos da Taça',
-      subtitle: 'Oitavos Taça'
-    },
-     {
-      url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.mp4',
-      poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1774893509/WhatsApp_Video_2026-03-21_at_23.35.24_mtc54i.jpg',
-      title: 'Apresentação Website Oficial AD São Romão',
-      subtitle: 'Website Oficial'
-    },
-    {
-      url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1773058821/FDownloader.Net_AQM8YjVeL3RA_YPdMnFh5PqadfRypS8d16sx3hWqnsIBAfEZXChrJNj_FOe4xiCenuF1vq3ZRYwNO6xsLwvFEZgjMuSKLdb2sleNVo-eLpwFaw_720p__HD_n7idaz.mp4',
-      poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1773058821/FDownloader.Net_AQM8YjVeL3RA_YPdMnFh5PqadfRypS8d16sx3hWqnsIBAfEZXChrJNj_FOe4xiCenuF1vq3ZRYwNO6xsLwvFEZgjMuSKLdb2sleNVo-eLpwFaw_720p__HD_n7idaz.jpg',
-      title: 'Patrocinadores AD São Romão 2025',
-      subtitle: 'Patrocinadores'
-    },
-    {
-      url: 'https://res.cloudinary.com/db3y3teyv/video/upload/v1773059307/ADSR_Presi_b5jzsg.mp4',
-      poster: 'https://res.cloudinary.com/db3y3teyv/video/upload/so_0,w_800,q_auto,f_jpg/v1773059307/ADSR_Presi_b5jzsg.jpg',
-      title: 'Pós-Jogo: Declarações do Presidente',
-      subtitle: 'Entrevista'
-    }
-  ];
+  const videos = GALLERY_VIDEOS;
 
-  const openVideoModal = (video: Video) => {
+  const openVideoModal = (video: GalleryVideo) => {
     setCurrentVideo(video);
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
