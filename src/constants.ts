@@ -1109,7 +1109,7 @@ export const GALLERY_VIDEOS: GalleryVideo[] = [
     url: 'https://res.cloudinary.com/dytkvxus2/video/upload/q_auto/f_auto/v1778846432/AQPztBIKRz98rbNgzUbsA8-T6Y8oV3m3VcWTY42cQFRjablkPB_T0cqiji0kSDN5xbbI8lQEhrRUWz5_6WSSSBBJJI3NJa43nNuD_k4azvxKYg_b1weca.mp4',
     poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778846462/3_o9hc1l.png',
     title: 'As palavras do Mister FRIIKIQUE',
-    subtitle: 'SUB-10'
+    subtitle: 'SUB-8'
   },
   {
     url: 'https://res.cloudinary.com/dytkvxus2/video/upload/q_auto/f_auto/v1778846433/AQOB_V2gQ69utmGXdGp-zzPuFWuxrJIdpwhh0ai9TKbXabFU8rjBZtJybVdVliO0TGquNLTn1g7k8otGCoWj9-hw9eMxoeGeymEQda8_mvglvm.mp4',
