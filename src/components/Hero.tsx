@@ -35,6 +35,12 @@ function useCountdown(targetDate: Date) {
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const countdown = useCountdown(new Date('2026-06-13T09:00:00'));
 
+  const openCupCategory = (category: 'sub14' | 'sub12') => {
+    window.dispatchEvent(new CustomEvent('adsr-cup-category', { detail: category }));
+    const el = document.getElementById('adsr-cup');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   // ─── IMAGENS DE FUNDO ──────────────────────────────────────────
   // Para alterar a imagem mobile, substitui o caminho abaixo:
   const HERO_BG_DESKTOP = '/images/adsrcuphero.png';
@@ -263,13 +269,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
 
             {/* ── CTA BUTTON ── */}
-            <div className="relative z-10 px-4 pb-4">
+            <div className="relative z-10 grid grid-cols-1 gap-2 px-4 pb-4 sm:grid-cols-2">
               <button
-                onClick={() => {
-                  const el = document.getElementById('adsr-cup');
-                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg font-black text-[11px] tracking-[0.12em] uppercase transition-all active:scale-95"
+                onClick={() => openCupCategory('sub14')}
+                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg py-2.5 text-[10px] font-black uppercase tracking-[0.12em] transition-all active:scale-95"
                 style={{
                   background: 'linear-gradient(135deg, #facc15 0%, #f59e0b 100%)',
                   color: '#0a1845',
@@ -277,8 +280,14 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                   boxShadow: '0 4px 16px rgba(250,204,21,0.35)',
                 }}
               >
-                <span style={{ fontSize: '13px' }}>⚽</span>
-                Equipas Confirmadas SUB-14
+                Equipas Sub-14
+              </button>
+              <button
+                onClick={() => openCupCategory('sub12')}
+                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
+                style={{ fontFamily: 'system-ui, sans-serif' }}
+              >
+                Equipas Sub-12
               </button>
             </div>
           </div>
