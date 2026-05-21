@@ -303,16 +303,19 @@ export const SPONSORS: Sponsor[] = [
   { id: 1, name: 'Element Group - Solutions', category: 'Sponsor Principal', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Element%20Group%20Solucoes%20Digitais' },
   // Gold
   { id: 2, name: 'FDM CARTERET, NJ', category: 'Parceiro Gold', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg' },
+  // Técnico
+  { id: 4, name: 'CDT Equipamentos', category: 'Patrocinador Técnico', imageUrl: '/images/rdt.svg' },
   // Silver
   { id: 3, name: 'Alves Bandeira', category: 'Parceiro Silver', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg' },
-  { id: 4, name: 'CDT Equipamentos', category: 'Parceiro Silver', imageUrl: '/images/rdt.svg' },
+  { id: 5, name: 'Climahotel', category: 'Parceiro Silver', imageUrl: 'https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png' },
   // Local
-  { id: 5, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg' },
-  { id: 6, name: 'Município de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png' },
-  { id: 7, name: 'Solar do Mimo', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png' },
-  { id: 8, name: 'Escola Evaristo Nogueira', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/hpkvbu9sn/416085974_893147459487726_7890513589601136074_n.jpg' },
-  { id: 9, name: 'Bombeiros Voluntários São Romão', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg' },
-  { id: 10, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg' },
+  { id: 6, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg' },
+  { id: 7, name: 'Município de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png' },
+  { id: 8, name: 'Solar do Mimo', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png' },
+  { id: 9, name: 'Escola Evaristo Nogueira', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/hpkvbu9sn/416085974_893147459487726_7890513589601136074_n.jpg' },
+  { id: 10, name: 'Bombeiros Voluntários São Romão', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg' },
+  { id: 11, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg' },
+  { id: 11, name: 'Jornal Santa Marinha', category: 'Apoio Local', imageUrl: 'https://jornalsantamarinha.com/wp-content/uploads/2025/08/logo-oficial-jsm-retina-2023-300x99-1.png' },
 ];
 
 export const HISTORY_STATS = [
@@ -1106,26 +1109,32 @@ export interface GalleryVideo {
 
 export const GALLERY_VIDEOS: GalleryVideo[] = [
   {
+    url: 'https://res.cloudinary.com/dwthlkkum/video/upload/v1779380192/AQPbguxDPo89QcudWwo0W0E0MdNE9r44We6BOyGGanu5g5aewy5yQRhAMDwnpkt09zrlqf2o3VvVvm5pk5ldo5o2sDDzO8Hz3cBvG0lu7RqC-Q_oc4tdc.mp4',
+    poster: 'https://res.cloudinary.com/dwthlkkum/image/upload/v1779380488/AS_PALAVRAS_DO_MISTER_3_tw2ipe.png',
+    title: 'As palavras do Mister Eduardo Marques',
+    subtitle: 'SUB-12'
+  },
+  {
     url: 'https://res.cloudinary.com/dytkvxus2/video/upload/q_auto/f_auto/v1778846432/AQPztBIKRz98rbNgzUbsA8-T6Y8oV3m3VcWTY42cQFRjablkPB_T0cqiji0kSDN5xbbI8lQEhrRUWz5_6WSSSBBJJI3NJa43nNuD_k4azvxKYg_b1weca.mp4',
-    poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778846462/3_o9hc1l.png',
+    poster: 'https://res.cloudinary.com/dwthlkkum/image/upload/v1779378074/AS_PALAVRAS_DO_MISTER_2_foi9f9.png',
     title: 'As palavras do Mister FRIIKIQUE',
     subtitle: 'SUB-8'
   },
   {
     url: 'https://res.cloudinary.com/dytkvxus2/video/upload/q_auto/f_auto/v1778846433/AQOB_V2gQ69utmGXdGp-zzPuFWuxrJIdpwhh0ai9TKbXabFU8rjBZtJybVdVliO0TGquNLTn1g7k8otGCoWj9-hw9eMxoeGeymEQda8_mvglvm.mp4',
-    poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778846462/2_ubmp48.png',
+    poster: 'https://res.cloudinary.com/dwthlkkum/image/upload/v1779378010/AS_PALAVRAS_DO_MISTER_1_pboksw.png',
     title: 'As palavras do Mister Valter Santos',
     subtitle: 'SUB-10'
   },
   {
     url: 'https://res.cloudinary.com/dytkvxus2/video/upload/q_auto/f_auto/v1778846455/AQNTXLYW-RrZb8PBZw4J63Lmp_92gybyADjinryYNmz4CwMzKKchbGzR36EtzjMrB9j__CMTJ1ntefFPcex78Wzxm8VR02TidArZfPTrgO24og_dorz3p.mp4',
-    poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778846462/1_ksipcq.png',
+    poster: 'https://res.cloudinary.com/dwthlkkum/image/upload/v1779377810/AS_PALAVRAS_DO_MISTER_cjy1se.png',
     title: 'As palavras do Mister Davide Oliveira',
     subtitle: 'SUB-14'
   },
   {
     url: 'https://res.cloudinary.com/dytkvxus2/video/upload/v1778230435/Flash_Interview_wo8rmw.mp4',
-    poster: 'https://res.cloudinary.com/dytkvxus2/image/upload/v1778230488/FLASH_INTERVIEW_xm4sip.png',
+    poster: 'https://res.cloudinary.com/dwthlkkum/image/upload/v1779378554/FLASH_INTERVIEW_cpyr46.png',
     title: 'Flash Interview: Gonçalo Tavares',
     subtitle: 'SUB-16'
   },

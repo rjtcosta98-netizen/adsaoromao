@@ -9,21 +9,22 @@ const SPONSORS_DATA = {
   ],
   gold: [
     { id: 1, name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg", url: "#" },
-    { id: 2, name: "", logo: "", url: "#" },
+  ],
+  technical: [
+    { id: 2, name: "CDT Equipamentos", logo: "/images/rdt.svg", url: "https://www.cdt-equipamentos.com/" },
   ],
   silver: [
     { id: 3, name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", url: "https://www.alvesbandeira.pt/pt/" },
-    { id: 4, name: "CDT Equipamentos", logo: "/images/rdt.svg", url: "https://www.cdt-equipamentos.com/" },
-    { id: 5, name: "", logo: "", url: "#" },
-    { id: 6, name: "", logo: "", url: "#" },
+    { id: 4, name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", url: "https://climahotel.pt/" },
   ],
   local: [
-   { id: 4, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg', url: "#" },
-  { id: 5, name: 'Município de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png', url: "#" },
-  { id: 6, name: 'Solar do Mimo', category: 'Apoio Local',logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png', url: "#" },
-  { id: 7, name: 'Escola Evaristo Nogueira', category: 'Apoio Local', logo: 'https://ik.imagekit.io/hpkvbu9sn/416085974_893147459487726_7890513589601136074_n.jpg', url: "#" },
-  { id: 8, name: 'Bombeiros Voluntários São Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg', url: "#" },
-  { id: 9, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg', url: "#" },
+   { id: 5, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg', url: "#" },
+  { id: 6, name: 'Município de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png', url: "#" },
+  { id: 7, name: 'Solar do Mimo', category: 'Apoio Local',logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logo-solardomimo-b.png', url: "#" },
+  { id: 8, name: 'Escola Evaristo Nogueira', category: 'Apoio Local', logo: 'https://ik.imagekit.io/hpkvbu9sn/416085974_893147459487726_7890513589601136074_n.jpg', url: "#" },
+  { id: 9, name: 'Bombeiros Voluntários São Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/d1df0815-7d16-4855-b150-bc73bb6bc4be.jpeg', url: "#" },
+  { id: 10, name: 'Agrupamento Escolas de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/logotipo1.jpg', url: "#" },
+  { id: 11, name: 'Jornal Santa Marinha', category: 'Apoio Local', logo: 'https://jornalsantamarinha.com/wp-content/uploads/2025/08/logo-oficial-jsm-retina-2023-300x99-1.png', url: "https://jornalsantamarinha.com/" },
   ]
 };
 
@@ -48,10 +49,12 @@ export const SponsorsList: React.FC = () => {
                    className="block bg-gradient-to-br from-navy-800/80 via-navy-900/90 to-navy-800/80 rounded-3xl border-2 border-yellow-400/30 relative shadow-2xl shadow-yellow-400/10 hover:shadow-yellow-400/30 hover:-translate-y-2 transition-all duration-500 group overflow-hidden"
                  >
                     <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 via-transparent to-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="h-56 md:h-64 relative">
-                      <div 
-                        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
-                        style={{ backgroundImage: `url("${sponsor.logo}")` }}
+                    <div className="h-56 md:h-64 overflow-hidden bg-white">
+                      <img
+                        src={sponsor.logo}
+                        alt={sponsor.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                     {sponsor.name && (
@@ -70,22 +73,24 @@ export const SponsorsList: React.FC = () => {
               <span className="text-yellow-400 text-xs font-bold uppercase tracking-[0.2em]">Parceiros Gold</span>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+           <div className="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
               {SPONSORS_DATA.gold.map((sponsor) => (
                  <a 
                    key={sponsor.id} 
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="bg-navy-800/50 rounded-2xl border border-white/5 relative shadow-lg hover:shadow-yellow-400/20 hover:-translate-y-1 transition-all duration-500 group overflow-hidden flex flex-col"
+                   className="w-full md:w-[calc(50%-1rem)] bg-navy-800/50 rounded-2xl border border-white/5 relative shadow-lg hover:shadow-yellow-400/20 hover:-translate-y-1 transition-all duration-500 group overflow-hidden flex flex-col"
                  >
                     {sponsor.logo ? (
                       <>
-                        <div className="h-44 relative">
-                          <div 
-                            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all"
-                            style={{ backgroundImage: `url("${sponsor.logo}")` }}
-                          ></div>
+                        <div className="h-44 overflow-hidden bg-white">
+                          <img
+                            src={sponsor.logo}
+                            alt={sponsor.name}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
                         </div>
                         {sponsor.name && (
                           <div className="bg-gradient-to-t from-navy-900 via-navy-900/95 to-navy-900/80 px-4 py-3">
@@ -103,29 +108,60 @@ export const SponsorsList: React.FC = () => {
            </div>
         </div>
 
+        {/* --- SECÇÃO PATROCINADOR TÉCNICO --- */}
+        <div className="text-center">
+           <div className="inline-block border border-sky-400 rounded-full px-8 py-2 mb-10 bg-sky-400/5">
+              <span className="text-sky-300 text-xs font-bold uppercase tracking-[0.2em]">Patrocinador Técnico</span>
+           </div>
+           
+           <div className="grid grid-cols-1 max-w-md mx-auto">
+              {SPONSORS_DATA.technical.map((sponsor) => (
+                 <a 
+                   key={sponsor.id} 
+                   href={sponsor.url}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="rounded-2xl border border-sky-400/20 bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
+                 >
+                    <div className="h-36 flex items-center justify-center bg-white p-6">
+                      <img 
+                        src={sponsor.logo} 
+                        alt={sponsor.name} 
+                        loading="lazy" 
+                        className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105" 
+                      />
+                    </div>
+                    <div className="bg-navy-900/90 px-4 py-3 border-t border-sky-400/10">
+                      <span className="text-white/60 font-display text-sm uppercase tracking-wider group-hover:text-sky-300 transition-colors">{sponsor.name}</span>
+                    </div>
+                 </a>
+              ))}
+           </div>
+        </div>
+
         {/* --- SECÇÃO SILVER (MANTIDA MAIS DISCRETA) --- */}
         <div className="text-center">
            <div className="inline-block border border-gray-400 rounded-full px-8 py-2 mb-10 bg-gray-400/5">
               <span className="text-gray-300 text-xs font-bold uppercase tracking-[0.2em]">Parceiros Silver</span>
            </div>
            
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+           <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
               {SPONSORS_DATA.silver.map((sponsor) => (
                  <a 
                    key={sponsor.id} 
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="rounded-xl border border-white/5 bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
+                   className="w-[calc(50%-0.75rem)] md:w-[calc(25%-1.125rem)] rounded-xl border border-white/5 bg-navy-800 transition-colors group cursor-pointer overflow-hidden flex flex-col"
                  >
                     {sponsor.logo ? (
                       <>
-                        <div className="h-28 overflow-hidden">
+                        <div className="h-28 flex items-center justify-center bg-white p-4">
                           <img 
                             src={sponsor.logo} 
                             alt={sponsor.name} 
                             loading="lazy" 
-                            className="w-full h-full object-cover opacity-100 transition-all duration-300" 
+                            className="max-w-full max-h-full object-contain opacity-100 transition-transform duration-300 group-hover:scale-105" 
                           />
                         </div>
                         {sponsor.name && (

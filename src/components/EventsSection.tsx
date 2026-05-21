@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CalendarDays, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 
-type CupCategoryId = 'sub14' | 'sub12';
+type CupCategoryId = 'sub14' | 'sub12' | 'sub10';
 
 type CupTeam = {
   name: string;
@@ -29,7 +29,10 @@ type CupCategoryConfig = {
 const ADSR_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/8062_imgbank.png';
 const CELORICENSE_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/11074_imgbank.png';
 const SEIA_LOGO = 'https://cdn-img.zerozero.pt/img/logos/equipas/16479_imgbank.png';
+const SABUGAL_LOGO = 'https://cdn-img.zerozero.pt/img/logos/equipas/6836_imgbank.png';
 const VILANOVENSES_LOGO = 'https://cdn-img.zerozero.pt/img/logos/equipas/10485_imgbank.png';
+const MONTEMORENSE_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/50689_imgbank_1765900018.png';
+const LUSITANO_VILDEMOINHOS_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/6304_imgbank.png';
 
 const CUP_CATEGORIES: CupCategoryConfig[] = [
   {
@@ -49,10 +52,10 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
       { name: 'AD São Romão (A)', image: ADSR_LOGO },
       { name: 'AD São Romão (B)', image: ADSR_LOGO },
       { name: 'ADOJ Conquistadores', image: 'https://cdn-img.staticzz.com/img/logos/equipas/43/266443_logo_ad_conquistadores.png' },
-      { name: 'Lusitano Futebol Clube de Vildemoinhos', image: 'https://cdn-img.staticzz.com/img/logos/equipas/6304_imgbank.png' },
+      { name: 'Lusitano Futebol Clube de Vildemoinhos', image: LUSITANO_VILDEMOINHOS_LOGO },
       { name: 'Futebol Clube de Ranhados', image: 'https://cdn-img.staticzz.com/img/logos/equipas/47/11047_logo_ranhados_20260219163400.png' },
       { name: 'Asdreq - Escolinhas de Futebol', image: 'https://cdn-img.staticzz.com/img/logos/equipas/64163_imgbank_1715011586.png' },
-      { name: 'Atlético Clube Montemorense', image: 'https://cdn-img.staticzz.com/img/logos/equipas/50689_imgbank_1765900018.png' },
+      { name: 'Atlético Clube Montemorense', image: MONTEMORENSE_LOGO },
     ],
   },
   {
@@ -63,21 +66,46 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     dateLabel: '14 Junho 2026',
     teamDateLabel: 'SUB-12 · 14 Junho 2026',
     countdownTarget: '2026-06-14T09:00:00',
-    backgroundImage: '/images/adsrcup-sub12.jpg',
+    backgroundImage: '/images/adsrcuphero.png',
     backgroundPosition: 'center top',
     summaryLabel: 'Sub-12 · 14 Junho',
     summarySubtext: 'Equipas confirmadas e uma vaga por fechar',
     teams: [
-      { name: 'AC Montemorense', image: 'https://cdn-img.staticzz.com/img/logos/equipas/50689_imgbank_1765900018.png' },
+      { name: 'AC Montemorense', image: MONTEMORENSE_LOGO },
       { name: 'AD São Romão (A)', image: ADSR_LOGO },
       { name: 'AD São Romão (B)', image: ADSR_LOGO },
       { name: 'Sporting Clube Celoricense', image: CELORICENSE_LOGO },
       { name: 'Seia FC (A)', image: SEIA_LOGO },
       { name: 'Seia FC (B)', image: SEIA_LOGO },
-      { name: 'Os Vilanovenses', image: VILANOVENSES_LOGO },
+      { name: 'VF Naves', image: '/images/VFNAVES.png' },
       { name: 'Aguiar da Beira', image: 'https://cdn-img.zerozero.pt/img/logos/equipas/3546_imgbank.png' },
       { name: 'FC Repesenses', image: 'https://cdn-img.staticzz.com/img/logos/equipas/8116_imgbank.png' },
       { name: 'A confirmar', initials: '?', c1: '#fed700', c2: '#07112b' },
+    ],
+  },
+  {
+    id: 'sub10',
+    label: 'Sub-10',
+    tabHint: '20 Junho',
+    subtitle: 'Equipas Confirmadas · Sub-10',
+    dateLabel: '20 Junho 2026',
+    teamDateLabel: 'SUB-10 · 20 Junho 2026',
+    countdownTarget: '2026-06-20T09:00:00',
+    backgroundImage: '/images/adsrcuphero.png',
+    backgroundPosition: '70% center',
+    summaryLabel: 'Sub-10 · 20 Junho',
+    summarySubtext: '10 equipas confirmadas',
+    teams: [
+      { name: 'Associação Desportiva de São Romão', image: ADSR_LOGO },
+      { name: 'Atlético Clube Montemorense', image: MONTEMORENSE_LOGO },
+      { name: 'Seia FC - Formação', image: SEIA_LOGO },
+      { name: 'SC Sabugal', image: SABUGAL_LOGO },
+      { name: 'Lusitano Futebol Clube de Vildemoinhos', image: LUSITANO_VILDEMOINHOS_LOGO },
+      { name: 'CD Tondela - Formação', image:'https://cdn-img.staticzz.com/img/logos/equipas/4336_imgbank_1682585219.png' },
+      { name: "Academia 5 F'S", image:'https://cdn-img.staticzz.com/img/logos/equipas/89/366589_logo_acr_sao_domingos_20251031083010.jpg' },
+      { name: 'Académico de Viseu Futebol Clube', image:'https://cdn-img.staticzz.com/img/logos/equipas/2181_imgbank_1762193325.png' },
+      { name: 'Desportivo de Castelo Branco', image:'https://cdn-img.staticzz.com/img/logos/equipas/10049_imgbank.png' },
+      { name: 'SPORT CLUBE ESTRELA', image:'https://cdn-img.staticzz.com/img/logos/equipas/5683_imgbank.png' },
     ],
   },
 ];
@@ -140,7 +168,7 @@ export const EventsSection: React.FC = () => {
   useEffect(() => {
     const handleCategoryRequest = (event: Event) => {
       const requestedCategory = (event as CustomEvent<CupCategoryId>).detail;
-      if (requestedCategory === 'sub14' || requestedCategory === 'sub12') {
+      if (requestedCategory === 'sub14' || requestedCategory === 'sub12' || requestedCategory === 'sub10') {
         setActiveCategoryId(requestedCategory);
       }
     };
@@ -219,10 +247,10 @@ export const EventsSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 rounded-lg border border-white/12 bg-[#07112b]/82 p-1.5 backdrop-blur-sm lg:w-[360px]">
+          <div className="grid grid-cols-3 gap-2 rounded-lg border border-white/12 bg-[#07112b]/82 p-1.5 backdrop-blur-sm lg:w-[480px]">
             {CUP_CATEGORIES.map((category) => {
               const isActive = category.id === activeCategoryId;
-              const isSub12 = category.id === 'sub12';
+              const isNewCategory = category.id === 'sub10';
               return (
                 <button
                   key={category.id}
@@ -246,7 +274,7 @@ export const EventsSection: React.FC = () => {
                         {category.label}
                       </span>
                     </span>
-                    {isSub12 && (
+                    {isNewCategory && (
                       <span className={`rounded-full px-2 py-0.5 text-[8px] font-black uppercase tracking-widest ${
                         isActive ? 'bg-[#07112b] text-[#fed700]' : 'bg-[#fed700] text-[#07112b]'
                       }`}>

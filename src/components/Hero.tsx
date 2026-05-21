@@ -35,7 +35,7 @@ function useCountdown(targetDate: Date) {
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const countdown = useCountdown(new Date('2026-06-13T09:00:00'));
 
-  const openCupCategory = (category: 'sub14' | 'sub12') => {
+  const openCupCategory = (category: 'sub14' | 'sub12' | 'sub10') => {
     window.dispatchEvent(new CustomEvent('adsr-cup-category', { detail: category }));
     const el = document.getElementById('adsr-cup');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -269,7 +269,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
 
             {/* ── CTA BUTTON ── */}
-            <div className="relative z-10 grid grid-cols-1 gap-2 px-4 pb-4 sm:grid-cols-2">
+            <div className="relative z-10 grid grid-cols-1 gap-2 px-4 pb-4">
               <button
                 onClick={() => openCupCategory('sub14')}
                 className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg py-2.5 text-[10px] font-black uppercase tracking-[0.12em] transition-all active:scale-95"
@@ -282,13 +282,22 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               >
                 Equipas Sub-14
               </button>
-              <button
-                onClick={() => openCupCategory('sub12')}
-                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
-                style={{ fontFamily: 'system-ui, sans-serif' }}
-              >
-                Equipas Sub-12
-              </button>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => openCupCategory('sub12')}
+                  className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
+                  style={{ fontFamily: 'system-ui, sans-serif' }}
+                >
+                  Equipas Sub-12
+                </button>
+                <button
+                  onClick={() => openCupCategory('sub10')}
+                  className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
+                  style={{ fontFamily: 'system-ui, sans-serif' }}
+                >
+                  Equipas Sub-10
+                </button>
+              </div>
             </div>
           </div>
         </div>
