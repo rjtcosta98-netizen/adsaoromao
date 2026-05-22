@@ -63,6 +63,16 @@ export const LIVESTREAM_CONFIG = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const NEWS_ITEMS: NewsItem[] = [
+      {
+    id: 1,
+    category: 'SÓCIOS',
+    title: 'Convocatória para Assembleia Geral - 29 de Maio de 2026',
+    date: 'Maio, 2026',
+    excerpt: 'Os orgãos sociais da Associação Desportiva de São Romão vem por este meio informar,',
+    imageUrl: '/images/convocatoria.png',
+    content: 'Nos termos do Artigo 24, dos estatutos da Associação Desportiva de São Romão (ADSR), convoca-se a Assembleia Geral ordinária de sócios para levar a efeito no dia 29/05/26 (sexta-feira) pelas 21h, na sede da instituição situada na Praça de São Pedro, Nº1',
+    contentImageUrl: '/images/ag.PNG'
+  },
   {
     id: 6,
     category: 'CLUBE',
@@ -72,16 +82,6 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: '/images/NEWS/formadora3.jpg',
     content: 'A Associação Desportiva de São Romão volta a fazer história ao ser distinguida novamente como entidade formadora de ⭐️⭐️⭐️ pela Federação Portuguesa de Futebol.\n\nUm reconhecimento que reflete muito mais do que resultados, celebra o trabalho diário a dedicação incansável dos seus treinadores, atletas, diretores, direção e a paixão que move toda uma comunidade em redor do nosso clube.\n\nEste selo de qualidade é a prova de que com compromisso, união e amor ao clube, continua a construir-se um futuro sólido para o futebol, dentro e fora das quatro linhas.\n\nMuitos parabéns a todos os intervenientes!\n\nJuntos fazemos história! ADSR SEMPRE!',
     contentImageUrl: '/images/NEWS/formadora3.jpg'
-  },
-    {
-    id: 1,
-    category: 'SÓCIOS',
-    title: ' Eleições para os Órgãos Sociais da ADSR 26/28 ',
-    date: 'Maio, 2026',
-    excerpt: 'Os orgãos sociais da Associação Desportiva de São Romão vem por este meio informar,',
-    imageUrl: '/images/INFO.png',
-    content: 'A Associação Desportiva de São Romão (ADSR), em harmonia com o disposto nos estatutos e no exercício da competência consignada, vem por este meio informar, que as eleições para os Órgãos Sociais da ADSR para o biénio 26/28, irão decorrer no dia 29 de maio de 2026, na sede da instituição situada na Praça de São Pedro, Nº1ª, aquando da realização da Assembleia Geral ordinária de sócios, estando no último ponto da ordem de trabalhos.',
-    contentImageUrl: '/images/infosocios.png'
   },
   {
     id: 2,
