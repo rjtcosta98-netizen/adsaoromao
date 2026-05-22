@@ -71,7 +71,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     excerpt: 'Os orgãos sociais da Associação Desportiva de São Romão vem por este meio informar,',
     imageUrl: '/images/convocatoria.png',
     content: 'Nos termos do Artigo 24, dos estatutos da Associação Desportiva de São Romão (ADSR), convoca-se a Assembleia Geral ordinária de sócios para levar a efeito no dia 29/05/26 (sexta-feira) pelas 21h, na sede da instituição situada na Praça de São Pedro, Nº1',
-    contentImageUrl: '/images/ag.PNG'
+    contentImageUrl: '/images/conv.png'
   },
   {
     id: 6,
