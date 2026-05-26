@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CalendarDays, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 
-type CupCategoryId = 'sub14' | 'sub12' | 'sub10';
+type CupCategoryId = 'sub14' | 'sub12' | 'sub10' | 'sub16';
 
 type CupTeam = {
   name: string;
@@ -33,6 +33,11 @@ const SABUGAL_LOGO = 'https://cdn-img.zerozero.pt/img/logos/equipas/6836_imgbank
 const VILANOVENSES_LOGO = 'https://cdn-img.zerozero.pt/img/logos/equipas/10485_imgbank.png';
 const MONTEMORENSE_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/50689_imgbank_1765900018.png';
 const LUSITANO_VILDEMOINHOS_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/6304_imgbank.png';
+const ADOJ_CONQUISTADORES_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/43/266443_logo_ad_conquistadores.png';
+const ASDREQ_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/64163_imgbank_1715011586.png';
+const FC_REPESENSES_LOGO = 'https://cdn-img.staticzz.com/img/logos/equipas/8116_imgbank.png';
+const PADRINHO_IMAGE = '/images/TACA/tomas-silva-padrinho.jpg';
+const PADRINHO_VIDEO = 'https://res.cloudinary.com/db3y3teyv/video/upload/v1779829309/AQOFtywr8q-Xf38UBu3YxGzXKM4jamH8CRL5T2OU8chTX8YoCNkV2fkcICN5ab6h286AjHIz58cYFBk45kK4ErAp5KfZ1WgvKex7xdXCiS1Ijw_ke3g3e.mp4';
 
 const CUP_CATEGORIES: CupCategoryConfig[] = [
   {
@@ -45,16 +50,16 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     countdownTarget: '2026-06-13T09:00:00',
     backgroundImage: '/images/adsrcuphero.png',
     backgroundPosition: '70% center',
-    summaryLabel: '8 Equipas · 5 Categorias',
+    summaryLabel: 'Sub-14 · 13 Junho',
     summarySubtext: 'Sub 8, 10, 12, 14 e 16',
     teams: [
       { name: 'Sporting Clube Celoricense', image: CELORICENSE_LOGO },
       { name: 'AD São Romão (A)', image: ADSR_LOGO },
       { name: 'AD São Romão (B)', image: ADSR_LOGO },
-      { name: 'ADOJ Conquistadores', image: 'https://cdn-img.staticzz.com/img/logos/equipas/43/266443_logo_ad_conquistadores.png' },
+      { name: 'ADOJ Conquistadores', image: ADOJ_CONQUISTADORES_LOGO },
       { name: 'Lusitano Futebol Clube de Vildemoinhos', image: LUSITANO_VILDEMOINHOS_LOGO },
       { name: 'Futebol Clube de Ranhados', image: 'https://cdn-img.staticzz.com/img/logos/equipas/47/11047_logo_ranhados_20260219163400.png' },
-      { name: 'Asdreq - Escolinhas de Futebol', image: 'https://cdn-img.staticzz.com/img/logos/equipas/64163_imgbank_1715011586.png' },
+      { name: 'Asdreq - Escolinhas de Futebol', image: ASDREQ_LOGO },
       { name: 'Atlético Clube Montemorense', image: MONTEMORENSE_LOGO },
     ],
   },
@@ -75,12 +80,13 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
       { name: 'AD São Romão (A)', image: ADSR_LOGO },
       { name: 'AD São Romão (B)', image: ADSR_LOGO },
       { name: 'Sporting Clube Celoricense', image: CELORICENSE_LOGO },
+      { name: '(Academia) Sporting CP - Ribeira de Frades', image: 'https://cdn-img.staticzz.com/img/logos/equipas/16_imgbank_1741687081.png' },
       { name: 'Seia FC (A)', image: SEIA_LOGO },
       { name: 'Seia FC (B)', image: SEIA_LOGO },
       { name: 'VF Naves', image: '/images/VFNAVES.png' },
       { name: 'Aguiar da Beira', image: 'https://cdn-img.zerozero.pt/img/logos/equipas/3546_imgbank.png' },
-      { name: 'FC Repesenses', image: 'https://cdn-img.staticzz.com/img/logos/equipas/8116_imgbank.png' },
-      { name: 'A confirmar', initials: '?', c1: '#fed700', c2: '#07112b' },
+      { name: 'FC Repesenses', image: FC_REPESENSES_LOGO },
+      { name: 'GD Tabuense', image: 'https://cdn-img.staticzz.com/img/logos/equipas/89/6489_logo_tabuense_20260429105342.png' },
     ],
   },
   {
@@ -106,6 +112,27 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
       { name: 'Académico de Viseu Futebol Clube', image:'https://cdn-img.staticzz.com/img/logos/equipas/2181_imgbank_1762193325.png' },
       { name: 'Desportivo de Castelo Branco', image:'https://cdn-img.staticzz.com/img/logos/equipas/10049_imgbank.png' },
       { name: 'SPORT CLUBE ESTRELA', image:'https://cdn-img.staticzz.com/img/logos/equipas/5683_imgbank.png' },
+    ],
+  },
+  {
+    id: 'sub16',
+    label: 'Sub-16',
+    tabHint: '21 Junho',
+    subtitle: 'Equipas Confirmadas · Sub-16',
+    dateLabel: '21 Junho 2026',
+    teamDateLabel: 'SUB-16 · 21 Junho 2026',
+    countdownTarget: '2026-06-21T09:00:00',
+    backgroundImage: '/images/adsrcuphero.png',
+    backgroundPosition: '70% center',
+    summaryLabel: 'Sub-16 · 21 Junho',
+    summarySubtext: '6 equipas confirmadas',
+    teams: [
+      { name: 'Associação Desportiva São Romão', image: ADSR_LOGO },
+      { name: 'ADOJ Conquistadores', image: ADOJ_CONQUISTADORES_LOGO },
+      { name: 'Asdreq - Escolinhas de Futebol', image: ASDREQ_LOGO },
+      { name: 'FC Repesenses (A)', image: FC_REPESENSES_LOGO },
+      { name: 'FC Repesenses (B)', image: FC_REPESENSES_LOGO },
+      { name: 'GDC Silvares', image: 'https://vemjogar.fpf.pt/filemanager/media/file?guid=8aada27f-bbc7-4180-a9c5-bfb2c55de255' },
     ],
   },
 ];
@@ -160,15 +187,37 @@ export const EventsSection: React.FC = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<CupCategoryId>('sub14');
   const [current, setCurrent] = useState(0);
   const [animated, setAnimated] = useState(true);
+  const teamTransitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const activeCategory = CUP_CATEGORIES.find((category) => category.id === activeCategoryId) ?? CUP_CATEGORIES[0];
   const teams = activeCategory.teams;
   const [tl, setTl] = useState(() => getTimeLeft(activeCategory.countdownTarget));
 
+  const runTeamTransition = (update: () => void, delay = 120) => {
+    if (teamTransitionTimeoutRef.current) {
+      clearTimeout(teamTransitionTimeoutRef.current);
+    }
+
+    setAnimated(false);
+    teamTransitionTimeoutRef.current = setTimeout(() => {
+      update();
+      setAnimated(true);
+      teamTransitionTimeoutRef.current = null;
+    }, delay);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (teamTransitionTimeoutRef.current) {
+        clearTimeout(teamTransitionTimeoutRef.current);
+      }
+    };
+  }, []);
+
   useEffect(() => {
     const handleCategoryRequest = (event: Event) => {
       const requestedCategory = (event as CustomEvent<CupCategoryId>).detail;
-      if (requestedCategory === 'sub14' || requestedCategory === 'sub12' || requestedCategory === 'sub10') {
+      if (requestedCategory === 'sub14' || requestedCategory === 'sub12' || requestedCategory === 'sub10' || requestedCategory === 'sub16') {
         setActiveCategoryId(requestedCategory);
       }
     };
@@ -190,141 +239,168 @@ export const EventsSection: React.FC = () => {
 
   useEffect(() => {
     const t = setInterval(() => {
-      setAnimated(false);
-      setTimeout(() => {
+      runTeamTransition(() => {
         setCurrent((p) => (p + 1) % teams.length);
-        setAnimated(true);
       }, 150);
     }, 3200);
     return () => clearInterval(t);
   }, [teams.length]);
 
   const goTo = (dir: 1 | -1) => {
-    setAnimated(false);
-    setTimeout(() => {
+    runTeamTransition(() => {
       setCurrent((p) => (p + dir + teams.length) % teams.length);
-      setAnimated(true);
     }, 100);
   };
 
   const selectCategory = (categoryId: CupCategoryId) => {
     if (categoryId === activeCategoryId) return;
-    setAnimated(false);
-    setTimeout(() => {
+    runTeamTransition(() => {
       setActiveCategoryId(categoryId);
       setCurrent(0);
-      setAnimated(true);
     }, 120);
   };
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
   return (
-    <section id="adsr-cup" className="relative overflow-hidden bg-[#07112b]">
+    <section id="adsr-cup" className="adsr-cup-stage relative scroll-mt-24 overflow-hidden bg-[#030817]">
       <div className="absolute inset-0">
         <img
-          src="/images/adsrcuphero.png"
+          src={activeCategory.backgroundImage}
           alt=""
-          className="w-full h-full object-cover object-top opacity-45 scale-105 transition-all duration-500 sm:opacity-80"
-          style={{ filter: 'saturate(1.28) contrast(1.04)', objectPosition: '70% center' }}
+          className="h-full w-full scale-60 object-cover object-top opacity-5 transition-all duration-700"
+          style={{ filter: 'saturate(1.3) contrast(1.08)', objectPosition: activeCategory.backgroundPosition }}
         />
-        <div className="absolute inset-0 bg-[#07112b]/93 sm:bg-[#07112b]/80 lg:bg-[#07112b]/58" />
-        <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-[#07112b]/94 via-[#07112b]/86 to-[#07112b]/88" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#07112b] via-[#07112b]/30 to-[#07112b]/76" />
+        <div className="absolute inset-0 bg-[#030817]/88" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_18%,rgba(254,215,0,0.08),transparent_30%),radial-gradient(circle_at_82%_34%,rgba(70,94,190,0.12),transparent_34%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030817]/98 via-[#07112b]/72 to-[#030817]/98" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030817]/96 via-[#030817]/62 to-[#030817]/88" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#fed700]/70 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-14">
-        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden>
+        <div className="absolute left-[6%] top-20 h-48 w-px rotate-[20deg] bg-gradient-to-b from-[#fed700]/35 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#020716] to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 sm:pb-18 sm:pt-28 lg:px-8 lg:pb-20 lg:pt-32">
+        <div className="mb-7 grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-[#fed700] text-[#07112b] text-[10px] font-black px-3 py-1 rounded-full tracking-widest uppercase">
-                IV Edição · Torneio Futebol
-              </span>
-              <span className="text-white/55 text-xs font-semibold tracking-wider">AD São Romão Apresenta</span>
-            </div>
-            <p className="mt-3 text-sm font-semibold text-white/70">
-              Escolhe o escalão e vê as equipas já confirmadas.
+            <span className="inline-flex rounded-full bg-[#fed700] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#061129] shadow-[0_12px_34px_rgba(254,215,0,0.22)]">
+              IV Edição · Torneio Futebol
+            </span>
+            <h2 className="mt-4 font-display text-5xl font-black uppercase leading-[0.9] text-white sm:text-7xl lg:text-8xl">
+              ADSR Cup <span className="text-[#fed700]">2026</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-white/70 sm:text-base">
+              O palco oficial da formação em São Romão: escalões, equipas confirmadas, contagem decrescente e a mensagem do padrinho.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 rounded-lg border border-white/12 bg-[#07112b]/82 p-1.5 backdrop-blur-sm lg:w-[480px]">
-            {CUP_CATEGORIES.map((category) => {
-              const isActive = category.id === activeCategoryId;
-              const isNewCategory = category.id === 'sub10';
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  onClick={() => selectCategory(category.id)}
-                  className={`relative rounded-md px-3 py-3 text-left transition-colors ${
-                    isActive
-                      ? 'bg-[#fed700] text-[#07112b]'
-                      : 'bg-white/[0.04] text-white hover:bg-white/[0.09]'
-                  }`}
-                  aria-pressed={isActive}
-                >
-                  <span className="flex items-start justify-between gap-2">
-                    <span>
-                      <span className={`block text-[10px] font-black uppercase tracking-widest ${
-                        isActive ? 'text-[#07112b]/70' : 'text-white/50'
-                      }`}>
-                        {category.tabHint}
-                      </span>
-                      <span className="mt-1 block text-lg font-black uppercase leading-none sm:text-xl">
-                        {category.label}
-                      </span>
-                    </span>
-                    {isNewCategory && (
-                      <span className={`rounded-full px-2 py-0.5 text-[8px] font-black uppercase tracking-widest ${
-                        isActive ? 'bg-[#07112b] text-[#fed700]' : 'bg-[#fed700] text-[#07112b]'
-                      }`}>
-                        Novo
-                      </span>
-                    )}
-                  </span>
-                  <span className={`mt-2 block text-[10px] font-black uppercase tracking-widest ${
-                    isActive ? 'text-[#07112b]/70' : 'text-white/45'
-                  }`}>
-                    {category.teams.length} equipas
-                  </span>
-                </button>
-              );
-            })}
+          <div className="grid grid-cols-3 gap-2 rounded-2xl border border-white/12 bg-[#07112b]/82 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_70px_rgba(0,0,0,0.24)]">
+            {[
+              { value: '5', label: 'Escalões' },
+              { value: '13/14 - 20/21', label: 'Junho' },
+              { value: '29+', label: 'Equipas' },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="min-w-0 rounded-xl bg-white/[0.055] px-3 py-3 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+              >
+                <p className="text-2xl font-black leading-none text-[#fed700] sm:text-3xl">{item.value}</p>
+                <p className="mt-1 text-[8px] font-black uppercase tracking-[0.18em] text-white/52 sm:text-[10px]">{item.label}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 lg:gap-8 items-stretch">
-          <div>
-            <h2
-              className="font-black text-white leading-none tracking-tight mb-1"
-              style={{
-                fontSize: 'clamp(2rem, 10vw, 4rem)',
-                textShadow: '0 2px 24px rgba(0,0,0,0.8)',
-              }}
-            >
-              ADSR CUP
-              <span className="text-[#fed700]"> 2026</span>
-            </h2>
-            <p className="text-white/70 font-bold tracking-widest text-xs mb-5 uppercase sm:text-sm sm:text-white/60">
+        <div className="adsr-stage-shell rounded-[2rem] border border-[#6f7bb0]/28 bg-[#07112b]/82 p-2 shadow-[0_34px_110px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.06)]">
+          <div className="rounded-[1.55rem] border border-[#6f7bb0]/24 bg-[#081232]/92 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-5 lg:p-6">
+            <div className="adsr-glass-panel mb-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {CUP_CATEGORIES.map((category) => {
+                const isActive = category.id === activeCategoryId;
+                const isNewCategory = category.id === 'sub10';
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onClick={() => selectCategory(category.id)}
+                    className={`group relative min-h-[96px] overflow-hidden rounded-xl border px-3 py-3 text-left transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isActive
+                        ? 'border-[#fed700] bg-[#fed700] text-[#061129] shadow-[0_16px_38px_rgba(254,215,0,0.22),inset_0_1px_0_rgba(255,255,255,0.34)]'
+                        : 'border-white/10 bg-white/[0.055] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:-translate-y-1 hover:border-[#fed700]/35 hover:bg-white/[0.09]'
+                    }`}
+                    aria-pressed={isActive}
+                  >
+                    <span className={`block text-[10px] font-black uppercase tracking-widest ${isActive ? 'text-[#061129]/70' : 'text-white/48'}`}>
+                      {category.tabHint}
+                    </span>
+                    <span className="mt-1 flex items-center justify-between gap-2">
+                      <span className="block text-xl font-black uppercase leading-none">{category.label}</span>
+                      {isNewCategory && (
+                        <span className={`rounded-full px-2 py-0.5 text-[8px] font-black uppercase tracking-widest ${
+                          isActive ? 'bg-[#061129] text-[#fed700]' : 'bg-[#fed700] text-[#061129]'
+                        }`}>
+                          Novo
+                        </span>
+                      )}
+                    </span>
+                    <span className={`mt-2 block text-[10px] font-black uppercase tracking-widest ${isActive ? 'text-[#061129]/70' : 'text-white/45'}`}>
+                      {category.teams.length} equipas
+                    </span>
+                    <span className={`absolute bottom-3 left-3 right-3 h-1 rounded-full ${isActive ? 'bg-[#061129]/18' : 'bg-white/12'}`} />
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)] lg:gap-6">
+              <div className="adsr-cup-content rounded-2xl border border-[#6f7bb0]/30 bg-[#0c1640]/86 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-5 lg:p-6">
+                <div className="mb-5 grid gap-3 rounded-2xl border border-[#fed700]/22 bg-[#020716]/46 p-3 sm:grid-cols-[1fr_auto] sm:items-center">
+              <p className="text-[10px] font-black uppercase tracking-widest text-white/55">
+                Conta Regressiva · {activeCategory.label}
+              </p>
+              <div className="grid grid-cols-4 gap-2 sm:w-[420px]">
+                {[
+                  { v: tl.d, label: 'DIAS' },
+                  { v: tl.h, label: 'HRS' },
+                  { v: tl.m, label: 'MIN' },
+                  { v: tl.s, label: 'SEG' },
+                ].map(({ v, label }) => (
+                  <div key={label} className="rounded-md border border-[#fed700]/25 bg-[#fed700]/8 px-2 py-2 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+                    <p className="text-xl font-black leading-none tabular-nums text-[#fed700] sm:text-2xl">
+                      {pad(v)}
+                    </p>
+                    <p className="mt-1 text-[8px] font-black tracking-widest text-white/42">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <h3 className="mb-1 font-display text-4xl font-black uppercase leading-none text-white sm:text-6xl">
+              {activeCategory.label}
+              <span className="text-[#fed700]"> em campo</span>
+            </h3>
+            <p className="mb-5 text-xs font-bold uppercase tracking-widest text-white/66 sm:text-sm">
               {activeCategory.subtitle}
             </p>
 
-            <div className="flex flex-col gap-2 mb-6 sm:flex-row sm:flex-wrap">
-              <span className="flex w-full items-center justify-center gap-1.5 bg-white/8 border border-white/15 text-white/80 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm sm:w-auto sm:justify-start">
+            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <span className="flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/[0.07] px-3 py-1.5 text-xs font-bold text-white/82 backdrop-blur-sm sm:w-auto sm:justify-start">
                 <CalendarDays size={12} className="text-[#fed700]" /> {activeCategory.dateLabel}
               </span>
-              <span className="flex w-full items-center justify-center gap-1.5 bg-white/8 border border-white/15 text-white/80 text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm sm:w-auto sm:justify-start">
+              <span className="flex w-full items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/[0.07] px-3 py-1.5 text-xs font-bold text-white/82 backdrop-blur-sm sm:w-auto sm:justify-start">
                 <MapPin size={11} className="text-[#fed700]" /> Estádio N.S. Conceição · São Romão
               </span>
-              <span className="flex w-full items-center justify-center gap-1.5 bg-[#fed700]/15 border border-[#fed700]/40 text-[#fed700] text-xs font-black px-3 py-1.5 rounded-full sm:w-auto sm:justify-start">
+              <span className="flex w-full items-center justify-center gap-1.5 rounded-full border border-[#fed700]/40 bg-[#fed700]/15 px-3 py-1.5 text-xs font-black text-[#fed700] sm:w-auto sm:justify-start">
                 SUB 8 · 10 · 12 · 14 · 16
               </span>
             </div>
 
-            <div className="relative bg-white/5 border border-white/10 rounded-lg overflow-hidden backdrop-blur-sm p-4 sm:p-5 md:p-6">
+            <div className="relative overflow-hidden rounded-2xl border border-[#6f7bb0]/34 bg-white/[0.055] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.07)] sm:p-5 md:p-6">
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#fed700] to-transparent" />
 
-              <p className="text-white/40 text-[10px] font-black tracking-widest uppercase mb-4">
+              <p className="mb-4 text-[10px] font-black uppercase tracking-widest text-white/40">
                 Equipas Confirmadas — {current + 1}/{teams.length}
               </p>
 
@@ -334,10 +410,10 @@ export const EventsSection: React.FC = () => {
               >
                 <Crest {...teams[current]} size="lg" />
                 <div className="min-w-0">
-                  <p className="text-[#fed700] font-black text-xl sm:text-2xl md:text-3xl tracking-wide leading-tight break-words">
+                  <p className="break-words text-2xl font-black leading-tight tracking-wide text-[#fed700] sm:text-3xl">
                     {teams[current].name}
                   </p>
-                  <p className="text-white/40 text-xs font-semibold mt-1 tracking-wider">{activeCategory.teamDateLabel}</p>
+                  <p className="mt-1 text-xs font-semibold tracking-wider text-white/40">{activeCategory.teamDateLabel}</p>
                 </div>
               </div>
 
@@ -348,10 +424,8 @@ export const EventsSection: React.FC = () => {
                       key={i}
                       type="button"
                       onClick={() => {
-                        setAnimated(false);
-                        setTimeout(() => {
+                        runTeamTransition(() => {
                           setCurrent(i);
-                          setAnimated(true);
                         }, 100);
                       }}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -365,7 +439,7 @@ export const EventsSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => goTo(-1)}
-                    className="w-10 h-10 rounded-full bg-white/8 active:bg-[#fed700]/30 hover:bg-[#fed700]/20 border border-white/15 hover:border-[#fed700]/50 flex items-center justify-center transition-all touch-manipulation"
+                    className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-white/15 bg-white/[0.08] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#fed700]/50 hover:bg-[#fed700]/20 active:bg-[#fed700]/30"
                     aria-label="Equipa anterior"
                   >
                     <ChevronLeft size={18} className="text-white/70" />
@@ -373,7 +447,7 @@ export const EventsSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => goTo(1)}
-                    className="w-10 h-10 rounded-full bg-white/8 active:bg-[#fed700]/30 hover:bg-[#fed700]/20 border border-white/15 hover:border-[#fed700]/50 flex items-center justify-center transition-all touch-manipulation"
+                    className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-full border border-white/15 bg-white/[0.08] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#fed700]/50 hover:bg-[#fed700]/20 active:bg-[#fed700]/30"
                     aria-label="Equipa seguinte"
                   >
                     <ChevronRight size={18} className="text-white/70" />
@@ -381,52 +455,49 @@ export const EventsSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+              </div>
 
-          <div className="flex flex-col gap-3 lg:gap-4 lg:justify-end">
-            <div className="bg-white/5 border border-white/10 rounded-lg p-4 sm:p-5 backdrop-blur-sm relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#fed700] to-transparent" />
-              <p className="text-white/40 text-[10px] font-black tracking-widest uppercase mb-4 text-center">
-                Conta Regressiva · {activeCategory.label}
-              </p>
-              <div className="grid grid-cols-4 gap-2">
-                {[
-                  { v: tl.d, label: 'DIAS' },
-                  { v: tl.h, label: 'HRS' },
-                  { v: tl.m, label: 'MIN' },
-                  { v: tl.s, label: 'SEG' },
-                ].map(({ v, label }) => (
-                  <div key={label} className="text-center">
-                    <div className="bg-[#fed700]/10 border border-[#fed700]/25 rounded-lg py-2 sm:py-2.5 mb-1.5">
-                      <p className="text-[#fed700] font-black text-lg sm:text-2xl md:text-3xl leading-none tabular-nums">
-                        {pad(v)}
-                      </p>
-                    </div>
-                    <p className="text-white/35 text-[9px] font-black tracking-widest">{label}</p>
-                  </div>
-                ))}
+              <div className="adsr-poster-wrap flex flex-col gap-3 lg:gap-4 lg:justify-start">
+            <div className="overflow-hidden rounded-2xl border border-[#fed700]/28 bg-[#020716] shadow-[0_26px_76px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <div className="border-b border-white/10 bg-[#07112b]/88 px-4 py-3">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#fed700]">Mensagem do Padrinho</p>
+                <p className="mt-1 text-lg font-black leading-none text-white">Tomás Silva</p>
+              </div>
+              <div className="relative bg-black">
+                <video
+                  className="block aspect-[9/16] max-h-[620px] w-full bg-black object-contain"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={PADRINHO_IMAGE}
+                >
+                  <source src={PADRINHO_VIDEO} type="video/mp4" />
+                </video>
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/55 to-transparent" />
+                <div className="pointer-events-none absolute left-3 top-3 rounded-full bg-[#fed700] px-2.5 py-1 text-[8px] font-black uppercase tracking-[0.16em] text-[#061129] shadow-[0_10px_26px_rgba(0,0,0,0.32)]">
+                  Vídeo Oficial
+                </div>
               </div>
             </div>
-
-            <div className="bg-[#fed700]/8 border border-[#fed700]/25 rounded-lg px-4 py-3 text-center">
-              <p className="text-[#fed700] font-black text-sm tracking-wide">
-                {activeCategory.summaryLabel}
-              </p>
-              <p className="text-white/50 text-xs mt-0.5">{activeCategory.summarySubtext}</p>
+              <div className="mt-0.5 text-xs text-white/56">
+            </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-6 md:mt-8 border-t border-white/8 pt-4 md:pt-5">
-          <p className="text-white/30 text-[10px] font-black tracking-widest uppercase mb-3">
+        <div className="mt-6 border-t border-white/8 pt-4 md:mt-8 md:pt-5">
+          <p className="mb-3 text-[10px] font-black uppercase tracking-widest text-white/30">
             {activeCategory.label} · Equipas Confirmadas
           </p>
-          <div className="overflow-hidden relative">
-            <div className="flex gap-3 adsr-ticker" key={activeCategory.id}>
+          <div className="adsr-ticker-shell relative overflow-hidden rounded-lg border border-white/10 bg-[#07112b]/86 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_18px_44px_rgba(0,0,0,0.22)] backdrop-blur-xl">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#07112b] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#07112b] to-transparent" />
+            <div className="flex gap-3 adsr-ticker px-3" key={activeCategory.id}>
               {[...teams, ...teams].map((team, i) => (
                 <div
                   key={`${team.name}-${i}`}
-                  className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-2 flex-shrink-0 hover:border-[#fed700]/40 hover:bg-[#fed700]/5 transition-all duration-200 cursor-default"
+                  className="flex flex-shrink-0 cursor-default items-center gap-2 rounded-lg border border-white/10 bg-white/[0.055] px-3 py-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#fed700]/40 hover:bg-[#fed700]/8"
                 >
                   <Crest {...team} />
                   <span className="text-white/70 text-xs font-bold whitespace-nowrap tracking-wide">{team.name}</span>
@@ -438,9 +509,40 @@ export const EventsSection: React.FC = () => {
       </div>
 
       <style>{`
+        .adsr-cup-stage {
+          perspective: 1200px;
+        }
+        .adsr-glass-panel,
+        .adsr-cup-content,
+        .adsr-poster-wrap {
+          will-change: transform;
+          animation: adsr-float-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        .adsr-cup-content {
+          animation-delay: 0.06s;
+        }
+        .adsr-poster-wrap {
+          transform-style: preserve-3d;
+          animation-delay: 0.12s;
+        }
+        .adsr-poster-wrap:hover img {
+          transform: scale(1.035);
+        }
+        @keyframes adsr-float-in {
+          from {
+            opacity: 0;
+            transform: translateY(18px) rotateX(4deg);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+          }
+        }
         .adsr-ticker {
           animation: ticker-scroll 28s linear infinite;
+          transform: translate3d(0, 0, 0);
           width: max-content;
+          will-change: transform;
         }
         .adsr-ticker:hover {
           animation-play-state: paused;
@@ -448,6 +550,17 @@ export const EventsSection: React.FC = () => {
         @keyframes ticker-scroll {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .adsr-glass-panel,
+          .adsr-cup-content,
+          .adsr-poster-wrap,
+          .adsr-ticker {
+            animation: none;
+          }
+          .adsr-poster-wrap:hover img {
+            transform: none;
+          }
         }
       `}</style>
     </section>

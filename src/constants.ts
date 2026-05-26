@@ -63,9 +63,19 @@ export const LIVESTREAM_CONFIG = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const NEWS_ITEMS: NewsItem[] = [
+    {
+    id: 0,
+    category: 'CLUBE',
+    title: 'Lista Candidata aos Órgãos Sociais 26/28',
+    date: 'Maio, 2026',
+    excerpt: 'Após verificação de todos os requisitos, mencionados com anterioridade, a lista supramencionada cumpre todos os critérios estando pronta para ser publicada...',
+    imageUrl: '/images/lista.png',
+    content: 'Após verificação de todos os requisitos, mencionados com anterioridade, a lista supramencionada cumpre todos os critérios estando pronta para ser publicada nos meios de comunicação digitais do clube (redes sociais e sítio oficial www.adsaoromao.pt).',
+    contentImageUrl: '/images/listacandidata.png'
+  },
       {
     id: 1,
-    category: 'SÓCIOS',
+    category: 'CLUBE',
     title: 'Convocatória para Assembleia Geral - 29 de Maio de 2026',
     date: 'Maio, 2026',
     excerpt: 'Os orgãos sociais da Associação Desportiva de São Romão vem por este meio informar,',
@@ -74,7 +84,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     contentImageUrl: '/images/conv.png'
   },
   {
-    id: 6,
+    id: 2,
     category: 'CLUBE',
     title: 'ADSR distinguida novamente como Entidade Formadora Certificada ⭐⭐⭐ pela FPF',
     date: 'Maio, 2026',
@@ -84,7 +94,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     contentImageUrl: '/images/NEWS/formadora3.jpg'
   },
   {
-    id: 2,
+    id: 4,
     category: 'CLUBE',
     title: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão',
     date: 'Março, 2026',
@@ -101,7 +111,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CERTIFICADO'
   },
   {
-    id: 4,
+    id: 5,
     category: 'EVENTO',
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
@@ -109,7 +119,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026'
   },
   {
-    id: 5,
+    id: 6,
     category: 'RENOVAÇÃO',
     title: 'Grandes Mudanças na ADSR',
     date: '12 Jan, 2026',

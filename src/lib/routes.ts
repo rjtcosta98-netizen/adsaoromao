@@ -23,7 +23,7 @@ for (const [key, value] of Object.entries(ROUTE_MAP)) {
 }
 
 export function getPageRoute(page: string, id?: number): string {
-  if (page === 'noticia-detalhe' && id) {
+  if (page === 'noticia-detalhe' && id !== undefined) {
     return `/noticias/${id}`;
   }
   if (page === 'album-detalhe' && id) {

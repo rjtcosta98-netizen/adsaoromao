@@ -4,8 +4,9 @@ import React, { lazy, Suspense } from 'react';
 import { Hero } from './Hero';
 import { LatestMedia } from './LatestMedia';
 import { EventsSection } from './EventsSection';
-import { LatestResults } from './LatestResults';
-import { Calendar } from './Calendar';
+import { ClubHighlights } from './ClubHighlights';
+// import { LatestResults } from './LatestResults';
+// import { Calendar } from './Calendar';
 import { LivestreamSection } from './LivestreamSection';
 import { LIVESTREAM_CONFIG } from '../constants';
 
@@ -34,10 +35,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <Hero onNavigate={onNavigate} />
       {LIVESTREAM_CONFIG.enabled && <LivestreamSection />}
       <PlayerVoting />
-      <LatestMedia onNavigate={onNavigate} />
       <EventsSection />
-      <LatestResults />
-      <Calendar />
+      <LatestMedia onNavigate={onNavigate} />
+      <ClubHighlights onNavigate={onNavigate} />
+      {/* <LatestResults /> */}
+      {/* <Calendar /> */}
       <Suspense fallback={<LazyFallback />}>
         <Standings />
       </Suspense>

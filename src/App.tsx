@@ -7,7 +7,6 @@ import { StoreCart } from '@/components/StoreCart';
 import { CheckoutForm } from '@/components/CheckoutForm';
 import { WhatsAppWidget } from '@/components/WhatsAppWidget';
 import { CookieConsent } from '@/components/CookieConsent';
-import { SeasonClosingPopup } from '@/components/SeasonClosingPopup';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { MaintenancePage } from '@/components/MaintenancePage';
 import { getPageRoute } from '@/lib/routes';
@@ -173,7 +172,6 @@ function AppShell() {
       />
 
       <Footer onNavigate={navigate} />
-      <SeasonClosingPopup />
       <WhatsAppWidget />
       <CookieConsent />
       </div>

@@ -34,8 +34,9 @@ function useCountdown(targetDate: Date) {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const countdown = useCountdown(new Date('2026-06-13T09:00:00'));
+  const PADRINHO_IMAGE = '/images/TACA/tomas-silva-padrinho.jpg';
 
-  const openCupCategory = (category: 'sub14' | 'sub12' | 'sub10') => {
+  const openCupCategory = (category: 'sub14' | 'sub12' | 'sub10' | 'sub16') => {
     window.dispatchEvent(new CustomEvent('adsr-cup-category', { detail: category }));
     const el = document.getElementById('adsr-cup');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -95,11 +96,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* Right Content - ADSR CUP 2026 Event Card */}
-        <div className="w-full max-w-xs mx-auto lg:mx-0 lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
+        <div className="w-full max-w-sm mx-auto lg:mx-0 lg:absolute lg:right-6 xl:right-12 lg:top-1/2 lg:-translate-y-1/2 flex-shrink-0 relative">
           <style>{`
             @keyframes mascot-bob {
               0%, 100% { transform: translateY(0px) rotate(-2deg); }
               50% { transform: translateY(-8px) rotate(2deg); }
+            }
+            @keyframes padrinho-float {
+              0%, 100% { transform: translateY(0) rotateX(0deg); }
+              50% { transform: translateY(-6px) rotateX(1.5deg); }
             }
             @keyframes tick-flip {
               0% { transform: translateY(6px) scale(0.9); opacity: 0; }
@@ -110,6 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               50% { box-shadow: 0 0 0 6px rgba(250,204,21,0.12); }
             }
             .mascot-bob { animation: mascot-bob 3s ease-in-out infinite; }
+            .padrinho-float { animation: padrinho-float 5s ease-in-out infinite; will-change: transform; }
             .tick-flip { animation: tick-flip 0.18s ease-out; }
             .cup-card { animation: cup-pulse 3s ease-in-out infinite; }
             .noise-overlay {
@@ -117,6 +123,14 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               background-size: 120px;
               opacity: 0.04;
               mix-blend-mode: overlay;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .mascot-bob,
+              .padrinho-float,
+              .tick-flip,
+              .cup-card {
+                animation: none;
+              }
             }
           `}</style>
 
@@ -126,6 +140,29 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             alt="Mascote ADSR"
             className="mascot-bob absolute -top-14 -right-3 w-[72px] h-auto object-contain z-20 pointer-events-none select-none drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           />
+
+          <div className="padrinho-float relative z-10 mb-3 overflow-hidden rounded-2xl border border-[#facc15]/35 bg-black shadow-[0_22px_56px_rgba(0,0,0,0.46),inset_0_1px_0_rgba(255,255,255,0.08)]">
+            <div className="relative aspect-[21/9] sm:aspect-[16/9] lg:aspect-[16/10]">
+              <img
+                src={PADRINHO_IMAGE}
+                alt="Tomás Silva, padrinho oficial da ADSR CUP 2026"
+                className="absolute inset-0 h-full w-full object-cover object-[72%_20%]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/82 via-black/22 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/88 via-black/20 to-transparent" />
+              <div className="absolute left-3 top-3 rounded-full bg-[#facc15] px-2.5 py-1 text-[8px] font-black uppercase tracking-[0.16em] text-[#07112b]">
+                Padrinho Oficial
+              </div>
+              <div className="absolute bottom-3 left-3 right-3">
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#facc15]">
+                  ADSR Cup 2026
+                </p>
+                <p className="mt-1 text-xl font-black leading-none text-white drop-shadow sm:text-2xl">
+                  Tomás Silva
+                </p>
+              </div>
+            </div>
+          </div>
 
           {/* Card */}
           <div
@@ -151,6 +188,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="leading-none">
                   <p className="text-white/40 text-[8px] tracking-[0.2em] uppercase font-semibold" style={{ fontFamily: 'system-ui, sans-serif' }}>AD São Romão</p>
                   <p className="text-white/70 text-[9px] tracking-[0.15em] uppercase font-bold" style={{ fontFamily: 'system-ui, sans-serif' }}>Apresenta</p>
+                  <p className="mt-0.5 text-[#facc15] text-[7px] tracking-[0.14em] uppercase font-black" style={{ fontFamily: 'system-ui, sans-serif' }}>Padrinho · Tomás Silva</p>
                 </div>
               </div>
               <div
@@ -269,20 +307,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
 
             {/* ── CTA BUTTON ── */}
-            <div className="relative z-10 grid grid-cols-1 gap-2 px-4 pb-4">
-              <button
-                onClick={() => openCupCategory('sub14')}
-                className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg py-2.5 text-[10px] font-black uppercase tracking-[0.12em] transition-all active:scale-95"
-                style={{
-                  background: 'linear-gradient(135deg, #facc15 0%, #f59e0b 100%)',
-                  color: '#0a1845',
-                  fontFamily: 'system-ui, sans-serif',
-                  boxShadow: '0 4px 16px rgba(250,204,21,0.35)',
-                }}
-              >
-                Equipas Sub-14
-              </button>
+            <div className="relative z-10 px-4 pb-4">
               <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => openCupCategory('sub14')}
+                  className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
+                  style={{ fontFamily: 'system-ui, sans-serif' }}
+                >
+                  Equipas Sub-14
+                </button>
                 <button
                   onClick={() => openCupCategory('sub12')}
                   className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
@@ -296,6 +329,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                   style={{ fontFamily: 'system-ui, sans-serif' }}
                 >
                   Equipas Sub-10
+                </button>
+                <button
+                  onClick={() => openCupCategory('sub16')}
+                  className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-[#facc15]/45 bg-white/[0.06] py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white transition-colors hover:bg-white/[0.12] active:scale-95"
+                  style={{ fontFamily: 'system-ui, sans-serif' }}
+                >
+                  Equipas Sub-16
                 </button>
               </div>
             </div>
