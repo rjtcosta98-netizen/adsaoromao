@@ -31,6 +31,10 @@ const SPONSORS_DATA = {
     { id: 30, name: "Radar da Sorte - Lotarias e Jogos, LDA", logo: "/images/patrocinadoresadsrcup/radar.png", url: "#" },
     { id: 31, name: "Clínica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png", url: "#" },
     { id: 32, name: "Ricky - Música e Animação", logo: "/images/patrocinadoresadsrcup/ricky.png", url: "#" },
+    { id: 33, name: "Maquiseia", logo: "/images/patrocinadoresadsrcup/maquiseia.png", url: "#" },
+    { id: 34, name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png", url: "#" },
+    { id: 35, name: "Beijo Gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png", url: "#" },
+    { id: 36, name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png", url: "#" },
   ],
   local: [
    { id: 5, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg', url: "#" },

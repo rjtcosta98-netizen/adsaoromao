@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { CalendarDays, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { CalendarDays, MapPin } from "lucide-react";
 
 type CupCategoryId = "sub14" | "sub12" | "sub10" | "sub16";
 
@@ -44,18 +44,18 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     id: "sub14",
     label: "Sub-14",
     tabHint: "13 Junho",
-    subtitle: "Equipas Confirmadas \u00b7 Sub-14",
+    subtitle: "Equipas Confirmadas · Sub-14",
     dateLabel: "13/14 e 20/21 Junho",
-    teamDateLabel: "SUB-14 \u00b7 13 Junho 2026",
+    teamDateLabel: "SUB-14 · 13 Junho 2026",
     countdownTarget: "2026-06-13T09:00:00",
     backgroundImage: "/images/adsrcuphero.png",
     backgroundPosition: "70% center",
-    summaryLabel: "Sub-14 \u00b7 13 Junho",
+    summaryLabel: "Sub-14 · 13 Junho",
     summarySubtext: "Sub 8, 10, 12, 14 e 16",
     teams: [
       { name: "Sporting Clube Celoricense", image: CELORICENSE_LOGO },
-      { name: "AD S\u00e3o Rom\u00e3o (A)", image: ADSR_LOGO },
-      { name: "AD S\u00e3o Rom\u00e3o (B)", image: ADSR_LOGO },
+      { name: "AD São Romão (A)", image: ADSR_LOGO },
+      { name: "AD São Romão (B)", image: ADSR_LOGO },
       { name: "ADOJ Conquistadores", image: ADOJ_CONQUISTADORES_LOGO },
       { name: "Lusitano Futebol Clube de Vildemoinhos", image: LUSITANO_VILDEMOINHOS_LOGO },
       {
@@ -63,24 +63,24 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
         image: "https://cdn-img.staticzz.com/img/logos/equipas/47/11047_logo_ranhados_20260219163400.png",
       },
       { name: "Asdreq - Escolinhas de Futebol", image: ASDREQ_LOGO },
-      { name: "Atl\u00e9tico Clube Montemorense", image: MONTEMORENSE_LOGO },
+      { name: "Atlético Clube Montemorense", image: MONTEMORENSE_LOGO },
     ],
   },
   {
     id: "sub12",
     label: "Sub-12",
     tabHint: "14 Junho",
-    subtitle: "Equipas Confirmadas \u00b7 Sub-12",
+    subtitle: "Equipas Confirmadas · Sub-12",
     dateLabel: "14 Junho 2026",
-    teamDateLabel: "SUB-12 \u00b7 14 Junho 2026",
+    teamDateLabel: "SUB-12 · 14 Junho 2026",
     countdownTarget: "2026-06-14T09:00:00",
     backgroundImage: "/images/adsrcuphero.png",
     backgroundPosition: "center top",
-    summaryLabel: "Sub-12 \u00b7 14 Junho",
+    summaryLabel: "Sub-12 · 14 Junho",
     summarySubtext: "Equipas confirmadas e uma vaga por fechar",
     teams: [
       { name: "AC Montemorense", image: MONTEMORENSE_LOGO },
-      { name: "AD S\u00e3o Rom\u00e3o (A)", image: ADSR_LOGO },
+      { name: "AD São Romão", image: ADSR_LOGO },
       { name: "Sporting Clube Celoricense", image: CELORICENSE_LOGO },
       {
         name: "(Academia) Sporting CP - Ribeira de Frades",
@@ -98,23 +98,24 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     id: "sub10",
     label: "Sub-10",
     tabHint: "20 Junho",
-    subtitle: "Equipas Confirmadas \u00b7 Sub-10",
+    subtitle: "Equipas Confirmadas · Sub-10",
     dateLabel: "20 Junho 2026",
-    teamDateLabel: "SUB-10 \u00b7 20 Junho 2026",
+    teamDateLabel: "SUB-10 · 20 Junho 2026",
     countdownTarget: "2026-06-20T09:00:00",
     backgroundImage: "/images/adsrcuphero.png",
     backgroundPosition: "70% center",
-    summaryLabel: "Sub-10 \u00b7 20 Junho",
+    summaryLabel: "Sub-10 · 20 Junho",
     summarySubtext: "10 equipas confirmadas",
     teams: [
-      { name: "Associa\u00e7\u00e3o Desportiva de S\u00e3o Rom\u00e3o", image: ADSR_LOGO },
-      { name: "Atl\u00e9tico Clube Montemorense", image: MONTEMORENSE_LOGO },
-      { name: "Seia FC - Forma\u00e7\u00e3o", image: SEIA_LOGO },
+      { name: "AD São Romão (A)", image: ADSR_LOGO },
+      { name: "AD São Romão (B)", image: ADSR_LOGO },
+      { name: "Atlético Clube Montemorense", image: MONTEMORENSE_LOGO },
+      { name: "Seia FC - Formação", image: SEIA_LOGO },
       { name: "SC Sabugal", image: SABUGAL_LOGO },
       { name: "Lusitano Futebol Clube de Vildemoinhos", image: LUSITANO_VILDEMOINHOS_LOGO },
-      { name: "CD Tondela - Forma\u00e7\u00e3o", image: "https://cdn-img.staticzz.com/img/logos/equipas/4336_imgbank_1682585219.png" },
+      { name: "CD Tondela - Formação", image: "https://cdn-img.staticzz.com/img/logos/equipas/4336_imgbank_1682585219.png" },
       { name: "Academia 5 F'S", image: "https://cdn-img.staticzz.com/img/logos/equipas/89/366589_logo_acr_sao_domingos_20251031083010.jpg" },
-      { name: "Acad\u00e9mico de Viseu Futebol Clube", image: "https://cdn-img.staticzz.com/img/logos/equipas/2181_imgbank_1762193325.png" },
+      { name: "Académico de Viseu Futebol Clube", image: "https://cdn-img.staticzz.com/img/logos/equipas/2181_imgbank_1762193325.png" },
       { name: "Desportivo de Castelo Branco", image: "https://cdn-img.staticzz.com/img/logos/equipas/10049_imgbank.png" },
       { name: "SPORT CLUBE ESTRELA", image: "https://cdn-img.staticzz.com/img/logos/equipas/5683_imgbank.png" },
     ],
@@ -123,16 +124,16 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     id: "sub16",
     label: "Sub-16",
     tabHint: "21 Junho",
-    subtitle: "Equipas Confirmadas \u00b7 Sub-16",
+    subtitle: "Equipas Confirmadas · Sub-16",
     dateLabel: "21 Junho 2026",
-    teamDateLabel: "SUB-16 \u00b7 21 Junho 2026",
+    teamDateLabel: "SUB-16 · 21 Junho 2026",
     countdownTarget: "2026-06-21T09:00:00",
     backgroundImage: "/images/adsrcuphero.png",
     backgroundPosition: "70% center",
-    summaryLabel: "Sub-16 \u00b7 21 Junho",
+    summaryLabel: "Sub-16 · 21 Junho",
     summarySubtext: "6 equipas confirmadas",
     teams: [
-      { name: "Associa\u00e7\u00e3o Desportiva S\u00e3o Rom\u00e3o", image: ADSR_LOGO },
+      { name: "AD São Romão", image: ADSR_LOGO },
       { name: "SL Benfica - EF Coimbra", image: "/images/slbenfica.jpg" },
       { name: "Asdreq - Escolinhas de Futebol", image: ASDREQ_LOGO },
       { name: "FC Repesenses (A)", image: FC_REPESENSES_LOGO },
@@ -146,20 +147,24 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
 ];
 
 const SPONSORS = [
-  { name: "Element Group - Solu\u00e7\u00f5es Digitais", logo: "/images/patrocinadoresadsrcup/6.png" },
+  { name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/6.png" },
   { name: "CDT Equipamentos", logo: "/images/rdt.svg", contain: true },
   { name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg" },
   { name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg" },
   { name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", contain: true },
-  { name: "Cabe\u00e7a da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png" },
+  { name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png" },
   { name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/5.png" },
   { name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/4.png" },
   { name: "Matias Nature", logo: "/images/patrocinadoresadsrcup/2.png" },
-  { name: "Mota e Mota - Santa Eul\u00e1lia", logo: "/images/patrocinadoresadsrcup/1.png" },
+  { name: "Mota e Mota - Santa Eulália", logo: "/images/patrocinadoresadsrcup/1.png" },
   { name: "Radar da Sorte - Lotarias e Jogos, LDA", logo: "/images/patrocinadoresadsrcup/radar.png" },
-  { name: "Cl\u00ednica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png" },
-  { name: "Ricky - M\u00fasica e Anima\u00e7\u00e3o", logo: "/images/patrocinadoresadsrcup/ricky.png" },
-  { name: "Armando Cabeleireiro", logo: "/images/patrocinadoresadsrcup/armando.png" },
+  { name: "Clínica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png" },
+  { name: "Ricky - Música e Animação", logo: "/images/patrocinadoresadsrcup/ricky.png" },
+  { name: "Maquiseia", logo: "/images/patrocinadoresadsrcup/maquiseia.png" },
+  { name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png" },
+  { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png" },
+  { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
+
 ];
 
 const getTimeLeft = (targetDate: string) => {
@@ -202,27 +207,10 @@ const Crest: React.FC<CupTeam & { size?: "sm" | "lg" }> = ({
 
 export const EventsSection: React.FC = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<CupCategoryId>("sub14");
-  const [current, setCurrent] = useState(0);
-  const [animated, setAnimated] = useState(true);
-  const teamTransitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const activeCategory = CUP_CATEGORIES.find((c) => c.id === activeCategoryId) ?? CUP_CATEGORIES[0];
   const teams = activeCategory.teams;
   const [tl, setTl] = useState(() => getTimeLeft(activeCategory.countdownTarget));
-
-  const runTeamTransition = (update: () => void, delay = 120) => {
-    if (teamTransitionTimeoutRef.current) clearTimeout(teamTransitionTimeoutRef.current);
-    setAnimated(false);
-    teamTransitionTimeoutRef.current = setTimeout(() => {
-      update();
-      setAnimated(true);
-      teamTransitionTimeoutRef.current = null;
-    }, delay);
-  };
-
-  useEffect(() => {
-    return () => { if (teamTransitionTimeoutRef.current) clearTimeout(teamTransitionTimeoutRef.current); };
-  }, []);
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -234,8 +222,6 @@ export const EventsSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setCurrent(0);
-    setAnimated(true);
     setTl(getTimeLeft(activeCategory.countdownTarget));
   }, [activeCategory.countdownTarget]);
 
@@ -244,23 +230,13 @@ export const EventsSection: React.FC = () => {
     return () => clearInterval(t);
   }, [activeCategory.countdownTarget]);
 
-  useEffect(() => {
-    const t = setInterval(() => {
-      runTeamTransition(() => setCurrent((p) => (p + 1) % teams.length), 150);
-    }, 3200);
-    return () => clearInterval(t);
-  }, [teams.length]);
-
-  const goTo = (dir: 1 | -1) => runTeamTransition(() => setCurrent((p) => (p + dir + teams.length) % teams.length), 100);
-
   const selectCategory = (id: CupCategoryId) => {
     if (id === activeCategoryId) return;
-    runTeamTransition(() => { setActiveCategoryId(id); setCurrent(0); }, 120);
+    setActiveCategoryId(id);
   };
 
   const pad = (n: number) => String(n).padStart(2, "0");
   const totalTeams = CUP_CATEGORIES.reduce((s, c) => s + c.teams.length, 0);
-  const activeTeam = teams[current];
 
   return (
     <section
@@ -268,37 +244,17 @@ export const EventsSection: React.FC = () => {
       className="relative overflow-hidden scroll-mt-24"
       style={{ background: "#010209" }}
     >
-      {/* ── ATMOSPHERIC BACKGROUND ── */}
+      {/* ── BACKGROUND ── */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "linear-gradient(rgba(1,2,9,0.95), rgba(1,2,9,0.95)), url('/images/adsrcuphero.png')",
+            backgroundImage: "linear-gradient(rgba(1,2,9,0.97), rgba(1,2,9,0.97)), url('/images/adsrcuphero.png')",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center center",
           }}
         />
-        {/* Stadium spotlight – gold radial from top */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 90% 55% at 50% -2%, rgba(254,215,0,0.18) 0%, transparent 65%)",
-          }}
-        />
-        {/* Right accent glow */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 60% at 100% 30%, rgba(254,215,0,0.07) 0%, transparent 55%)",
-          }}
-        />
-        {/* Vignette bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#010209]/90" />
-        {/* Grain / noise overlay */}
-        <div className="adsr-grain absolute inset-0" />
         {/* Top gold rule */}
         <div
           className="absolute inset-x-0 top-0 h-[2px]"
@@ -364,8 +320,8 @@ export const EventsSection: React.FC = () => {
             {/* Stats widget */}
             <div className="grid grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-[#060d1e]">
               {[
-                { value: String(CUP_CATEGORIES.length), label: "Escal\u00f5es" },
-                { value: "13\u201321", label: "Junho" },
+                { value: String(CUP_CATEGORIES.length), label: "Escalões" },
+                { value: "13–21", label: "Junho" },
                 { value: `${totalTeams}+`, label: "Equipas" },
               ].map((stat) => (
                 <div key={stat.label} className="px-5 py-5 text-center sm:px-7 sm:py-6">
@@ -460,11 +416,11 @@ export const EventsSection: React.FC = () => {
           </div>
 
           {/* CONTENT AREA */}
-          <div className="p-5 sm:p-7 lg:p-9">
-            <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+          <div className="p-4 sm:p-7 lg:p-9">
+            <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_480px] lg:items-start">
 
               {/* ── LEFT COLUMN ── */}
-              <div className="space-y-7">
+              <div className="order-2 lg:order-1 space-y-7">
 
                 {/* COUNTDOWN SCOREBOARD */}
                 <div className="relative overflow-hidden rounded-2xl border border-[#fed700]/20 bg-[#02040e] p-5 sm:p-6">
@@ -515,7 +471,7 @@ export const EventsSection: React.FC = () => {
                 <div>
                   <h3
                     className="font-display font-black uppercase leading-[0.9] text-white"
-                    style={{ fontSize: "clamp(2.4rem, 6.5vw, 4.5rem)" }}
+                    style={{ fontSize: "clamp(1.8rem, 6.5vw, 4.5rem)" }}
                   >
                     {activeCategory.label}{" "}
                     <span className="text-[#fed700]">em campo</span>
@@ -529,7 +485,7 @@ export const EventsSection: React.FC = () => {
                 </div>
 
                 {/* INFO PILLS */}
-                <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                <div className="flex flex-col gap-2 xs:flex-row xs:flex-wrap sm:flex-row sm:flex-wrap">
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2 text-xs font-semibold text-white/90">
                     <CalendarDays size={13} className="text-[#fed700] flex-shrink-0" />
                     {activeCategory.dateLabel}
@@ -538,75 +494,6 @@ export const EventsSection: React.FC = () => {
                     <MapPin size={13} className="text-[#fed700] flex-shrink-0" />
                     Estádio N.S. Conceição · São Romão
                   </span>
-                </div>
-
-                {/* TEAM SPOTLIGHT CAROUSEL */}
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b1530] p-5 sm:p-6">
-                  <div
-                    className="absolute inset-x-0 top-0 h-px"
-                    style={{ background: "linear-gradient(90deg, rgba(254,215,0,0.4), rgba(254,215,0,0.15) 60%, transparent)" }}
-                  />
-                  <p
-                    className="mb-6 font-black uppercase text-white/35"
-                    style={{ fontSize: "0.6rem", letterSpacing: "0.24em" }}
-                  >
-                    Em Destaque &mdash; {current + 1} / {teams.length}
-                  </p>
-
-                  <div
-                    className="flex min-w-0 items-center gap-5 transition-opacity duration-200"
-                    style={{ opacity: animated ? 1 : 0.15 }}
-                  >
-                    <Crest {...activeTeam} size="lg" />
-                    <div className="min-w-0 flex-1">
-                      <p
-                        className="break-words font-display font-black leading-tight text-[#fed700]"
-                        style={{ fontSize: "clamp(1.3rem, 3.5vw, 2rem)" }}
-                      >
-                        {activeTeam.name}
-                      </p>
-                      <p
-                        className="mt-2 font-semibold uppercase text-white/45"
-                        style={{ fontSize: "0.65rem", letterSpacing: "0.2em" }}
-                      >
-                        {activeCategory.teamDateLabel}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-7 flex items-center justify-between gap-3">
-                    <div className="flex min-w-0 flex-wrap gap-1.5">
-                      {teams.map((_, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => runTeamTransition(() => setCurrent(i), 100)}
-                          className={`cursor-pointer rounded-full transition-all duration-200 ${
-                            i === current ? "h-2 w-8 bg-[#fed700]" : "h-2 w-2 bg-white/25 hover:bg-white/55"
-                          }`}
-                          aria-label={`Ver equipa ${i + 1}`}
-                        />
-                      ))}
-                    </div>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onClick={() => goTo(-1)}
-                        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#0f1e3d] transition-colors duration-200 hover:border-[#fed700]/40 hover:bg-[#162748]"
-                        aria-label="Equipa anterior"
-                      >
-                        <ChevronLeft size={17} className="text-white" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => goTo(1)}
-                        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#0f1e3d] transition-colors duration-200 hover:border-[#fed700]/40 hover:bg-[#162748]"
-                        aria-label="Equipa seguinte"
-                      >
-                        <ChevronRight size={17} className="text-white" />
-                      </button>
-                    </div>
-                  </div>
                 </div>
 
                 {/* ALL TEAMS GRID */}
@@ -621,15 +508,15 @@ export const EventsSection: React.FC = () => {
                   >
                     Equipas Confirmadas &mdash; {teams.length} equipas
                   </p>
-                  <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
                     {teams.map((team, i) => (
                       <div
                         key={`${team.name}-${i}`}
-                        className="flex items-center gap-3.5 rounded-xl border border-white/10 bg-[#0b1530] px-4 py-3 transition-colors duration-150 hover:border-white/20 hover:bg-[#101e40]"
+                        className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#0b1530] px-3.5 py-3 transition-colors duration-150 hover:border-white/20 hover:bg-[#101e40] sm:px-4"
                       >
                         <Crest {...team} />
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-semibold leading-snug text-white">{team.name}</p>
+                          <p className="line-clamp-2 text-sm font-semibold leading-snug text-white">{team.name}</p>
                           <p
                             className="mt-0.5 font-black uppercase text-[#fed700]/60"
                             style={{ fontSize: "0.58rem", letterSpacing: "0.16em" }}
@@ -644,7 +531,7 @@ export const EventsSection: React.FC = () => {
               </div>
 
               {/* ── RIGHT COLUMN ── */}
-              <div className="space-y-4">
+              <div className="order-1 lg:order-2 space-y-4">
 
                 {/* PADRINHO VIDEO */}
                 <article className="overflow-hidden rounded-2xl border border-white/10 bg-black">
@@ -666,7 +553,7 @@ export const EventsSection: React.FC = () => {
                     </span>
                   </div>
                   <video
-                    className="block aspect-[9/16] max-h-[660px] w-full bg-black object-contain"
+                    className="block aspect-[9/16] max-h-[420px] w-full bg-black object-contain sm:max-h-[660px]"
                     controls
                     playsInline
                     preload="metadata"
@@ -750,17 +637,15 @@ export const EventsSection: React.FC = () => {
                 {SPONSORS.map((sponsor) => (
                   <div
                     key={sponsor.name}
-                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0b1530] transition-all duration-300 hover:border-[#fed700]/40 hover:shadow-[0_0_28px_rgba(254,215,0,0.12)]"
+                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0b1530] transition-colors duration-200 hover:border-[#fed700]/50"
                   >
-                    {/* Gold top edge on hover */}
-                    <div className="absolute inset-x-0 top-0 z-10 h-[2px] scale-x-0 bg-[#fed700] transition-transform duration-300 group-hover:scale-x-100" />
                     {/* Logo area */}
                     <div className={`relative aspect-video w-full overflow-hidden ${'contain' in sponsor && sponsor.contain ? 'bg-white' : 'bg-[#0b1530]'}`}>
                       {sponsor.logo ? (
                         <img
                           src={sponsor.logo}
                           alt={sponsor.name}
-                          className={`absolute inset-0 h-full w-full opacity-90 transition-all duration-300 group-hover:opacity-100 ${'contain' in sponsor && sponsor.contain ? 'object-contain p-3 group-hover:scale-105' : 'object-cover group-hover:scale-105'}`}
+                          className={`absolute inset-0 h-full w-full opacity-90 transition-opacity duration-200 group-hover:opacity-100 ${'contain' in sponsor && sponsor.contain ? 'object-contain p-3' : 'object-cover'}`}
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center">
@@ -786,15 +671,6 @@ export const EventsSection: React.FC = () => {
       </div>
 
       <style>{`
-        /* ── Grain / noise overlay ── */
-        .adsr-grain {
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
-          background-repeat: repeat;
-          background-size: 200px 200px;
-          mix-blend-mode: overlay;
-          pointer-events: none;
-        }
-
         /* ── Ticker scroll ── */
         .adsr-ticker {
           animation: adsr-ticker-scroll 28s linear infinite;

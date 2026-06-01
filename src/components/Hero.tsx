@@ -88,16 +88,32 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         className="relative flex items-center overflow-hidden"
         style={{ minHeight: '100svh' }}
       >
-        {/* Background video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/images/adsrcuphero.png"
-          className="absolute inset-0 z-0 h-full w-full object-cover"
-          src="/images/0601.mov"
-        />
+        {/* Background video — YouTube */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img
+            src="/images/adsrcuphero.png"
+            alt=""
+            aria-hidden
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <iframe
+            src="https://www.youtube.com/embed/CNTdp9OvmTk?autoplay=1&mute=1&loop=1&playlist=CNTdp9OvmTk&controls=0&disablekb=1&fs=0&iv_load_policy=3&rel=0&showinfo=0&modestbranding=1&playsinline=1&enablejsapi=0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            title=""
+            aria-hidden
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              /* oversized by 80px top+bottom to push YouTube's UI chrome off-screen */
+              transform: 'translate(-50%, calc(-50% - 40px))',
+              width: 'max(100%, calc((100svh + 80px) * 16 / 9))',
+              height: 'max(calc(100% + 80px), calc(100vw * 9 / 16 + 80px))',
+              border: 'none',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
         {/* Overlays */}
         <div className="absolute inset-0 z-[1] bg-navy-900/65 mix-blend-multiply" />
         <div className="absolute inset-0 z-[1] bg-gradient-to-t from-navy-900 via-transparent to-transparent" />

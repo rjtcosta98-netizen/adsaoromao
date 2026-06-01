@@ -7,16 +7,31 @@ export const LoadingScreen: React.FC = () => {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none"
       style={{ background: '#020a18' }}
     >
-      {/* ── BACKGROUND VIDEO ── */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/images/adsrcuphero.png"
-        className="absolute inset-0 z-0 h-full w-full object-cover"
-        src="/images/0601.mov"
-      />
+      {/* ── BACKGROUND VIDEO — YouTube ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img
+          src="/images/adsrcuphero.png"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <iframe
+          src="https://www.youtube.com/embed/CNTdp9OvmTk?autoplay=1&mute=1&loop=1&playlist=CNTdp9OvmTk&controls=0&disablekb=1&fs=0&iv_load_policy=3&rel=0&showinfo=0&modestbranding=1&playsinline=1&enablejsapi=0"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          title=""
+          aria-hidden
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, calc(-50% - 40px))',
+            width: 'max(100%, calc((100svh + 80px) * 16 / 9))',
+            height: 'max(calc(100% + 80px), calc(100vw * 9 / 16 + 80px))',
+            border: 'none',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
 
       {/* ── OVERLAYS ── */}
       {/* Main dark veil */}
