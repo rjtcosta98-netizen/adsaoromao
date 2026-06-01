@@ -63,8 +63,18 @@ export const LIVESTREAM_CONFIG = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const NEWS_ITEMS: NewsItem[] = [
-    {
+  {
     id: 0,
+    category: 'CLUBE',
+    title: 'Lista de Órgãos Sociais 26/28',
+    date: 'Junho, 2026',
+    excerpt: 'Após verificação de todos os requisitos mencionados com anterioridade...',
+    imageUrl: '/images/listafinalorgaos.png',
+    content: 'Após verificação de todos os requisitos mencionados com anterioridade, a lista supramencionada cumpre todos os critérios estando pronta para ser publicada nos meios de comunicação digitais do clube (redes sociais e sítio oficial www.adsaoromao.pt).',
+    contentImageUrl: '/images/listafinal.png'
+  },
+    {
+    id: 1,
     category: 'CLUBE',
     title: 'Lista Candidata aos Órgãos Sociais 26/28',
     date: 'Maio, 2026',
@@ -74,7 +84,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     contentImageUrl: '/images/listacandidata.png'
   },
       {
-    id: 1,
+    id: 2,
     category: 'CLUBE',
     title: 'Convocatória para Assembleia Geral - 29 de Maio de 2026',
     date: 'Maio, 2026',
@@ -84,7 +94,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     contentImageUrl: '/images/conv.png'
   },
   {
-    id: 2,
+    id: 3,
     category: 'CLUBE',
     title: 'ADSR distinguida novamente como Entidade Formadora Certificada ⭐⭐⭐ pela FPF',
     date: 'Maio, 2026',
@@ -103,7 +113,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     content: 'Atribuição da Bandeira da Ética à Associação Desportiva de São Romão reconhecida pelo IPDJ - Instituto Português do Desporto e Juventude, I.P. PNED representa um importante marco no compromisso do clube com os valores do desporto responsável.\n\nEste reconhecimento destaca o trabalho desenvolvido na promoção do respeito, do fair play, da inclusão e da formação cívica dos seus atletas, reforçando o papel do clube como espaço educativo e de desenvolvimento.\n\nMuitos parabéns, bem hajam a todos! 💙💛'
   },
   {
-    id: 3,
+    id: 5,
     category: 'CLUBE',
     title: 'Associação Desportiva de São Romão conquista Galardão de Entidade Formadora 3 estrelas, atribuído pela FPF',
     date: 'Maio, 2025',
@@ -111,7 +121,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CERTIFICADO'
   },
   {
-    id: 5,
+    id: 6,
     category: 'EVENTO',
     title: 'ADSR CUP 2026',
     date: '18 Jan, 2026',
@@ -119,7 +129,7 @@ export const NEWS_ITEMS: NewsItem[] = [
     imageUrl: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20CUP%202026'
   },
   {
-    id: 6,
+    id: 7,
     category: 'RENOVAÇÃO',
     title: 'Grandes Mudanças na ADSR',
     date: '12 Jan, 2026',

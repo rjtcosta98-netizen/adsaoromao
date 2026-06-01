@@ -8,13 +8,16 @@ interface ClubHighlightsProps {
 
 export const ClubHighlights: React.FC<ClubHighlightsProps> = ({ onNavigate }) => {
   const { news } = useData();
-  const latestTwo = news.slice(0, 2);
+  const highlightedIds = [0, 1, 2];
+  const highlightedNews = highlightedIds
+    .map(id => news.find(item => item.id === id))
+    .filter((item): item is NonNullable<typeof item> => item !== undefined);
 
-  if (latestTwo.length === 0) return null;
+  if (highlightedNews.length === 0) return null;
 
   return (
     <section className="bg-white py-16 border-t border-gray-100">
-      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Header — centrado em desktop */}
         <div className="flex flex-col items-center text-center mb-10 gap-3">
@@ -30,9 +33,9 @@ export const ClubHighlights: React.FC<ClubHighlightsProps> = ({ onNavigate }) =>
           </h2>
         </div>
 
-        {/* Two-card grid — centrado, mais largo em desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
-          {latestTwo.map((item) => (
+        {/* Three-card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {highlightedNews.map((item) => (
             <article
               key={item.id}
               onClick={() => onNavigate('noticia-detalhe', item.id)}

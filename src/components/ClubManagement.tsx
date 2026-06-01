@@ -11,18 +11,18 @@ const GOVERNING_BODIES = [
     styleType: "dark",
     gridConfig: "grid-cols-4",
     members: [
-      { name: "Rafael Eduardo Marques Figueiredo", role: "Presidente", number: "185" },
-      { name: "Luís Manuel Mendes da Silva", role: "Vice-Presidente", number: "37" },
-      { name: "António Manuel Ribeiro dos Santos", role: "1º Secretário", number: "302" },
-      { name: "Carlos Alberto Matias da Silva", role: "2º Secretário", number: "450" },
-      { name: "Manuel António Silva Martins", role: "Tesoureiro", number: "110" },
-      { name: "João Carlos Silva Martins", role: "1º Vogal", number: "146" },
-      { name: "José António Martins da Costa", role: "2º Vogal", number: "75" },
-      { name: "Joaquim Guilherme Mendes Pais", role: "3º Vogal", number: "468" },
-      { name: "Rui Pedro de Almeida Fernandes", role: "4º Vogal", number: "217" },
-      { name: "Carlos Jorge Pinheiro Carvalho", role: "5º Vogal", number: "374" },
-      { name: "Ana da Piedade Pereira Martins", role: "6º Vogal", number: "486" },
-      { name: "Nuno Tiago Santos Freitas", role: "7º Vogal", number: "562" },
+      { name: "Rafael Eduardo Marques Figueiredo", role: "Presidente", number: "69" },
+      { name: "Luís Manuel Mendes Silva", role: "Vice-Presidente", number: "24" },
+      { name: "Ana Piedade Pereira Martins", role: "1º Secretário", number: "159" },
+      { name: "Pedro Nuno Veloso Loureiro", role: "2º Secretário", number: "89" },
+      { name: "Manuel António Silva Martins", role: "Tesoureiro", number: "51" },
+      { name: "João Carlos Silva Martins", role: "1º Vogal", number: "63" },
+      { name: "José António Martins da Costa", role: "2º Vogal", number: "43" },
+      { name: "Carlos Jorge Pinheiro Carvalho", role: "3º Vogal", number: "120" },
+      { name: "Nuno Tiago Santos Freitas", role: "4º Vogal", number: "218" },
+      { name: "Carlos Alberto Matias da Silva", role: "5º Vogal", number: "138" },
+      { name: "Ivo Ricardo Moura Cosme", role: "6º Vogal", number: "81" },
+      { name: "António Manuel Ribeiro dos Santos", role: "7º Vogal", number: "95" },
     ]
   },
   {
@@ -32,9 +32,9 @@ const GOVERNING_BODIES = [
     styleType: "dark",
     gridConfig: "grid-cols-3",
     members: [
-      { name: "Duarte José Draque Marvanejo", role: "Presidente", number: "331" },
-      { name: "Leonardo António Fernandes Abrantes", role: "1º Secretário", number: "216" },
-      { name: "Daniel Marques Valentim", role: "2º Secretário", number: "194" },
+      { name: "Duarte José Draque Marvanejo", role: "Presidente", number: "106" },
+      { name: "Daniel Marques Valentim", role: "1º Secretário", number: "71" },
+      { name: "Sílvia Alexandra Almeida Abreu Saraiva", role: "2º Secretário", number: "460" },
     ]
   },
   {
@@ -44,9 +44,9 @@ const GOVERNING_BODIES = [
     styleType: "dark",
     gridConfig: "grid-cols-3",
     members: [
-      { name: "Jason Silva", role: "Presidente", number: "560" },
-      { name: "Márcio Rafael Correia Brito", role: "Secretário", number: "281" },
-      { name: "Sérgio Paulo Martins Saraiva", role: "Relator", number: "561" },
+      { name: "Jason Silva", role: "Presidente", number: "216" },
+      { name: "Márcio Rafael Correia Brito", role: "Secretário", number: "92" },
+      { name: "Sérgio Paulo Martins Saraiva", role: "Relator", number: "217" },
     ]
   }
 ];

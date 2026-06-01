@@ -17,6 +17,21 @@ const SPONSORS_DATA = {
     { id: 3, name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", url: "https://www.alvesbandeira.pt/pt/" },
     { id: 4, name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", url: "https://climahotel.pt/" },
   ],
+  adsrcup: [
+    { id: 20, name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/6.png", url: "https://elementgroup.pt" },
+    { id: 21, name: "CDT Equipamentos", logo: "/images/rdt.svg", url: "https://www.cdt-equipamentos.com/" },
+    { id: 22, name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg", url: "#" },
+    { id: 23, name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", url: "https://www.alvesbandeira.pt/pt/" },
+    { id: 24, name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", url: "https://climahotel.pt/" },
+    { id: 25, name: "Mota e Mota - Santa Eulália", logo: "/images/patrocinadoresadsrcup/1.png", url: "#" },
+    { id: 26, name: "Matias Nature", logo: "/images/patrocinadoresadsrcup/2.png", url: "#" },
+    { id: 27, name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png", url: "#" },
+    { id: 28, name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/4.png", url: "#" },
+    { id: 29, name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/5.png", url: "#" },
+    { id: 30, name: "Radar da Sorte - Lotarias e Jogos, LDA", logo: "/images/patrocinadoresadsrcup/radar.png", url: "#" },
+    { id: 31, name: "Clínica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png", url: "#" },
+    { id: 32, name: "Ricky - Música e Animação", logo: "/images/patrocinadoresadsrcup/ricky.png", url: "#" },
+  ],
   local: [
    { id: 5, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg', url: "#" },
   { id: 6, name: 'Município de Seia', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/logo_cm-seia.png', url: "#" },
@@ -175,6 +190,36 @@ export const SponsorsList: React.FC = () => {
                         <span className="text-white/30 font-display text-sm md:text-lg uppercase group-hover:text-white/60 transition-colors text-center px-2">{sponsor.name || 'Disponível'}</span>
                       </div>
                     )}
+                 </a>
+              ))}
+           </div>
+        </div>
+
+        {/* --- SECÇÃO ADSR CUP --- */}
+        <div className="text-center">
+           <div className="inline-flex items-center gap-2 border border-yellow-500/60 rounded-full px-8 py-2 mb-10 bg-gradient-to-r from-yellow-500/10 via-amber-400/5 to-yellow-500/10">
+              <span className="text-yellow-400 text-xs font-bold uppercase tracking-[0.2em]">🏆 Patrocinadores ADSR Cup</span>
+           </div>
+           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 max-w-6xl mx-auto">
+              {SPONSORS_DATA.adsrcup.map((sponsor) => (
+                 <a
+                   key={sponsor.id}
+                   href={sponsor.url}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="rounded-xl border border-yellow-400/15 bg-navy-800/60 hover:border-yellow-400/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col"
+                 >
+                    <div className="h-28 flex items-center justify-center bg-white p-3">
+                      <img
+                        src={sponsor.logo}
+                        alt={sponsor.name}
+                        loading="lazy"
+                        className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="bg-navy-900/90 px-3 py-2 border-t border-yellow-400/10">
+                      <span className="text-white/50 font-display text-[10px] uppercase tracking-wider group-hover:text-yellow-400/80 transition-colors line-clamp-2 leading-tight block">{sponsor.name}</span>
+                    </div>
                  </a>
               ))}
            </div>

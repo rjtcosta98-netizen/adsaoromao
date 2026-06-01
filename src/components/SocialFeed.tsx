@@ -9,9 +9,9 @@ const SOCIAL_LINKS = {
 
 // Posts do Instagram para mostrar (atualizar periodicamente com os URLs dos posts)
 const INSTAGRAM_POSTS = [
-  'https://www.instagram.com/p/DX_vqepDKtp/',
-  'https://www.instagram.com/p/DX-C5WKMEp3/',
-  'https://www.instagram.com/p/DX7Dwg8DMAh/'
+  'https://www.instagram.com/p/DZCMt9jMFhG/',
+  'https://www.instagram.com/p/DZBCodqML8X/',
+  'https://www.instagram.com/p/DZBA_D5MjvH/'
 
 ];
 

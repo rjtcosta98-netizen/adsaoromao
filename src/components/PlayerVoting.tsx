@@ -95,6 +95,7 @@ export const PlayerVoting: React.FC = () => {
   const [votingState] = useState(getVotingState);
   const [pendingVoteId, setPendingVoteId] = useState<number | null>(null);
   const countdown = useCountdown(VOTE_START);
+  const countdownEnd = useCountdown(VOTE_END);
 
   const itemsToShow = isMobile ? 2 : 5;
 
@@ -281,6 +282,28 @@ export const PlayerVoting: React.FC = () => {
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {header}
+
+        {/* Countdown to voting end */}
+        {votingState === 'open' && (
+          <div className="max-w-sm mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col items-center gap-3 text-center mb-8">
+            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-gray-400">
+              <Clock size={13} />
+              Votação termina em
+            </div>
+            <div className="flex items-end gap-2">
+              <Unit value={countdownEnd.d} label="dias" />
+              <span className="text-navy-900/30 font-black text-2xl mb-4">:</span>
+              <Unit value={countdownEnd.h} label="horas" />
+              <span className="text-navy-900/30 font-black text-2xl mb-4">:</span>
+              <Unit value={countdownEnd.m} label="min" />
+              <span className="text-navy-900/30 font-black text-2xl mb-4">:</span>
+              <Unit value={countdownEnd.s} label="seg" />
+            </div>
+            <p className="text-gray-400 text-[11px]">
+              Vota antes de <span className="font-semibold text-navy-900">3 de junho de 2026 às 23:59</span>
+            </p>
+          </div>
+        )}
 
         {justVoted && (
           <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 text-green-700 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto animate-fade-in-down">

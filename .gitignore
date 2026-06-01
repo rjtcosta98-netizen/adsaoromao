@@ -37,3 +37,9 @@ tsconfig.tsbuildinfo
 .env
 .env.local
 .env.*.local
+
+# Large video/media files
+*.mov
+*.mp4
+*.avi
+*.mkv
