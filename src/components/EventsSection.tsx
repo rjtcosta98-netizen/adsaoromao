@@ -164,6 +164,8 @@ const SPONSORS = [
   { name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png" },
   { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png" },
   { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
+  { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png" },
+  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png" },
 
 ];
 
