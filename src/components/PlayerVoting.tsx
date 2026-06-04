@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users, Clock } from 'lucide-react';
+import { Trophy, ChevronLeft, ChevronRight, CheckCircle, Loader2, Users, Clock, Crown } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { getDeviceFingerprint } from '@/lib/fingerprint';
 
@@ -123,12 +123,14 @@ const SoccerBall: React.FC<{ size?: number; className?: string; style?: React.CS
 );
 
 // ════════════════════════════════════════════════════════════════════════════
-// FINAL WHISTLE — closed-voting verdict
-// A night-stadium pitch: floodlights, painted pitch markings, a gold ball
-// orbiting the trophy on the centre spot, and a scoreboard headline.
+// CHAMPION REVEAL — closed-voting winner announcement
+// A night-stadium celebration: floodlights, pitch markings, falling confetti,
+// and the winner's poster framed in gold under a floating crown.
 // ════════════════════════════════════════════════════════════════════════════
+const WINNER = { name: 'Rafael Santos', role: 'Guarda-redes', poster: '/images/vencedor.png' };
+
 const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
-  // Deterministic championship confetti rising off the pitch.
+  // Ambient gold embers rising off the pitch.
   const sparks = React.useMemo(
     () =>
       Array.from({ length: 22 }, (_, i) => ({
@@ -141,8 +143,22 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
     [],
   );
 
+  // Deterministic celebration confetti falling over the reveal.
+  const confetti = React.useMemo(
+    () =>
+      Array.from({ length: 30 }, (_, i) => ({
+        left: (i * 53) % 100,
+        delay: (i % 13) * 0.42,
+        dur: 4.4 + (i % 6) * 0.8,
+        size: 5 + (i % 4) * 2,
+        rot: (i * 47) % 360,
+        color: ['#FFD700', '#caa53d', '#021d40', '#0a2a55'][i % 4],
+      })),
+    [],
+  );
+
   return (
-    <section className="relative overflow-hidden bg-[#021d40] py-12 sm:py-16">
+    <section className="relative overflow-hidden bg-white py-12 sm:py-16">
       <style>{`
         @keyframes sv-orbit { to { transform: rotate(360deg); } }
         @keyframes sv-orbit-rev { to { transform: rotate(-360deg); } }
@@ -175,6 +191,20 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         }
         @keyframes sv-beam-l { 0%,100% { transform: rotate(17deg); opacity: .4; } 50% { transform: rotate(23deg); opacity: .58; } }
         @keyframes sv-beam-r { 0%,100% { transform: rotate(-17deg); opacity: .58; } 50% { transform: rotate(-23deg); opacity: .4; } }
+        @keyframes sv-fall {
+          0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+          12% { opacity: 1; }
+          88% { opacity: 1; }
+          100% { transform: translateY(620px) rotate(560deg); opacity: 0; }
+        }
+        @keyframes sv-pop {
+          0% { opacity: 0; transform: translateY(26px) scale(.86); }
+          60% { opacity: 1; transform: translateY(0) scale(1.015); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes sv-shine { 0% { transform: translateX(-160%) skewX(-18deg); } 60%,100% { transform: translateX(180%) skewX(-18deg); } }
+        @keyframes sv-aura { to { transform: rotate(360deg); } }
+        @keyframes sv-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
         .sv-shimmer {
           background: linear-gradient(100deg,#caa53d 0%,#FFD700 18%,#fff7d6 32%,#FFD700 46%,#caa53d 64%,#FFD700 100%);
           background-size: 220% auto;
@@ -184,20 +214,20 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         }
         .sv-pitch { transform: perspective(620px) rotateX(60deg); transform-origin: 50% 100%; }
         .sv-beam {
-          position: absolute; top: -34%; width: 56%; height: 130%; filter: blur(30px);
-          background: linear-gradient(180deg, rgba(255,247,214,0.5), rgba(255,215,0,0.05) 55%, transparent 80%);
+          position: absolute; top: -34%; width: 56%; height: 130%; filter: blur(34px);
+          background: linear-gradient(180deg, rgba(255,200,0,0.22), rgba(255,215,0,0.05) 55%, transparent 80%);
         }
         @media (prefers-reduced-motion: reduce) {
           .sv-anim { animation: none !important; }
         }
       `}</style>
 
-      {/* Stadium atmosphere */}
+      {/* Warm gold wash on white */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(120% 80% at 50% -8%, rgba(255,215,0,0.16), rgba(255,215,0,0) 46%), radial-gradient(70% 55% at 50% 82%, rgba(15,60,40,0.55), rgba(2,29,64,0) 60%)',
+            'radial-gradient(120% 80% at 50% -8%, rgba(255,200,0,0.14), rgba(255,215,0,0) 50%), radial-gradient(80% 60% at 50% 100%, rgba(2,29,64,0.05), rgba(2,29,64,0) 60%)',
         }}
       />
       {/* Floodlights */}
@@ -206,19 +236,19 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         <div className="sv-beam sv-anim" style={{ right: '-16%', transformOrigin: 'top center', animation: 'sv-beam-r 6s ease-in-out infinite' }} />
       </div>
       {/* Painted pitch markings */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[-14%] mx-auto h-[78%] w-[160%] opacity-80">
+      <div className="pointer-events-none absolute inset-x-0 bottom-[-14%] mx-auto h-[78%] w-[160%] opacity-70">
         <div className="sv-pitch relative h-full w-full">
           {/* halfway line */}
-          <div className="absolute left-0 right-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent)' }} />
+          <div className="absolute left-0 right-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(2,29,64,.12),transparent)' }} />
           {/* centre circle */}
-          <div className="absolute left-1/2 top-1/2 h-[40%] w-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15" />
+          <div className="absolute left-1/2 top-1/2 h-[40%] w-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-navy-900/10" />
           {/* centre spot */}
-          <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40" />
+          <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-navy-900/25" />
           {/* penalty arc (bottom) */}
-          <div className="absolute left-1/2 bottom-[-6%] h-[26%] w-[44%] -translate-x-1/2 rounded-full border border-white/12" />
+          <div className="absolute left-1/2 bottom-[-6%] h-[26%] w-[44%] -translate-x-1/2 rounded-full border border-navy-900/[0.08]" />
         </div>
       </div>
-      {/* Rising confetti */}
+      {/* Rising embers */}
       <div className="pointer-events-none absolute inset-0">
         {sparks.map((s, i) => (
           <span
@@ -228,117 +258,101 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
               left: `${s.left}%`,
               width: s.size,
               height: s.size,
-              background: s.bright ? '#fff7d6' : '#FFD700',
-              boxShadow: `0 0 ${s.bright ? 10 : 6}px ${s.bright ? '#fff7d6' : '#FFD700'}`,
+              background: s.bright ? '#e0b520' : '#FFD700',
+              boxShadow: `0 0 ${s.bright ? 8 : 5}px rgba(224,170,20,${s.bright ? .5 : .35})`,
               animation: `sv-rise ${s.dur}s ${s.delay}s ease-in infinite`,
             }}
           />
         ))}
       </div>
-
-      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        {/* Scoreboard kicker */}
-        <div
-          className="sv-anim inline-flex items-center gap-2.5 rounded-md border border-yellow-400/30 bg-[#020f24]/80 px-4 py-1.5 shadow-[inset_0_0_18px_rgba(255,215,0,0.08)] backdrop-blur-sm"
-          style={{ animation: 'sv-reveal .7s .05s both' }}
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="sv-anim absolute inline-flex h-full w-full rounded-full bg-yellow-400" style={{ animation: 'sv-pulse-dot 1.6s ease-in-out infinite' }} />
-          </span>
-          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-yellow-400/90">
-            Apito final · Época {season}
-          </span>
-        </div>
-
-        {/* Trophy on the centre spot, ball orbiting */}
-        <div className="relative mx-auto mt-8 mb-1 flex h-36 w-36 items-center justify-center">
-          {/* glow */}
-          <div
-            className="sv-anim absolute inset-0 rounded-full blur-2xl"
-            style={{ background: 'radial-gradient(circle,#FFD700,transparent 65%)', animation: 'sv-glow 3.4s ease-in-out infinite' }}
+      {/* Falling celebration confetti */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {confetti.map((c, i) => (
+          <span
+            key={i}
+            className="sv-anim absolute top-0"
+            style={{
+              left: `${c.left}%`,
+              width: c.size,
+              height: c.size * 1.7,
+              background: c.color,
+              borderRadius: 1,
+              transform: `rotate(${c.rot}deg)`,
+              animation: `sv-fall ${c.dur}s ${c.delay}s linear infinite`,
+            }}
           />
-          {/* orbit ring with rolling ball */}
-          <div className="sv-anim absolute inset-0" style={{ animation: 'sv-orbit 9s linear infinite' }}>
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-              <SoccerBall size={26} className="sv-anim drop-shadow-[0_4px_8px_rgba(0,0,0,.5)]" style={{ animation: 'sv-roll 2.2s linear infinite' }} />
-            </div>
-          </div>
-          {/* inner dashed ring */}
-          <div
-            className="sv-anim absolute inset-5 rounded-full border border-dashed border-yellow-400/20"
-            style={{ animation: 'sv-orbit-rev 22s linear infinite' }}
-          >
-            <span className="absolute right-0 top-1/2 h-1 w-1 -translate-y-1/2 translate-x-1/2 rounded-full bg-yellow-400/80" />
-          </div>
-          {/* trophy plinth */}
-          <div
-            className="sv-anim relative flex h-20 w-20 items-center justify-center rounded-2xl border border-yellow-400/40 bg-gradient-to-b from-[#08438a] to-[#021d40] shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_18px_40px_-12px_rgba(0,0,0,.7)]"
-            style={{ animation: 'sv-bob 4.2s ease-in-out infinite' }}
-          >
-            <Trophy size={36} className="text-yellow-400 drop-shadow-[0_0_12px_rgba(255,215,0,.55)]" strokeWidth={1.6} />
-          </div>
-        </div>
-
-        {/* Scoreboard headline */}
-        <p
-          className="sv-anim font-display text-[11px] font-semibold uppercase tracking-[0.4em] text-white/40"
-          style={{ animation: 'sv-reveal .7s .15s both' }}
-        >
-          O vencedor será
-        </p>
-        <h2
-          className="sv-anim sv-shimmer mt-1.5 uppercase leading-[0.92]"
-          style={{
-            fontFamily: "'Bebas Neue','Oswald','Impact',sans-serif",
-            fontSize: 'clamp(2.3rem, 9vw, 4.4rem)',
-            letterSpacing: '0.01em',
-            animation: 'sv-reveal .7s .22s both, sv-shimmer 5.5s linear infinite',
-          }}
-        >
-          Resultado da<br />votação em breve
-        </h2>
-
-        {/* LED-board vote ticker */}
-        <div
-          className="sv-anim mx-auto mt-6 flex w-full max-w-md items-center justify-center gap-3 rounded-lg border border-yellow-400/15 bg-[#020f24]/85 px-5 py-2.5 shadow-[inset_0_0_24px_rgba(0,0,0,0.5)] backdrop-blur-sm"
-          style={{ animation: 'sv-reveal .7s .3s both' }}
-        >
-          <Loader2 size={15} className="sv-anim text-yellow-400" style={{ animation: 'sv-orbit 1.4s linear infinite' }} />
-          <span className="font-display text-[11px] font-bold uppercase tracking-[0.24em] text-yellow-400/90">
-            A apurar os votos
-          </span>
-          <span className="flex items-center gap-1">
-            {[0, 1, 2].map(d => (
-              <span
-                key={d}
-                className="sv-anim h-1.5 w-1.5 rounded-full bg-yellow-400"
-                style={{ animation: `sv-tick 1.2s ${d * 0.18}s ease-in-out infinite` }}
-              />
-            ))}
-          </span>
-        </div>
-
-        <p
-          className="sv-anim mx-auto mt-5 max-w-sm text-[13px] leading-relaxed text-white/45"
-          style={{ animation: 'sv-reveal .7s .38s both' }}
-        >
-          A votação da época {season} terminou. Obrigado a todos os adeptos —
-          o nome do <span className="text-yellow-400/80">Jogador do Ano</span> é revelado em breve.
-        </p>
-
+        ))}
       </div>
 
-      {/* Referee "final whistle" badge */}
-      <div className="pointer-events-none absolute bottom-6 right-6 hidden sm:block">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+        {/* Result kicker */}
         <div
-          className="sv-anim flex h-20 w-20 flex-col items-center justify-center rounded-full border-2 border-dashed border-yellow-400/40 bg-[#020f24]/60 text-center"
-          style={{ animation: 'sv-seal-in .9s .6s both' }}
+          className="sv-anim inline-flex items-center gap-2.5 rounded-md border border-yellow-400/50 bg-navy-900/[0.03] px-4 py-1.5 shadow-[inset_0_0_18px_rgba(255,215,0,0.06)]"
+          style={{ animation: 'sv-reveal .7s .05s both' }}
         >
-          <SoccerBall size={20} />
-          <span className="mt-1 font-display text-[8px] font-bold uppercase leading-tight tracking-widest text-yellow-400/60">
-            Apito<br />final
+          <Crown size={13} className="text-[#b8860b]" strokeWidth={2.2} />
+          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9a7209]">
+            Resultado oficial · Época {season}
           </span>
         </div>
+
+        {/* ── CHAMPION BANNER, framed in gold ── */}
+        <div
+          className="sv-anim relative mx-auto mt-9 w-full max-w-3xl"
+          style={{ animation: 'sv-pop .9s .25s both' }}
+        >
+          {/* floating crown crest */}
+          <div
+            className="sv-anim absolute -top-6 left-1/2 z-20 -translate-x-1/2 sm:-top-7"
+            style={{ animation: 'sv-float 3.6s ease-in-out infinite' }}
+          >
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-yellow-400/50 bg-[#04132c] shadow-[0_10px_28px_-8px_rgba(0,0,0,.8)] sm:h-14 sm:w-14">
+              <div className="absolute inset-0 rounded-full blur-lg" style={{ background: 'radial-gradient(circle,rgba(255,215,0,.5),transparent 65%)' }} />
+              <Crown size={24} className="relative text-yellow-400 drop-shadow-[0_0_10px_rgba(255,215,0,.6)] sm:w-[26px]" strokeWidth={1.8} fill="rgba(255,215,0,0.18)" />
+            </div>
+          </div>
+
+          {/* the framed banner */}
+          <div className="sv-anim relative overflow-hidden rounded-xl border-2 border-yellow-400/70 shadow-[0_34px_90px_-24px_rgba(0,0,0,.85),0_0_60px_rgba(255,215,0,.22)] sm:rounded-2xl" style={{ animation: 'sv-float 5s ease-in-out infinite' }}>
+            <img
+              src={WINNER.poster}
+              alt={`${WINNER.name} — Jogador do Ano da época ${season}, eleito pelos adeptos da AD São Romão`}
+              className="block h-auto w-full"
+              loading="lazy"
+            />
+            {/* gold inner highlight */}
+            <div className="pointer-events-none absolute inset-0 rounded-xl sm:rounded-2xl" style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 70px rgba(0,0,0,.30)' }} />
+            {/* shine sweep */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl sm:rounded-2xl">
+              <div
+                className="sv-anim absolute inset-y-0 -left-1/3 w-1/3"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent)', animation: 'sv-shine 5.5s 1.2s ease-in-out infinite' }}
+              />
+            </div>
+          </div>
+
+          {/* corner ball badges */}
+          <div className="absolute -bottom-3.5 -right-2.5 z-20 sv-anim sm:-bottom-4 sm:-right-3" style={{ animation: 'sv-float 4.2s .5s ease-in-out infinite' }}>
+            <SoccerBall size={36} className="drop-shadow-[0_6px_14px_rgba(0,0,0,.6)] sm:w-10" />
+          </div>
+          <div className="absolute -top-3.5 -left-2.5 z-20 sv-anim sm:-top-4 sm:-left-3" style={{ animation: 'sv-float 3.8s .9s ease-in-out infinite' }}>
+            <SoccerBall size={28} className="drop-shadow-[0_6px_14px_rgba(0,0,0,.6)] sm:w-8" />
+          </div>
+        </div>
+
+        {/* Congratulations */}
+        <p
+          className="sv-anim mt-8 font-display text-xl font-bold uppercase tracking-tight text-navy-900 sm:mt-9 sm:text-2xl"
+          style={{ animation: 'sv-reveal .7s .5s both' }}
+        >
+          Parabéns, <span className="text-[#b8860b]">{WINNER.name}</span>!
+        </p>
+        <p
+          className="sv-anim mx-auto mt-3 max-w-md text-[13px] leading-relaxed text-navy-900/55"
+          style={{ animation: 'sv-reveal .7s .58s both' }}
+        >
+          {WINNER.role} · Eleito pelos adeptos da AD São Romão. Obrigado a todos os que votaram!
+        </p>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, ChevronDown } from 'lucide-react';
 import { LOGO_URL } from '../constants';
 
 interface HeroProps {
@@ -68,6 +68,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     }
     .hero-kenburns { animation: hero-kenburns 22s ease-in-out infinite alternate; will-change: transform; }
     .hero-rise { animation: hero-rise 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes hero-cue {
+      0%, 100% { transform: translate(-50%, 0); opacity: 0.55; }
+      50% { transform: translate(-50%, 7px); opacity: 1; }
+    }
+    .hero-cue { animation: hero-cue 1.8s ease-in-out infinite; }
     .mascot-bob { animation: mascot-bob 3s ease-in-out infinite; }
     .padrinho-float { animation: padrinho-float 5s ease-in-out infinite; will-change: transform; }
     .tick-flip { animation: tick-flip 0.18s ease-out; }
@@ -79,7 +84,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       mix-blend-mode: overlay;
     }
     @media (prefers-reduced-motion: reduce) {
-      .mascot-bob, .padrinho-float, .tick-flip, .cup-card, .hero-kenburns, .hero-rise { animation: none; }
+      .mascot-bob, .padrinho-float, .tick-flip, .cup-card, .hero-kenburns, .hero-rise, .hero-cue { animation: none; }
+      .hero-cue { transform: translate(-50%, 0); }
     }
   `;
 
@@ -154,27 +160,27 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
         {/* Left text content — same club-identity composition on every breakpoint,
             scaled for portrait on mobile and bedded by the floor gradient. */}
-        <div className="relative z-10 container mx-auto w-full px-5 sm:px-6 lg:px-4 pb-12 sm:pb-14 pt-28 sm:pt-32 lg:pt-8 flex flex-col justify-end lg:justify-center min-h-[100svh] lg:min-h-0">
+        <div className="relative z-10 container mx-auto w-full px-5 sm:px-6 lg:px-4 pb-20 sm:pb-20 pt-28 sm:pt-32 lg:pt-8 lg:pb-14 flex flex-col justify-end lg:justify-center min-h-[100svh] lg:min-h-0">
           <div className="max-w-2xl">
             {/* Club identity — mobile mirrors desktop, scaled to the format */}
             <div className="hero-rise" style={{ animationDelay: '0.05s' }}>
-              <span className="inline-flex items-center gap-2 mb-3.5 lg:mb-5 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3.5 py-1 lg:px-4 lg:py-1.5 backdrop-blur-sm">
+              <span className="inline-flex items-center gap-2 mb-4 lg:mb-5 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3.5 py-1 lg:px-4 lg:py-1.5 backdrop-blur-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-yellow-400 shadow-[0_0_8px_#facc15]" />
-                <span className="font-display text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.22em] lg:tracking-[0.3em] text-yellow-400">
+                <span className="font-display text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.2em] lg:tracking-[0.3em] text-yellow-400">
                   Desde 1976 · São Romão
                 </span>
               </span>
-              <h1 className="font-display text-[2.75rem] leading-[0.92] sm:text-5xl md:text-7xl lg:leading-[0.95] font-bold text-white uppercase mb-4 lg:mb-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
+              <h1 className="font-display text-[clamp(2.9rem,13vw,3.6rem)] leading-[0.9] sm:text-6xl md:text-7xl lg:leading-[0.95] font-bold text-white uppercase mb-4 lg:mb-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
                 ASSOCIAÇÃO<br />DESPORTIVA<br />
                 <span className="text-yellow-400">SÃO ROMÃO!</span>
               </h1>
-              <p className="text-gray-200 text-[15px] sm:text-lg md:text-xl leading-relaxed max-w-md border-l-4 border-yellow-400 pl-4 lg:pl-6 drop-shadow">
+              <p className="text-gray-200 text-base sm:text-lg md:text-xl leading-relaxed max-w-md border-l-4 border-yellow-400 pl-4 lg:pl-6 drop-shadow">
                 Onde a paixão se transforma em glória. Faz parte da nossa história.
               </p>
             </div>
 
             {/* Actions — shown on every breakpoint */}
-            <div className="hero-rise mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ animationDelay: '0.2s' }}>
+            <div className="hero-rise mt-7 lg:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ animationDelay: '0.2s' }}>
               <button
                 onClick={() => {
                   const element = document.getElementById('latest-results');
@@ -194,6 +200,19 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
+
+        {/* Scroll cue — mobile only; convida a descer para o cartão do torneio */}
+        <button
+          type="button"
+          aria-label="Ver o torneio ADSR Cup"
+          onClick={() => window.scrollBy({ top: window.innerHeight * 0.82, behavior: 'smooth' })}
+          className="hero-cue lg:hidden absolute bottom-4 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-1 text-yellow-400/80"
+        >
+          <span className="font-display text-[9px] font-bold uppercase tracking-[0.3em]">ADSR Cup</span>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-yellow-400/40 bg-yellow-400/10 backdrop-blur-sm">
+            <ChevronDown size={16} strokeWidth={2.5} />
+          </span>
+        </button>
       </div>{/* end VIDEO HERO PANEL */}
 
       {/* ═══════════════════════════════════════════════════════════

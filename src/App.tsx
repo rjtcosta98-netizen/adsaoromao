@@ -57,6 +57,19 @@ function AppShell() {
   const isAdmin = pathname === '/admin';
   const isMaintenance = pathname === '/manutencao';
 
+  // Desliga a restauração de scroll do browser — nós controlamos a posição.
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  // Cada rota abre sempre no topo, independentemente de como se navegou
+  // (links, botão voltar/avançar, navegação programática).
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   // Handler para quando o countdown terminar e o site for lançado
   const handleSiteLaunch = useCallback(() => {
     setMaintenanceActive(false);

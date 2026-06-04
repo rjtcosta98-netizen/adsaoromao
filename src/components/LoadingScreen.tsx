@@ -7,8 +7,6 @@ import { LOGO_URL } from '../constants';
  * with a custom navy/gold spinning soccer ball as the hero loader.
  */
 export const LoadingScreen: React.FC = () => {
-  const CATEGORIES = ['SUB 8', 'SUB 10', 'SUB 12', 'SUB 14', 'SUB 16'];
-
   return (
     <div
       role="status"
@@ -80,96 +78,62 @@ export const LoadingScreen: React.FC = () => {
           </span>
         </div>
 
-        {/* ── THE BALL — hero loader ── */}
-        <div className="ls-in ls-d1 relative mb-6 sm:mb-8" style={{ width: 116, height: 132 }}>
-          {/* halo */}
+        {/* ── THE CUP EMBLEM — featured tournament logo ── */}
+        <div className="ls-in ls-d1 relative mb-7 sm:mb-9">
+          {/* rotating gold aura ring — trophy spotlight */}
           <div
-            className="ls-halo absolute left-1/2 top-[44px] h-24 w-24 -translate-x-1/2 rounded-full blur-2xl"
-            style={{ background: 'rgba(250,204,21,0.30)' }}
+            className="ls-aura pointer-events-none absolute -inset-7 rounded-full blur-2xl"
+            style={{
+              background:
+                'conic-gradient(from 0deg, transparent, rgba(250,204,21,0.5) 12%, transparent 32%, rgba(250,204,21,0.32) 55%, transparent 78%, rgba(250,204,21,0.42) 100%)',
+            }}
           />
-          {/* ground shadow */}
-          <div className="ls-ball-shadow absolute bottom-2 left-1/2 h-3 w-20 -translate-x-1/2 rounded-[50%]" />
-          {/* the bobbing, spinning ball */}
-          <div className="ls-ball-bob absolute left-1/2 top-0 -translate-x-1/2">
-            <svg
-              className="ls-ball-spin"
-              width="92"
-              height="92"
-              viewBox="0 0 100 100"
-              role="img"
-              aria-hidden
-            >
+          {/* soft static halo */}
+          <div
+            className="pointer-events-none absolute -inset-2 rounded-[28px] blur-2xl"
+            style={{ background: 'rgba(250,204,21,0.16)' }}
+          />
+          {/* framed logo card */}
+          <div className="ls-emblem relative overflow-hidden rounded-[22px] border-2 border-yellow-400/70 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9),0_0_64px_rgba(250,204,21,0.28)]">
+            <img
+              src="/images/adsrcuplogo.png"
+              alt="ADSR Cup 2026 — Torneio de Futebol · SUB 8/10/12/14/16 · 13/14 e 20/21 de Junho"
+              className="block h-auto"
+              style={{ width: 'clamp(220px, 68vw, 330px)' }}
+            />
+            {/* gold inner highlight */}
+            <div
+              className="pointer-events-none absolute inset-0 rounded-[22px]"
+              style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.16), inset 0 0 70px rgba(0,0,0,0.35)' }}
+            />
+            {/* shine sweep */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[22px]">
+              <div
+                className="ls-shine absolute inset-y-0 -left-1/3 w-1/3"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.30), transparent)' }}
+              />
+            </div>
+          </div>
+          {/* corner spinning ball badge — nods to kickoff */}
+          <div className="ls-ball-corner absolute -bottom-4 -right-3 z-20">
+            <svg className="ls-ball-spin" width="44" height="44" viewBox="0 0 100 100" role="img" aria-hidden>
               <defs>
-                <radialGradient id="ballBody" cx="38%" cy="32%" r="75%">
+                <radialGradient id="cballBody" cx="38%" cy="32%" r="75%">
                   <stop offset="0%" stopColor="#1b3a73" />
                   <stop offset="55%" stopColor="#0c2150" />
                   <stop offset="100%" stopColor="#05122f" />
                 </radialGradient>
-                <radialGradient id="ballSheen" cx="34%" cy="28%" r="40%">
-                  <stop offset="0%" stopColor="rgba(255,255,255,0.55)" />
-                  <stop offset="100%" stopColor="rgba(255,255,255,0)" />
-                </radialGradient>
               </defs>
-
-              <circle cx="50" cy="50" r="48" fill="url(#ballBody)" stroke="#facc15" strokeWidth="1.5" />
-
-              {/* seams from central pentagon vertices to the rim */}
-              <g stroke="#facc15" strokeWidth="2.2" strokeLinecap="round" opacity="0.9">
+              <circle cx="50" cy="50" r="48" fill="url(#cballBody)" stroke="#facc15" strokeWidth="2" />
+              <g stroke="#facc15" strokeWidth="2.6" strokeLinecap="round" opacity="0.9">
                 <line x1="50" y1="34" x2="50" y2="2" />
                 <line x1="65.2" y1="45.1" x2="95.6" y2="35.2" />
                 <line x1="59.4" y1="62.9" x2="78.2" y2="88.8" />
                 <line x1="40.6" y1="62.9" x2="21.8" y2="88.8" />
                 <line x1="34.8" y1="45.1" x2="4.4" y2="35.2" />
               </g>
-
-              {/* central pentagon */}
-              <polygon
-                points="50,34 65.2,45.1 59.4,62.9 40.6,62.9 34.8,45.1"
-                fill="#facc15"
-              />
-
-              {/* rim pentagons (rotated copies) */}
-              <g fill="#facc15" opacity="0.92">
-                <polygon points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22" />
-                <polygon
-                  points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22"
-                  transform="rotate(72 50 50)"
-                />
-                <polygon
-                  points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22"
-                  transform="rotate(144 50 50)"
-                />
-                <polygon
-                  points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22"
-                  transform="rotate(216 50 50)"
-                />
-                <polygon
-                  points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22"
-                  transform="rotate(288 50 50)"
-                />
-              </g>
-
-              {/* sheen */}
-              <circle cx="50" cy="50" r="48" fill="url(#ballSheen)" />
+              <polygon points="50,34 65.2,45.1 59.4,62.9 40.6,62.9 34.8,45.1" fill="#facc15" />
             </svg>
-          </div>
-        </div>
-
-        {/* ── CATEGORY MARQUEE ── */}
-        <div
-          className="ls-in ls-d3 relative mt-1 w-full max-w-md overflow-hidden"
-          style={{ maskImage: 'linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent)', WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent)' }}
-        >
-          <div className="ls-marquee flex w-max items-center gap-3 py-1">
-            {[...CATEGORIES, ...CATEGORIES, ...CATEGORIES].map((cat, i) => (
-              <span
-                key={i}
-                className="flex items-center gap-3 whitespace-nowrap font-display text-[11px] font-black uppercase tracking-[0.22em] text-white/60"
-              >
-                {cat}
-                <span className="h-1 w-1 rounded-full bg-[#facc15]/70" />
-              </span>
-            ))}
           </div>
         </div>
 
@@ -238,9 +202,15 @@ export const LoadingScreen: React.FC = () => {
         @keyframes ls-shadow { 0%,100% { transform: translateX(-50%) scale(1); opacity: 0.55; } 50% { transform: translateX(-50%) scale(0.7); opacity: 0.3; } }
         @keyframes ls-pulse { 0%,100% { opacity: 0.2; transform: translateX(-50%) scale(1); } 50% { opacity: 0.42; transform: translateX(-50%) scale(1.18); } }
 
-        /* marquee */
-        .ls-marquee { animation: ls-marquee 16s linear infinite; }
-        @keyframes ls-marquee { to { transform: translateX(-33.33%); } }
+        /* cup emblem */
+        .ls-aura { animation: ls-aura 9s linear infinite; }
+        @keyframes ls-aura { to { transform: rotate(360deg); } }
+        .ls-emblem { animation: ls-emblem-in 0.9s cubic-bezier(0.16,1,0.3,1) both, ls-float 5s ease-in-out 0.9s infinite; }
+        @keyframes ls-emblem-in { 0% { opacity: 0; transform: translateY(24px) scale(0.88); } 60% { opacity: 1; transform: translateY(0) scale(1.015); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes ls-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+        .ls-shine { animation: ls-shine 5.5s 1.3s ease-in-out infinite; }
+        @keyframes ls-shine { 0% { transform: translateX(-160%) skewX(-18deg); } 60%,100% { transform: translateX(520%) skewX(-18deg); } }
+        .ls-ball-corner { animation: ls-float 4.2s ease-in-out 0.6s infinite; }
 
         /* loader dots */
         .ls-dot { animation: ls-blink 1.4s infinite both; }
@@ -261,8 +231,9 @@ export const LoadingScreen: React.FC = () => {
 
         @media (prefers-reduced-motion: reduce) {
           .ls-ball-spin, .ls-ball-bob, .ls-ball-shadow, .ls-halo, .ls-beam,
-          .ls-marquee, .ls-dot, .ls-bar, .ls-in { animation: none; }
-          .ls-in { opacity: 1; }
+          .ls-aura, .ls-emblem, .ls-shine, .ls-ball-corner,
+          .ls-dot, .ls-bar, .ls-in { animation: none; }
+          .ls-in, .ls-emblem { opacity: 1; }
         }
       `}</style>
     </div>
