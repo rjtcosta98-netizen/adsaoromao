@@ -9,6 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    host: true, // expor na rede local — permite abrir no telemóvel via IP da máquina
+  },
   build: {
     outDir: 'dist',
     minify: 'esbuild',

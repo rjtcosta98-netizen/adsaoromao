@@ -58,6 +58,16 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       0%, 100% { box-shadow: 0 0 0 0 rgba(250,204,21,0.0); }
       50% { box-shadow: 0 0 0 6px rgba(250,204,21,0.12); }
     }
+    @keyframes hero-kenburns {
+      0% { transform: scale(1.06); }
+      100% { transform: scale(1.13); }
+    }
+    @keyframes hero-rise {
+      from { opacity: 0; transform: translateY(26px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-kenburns { animation: hero-kenburns 22s ease-in-out infinite alternate; will-change: transform; }
+    .hero-rise { animation: hero-rise 0.8s cubic-bezier(0.16,1,0.3,1) both; }
     .mascot-bob { animation: mascot-bob 3s ease-in-out infinite; }
     .padrinho-float { animation: padrinho-float 5s ease-in-out infinite; will-change: transform; }
     .tick-flip { animation: tick-flip 0.18s ease-out; }
@@ -69,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
       mix-blend-mode: overlay;
     }
     @media (prefers-reduced-motion: reduce) {
-      .mascot-bob, .padrinho-float, .tick-flip, .cup-card { animation: none; }
+      .mascot-bob, .padrinho-float, .tick-flip, .cup-card, .hero-kenburns, .hero-rise { animation: none; }
     }
   `;
 
@@ -88,85 +98,98 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         className="relative flex items-center overflow-hidden"
         style={{ minHeight: '100svh' }}
       >
-        {/* Background video — YouTube */}
+        {/* Background poster — responsive (mobile portrait / desktop landscape) */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
-            src="/images/adsrcuphero.png"
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <iframe
-            src="https://www.youtube.com/embed/CNTdp9OvmTk?autoplay=1&mute=1&loop=1&playlist=CNTdp9OvmTk&controls=0&disablekb=1&fs=0&iv_load_policy=3&rel=0&showinfo=0&modestbranding=1&playsinline=1&enablejsapi=0"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            title=""
-            aria-hidden
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              /* oversized by 80px top+bottom to push YouTube's UI chrome off-screen */
-              transform: 'translate(-50%, calc(-50% - 40px))',
-              width: 'max(100%, calc((100svh + 80px) * 16 / 9))',
-              height: 'max(calc(100% + 80px), calc(100vw * 9 / 16 + 80px))',
-              border: 'none',
-              pointerEvents: 'none',
-            }}
-          />
+          <picture>
+            {/* Mobile tournament poster (tall) */}
+            <source
+              media="(max-width: 1023px)"
+              srcSet="/images/adsrcuphero-mobile.png"
+            />
+            {/* Desktop tournament poster (wide) */}
+            <img
+              src="/images/adsrcuphero.png"
+              alt="ADSR Cup 2026 — Torneio de Futebol Sub 8, 10, 12, 14 e 16"
+              className="hero-kenburns absolute inset-0 h-full w-full object-cover object-top lg:object-center"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
-        {/* Overlays */}
-        <div className="absolute inset-0 z-[1] bg-navy-900/65 mix-blend-multiply" />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-navy-900 via-transparent to-transparent" />
 
-        {/* Left text content */}
-        <div className="relative z-10 container mx-auto w-full px-4 pb-10 pt-28 sm:pt-32 lg:pt-8">
+        {/* Cinematic overlays — anchor UI without hiding the artwork */}
+        {/* tighten contrast slightly so glass UI pops over the busy collage */}
+        <div className="absolute inset-0 z-[1] bg-navy-900/25 mix-blend-multiply" />
+        {/* floor gradient — grounds bottom CTAs; darker on mobile to bed the full text block */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-navy-900 via-navy-900/55 to-transparent lg:via-navy-900/15" />
+        {/* left scrim — desktop only, gives the headline a legible bed */}
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-2/5 z-[1] bg-gradient-to-r from-navy-900/80 via-navy-900/25 to-transparent" />
+        {/* cinematic vignette */}
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{ boxShadow: 'inset 0 0 180px 40px rgba(2,10,24,0.65)' }}
+        />
+        {/* gold spark atmosphere */}
+        <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
+          {[
+            { l: '8%', d: '0s', dur: '9s', s: 3 }, { l: '21%', d: '2.4s', dur: '11s', s: 2 },
+            { l: '34%', d: '5s', dur: '8s', s: 4 }, { l: '47%', d: '1.2s', dur: '12s', s: 2 },
+            { l: '63%', d: '3.6s', dur: '10s', s: 3 }, { l: '78%', d: '0.6s', dur: '13s', s: 2 },
+            { l: '88%', d: '4.2s', dur: '9s', s: 3 }, { l: '95%', d: '6s', dur: '11s', s: 2 },
+          ].map((p, i) => (
+            <span
+              key={i}
+              className="hero-spark absolute top-0 rounded-full"
+              style={{
+                left: p.l,
+                width: p.s,
+                height: p.s,
+                background: i % 3 === 0 ? '#fff7d6' : '#facc15',
+                boxShadow: `0 0 ${p.s * 3}px #facc15`,
+                animationDelay: p.d,
+                animationDuration: p.dur,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Left text content — same club-identity composition on every breakpoint,
+            scaled for portrait on mobile and bedded by the floor gradient. */}
+        <div className="relative z-10 container mx-auto w-full px-5 sm:px-6 lg:px-4 pb-12 sm:pb-14 pt-28 sm:pt-32 lg:pt-8 flex flex-col justify-end lg:justify-center min-h-[100svh] lg:min-h-0">
           <div className="max-w-2xl">
-            {/* Mobile: ADSR Cup headline */}
-            <div className="sm:hidden flex items-end gap-3 mb-4">
-              <h1 className="font-display text-4xl font-bold text-white leading-tight uppercase drop-shadow-lg flex-1">
-                <span className="block text-[11px] tracking-[0.3em] text-white/50 font-bold mb-1" style={{ fontFamily: 'system-ui, sans-serif' }}>AD SÃO ROMÃO APRESENTA</span>
-                <span className="text-yellow-400" style={{ fontFamily: "'Bebas Neue', 'Impact', 'Arial Black', sans-serif", fontSize: '3.2rem', lineHeight: 1 }}>ADSR CUP</span>
-                <span className="block text-white" style={{ fontFamily: "'Bebas Neue', 'Impact', 'Arial Black', sans-serif", fontSize: '2.4rem', lineHeight: 1 }}>2026</span>
+            {/* Club identity — mobile mirrors desktop, scaled to the format */}
+            <div className="hero-rise" style={{ animationDelay: '0.05s' }}>
+              <span className="inline-flex items-center gap-2 mb-3.5 lg:mb-5 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3.5 py-1 lg:px-4 lg:py-1.5 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-yellow-400 shadow-[0_0_8px_#facc15]" />
+                <span className="font-display text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.22em] lg:tracking-[0.3em] text-yellow-400">
+                  Desde 1976 · São Romão
+                </span>
+              </span>
+              <h1 className="font-display text-[2.75rem] leading-[0.92] sm:text-5xl md:text-7xl lg:leading-[0.95] font-bold text-white uppercase mb-4 lg:mb-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.7)]">
+                ASSOCIAÇÃO<br />DESPORTIVA<br />
+                <span className="text-yellow-400">SÃO ROMÃO!</span>
               </h1>
-              <img
-                src="/images/TACA/mascote.png"
-                alt="Mascote ADSR Cup"
-                className="w-24 h-auto object-contain drop-shadow-[0_4px_16px_rgba(250,204,21,0.4)] flex-shrink-0 self-end"
-                style={{ filter: 'drop-shadow(0 0 12px rgba(250,204,21,0.3))' }}
-              />
+              <p className="text-gray-200 text-[15px] sm:text-lg md:text-xl leading-relaxed max-w-md border-l-4 border-yellow-400 pl-4 lg:pl-6 drop-shadow">
+                Onde a paixão se transforma em glória. Faz parte da nossa história.
+              </p>
             </div>
 
-            {/* Desktop: original club name */}
-            <h1 className="hidden sm:block font-display text-5xl md:text-7xl lg:text-7xl font-bold text-white leading-tight uppercase mb-6 drop-shadow-lg">
-              ASSOCIAÇÃO DESPORTIVA<br />
-              <span className="text-yellow-400">SÃO ROMÃO!</span>
-            </h1>
-
-            {/* Mobile subtitle: Cup dates */}
-            <p className="sm:hidden text-gray-300 text-base leading-relaxed max-w-xl border-l-4 border-yellow-400 pl-4 mb-4">
-              Torneio de Futebol · Sub 8, 10, 12, 14 &amp; 16<br />
-              <span className="text-yellow-400 font-bold">13/14 e 20/21 de Junho</span> · Estádio N.S. Conceição
-            </p>
-
-            {/* Desktop subtitle: original */}
-            <p className="hidden sm:block text-gray-300 text-lg md:text-xl leading-relaxed max-w-xl border-l-4 border-yellow-400 pl-6">
-              Onde a paixão se transforma em glória. Acompanha a nossa caminhada rumo à vitória e faz parte da nossa história.
-            </p>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {/* Actions — shown on every breakpoint */}
+            <div className="hero-rise mt-6 lg:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ animationDelay: '0.2s' }}>
               <button
                 onClick={() => {
                   const element = document.getElementById('latest-results');
                   if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 px-6 sm:px-8 rounded shadow-lg transition-transform transform hover:scale-105 text-sm sm:text-base"
+                className="group relative overflow-hidden bg-yellow-400 hover:bg-yellow-300 text-navy-900 font-bold py-3.5 px-8 rounded-lg shadow-[0_10px_30px_-8px_rgba(250,204,21,0.5)] transition-all duration-200 hover:scale-[1.03] active:scale-95 text-sm sm:text-base uppercase tracking-wide"
               >
-                RESULTADOS
+                <span className="relative z-10">Resultados</span>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
               </button>
               <button
                 onClick={() => onNavigate && onNavigate('clube')}
-                className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold py-3 px-6 sm:px-8 rounded transition-colors text-sm sm:text-base"
+                className="bg-white/5 border-2 border-white/70 text-white hover:bg-white hover:text-navy-900 backdrop-blur-sm font-bold py-3.5 px-8 rounded-lg transition-all duration-200 text-sm sm:text-base uppercase tracking-wide active:scale-95"
               >
-                O CLUBE
+                O Clube
               </button>
             </div>
           </div>

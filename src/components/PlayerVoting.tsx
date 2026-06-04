@@ -83,6 +83,267 @@ const Unit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
   </div>
 );
 
+// Brand soccer ball — navy body with gold pentagon panels. Reused across the
+// loading screen and the voting verdict so the football motif stays consistent.
+const SoccerBall: React.FC<{ size?: number; className?: string; style?: React.CSSProperties }> = ({
+  size = 40,
+  className,
+  style,
+}) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" className={className} style={style} aria-hidden>
+    <defs>
+      <radialGradient id="vbBody" cx="38%" cy="32%" r="75%">
+        <stop offset="0%" stopColor="#1b3a73" />
+        <stop offset="55%" stopColor="#0c2150" />
+        <stop offset="100%" stopColor="#05122f" />
+      </radialGradient>
+      <radialGradient id="vbSheen" cx="34%" cy="28%" r="40%">
+        <stop offset="0%" stopColor="rgba(255,255,255,0.5)" />
+        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="48" fill="url(#vbBody)" stroke="#FFD700" strokeWidth="1.5" />
+    <g stroke="#FFD700" strokeWidth="2.2" strokeLinecap="round" opacity="0.9">
+      <line x1="50" y1="34" x2="50" y2="2" />
+      <line x1="65.2" y1="45.1" x2="95.6" y2="35.2" />
+      <line x1="59.4" y1="62.9" x2="78.2" y2="88.8" />
+      <line x1="40.6" y1="62.9" x2="21.8" y2="88.8" />
+      <line x1="34.8" y1="45.1" x2="4.4" y2="35.2" />
+    </g>
+    <polygon points="50,34 65.2,45.1 59.4,62.9 40.6,62.9 34.8,45.1" fill="#FFD700" />
+    <g fill="#FFD700" opacity="0.92">
+      <polygon points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22" />
+      <polygon points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22" transform="rotate(72 50 50)" />
+      <polygon points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22" transform="rotate(144 50 50)" />
+      <polygon points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22" transform="rotate(216 50 50)" />
+      <polygon points="50,3 58.56,9.22 55.29,19.28 44.71,19.28 41.44,9.22" transform="rotate(288 50 50)" />
+    </g>
+    <circle cx="50" cy="50" r="48" fill="url(#vbSheen)" />
+  </svg>
+);
+
+// ════════════════════════════════════════════════════════════════════════════
+// FINAL WHISTLE — closed-voting verdict
+// A night-stadium pitch: floodlights, painted pitch markings, a gold ball
+// orbiting the trophy on the centre spot, and a scoreboard headline.
+// ════════════════════════════════════════════════════════════════════════════
+const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
+  // Deterministic championship confetti rising off the pitch.
+  const sparks = React.useMemo(
+    () =>
+      Array.from({ length: 22 }, (_, i) => ({
+        left: (i * 37) % 100,
+        delay: (i % 11) * 0.9,
+        dur: 6 + (i % 5) * 1.4,
+        size: 2 + (i % 3),
+        bright: i % 4 === 0,
+      })),
+    [],
+  );
+
+  return (
+    <section className="relative overflow-hidden bg-[#021d40] py-12 sm:py-16">
+      <style>{`
+        @keyframes sv-orbit { to { transform: rotate(360deg); } }
+        @keyframes sv-orbit-rev { to { transform: rotate(-360deg); } }
+        @keyframes sv-roll { to { transform: rotate(360deg); } }
+        @keyframes sv-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes sv-glow {
+          0%,100% { opacity: .55; transform: scale(1); }
+          50% { opacity: .9; transform: scale(1.08); }
+        }
+        @keyframes sv-shimmer { to { background-position: 220% center; } }
+        @keyframes sv-rise {
+          0% { transform: translateY(20px) scale(.7); opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: .7; }
+          100% { transform: translateY(-340px) scale(.4); opacity: 0; }
+        }
+        @keyframes sv-pulse-dot {
+          0%,100% { opacity: 1; transform: scale(1); }
+          50% { opacity: .35; transform: scale(.7); }
+        }
+        @keyframes sv-tick { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+        @keyframes sv-seal-in {
+          0% { transform: rotate(-18deg) scale(1.7); opacity: 0; }
+          60% { transform: rotate(-12deg) scale(.92); opacity: 1; }
+          100% { transform: rotate(-12deg) scale(1); opacity: 1; }
+        }
+        @keyframes sv-reveal {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes sv-beam-l { 0%,100% { transform: rotate(17deg); opacity: .4; } 50% { transform: rotate(23deg); opacity: .58; } }
+        @keyframes sv-beam-r { 0%,100% { transform: rotate(-17deg); opacity: .58; } 50% { transform: rotate(-23deg); opacity: .4; } }
+        .sv-shimmer {
+          background: linear-gradient(100deg,#caa53d 0%,#FFD700 18%,#fff7d6 32%,#FFD700 46%,#caa53d 64%,#FFD700 100%);
+          background-size: 220% auto;
+          -webkit-background-clip: text; background-clip: text;
+          -webkit-text-fill-color: transparent; color: transparent;
+          animation: sv-shimmer 5.5s linear infinite;
+        }
+        .sv-pitch { transform: perspective(620px) rotateX(60deg); transform-origin: 50% 100%; }
+        .sv-beam {
+          position: absolute; top: -34%; width: 56%; height: 130%; filter: blur(30px);
+          background: linear-gradient(180deg, rgba(255,247,214,0.5), rgba(255,215,0,0.05) 55%, transparent 80%);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .sv-anim { animation: none !important; }
+        }
+      `}</style>
+
+      {/* Stadium atmosphere */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(120% 80% at 50% -8%, rgba(255,215,0,0.16), rgba(255,215,0,0) 46%), radial-gradient(70% 55% at 50% 82%, rgba(15,60,40,0.55), rgba(2,29,64,0) 60%)',
+        }}
+      />
+      {/* Floodlights */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="sv-beam sv-anim" style={{ left: '-16%', transformOrigin: 'top center', animation: 'sv-beam-l 6s ease-in-out infinite' }} />
+        <div className="sv-beam sv-anim" style={{ right: '-16%', transformOrigin: 'top center', animation: 'sv-beam-r 6s ease-in-out infinite' }} />
+      </div>
+      {/* Painted pitch markings */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[-14%] mx-auto h-[78%] w-[160%] opacity-80">
+        <div className="sv-pitch relative h-full w-full">
+          {/* halfway line */}
+          <div className="absolute left-0 right-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent)' }} />
+          {/* centre circle */}
+          <div className="absolute left-1/2 top-1/2 h-[40%] w-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/15" />
+          {/* centre spot */}
+          <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/40" />
+          {/* penalty arc (bottom) */}
+          <div className="absolute left-1/2 bottom-[-6%] h-[26%] w-[44%] -translate-x-1/2 rounded-full border border-white/12" />
+        </div>
+      </div>
+      {/* Rising confetti */}
+      <div className="pointer-events-none absolute inset-0">
+        {sparks.map((s, i) => (
+          <span
+            key={i}
+            className="sv-anim absolute bottom-10 rounded-full"
+            style={{
+              left: `${s.left}%`,
+              width: s.size,
+              height: s.size,
+              background: s.bright ? '#fff7d6' : '#FFD700',
+              boxShadow: `0 0 ${s.bright ? 10 : 6}px ${s.bright ? '#fff7d6' : '#FFD700'}`,
+              animation: `sv-rise ${s.dur}s ${s.delay}s ease-in infinite`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        {/* Scoreboard kicker */}
+        <div
+          className="sv-anim inline-flex items-center gap-2.5 rounded-md border border-yellow-400/30 bg-[#020f24]/80 px-4 py-1.5 shadow-[inset_0_0_18px_rgba(255,215,0,0.08)] backdrop-blur-sm"
+          style={{ animation: 'sv-reveal .7s .05s both' }}
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="sv-anim absolute inline-flex h-full w-full rounded-full bg-yellow-400" style={{ animation: 'sv-pulse-dot 1.6s ease-in-out infinite' }} />
+          </span>
+          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-yellow-400/90">
+            Apito final · Época {season}
+          </span>
+        </div>
+
+        {/* Trophy on the centre spot, ball orbiting */}
+        <div className="relative mx-auto mt-8 mb-1 flex h-36 w-36 items-center justify-center">
+          {/* glow */}
+          <div
+            className="sv-anim absolute inset-0 rounded-full blur-2xl"
+            style={{ background: 'radial-gradient(circle,#FFD700,transparent 65%)', animation: 'sv-glow 3.4s ease-in-out infinite' }}
+          />
+          {/* orbit ring with rolling ball */}
+          <div className="sv-anim absolute inset-0" style={{ animation: 'sv-orbit 9s linear infinite' }}>
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+              <SoccerBall size={26} className="sv-anim drop-shadow-[0_4px_8px_rgba(0,0,0,.5)]" style={{ animation: 'sv-roll 2.2s linear infinite' }} />
+            </div>
+          </div>
+          {/* inner dashed ring */}
+          <div
+            className="sv-anim absolute inset-5 rounded-full border border-dashed border-yellow-400/20"
+            style={{ animation: 'sv-orbit-rev 22s linear infinite' }}
+          >
+            <span className="absolute right-0 top-1/2 h-1 w-1 -translate-y-1/2 translate-x-1/2 rounded-full bg-yellow-400/80" />
+          </div>
+          {/* trophy plinth */}
+          <div
+            className="sv-anim relative flex h-20 w-20 items-center justify-center rounded-2xl border border-yellow-400/40 bg-gradient-to-b from-[#08438a] to-[#021d40] shadow-[inset_0_1px_0_rgba(255,255,255,.18),0_18px_40px_-12px_rgba(0,0,0,.7)]"
+            style={{ animation: 'sv-bob 4.2s ease-in-out infinite' }}
+          >
+            <Trophy size={36} className="text-yellow-400 drop-shadow-[0_0_12px_rgba(255,215,0,.55)]" strokeWidth={1.6} />
+          </div>
+        </div>
+
+        {/* Scoreboard headline */}
+        <p
+          className="sv-anim font-display text-[11px] font-semibold uppercase tracking-[0.4em] text-white/40"
+          style={{ animation: 'sv-reveal .7s .15s both' }}
+        >
+          O vencedor será
+        </p>
+        <h2
+          className="sv-anim sv-shimmer mt-1.5 uppercase leading-[0.92]"
+          style={{
+            fontFamily: "'Bebas Neue','Oswald','Impact',sans-serif",
+            fontSize: 'clamp(2.3rem, 9vw, 4.4rem)',
+            letterSpacing: '0.01em',
+            animation: 'sv-reveal .7s .22s both, sv-shimmer 5.5s linear infinite',
+          }}
+        >
+          Resultado da<br />votação em breve
+        </h2>
+
+        {/* LED-board vote ticker */}
+        <div
+          className="sv-anim mx-auto mt-6 flex w-full max-w-md items-center justify-center gap-3 rounded-lg border border-yellow-400/15 bg-[#020f24]/85 px-5 py-2.5 shadow-[inset_0_0_24px_rgba(0,0,0,0.5)] backdrop-blur-sm"
+          style={{ animation: 'sv-reveal .7s .3s both' }}
+        >
+          <Loader2 size={15} className="sv-anim text-yellow-400" style={{ animation: 'sv-orbit 1.4s linear infinite' }} />
+          <span className="font-display text-[11px] font-bold uppercase tracking-[0.24em] text-yellow-400/90">
+            A apurar os votos
+          </span>
+          <span className="flex items-center gap-1">
+            {[0, 1, 2].map(d => (
+              <span
+                key={d}
+                className="sv-anim h-1.5 w-1.5 rounded-full bg-yellow-400"
+                style={{ animation: `sv-tick 1.2s ${d * 0.18}s ease-in-out infinite` }}
+              />
+            ))}
+          </span>
+        </div>
+
+        <p
+          className="sv-anim mx-auto mt-5 max-w-sm text-[13px] leading-relaxed text-white/45"
+          style={{ animation: 'sv-reveal .7s .38s both' }}
+        >
+          A votação da época {season} terminou. Obrigado a todos os adeptos —
+          o nome do <span className="text-yellow-400/80">Jogador do Ano</span> é revelado em breve.
+        </p>
+
+      </div>
+
+      {/* Referee "final whistle" badge */}
+      <div className="pointer-events-none absolute bottom-6 right-6 hidden sm:block">
+        <div
+          className="sv-anim flex h-20 w-20 flex-col items-center justify-center rounded-full border-2 border-dashed border-yellow-400/40 bg-[#020f24]/60 text-center"
+          style={{ animation: 'sv-seal-in .9s .6s both' }}
+        >
+          <SoccerBall size={20} />
+          <span className="mt-1 font-display text-[8px] font-bold uppercase leading-tight tracking-widest text-yellow-400/60">
+            Apito<br />final
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export const PlayerVoting: React.FC = () => {
   const navigate = useNavigate();
   const [players, setPlayers] = useState<Candidate[]>([]);
@@ -277,7 +538,12 @@ export const PlayerVoting: React.FC = () => {
     );
   }
 
-  // ── Open / closed state ──────────────────────────────────────────────────────
+  // ── "Votação encerrada" state — The Sealed Verdict ───────────────────────────
+  if (votingState === 'closed') {
+    return <ClosedVerdict season={SEASON} />;
+  }
+
+  // ── Open state ───────────────────────────────────────────────────────────────
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -355,7 +621,7 @@ export const PlayerVoting: React.FC = () => {
                         <button
                           onClick={() => setPendingVoteId(player.id)}
                           disabled={!canVote || voting}
-                          className={`mt-auto w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200 mt-4
+                          className={`mt-4 w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200
                             ${isVoted
                               ? 'bg-yellow-400 text-navy-900 cursor-default'
                               : !canVote
