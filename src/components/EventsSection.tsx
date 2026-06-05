@@ -165,7 +165,7 @@ const SPONSORS = [
   { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png" },
   { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
   { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png" },
-  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png" },
+  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", darkBg: true },
   { name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png" },
 
 ];

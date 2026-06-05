@@ -36,7 +36,7 @@ const SPONSORS_DATA = {
     { id: 35, name: "Beijo Gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png", url: "#" },
     { id: 36, name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png", url: "#" },
     { id: 37, name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", url: "#" },
-    { id: 38, name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", url: "#" },
+    { id: 38, name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", url: "#", darkBg: true },
     { id: 39, name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", url: "#" },
   ],
   local: [
@@ -216,7 +216,7 @@ export const SponsorsList: React.FC = () => {
                    rel="noopener noreferrer"
                    className="rounded-xl border border-yellow-400/15 bg-navy-800/60 hover:border-yellow-400/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col"
                  >
-                    <div className="h-28 flex items-center justify-center bg-white p-3">
+                    <div className={`h-28 flex items-center justify-center p-3 ${sponsor.darkBg ? 'bg-[#1a2744]' : 'bg-white'}`}>
                       <img
                         src={sponsor.logo}
                         alt={sponsor.name}
