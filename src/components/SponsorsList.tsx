@@ -35,6 +35,9 @@ const SPONSORS_DATA = {
     { id: 34, name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png", url: "#" },
     { id: 35, name: "Beijo Gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png", url: "#" },
     { id: 36, name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png", url: "#" },
+    { id: 37, name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", url: "#" },
+    { id: 38, name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", url: "#" },
+    { id: 39, name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", url: "#" },
   ],
   local: [
    { id: 5, name: 'Junta de Freguesia de S. Romão', category: 'Apoio Local', logo: 'https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_melhora-me_este_logo_sem_mudar_nada_e_remove_o_fundo-2.jpg', url: "#" },

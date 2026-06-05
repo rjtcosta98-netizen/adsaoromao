@@ -166,6 +166,7 @@ const SPONSORS = [
   { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
   { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png" },
   { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png" },
+  { name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png" },
 
 ];
 
