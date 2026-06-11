@@ -655,7 +655,7 @@ export const EventsSection: React.FC = () => {
                         <img
                           src={sponsor.logo}
                           alt={sponsor.name}
-                          className="absolute inset-0 h-full w-full object-contain p-3 opacity-90 transition-opacity duration-200 group-hover:opacity-100"
+                          className="absolute inset-0 h-full w-full object-contain opacity-90 transition-opacity duration-200 group-hover:opacity-100"
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center">

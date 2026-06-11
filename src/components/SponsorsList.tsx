@@ -219,12 +219,12 @@ export const SponsorsList: React.FC = () => {
                    rel="noopener noreferrer"
                    className="rounded-xl border border-yellow-400/15 bg-navy-800/60 hover:border-yellow-400/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col"
                  >
-                    <div className={`h-28 flex items-center justify-center p-3 ${'lightBg' in sponsor && sponsor.lightBg ? 'bg-white' : 'bg-[#0b1530]'}`}>
+                    <div className={`relative h-28 overflow-hidden ${'lightBg' in sponsor && sponsor.lightBg ? 'bg-white' : 'bg-[#0b1530]'}`}>
                       <img
                         src={sponsor.logo}
                         alt={sponsor.name}
                         loading="lazy"
-                        className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                     <div className="bg-navy-900/90 px-3 py-2 border-t border-yellow-400/10">
