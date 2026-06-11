@@ -19,27 +19,27 @@ const SPONSORS_DATA = {
   ],
   adsrcup: [
     { id: 20, name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/6.png", url: "https://elementgroup.pt" },
-    { id: 21, name: "CDT Equipamentos", logo: "/images/rdt.svg", url: "https://www.cdt-equipamentos.com/" },
+    { id: 21, name: "CDT Equipamentos", logo: "/images/rdt.svg", url: "https://www.cdt-equipamentos.com/", lightBg: true },
     { id: 22, name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg", url: "#" },
     { id: 23, name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", url: "https://www.alvesbandeira.pt/pt/" },
-    { id: 24, name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", url: "https://climahotel.pt/" },
+    { id: 24, name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", url: "https://climahotel.pt/", lightBg: true },
     { id: 25, name: "Mota e Mota - Santa Eulália", logo: "/images/patrocinadoresadsrcup/1.png", url: "#" },
     { id: 26, name: "Matias Nature", logo: "/images/patrocinadoresadsrcup/2.png", url: "#" },
-    { id: 27, name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png", url: "#" },
-    { id: 28, name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/4.png", url: "#" },
-    { id: 29, name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/5.png", url: "#" },
+    { id: 27, name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png", url: "#", lightBg: true },
+    { id: 28, name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/4.png", url: "#", lightBg: true },
+    { id: 29, name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/5.png", url: "#", lightBg: true },
     { id: 30, name: "Radar da Sorte - Lotarias e Jogos, LDA", logo: "/images/patrocinadoresadsrcup/radar.png", url: "#" },
-    { id: 31, name: "Clínica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png", url: "#" },
+    { id: 31, name: "Clínica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png", url: "#", lightBg: true },
     { id: 32, name: "Ricky - Música e Animação", logo: "/images/patrocinadoresadsrcup/ricky.png", url: "#" },
     { id: 33, name: "Maquiseia", logo: "/images/patrocinadoresadsrcup/maquiseia.png", url: "#" },
     { id: 34, name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png", url: "#" },
-    { id: 35, name: "Beijo Gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.png", url: "#" },
+    { id: 35, name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.jpeg", url: "#", lightBg: true },
     { id: 36, name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png", url: "#" },
-    { id: 37, name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", url: "#" },
-    { id: 38, name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", url: "#", darkBg: true },
-    { id: 39, name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", url: "#" },
+    { id: 37, name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", url: "#", lightBg: true },
+    { id: 38, name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", url: "#", lightBg: true },
+    { id: 39, name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", url: "#", lightBg: true },
     { id: 40, name: "Intermarché - São Romão", logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/336373943_774218227154832_7660180339353628596_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zqoLsbMiQzYQ7kNvwFAXhzl&_nc_oc=Ado0TQhwUvCMKXN-v54neH_TLY6KKtItZOurLyPqR_I37dm-RydwiRKEPq0NWW2-K6M&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=4A-XEl03C88-l6sE1LnZog&_nc_ss=7b2a8&oh=00_Af9QzP8TRp-aXylW6RaA2HkiMqdux50pY8QSji0V5HzufA&oe=6A2E681B", url: "#" },
-    { id: 41, name: "Garcia & Gouveia - Serralharia Civil", logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/462211115_3310880269046285_2296661379039831832_n.png?stp=dst-png&cstp=mx937x393&ctp=s937x393&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Do3mBzC1ZZMQ7kNvwH96-n5&_nc_oc=Adovpao5daylEirJHnjl-75SK-uOnEzkTt-yyxUXG3qvlVe9-grVoIv9CyvBIS0bA-Q&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=BKNRxocW8M6vJvFnulB80w&_nc_ss=7b2a8&oh=00_Af8WeHS6b_tIl8wDy2a42VdQO8Wh3OS2EisKWzkMDXR7Bw&oe=6A2E5B53", url: "#" },
+    { id: 41, name: "Garcia & Gouveia - Serralharia Civil", logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/462211115_3310880269046285_2296661379039831832_n.png?stp=dst-png&cstp=mx937x393&ctp=s937x393&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Do3mBzC1ZZMQ7kNvwH96-n5&_nc_oc=Adovpao5daylEirJHnjl-75SK-uOnEzkTt-yyxUXG3qvlVe9-grVoIv9CyvBIS0bA-Q&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=BKNRxocW8M6vJvFnulB80w&_nc_ss=7b2a8&oh=00_Af8WeHS6b_tIl8wDy2a42VdQO8Wh3OS2EisKWzkMDXR7Bw&oe=6A2E5B53", url: "#", lightBg: true },
     { id: 42, name: "EXPLISEIA - Centro de Explicações", logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/581412084_1345400720716991_1569407786707471420_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x1024&ctp=s1024x1024&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EiJh60KuLnoQ7kNvwE7_t_j&_nc_oc=AdrKgOqlyBJRdLnfQ0fQUzxkVSWOwJCEnSYiSZfjcPSp49VMFAEYepbEg7L4w_zRLcc&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=tiboL_A84kL7oc96HIP4mw&_nc_ss=7b2a8&oh=00_Af_HKOBLTvCTQ8mwxSI18lyDVplCihC1SDZnouq5ipw8CA&oe=6A2E81D7", url: "#" },
   ],
   local: [
@@ -219,7 +219,7 @@ export const SponsorsList: React.FC = () => {
                    rel="noopener noreferrer"
                    className="rounded-xl border border-yellow-400/15 bg-navy-800/60 hover:border-yellow-400/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col"
                  >
-                    <div className={`h-28 flex items-center justify-center p-3 ${sponsor.darkBg ? 'bg-[#1a2744]' : 'bg-white'}`}>
+                    <div className={`h-28 flex items-center justify-center p-3 ${'lightBg' in sponsor && sponsor.lightBg ? 'bg-white' : 'bg-[#0b1530]'}`}>
                       <img
                         src={sponsor.logo}
                         alt={sponsor.name}
