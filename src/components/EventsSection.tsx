@@ -150,11 +150,11 @@ const SPONSORS = [
   { name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/6.png" },
   { name: "CDT Equipamentos", logo: "/images/rdt.svg", contain: true },
   { name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg" },
-  { name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg" },
+  { name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", pad: true },
   { name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", contain: true },
-  { name: "Intermarché - São Romão",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/336373943_774218227154832_7660180339353628596_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zqoLsbMiQzYQ7kNvwFAXhzl&_nc_oc=Ado0TQhwUvCMKXN-v54neH_TLY6KKtItZOurLyPqR_I37dm-RydwiRKEPq0NWW2-K6M&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=4A-XEl03C88-l6sE1LnZog&_nc_ss=7b2a8&oh=00_Af9QzP8TRp-aXylW6RaA2HkiMqdux50pY8QSji0V5HzufA&oe=6A2E681B" },
+  { name: "Intermarché - São Romão",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/336373943_774218227154832_7660180339353628596_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zqoLsbMiQzYQ7kNvwFAXhzl&_nc_oc=Ado0TQhwUvCMKXN-v54neH_TLY6KKtItZOurLyPqR_I37dm-RydwiRKEPq0NWW2-K6M&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=4A-XEl03C88-l6sE1LnZog&_nc_ss=7b2a8&oh=00_Af9QzP8TRp-aXylW6RaA2HkiMqdux50pY8QSji0V5HzufA&oe=6A2E681B", pad: true },
   { name: "Garcia & Gouveia - Serralharia Civil",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/462211115_3310880269046285_2296661379039831832_n.png?stp=dst-png&cstp=mx937x393&ctp=s937x393&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Do3mBzC1ZZMQ7kNvwH96-n5&_nc_oc=Adovpao5daylEirJHnjl-75SK-uOnEzkTt-yyxUXG3qvlVe9-grVoIv9CyvBIS0bA-Q&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=BKNRxocW8M6vJvFnulB80w&_nc_ss=7b2a8&oh=00_Af8WeHS6b_tIl8wDy2a42VdQO8Wh3OS2EisKWzkMDXR7Bw&oe=6A2E5B53", lightBg: true },
-  { name: "EXPLISEIA - Centro de Explicações",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/581412084_1345400720716991_1569407786707471420_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x1024&ctp=s1024x1024&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EiJh60KuLnoQ7kNvwE7_t_j&_nc_oc=AdrKgOqlyBJRdLnfQ0fQUzxkVSWOwJCEnSYiSZfjcPSp49VMFAEYepbEg7L4w_zRLcc&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=tiboL_A84kL7oc96HIP4mw&_nc_ss=7b2a8&oh=00_Af_HKOBLTvCTQ8mwxSI18lyDVplCihC1SDZnouq5ipw8CA&oe=6A2E81D7" },
+  { name: "EXPLISEIA - Centro de Explicações",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/581412084_1345400720716991_1569407786707471420_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x1024&ctp=s1024x1024&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EiJh60KuLnoQ7kNvwE7_t_j&_nc_oc=AdrKgOqlyBJRdLnfQ0fQUzxkVSWOwJCEnSYiSZfjcPSp49VMFAEYepbEg7L4w_zRLcc&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=tiboL_A84kL7oc96HIP4mw&_nc_ss=7b2a8&oh=00_Af_HKOBLTvCTQ8mwxSI18lyDVplCihC1SDZnouq5ipw8CA&oe=6A2E81D7", lightBg: true, pad: true },
   { name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png", lightBg: true },
   { name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/5.png", lightBg: true },
   { name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/4.png", lightBg: true },
@@ -168,7 +168,7 @@ const SPONSORS = [
   { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.jpeg", lightBg: true },
   { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
   { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", lightBg: true },
-  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", lightBg: true },
+  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png" },
   { name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", lightBg: true },
 
 ];
@@ -652,11 +652,13 @@ export const EventsSection: React.FC = () => {
                         : 'bg-[#0b1530]'
                     }`}>
                       {sponsor.logo ? (
-                        <img
-                          src={sponsor.logo}
-                          alt={sponsor.name}
-                          className="absolute inset-0 h-full w-full object-contain opacity-90 transition-opacity duration-200 group-hover:opacity-100"
-                        />
+                        <div className={`absolute inset-0 flex items-center justify-center ${'pad' in sponsor && (sponsor as any).pad ? 'p-3' : ''}`}>
+                          <img
+                            src={sponsor.logo}
+                            alt={sponsor.name}
+                            className="w-full h-full object-contain opacity-90 transition-opacity duration-200 group-hover:opacity-100"
+                          />
+                        </div>
                       ) : (
                         <div className="flex h-full w-full items-center justify-center">
                           <span className="text-center text-2xl font-black text-white/20">?</span>
