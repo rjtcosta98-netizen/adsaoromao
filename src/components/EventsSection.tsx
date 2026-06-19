@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { CalendarDays, MapPin } from "lucide-react";
+import { CalendarDays, CheckCircle2, CircleDot, MapPin, ShieldCheck, Star, Trophy, type LucideIcon } from "lucide-react";
 
-type CupCategoryId = "sub14" | "sub12" | "sub10" | "sub16";
+type CupCategoryId = "sub14" | "sub12" | "sub8" | "sub10" | "sub16";
 
 type CupTeam = {
   name: string;
@@ -24,6 +24,28 @@ type CupCategoryConfig = {
   teams: CupTeam[];
   summaryLabel: string;
   summarySubtext: string;
+  completed?: boolean;
+};
+
+type CupAward = {
+  title: string;
+  name: string;
+  club?: string;
+  icon: LucideIcon;
+  initials: string;
+  accent: "gold" | "violet" | "blue";
+  image?: string;
+};
+
+type CupStandingsRow = {
+  pos: number;
+  team: CupTeam;
+  j: number;
+  v: number;
+  e: number;
+  d: number;
+  pts: number;
+  isChampion?: boolean;
 };
 
 const ADSR_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/8062_imgbank.png";
@@ -35,9 +57,116 @@ const LUSITANO_VILDEMOINHOS_LOGO = "https://cdn-img.staticzz.com/img/logos/equip
 const ADOJ_CONQUISTADORES_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/43/266443_logo_ad_conquistadores.png";
 const ASDREQ_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/64163_imgbank_1715011586.png";
 const FC_REPESENSES_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/8116_imgbank.png";
+const SL_BENFICA_LOGO = "/images/slbenfica.jpg";
+const AGUIAR_DA_BEIRA_LOGO = "https://cdn-img.zerozero.pt/img/logos/equipas/3546_imgbank.png";
+const FC_OLIVEIRA_HOSPITAL_LOGO = "/images/team-logos/oliveira-hospital.png";
+const DRAGON_FORCE_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/46413_imgbank.png";
+const DESPORTIVO_CASTELO_BRANCO_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/10049_imgbank.png";
+const CD_TONDELA_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/4336_imgbank_1682585219.png";
+const ACADEMIA_5FS_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/89/366589_logo_acr_sao_domingos_20251031083010.jpg";
+const ACADEMICO_VISEU_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/2181_imgbank_1762193325.png";
+const ESTRELA_PORTALEGRE_LOGO = "https://cdn-img.staticzz.com/img/logos/equipas/5683_imgbank.png";
 const PADRINHO_IMAGE = "/images/TACA/tomas-silva-padrinho.jpg";
 const PADRINHO_VIDEO =
   "https://res.cloudinary.com/db3y3teyv/video/upload/v1779829309/AQOFtywr8q-Xf38UBu3YxGzXKM4jamH8CRL5T2OU8chTX8YoCNkV2fkcICN5ab6h286AjHIz58cYFBk45kK4ErAp5KfZ1WgvKex7xdXCiS1Ijw_ke3g3e.mp4";
+
+// Foto de campeão por escalão (mostrada no destaque quando o escalão termina).
+const CHAMPION_IMAGE: Partial<Record<CupCategoryId, string>> = {
+  sub14: "/images/ADSRCUP/CAMEPOES.JPG",
+  sub12: "/images/ADSRCUP/sub12campeos.jpg",
+};
+
+const CUP_STANDINGS: Partial<Record<CupCategoryId, CupStandingsRow[]>> = {
+  sub14: [
+    { pos: 1, team: { name: "AD São Romão (A)", image: ADSR_LOGO }, j: 4, v: 3, e: 1, d: 0, pts: 10, isChampion: true },
+    { pos: 2, team: { name: "Os Conquistadores", image: ADOJ_CONQUISTADORES_LOGO }, j: 4, v: 2, e: 1, d: 1, pts: 7 },
+    { pos: 3, team: { name: "Ac. Sporting Viseu", image: "https://cdn-img.staticzz.com/img/logos/equipas/16_imgbank_1741687081.png" }, j: 3, v: 2, e: 0, d: 1, pts: 6 },
+    { pos: 4, team: { name: "A.S.D.R.E.Q", image: ASDREQ_LOGO }, j: 3, v: 1, e: 1, d: 1, pts: 4 },
+    { pos: 5, team: { name: "AC Montemorense", image: MONTEMORENSE_LOGO }, j: 3, v: 1, e: 0, d: 2, pts: 3 },
+    { pos: 6, team: { name: "SC Celoricense", image: CELORICENSE_LOGO }, j: 3, v: 0, e: 2, d: 1, pts: 2 },
+    { pos: 7, team: { name: "AD São Romão (B)", image: ADSR_LOGO }, j: 3, v: 0, e: 2, d: 1, pts: 2 },
+    { pos: 8, team: { name: "Lusitano FC Vildemoinho", image: LUSITANO_VILDEMOINHOS_LOGO }, j: 3, v: 0, e: 1, d: 2, pts: 1 },
+  ],
+  sub12: [
+    { pos: 1, team: { name: "AD São Romão", image: ADSR_LOGO }, j: 5, v: 4, e: 1, d: 0, pts: 13, isChampion: true },
+    { pos: 2, team: { name: "GD Tabuense", image: "https://cdn-img.staticzz.com/img/logos/equipas/89/6489_logo_tabuense_20260429105342.png" }, j: 4, v: 4, e: 0, d: 0, pts: 12 },
+    { pos: 3, team: { name: "AC Montemorense", image: MONTEMORENSE_LOGO }, j: 4, v: 3, e: 1, d: 0, pts: 10 },
+    { pos: 4, team: { name: "SC Celoricense", image: CELORICENSE_LOGO }, j: 4, v: 2, e: 1, d: 1, pts: 7 },
+    { pos: 5, team: { name: "Ac. Sporting R. Frades", image: "https://cdn-img.staticzz.com/img/logos/equipas/16_imgbank_1741687081.png" }, j: 4, v: 2, e: 0, d: 2, pts: 6 },
+    { pos: 6, team: { name: "VF Naves", image: "/images/VFNAVES.png" }, j: 4, v: 2, e: 0, d: 2, pts: 6 },
+    { pos: 7, team: { name: "Seia FC (B)", image: SEIA_LOGO }, j: 4, v: 1, e: 1, d: 2, pts: 4 },
+    { pos: 8, team: { name: "Aguiar da Beira", image: AGUIAR_DA_BEIRA_LOGO }, j: 4, v: 1, e: 0, d: 3, pts: 3 },
+    { pos: 9, team: { name: "Os Repesenses", image: FC_REPESENSES_LOGO }, j: 4, v: 0, e: 0, d: 4, pts: 0 },
+    { pos: 10, team: { name: "Seia FC (A)", image: SEIA_LOGO }, j: 4, v: 0, e: 0, d: 4, pts: 0 },
+  ],
+};
+
+const CUP_AWARDS: Partial<Record<CupCategoryId, CupAward[]>> = {
+  sub14: [
+    {
+      title: "Melhor Marcador",
+      name: "João Simões",
+      club: "AD São Romão (A)",
+      icon: CircleDot,
+      initials: "JS",
+      accent: "gold",
+      image: "/images/ADSRCUP/JS.JPG",
+    },
+    {
+      title: "Melhor Jogador",
+      name: "Tomas Pina Alves",
+      club: "Os Conquistadores",
+      icon: Star,
+      initials: "TP",
+      accent: "violet",
+      image: "/images/ADSRCUP/TP.JPG",
+    },
+    {
+      title: "Melhor Guarda-Redes",
+      name: "Rodrigo Afonso Figueiredo",
+      club: "A.S.D.R.E.Q",
+      icon: ShieldCheck,
+      initials: "RF",
+      accent: "blue",
+      image: "/images/ADSRCUP/RF.JPG",
+    },
+  ],
+  sub12: [
+    {
+      title: "Melhor Marcador",
+      name: "Diego Cabrita",
+      icon: CircleDot,
+      initials: "DC",
+      accent: "gold",
+      image: "/images/ADSRCUP/sub12melhormarcador.jpg",
+    },
+    {
+      title: "Melhor Jogador(a)",
+      name: "Heloise",
+      club: "Ribeira de Frades",
+      icon: Star,
+      initials: "H",
+      accent: "violet",
+      image: "/images/ADSRCUP/sub12mvp.jpg",
+    },
+    {
+      title: "Melhor Guarda-Redes",
+      name: "Gonçalo Carapinheiro",
+      icon: ShieldCheck,
+      initials: "GC",
+      accent: "blue",
+      image: "/images/ADSRCUP/GonçaloCarapinheiro.jpg",
+    },
+    {
+      title: "Melhor Guarda-Redes",
+      name: "Guilherme Fernandes",
+      icon: ShieldCheck,
+      initials: "GF",
+      accent: "blue",
+      image: "/images/ADSRCUP/GuilhermeFernandes.jpg",
+    },
+  ],
+};
 
 const CUP_CATEGORIES: CupCategoryConfig[] = [
   {
@@ -52,6 +181,7 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     backgroundPosition: "70% center",
     summaryLabel: "Sub-14 · 13 Junho",
     summarySubtext: "Sub 8, 10, 12, 14 e 16",
+    completed: true,
     teams: [
       { name: "Sporting Clube Celoricense", image: CELORICENSE_LOGO },
       { name: "AD São Romão (A)", image: ADSR_LOGO },
@@ -78,6 +208,7 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     backgroundPosition: "center top",
     summaryLabel: "Sub-12 · 14 Junho",
     summarySubtext: "Equipas confirmadas e uma vaga por fechar",
+    completed: true,
     teams: [
       { name: "AC Montemorense", image: MONTEMORENSE_LOGO },
       { name: "AD São Romão", image: ADSR_LOGO },
@@ -95,6 +226,31 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     ],
   },
   {
+    id: "sub8",
+    label: "Sub-8",
+    tabHint: "20 Junho",
+    subtitle: "Equipas Confirmadas · Sub-8",
+    dateLabel: "20 Junho 2026",
+    teamDateLabel: "SUB-8 · 20 Junho 2026",
+    countdownTarget: "2026-06-20T09:00:00",
+    backgroundImage: "/images/adsrcuphero.png",
+    backgroundPosition: "70% center",
+    summaryLabel: "Sub-8 · 20 Junho",
+    summarySubtext: "10 equipas confirmadas",
+    teams: [
+      { name: "São Romão A", image: ADSR_LOGO },
+      { name: "SLB", image: SL_BENFICA_LOGO },
+      { name: "SC Sabugal", image: SABUGAL_LOGO },
+      { name: "FC Oliveira do Hospital", image: FC_OLIVEIRA_HOSPITAL_LOGO },
+      { name: "Aguiar da Beira", image: AGUIAR_DA_BEIRA_LOGO },
+      { name: "São Romão B", image: ADSR_LOGO },
+      { name: "Dragon Force", image: DRAGON_FORCE_LOGO },
+      { name: "D. Castelo Branco", image: DESPORTIVO_CASTELO_BRANCO_LOGO },
+      { name: "Academia 5 F'S", image: ACADEMIA_5FS_LOGO },
+      { name: "SL Nelas", image: "https://cdn-img.staticzz.com/img/logos/equipas/4319_imgbank_1703071681.png" },
+    ],
+  },
+  {
     id: "sub10",
     label: "Sub-10",
     tabHint: "20 Junho",
@@ -105,19 +261,20 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
     backgroundImage: "/images/adsrcuphero.png",
     backgroundPosition: "70% center",
     summaryLabel: "Sub-10 · 20 Junho",
-    summarySubtext: "10 equipas confirmadas",
+    summarySubtext: "12 equipas confirmadas · 2 grupos",
     teams: [
-      { name: "AD São Romão (A)", image: ADSR_LOGO },
-      { name: "AD São Romão (B)", image: ADSR_LOGO },
-      { name: "Atlético Clube Montemorense", image: MONTEMORENSE_LOGO },
-      { name: "Seia FC - Formação", image: SEIA_LOGO },
-      { name: "SC Sabugal", image: SABUGAL_LOGO },
-      { name: "Lusitano Futebol Clube de Vildemoinhos", image: LUSITANO_VILDEMOINHOS_LOGO },
-      { name: "CD Tondela - Formação", image: "https://cdn-img.staticzz.com/img/logos/equipas/4336_imgbank_1682585219.png" },
-      { name: "Academia 5 F'S", image: "https://cdn-img.staticzz.com/img/logos/equipas/89/366589_logo_acr_sao_domingos_20251031083010.jpg" },
-      { name: "Académico de Viseu Futebol Clube", image: "https://cdn-img.staticzz.com/img/logos/equipas/2181_imgbank_1762193325.png" },
-      { name: "Desportivo de Castelo Branco", image: "https://cdn-img.staticzz.com/img/logos/equipas/10049_imgbank.png" },
-      { name: "SPORT CLUBE ESTRELA", image: "https://cdn-img.staticzz.com/img/logos/equipas/5683_imgbank.png" },
+      { name: "São Romão A", image: ADSR_LOGO },
+      { name: "Castelo Branco A", image: DESPORTIVO_CASTELO_BRANCO_LOGO },
+      { name: "Seia F. C.", image: SEIA_LOGO },
+      { name: "Montemorense", image: MONTEMORENSE_LOGO },
+      { name: "Lusitano Vildemoinhos", image: LUSITANO_VILDEMOINHOS_LOGO },
+      { name: "Tondela", image: CD_TONDELA_LOGO },
+      { name: "São Romão B", image: ADSR_LOGO },
+      { name: "Castelo Branco B", image: DESPORTIVO_CASTELO_BRANCO_LOGO },
+      { name: "Academia 5 F'S", image: ACADEMIA_5FS_LOGO },
+      { name: "Estrela Portalegre", image: ESTRELA_PORTALEGRE_LOGO },
+      { name: "Sabugal", image: SABUGAL_LOGO },
+      { name: "Académico de Viseu", image: ACADEMICO_VISEU_LOGO },
     ],
   },
   {
@@ -146,31 +303,49 @@ const CUP_CATEGORIES: CupCategoryConfig[] = [
   },
 ];
 
+const ALL_PARTICIPANTS: CupTeam[] = (() => {
+  const seen = new Set<string>();
+  const result: CupTeam[] = [];
+  for (const cat of CUP_CATEGORIES) {
+    for (const team of cat.teams) {
+      const key = team.image ?? team.name;
+      if (!seen.has(key)) {
+        seen.add(key);
+        result.push(team);
+      }
+    }
+  }
+  return result;
+})();
+
 const SPONSORS = [
-  { name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/6.png" },
-  { name: "CDT Equipamentos", logo: "/images/rdt.svg", contain: true },
-  { name: "FDM CARTERET, NJ", logo: "https://ik.imagekit.io/xqd9lrvbt/gemini-2.5-flash-image_faz-me_este_logo_tal_e_qual_com_a_maxima_qualidade_sem_mudares_nada-1.jpg" },
-  { name: "Alves Bandeira", logo: "https://ik.imagekit.io/elementgroup/ADSR/Patrocinadores/aa805ee2-6fb1-4c1d-9c18-706f9556bada.jpeg", cover: true },
-  { name: "Climahotel", logo: "https://climahotel.pt/wp-content/uploads/2024/10/logo-climahotel.png", contain: true },
-  { name: "Intermarché - São Romão",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/336373943_774218227154832_7660180339353628596_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s960x960&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zqoLsbMiQzYQ7kNvwFAXhzl&_nc_oc=Ado0TQhwUvCMKXN-v54neH_TLY6KKtItZOurLyPqR_I37dm-RydwiRKEPq0NWW2-K6M&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=4A-XEl03C88-l6sE1LnZog&_nc_ss=7b2a8&oh=00_Af9QzP8TRp-aXylW6RaA2HkiMqdux50pY8QSji0V5HzufA&oe=6A2E681B", cover: true },
-  { name: "Garcia & Gouveia - Serralharia Civil",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/462211115_3310880269046285_2296661379039831832_n.png?stp=dst-png&cstp=mx937x393&ctp=s937x393&_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Do3mBzC1ZZMQ7kNvwH96-n5&_nc_oc=Adovpao5daylEirJHnjl-75SK-uOnEzkTt-yyxUXG3qvlVe9-grVoIv9CyvBIS0bA-Q&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=BKNRxocW8M6vJvFnulB80w&_nc_ss=7b2a8&oh=00_Af8WeHS6b_tIl8wDy2a42VdQO8Wh3OS2EisKWzkMDXR7Bw&oe=6A2E5B53", lightBg: true },
-  { name: "EXPLISEIA - Centro de Explicações",logo: "https://scontent.fopo4-2.fna.fbcdn.net/v/t39.30808-6/581412084_1345400720716991_1569407786707471420_n.jpg?stp=dst-jpg_tt6&cstp=mx1024x1024&ctp=s1024x1024&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EiJh60KuLnoQ7kNvwE7_t_j&_nc_oc=AdrKgOqlyBJRdLnfQ0fQUzxkVSWOwJCEnSYiSZfjcPSp49VMFAEYepbEg7L4w_zRLcc&_nc_zt=23&_nc_ht=scontent.fopo4-2.fna&_nc_gid=tiboL_A84kL7oc96HIP4mw&_nc_ss=7b2a8&oh=00_Af_HKOBLTvCTQ8mwxSI18lyDVplCihC1SDZnouq5ipw8CA&oe=6A2E81D7", lightBg: true, pad: true },
-  { name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/3.png", lightBg: true },
-  { name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/5.png", lightBg: true },
-  { name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/4.png", lightBg: true },
-  { name: "Matias Nature", logo: "/images/patrocinadoresadsrcup/2.png" },
-  { name: "Mota e Mota - Santa Eulália", logo: "/images/patrocinadoresadsrcup/1.png" },
+  { name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/elementgroup.png", bg: "#0d1117" },
+  { name: "CDT Equipamentos", logo: "/images/patrocinadoresadsrcup/cdt.png" },
+  { name: "FDM CARTERET, NJ", logo: "/images/patrocinadoresadsrcup/fdm.png" },
+  { name: "Alves Bandeira", logo: "/images/patrocinadoresadsrcup/alvesbandeira.png", bg: "#1a3a8c" },
+  { name: "Climahotel", logo: "/images/patrocinadoresadsrcup/climahotel.png" },
+  { name: "Intermarché - São Romão", logo: "/images/patrocinadoresadsrcup/intermarche-sao-romao.png" },
+  { name: "Garcia & Gouveia - Serralharia Civil", logo: "/images/patrocinadoresadsrcup/garciaegouveia.png", lightBg: true },
+  { name: "EXPLISEIA - Centro de Explicações", logo: "/images/patrocinadoresadsrcup/expliseia.png", lightBg: true },
+  { name: "Cabeça da Velha - Restaurante", logo: "/images/patrocinadoresadsrcup/cabecadavelha.png", lightBg: true },
+  { name: "Padeirinhas da Estrela", logo: "/images/patrocinadoresadsrcup/Padeirinhas.png", lightBg: true },
+  { name: "Casa Albuquerque", logo: "/images/patrocinadoresadsrcup/casaalbuquerque.png", lightBg: true },
+  { name: "Matias Nature", logo: "/images/patrocinadoresadsrcup/matiasnature.png" },
+  { name: "Mota e Mota - Santa Eulália", logo: "/images/patrocinadoresadsrcup/motaemota.png" },
   { name: "Radar da Sorte - Lotarias e Jogos, LDA", logo: "/images/patrocinadoresadsrcup/radar.png" },
   { name: "Clínica de Fisioterapia - Daniela Abreu", logo: "/images/patrocinadoresadsrcup/daniela.png", lightBg: true },
   { name: "Ricky - Música e Animação", logo: "/images/patrocinadoresadsrcup/ricky.png" },
   { name: "Maquiseia", logo: "/images/patrocinadoresadsrcup/maquiseia.png" },
   { name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png" },
-  { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/beijogelado.jpeg", lightBg: true },
+  { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/Beijogelado.jpeg", lightBg: true },
   { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
-  { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", lightBg: true },
-  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png" },
+  { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", bg: "#f0f0f0" },
+  { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", bg: "#009ed4" },
   { name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", lightBg: true },
-
+  { name: "A&F - Mediação de Seguros", logo: "/images/patrocinadoresadsrcup/AF.jpeg", bg: "#1e5f87" },
+  { name: "Tavfer", logo: "/images/ADSRCUP/tavfer.png" },
+  { name: "Tavfer Hotéis", logo: "/images/ADSRCUP/tavfer hoteis.png" },
+  { name: "Tavfer Vinhos", logo: "/images/ADSRCUP/tavfer vinhos.png" },
 ];
 
 const getTimeLeft = (targetDate: string) => {
@@ -192,18 +367,19 @@ const Crest: React.FC<CupTeam & { size?: "sm" | "lg" }> = ({
   image,
   size = "sm",
 }) => {
-  const dim = size === "lg" ? "h-16 w-16 sm:h-[84px] sm:w-[84px]" : "h-10 w-10";
-  const txt = size === "lg" ? "text-xl" : "text-xs";
+  /* 16:9 small format — sm: w-16 h-9 (64×36px) · lg: w-24 h-[54px] (96×54px) */
+  const dim = size === "lg" ? "w-24 aspect-video" : "w-16 aspect-video";
+  const txt = size === "lg" ? "text-sm" : "text-[0.5rem]";
   if (image) {
     return (
-      <div className={`${dim} flex-shrink-0 overflow-hidden rounded-2xl bg-white/10 shadow-lg`}>
-        <img src={image} alt="" className="h-full w-full object-contain p-1.5" />
+      <div className={`${dim} flex-shrink-0 overflow-hidden rounded-lg bg-white/10 shadow`}>
+        <img src={image} alt="" className="h-full w-full object-contain p-1" />
       </div>
     );
   }
   return (
     <div
-      className={`${dim} ${txt} flex flex-shrink-0 items-center justify-center rounded-2xl font-black shadow-lg`}
+      className={`${dim} ${txt} flex flex-shrink-0 items-center justify-center rounded-lg font-black shadow`}
       style={{ background: `linear-gradient(135deg, ${c1} 50%, ${c2} 50%)`, color: "#fff" }}
     >
       {initials}
@@ -211,17 +387,45 @@ const Crest: React.FC<CupTeam & { size?: "sm" | "lg" }> = ({
   );
 };
 
+const AwardAvatar: React.FC<Pick<CupAward, "initials" | "accent" | "image">> = ({ initials, accent, image }) => {
+  const ring =
+    accent === "gold"
+      ? "border-[#fed700] shadow-[0_0_16px_rgba(254,215,0,0.45)]"
+      : accent === "violet"
+        ? "border-[#b99cff] shadow-[0_0_16px_rgba(185,156,255,0.38)]"
+        : "border-[#8fc7ff] shadow-[0_0_16px_rgba(143,199,255,0.32)]";
+
+  return (
+    <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-[3px] bg-[#070a18] overflow-hidden ${ring}`}>
+      {image ? (
+        <img src={image} alt={initials} className="h-full w-full object-cover" />
+      ) : (
+        <span className="font-display text-base font-black text-white">{initials}</span>
+      )}
+    </div>
+  );
+};
+
 export const EventsSection: React.FC = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState<CupCategoryId>("sub14");
+  const [activeCategoryId, setActiveCategoryId] = useState<CupCategoryId>("sub12");
+  const [standingsExpanded, setStandingsExpanded] = useState(false);
 
   const activeCategory = CUP_CATEGORIES.find((c) => c.id === activeCategoryId) ?? CUP_CATEGORIES[0];
   const teams = activeCategory.teams;
+  const activeStandings = CUP_STANDINGS[activeCategoryId];
+  const showStandings = activeCategory.completed === true && Boolean(activeStandings?.length);
+  const activeAwards = CUP_AWARDS[activeCategoryId] ?? [];
+  const champion = activeStandings?.find((row) => row.isChampion);
+  const championImg = CHAMPION_IMAGE[activeCategoryId];
+  const isCompleted = activeCategory.completed === true;
   const [tl, setTl] = useState(() => getTimeLeft(activeCategory.countdownTarget));
 
   useEffect(() => {
     const handler = (event: Event) => {
       const req = (event as CustomEvent<CupCategoryId>).detail;
-      if (req === "sub14" || req === "sub12" || req === "sub10" || req === "sub16") setActiveCategoryId(req);
+      if (req === "sub14" || req === "sub12" || req === "sub8" || req === "sub10" || req === "sub16") {
+        setActiveCategoryId(req);
+      }
     };
     window.addEventListener("adsr-cup-category", handler);
     return () => window.removeEventListener("adsr-cup-category", handler);
@@ -239,476 +443,632 @@ export const EventsSection: React.FC = () => {
   const selectCategory = (id: CupCategoryId) => {
     if (id === activeCategoryId) return;
     setActiveCategoryId(id);
+    setStandingsExpanded(false);
   };
 
   const pad = (n: number) => String(n).padStart(2, "0");
   const totalTeams = CUP_CATEGORIES.reduce((s, c) => s + c.teams.length, 0);
+  const doneCount = CUP_CATEGORIES.filter((c) => c.completed).length;
 
   return (
-    <section
-      id="adsr-cup"
-      className="relative overflow-hidden scroll-mt-24"
-      style={{ background: "#010209" }}
-    >
+    <section id="adsr-cup" className="relative scroll-mt-24" style={{ background: "#010209" }}>
+
       {/* ── BACKGROUND ── */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Hero image with lighter overlay so it breathes */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "linear-gradient(rgba(1,2,9,0.97), rgba(1,2,9,0.97)), url('/images/adsrcuphero.png')",
+            backgroundImage: "linear-gradient(rgba(1,2,9,0.91), rgba(1,2,9,0.91)), url('/images/adsrcuphero.png')",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center center",
+            backgroundPosition: "center top",
           }}
         />
-        {/* Top gold rule */}
+        {/* Subtle dot grid for texture */}
         <div
-          className="absolute inset-x-0 top-0 h-[2px]"
+          className="absolute inset-0 opacity-[0.045]"
           style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, #fed700 35%, #fed700 65%, transparent 100%)",
-            opacity: 0.65,
+            backgroundImage: "radial-gradient(rgba(254,215,0,0.6) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
+        />
+        {/* Gold top bar */}
+        <div
+          className="absolute inset-x-0 top-0 h-[3px]"
+          style={{ background: "linear-gradient(90deg, transparent, #fed700 25%, #fed700 75%, transparent)" }}
+        />
+        {/* Ambient gold glow top-left */}
+        <div
+          className="absolute -left-48 -top-48 h-[700px] w-[700px] rounded-full opacity-[0.07]"
+          style={{ background: "radial-gradient(circle, #fed700, transparent 65%)" }}
+        />
+        {/* Purple glow bottom-right for depth */}
+        <div
+          className="absolute -bottom-48 -right-48 h-[600px] w-[600px] rounded-full opacity-[0.04]"
+          style={{ background: "radial-gradient(circle, #6b56ff, transparent 65%)" }}
         />
       </div>
 
-      {/* ── PAGE CONTENT ── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-28 pt-24 sm:px-6 md:pb-36 md:pt-32 lg:px-8">
+      <div className="relative z-10 px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-10">
 
-        {/* ══════════════════════════════
-            HERO HEADER
-        ══════════════════════════════ */}
-        <header className="mb-16 md:mb-20">
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-
-            {/* Title block */}
+        {/* ── HERO HEADER ── */}
+        <header className="mb-10">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              {/* Edition badge */}
-              <div className="mb-7 flex items-center gap-3">
-                <span className="h-px w-10 bg-[#fed700]" />
-                <span
-                  className="font-display font-black uppercase text-[#fed700]"
-                  style={{ fontSize: "0.625rem", letterSpacing: "0.3em" }}
-                >
-                  IV Edição · Torneio Futebol
+              <div className="mb-3 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+                <span className="h-px w-5 bg-[#fed700]" />
+                <span className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}>
+                  IV Edição · Torneio Único de Formação
                 </span>
-                <span className="h-px w-10 bg-[#fed700]" />
               </div>
-
-              {/* Giant headline */}
-              <h2
-                className="font-display font-black uppercase leading-[0.86] text-white"
-              >
+              <h2 className="flex flex-wrap items-baseline gap-x-3 pr-12 font-display font-black uppercase italic leading-[0.9]">
                 <span
-                  className="block"
-                  style={{ fontSize: "clamp(3.4rem, 9.5vw, 8.5rem)", letterSpacing: "-0.01em" }}
+                  style={{
+                    fontSize: "clamp(2.4rem, 8vw, 4.4rem)",
+                    letterSpacing: "-0.025em",
+                    backgroundImage: "linear-gradient(180deg, #fff5c0 0%, #fed700 50%, #c8890a 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    WebkitTextFillColor: "transparent",
+                    paddingBottom: "0.1em",
+                    paddingRight: "0.45em",
+                  }}
                 >
                   ADSR Cup
                 </span>
                 <span
-                  className="block text-[#fed700]"
-                  style={{ fontSize: "clamp(4.8rem, 14vw, 12.5rem)", letterSpacing: "-0.025em" }}
+                  style={{
+                    fontSize: "clamp(1.4rem, 4vw, 2.5rem)",
+                    letterSpacing: "0.02em",
+                    color: "transparent",
+                    WebkitTextFillColor: "transparent",
+                    WebkitTextStroke: "2px rgba(254,215,0,0.45)",
+                  }}
                 >
                   2026
                 </span>
               </h2>
-
-              {/* Sub-copy */}
-              <p
-                className="mt-6 max-w-lg leading-7 text-white/70"
-                style={{ fontSize: "clamp(0.875rem, 1.2vw, 1rem)" }}
-              >
-                Toda a competição de formação em São Romão num só palco — escalões,
-                equipas confirmadas, contagem decrescente e a mensagem oficial do padrinho.
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-white/50">
+                Toda a competição de formação de São Romão num só lugar — classificações,
+                prémios, equipas e contagem decrescente por escalão.
               </p>
             </div>
 
-            {/* Stats widget */}
-            <div className="grid grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-[#060d1e]">
+            {/* Scoreboard stats */}
+            <div className="flex w-full shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm lg:w-auto">
               {[
                 { value: String(CUP_CATEGORIES.length), label: "Escalões" },
-                { value: "13–21", label: "Junho" },
+                { value: `${doneCount}/${CUP_CATEGORIES.length}`, label: "Concluídos" },
                 { value: `${totalTeams}+`, label: "Equipas" },
-              ].map((stat) => (
-                <div key={stat.label} className="px-5 py-5 text-center sm:px-7 sm:py-6">
-                  <p
+              ].map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={`flex flex-1 flex-col items-center justify-center py-4 lg:flex-none lg:px-8 ${i > 0 ? "border-l border-white/10" : ""}`}
+                >
+                  <span
                     className="font-display font-black leading-none text-white"
-                    style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)" }}
+                    style={{ fontSize: "clamp(1.8rem, 6vw, 2.6rem)" }}
                   >
                     {stat.value}
-                  </p>
-                  <p
-                    className="mt-1.5 font-black uppercase text-white/45"
-                    style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}
-                  >
+                  </span>
+                  <span className="mt-1 font-black uppercase text-white/40" style={{ fontSize: "0.55rem", letterSpacing: "0.2em" }}>
                     {stat.label}
-                  </p>
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Divider */}
+          {/* Gradient divider */}
           <div
-            className="mt-12 h-px"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(254,215,0,0.5) 0%, rgba(254,215,0,0.2) 40%, transparent 100%)",
-            }}
+            className="mt-8 h-px"
+            style={{ background: "linear-gradient(90deg, #fed700 0%, rgba(254,215,0,0.18) 35%, transparent 70%)" }}
           />
         </header>
 
-        {/* ══════════════════════════════
-            MAIN PANEL
-        ══════════════════════════════ */}
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#050d1c]/90">
-
-          {/* CATEGORY TABS */}
-          <div className="grid grid-cols-2 border-b border-white/10 sm:grid-cols-4">
+        {/* ── CATEGORY FIXTURE CARDS ── */}
+        <div id="adsr-cup-category-panel" className="scroll-mt-24 mb-7">
+          <p className="mb-3 font-black uppercase text-white/30" style={{ fontSize: "0.58rem", letterSpacing: "0.3em" }}>
+            — Escolhe o escalão —
+          </p>
+          <div
+            className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0"
+            role="tablist"
+            aria-label="Escalões da ADSR Cup"
+          >
             {CUP_CATEGORIES.map((category) => {
               const isActive = category.id === activeCategoryId;
-              const isNew = category.id === "sub10";
+              const isDone = category.completed === true;
+              const accent = isDone ? "#4ade80" : "#fed700";
               return (
                 <button
                   key={category.id}
                   type="button"
+                  role="tab"
                   onClick={() => selectCategory(category.id)}
-                  className={`adsr-tab relative cursor-pointer overflow-hidden border-r border-white/10 px-4 py-5 text-left transition-all duration-300 last:border-r-0 sm:px-6 sm:py-6 text-white ${
-                    isActive ? "" : "hover:bg-white/[0.05]"
-                  }`}
-                  style={isActive ? {
-                    backgroundImage: "linear-gradient(rgba(1,2,9,0.72), rgba(1,2,9,0.82)), url('/images/adsrcuphero.png')",
-                    backgroundSize: "100%",
-                    backgroundPosition: "center center",
-                  } : undefined}
-                  aria-pressed={isActive}
+                  aria-selected={isActive}
+                  className="group relative flex min-w-[8.5rem] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fed700]"
+                  style={{
+                    background: isActive ? `rgba(${isDone ? "74,222,128" : "254,215,0"},0.09)` : "#060b1a",
+                    border: `1px solid ${isActive ? `${accent}50` : "rgba(255,255,255,0.07)"}`,
+                    boxShadow: isActive ? `0 0 20px ${accent}18` : "none",
+                  }}
                 >
+                  {/* Top accent bar */}
                   <span
-                    className={`block font-black uppercase ${isActive ? "text-[#fed700]/80" : "text-white/45"}`}
-                    style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}
-                  >
-                    {category.tabHint}
-                  </span>
-                  <span className="mt-1 flex items-center gap-2">
-                    <span className="font-display text-xl font-black uppercase leading-none sm:text-2xl">
+                    className="h-[3px] w-full shrink-0 transition-all duration-200"
+                    style={{ background: isActive ? accent : "rgba(255,255,255,0.06)" }}
+                  />
+                  <div className="flex flex-1 flex-col gap-1.5 px-4 py-3">
+                    {/* Category name — BIG */}
+                    <span
+                      className="font-display font-black uppercase leading-none text-white"
+                      style={{ fontSize: "clamp(1.1rem, 3vw, 1.35rem)" }}
+                    >
                       {category.label}
                     </span>
-                    {isNew && (
-                      <span
-                        className={`rounded-full px-2 py-0.5 font-black uppercase ${
-                          isActive
-                            ? "bg-[#fed700] text-[#010209]"
-                            : "bg-[#fed700] text-[#010209]"
-                        }`}
-                        style={{ fontSize: "0.55rem", letterSpacing: "0.18em" }}
-                      >
-                        Novo
+                    {/* Status row */}
+                    <span
+                      className="flex items-center gap-1"
+                      style={{ color: isActive ? accent : isDone ? `${accent}80` : "rgba(255,255,255,0.3)" }}
+                    >
+                      {isDone ? <CheckCircle2 size={10} /> : <CalendarDays size={10} />}
+                      <span className="font-black uppercase" style={{ fontSize: "0.58rem", letterSpacing: "0.14em" }}>
+                        {isDone ? "Concluído" : category.tabHint}
                       </span>
-                    )}
-                  </span>
-                  <span
-                    className={`mt-2 block font-black uppercase ${isActive ? "text-white/55" : "text-white/40"}`}
-                    style={{ fontSize: "0.6rem", letterSpacing: "0.18em" }}
-                  >
-                    {category.teams.length} equipas
-                  </span>
-                  {/* Active bottom bar */}
-                  {isActive && (
-                    <span className="absolute inset-x-0 bottom-0 h-[3px] bg-[#fed700]" />
-                  )}
+                    </span>
+                    {/* Team count */}
+                    <span className="font-bold text-white/25" style={{ fontSize: "0.6rem" }}>
+                      {category.teams.length} equipas
+                    </span>
+                  </div>
                 </button>
               );
             })}
           </div>
+        </div>
 
-          {/* CONTENT AREA */}
-          <div className="p-4 sm:p-7 lg:p-9">
-            <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_480px] lg:items-start">
+        {/* ── CONTENT GRID ── */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-start">
 
-              {/* ── LEFT COLUMN ── */}
-              <div className="order-2 lg:order-1 space-y-7">
+          {/* LEFT — main content */}
+          <div className="order-1 space-y-4">
 
-                {/* COUNTDOWN SCOREBOARD */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#fed700]/20 bg-[#02040e] p-5 sm:p-6">
+            {/* STATUS BLOCK */}
+            {isCompleted ? (
+              /* Completed — celebratory */
+              <div
+                className="relative overflow-hidden rounded-2xl"
+                style={{
+                  border: "1px solid rgba(74,222,128,0.3)",
+                  background: "linear-gradient(135deg, rgba(74,222,128,0.08), rgba(74,222,128,0.03))",
+                  boxShadow: "0 0 32px rgba(74,222,128,0.07)",
+                }}
+              >
+                <div
+                  className="absolute inset-x-0 top-0 h-[2px]"
+                  style={{ background: "linear-gradient(90deg, transparent, #4ade80 40%, #4ade80 60%, transparent)" }}
+                />
+                <div className="flex items-center gap-4 p-4 sm:p-5">
                   <div
-                    className="absolute inset-x-0 top-0 h-px"
-                    style={{ background: "linear-gradient(90deg, transparent, #fed700, transparent)", opacity: 0.7 }}
-                  />
-                  <p
-                    className="mb-5 font-black uppercase text-[#fed700]"
-                    style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"
+                    style={{ background: "rgba(74,222,128,0.12)", border: "1px solid rgba(74,222,128,0.3)" }}
                   >
-                    Conta Regressiva &middot; {activeCategory.label}
-                  </p>
-                  <div className="grid grid-cols-4 gap-2.5 sm:gap-3">
-                    {[
-                      { v: tl.d, label: "Dias" },
-                      { v: tl.h, label: "Horas" },
-                      { v: tl.m, label: "Min" },
-                      { v: tl.s, label: "Seg" },
-                    ].map(({ v, label }) => (
-                      <div
-                        key={label}
-                        className="overflow-hidden rounded-xl border border-white/10 bg-[#0b1530] p-3 text-center"
-                      >
-                        {/* top accent */}
-                        <div
-                          className="mx-auto mb-3 h-px w-8"
-                          style={{ background: "linear-gradient(90deg, transparent, rgba(254,215,0,0.5), transparent)" }}
-                        />
-                        <p
-                          className="font-display font-black tabular-nums leading-none text-white"
-                          style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
-                        >
-                          {pad(v)}
-                        </p>
-                        <p
-                          className="mt-2 font-black uppercase text-[#fed700]/60"
-                          style={{ fontSize: "0.58rem", letterSpacing: "0.22em" }}
-                        >
-                          {label}
-                        </p>
-                      </div>
-                    ))}
+                    <CheckCircle2 size={22} className="text-[#4ade80]" />
                   </div>
-                </div>
-
-                {/* SECTION HEADING */}
-                <div>
-                  <h3
-                    className="font-display font-black uppercase leading-[0.9] text-white"
-                    style={{ fontSize: "clamp(1.8rem, 6.5vw, 4.5rem)" }}
-                  >
-                    {activeCategory.label}{" "}
-                    <span className="text-[#fed700]">em campo</span>
-                  </h3>
-                  <p
-                    className="mt-3 font-bold uppercase text-white/55"
-                    style={{ fontSize: "0.7rem", letterSpacing: "0.18em" }}
-                  >
-                    {activeCategory.subtitle}
-                  </p>
-                </div>
-
-                {/* INFO PILLS */}
-                <div className="flex flex-col gap-2 xs:flex-row xs:flex-wrap sm:flex-row sm:flex-wrap">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2 text-xs font-semibold text-white/90">
-                    <CalendarDays size={13} className="text-[#fed700] flex-shrink-0" />
-                    {activeCategory.dateLabel}
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.05] px-4 py-2 text-xs font-semibold text-white/90">
-                    <MapPin size={13} className="text-[#fed700] flex-shrink-0" />
-                    Estádio N.S. Conceição · São Romão
-                  </span>
-                </div>
-
-                {/* ALL TEAMS GRID */}
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#02040e] p-5 sm:p-6">
-                  <div
-                    className="absolute inset-x-0 top-0 h-px"
-                    style={{ background: "linear-gradient(90deg, rgba(254,215,0,0.4), rgba(254,215,0,0.15) 60%, transparent)" }}
-                  />
-                  <p
-                    className="mb-5 font-black uppercase text-white/35"
-                    style={{ fontSize: "0.6rem", letterSpacing: "0.24em" }}
-                  >
-                    Equipas Confirmadas &mdash; {teams.length} equipas
-                  </p>
-                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2.5">
-                    {teams.map((team, i) => (
-                      <div
-                        key={`${team.name}-${i}`}
-                        className="flex items-center gap-3 rounded-xl border border-white/10 bg-[#0b1530] px-3.5 py-3 transition-colors duration-150 hover:border-white/20 hover:bg-[#101e40] sm:px-4"
-                      >
-                        <Crest {...team} />
-                        <div className="min-w-0 flex-1">
-                          <p className="line-clamp-2 text-sm font-semibold leading-snug text-white">{team.name}</p>
-                          <p
-                            className="mt-0.5 font-black uppercase text-[#fed700]/60"
-                            style={{ fontSize: "0.58rem", letterSpacing: "0.16em" }}
-                          >
-                            {activeCategory.label}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* ── RIGHT COLUMN ── */}
-              <div className="order-1 lg:order-2 space-y-4">
-
-                {/* PADRINHO VIDEO */}
-                <article className="overflow-hidden rounded-2xl border border-white/10 bg-black">
-                  <div className="flex items-center justify-between border-b border-white/10 bg-[#0b1530] px-5 py-3.5">
-                    <div>
-                      <p
-                        className="font-black uppercase text-[#fed700]"
-                        style={{ fontSize: "0.6rem", letterSpacing: "0.24em" }}
-                      >
-                        Mensagem do Padrinho
-                      </p>
-                      <p className="mt-0.5 text-base font-black text-white">Tomás Silva</p>
-                    </div>
-                    <span
-                      className="rounded-full bg-[#fed700] px-2.5 py-1 font-black uppercase text-[#010209]"
-                      style={{ fontSize: "0.55rem", letterSpacing: "0.16em" }}
-                    >
-                      Vídeo Oficial
-                    </span>
-                  </div>
-                  <video
-                    className="block aspect-[9/16] max-h-[420px] w-full bg-black object-contain sm:max-h-[660px]"
-                    controls
-                    playsInline
-                    preload="metadata"
-                    poster={PADRINHO_IMAGE}
-                  >
-                    <source src={PADRINHO_VIDEO} type="video/mp4" />
-                  </video>
-                </article>
-
-                {/* SUMMARY CARD */}
-                <article className="overflow-hidden rounded-2xl border border-white/10">
-                  <div
-                    className="border-b border-white/10 px-5 py-3.5"
-                    style={{ background: "#0b1530" }}
-                  >
-                    <p
-                      className="font-black uppercase text-white/40"
-                      style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}
-                    >
-                      Resumo do Escalão
+                  <div className="min-w-0 flex-1">
+                    <p className="font-black uppercase text-[#4ade80]" style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}>
+                      Apito Final · Evento Concluído
+                    </p>
+                    <p className="mt-0.5 font-display text-lg font-black uppercase leading-tight text-white sm:text-xl">
+                      {activeCategory.label} · {activeCategory.dateLabel}
                     </p>
                   </div>
-                  <div className="bg-[#0b1530] p-5">
-                    <p className="font-display text-xl font-black uppercase text-[#fed700]">
-                      {activeCategory.summaryLabel}
-                    </p>
-                    <p className="mt-1 text-sm text-white/70">{activeCategory.summarySubtext}</p>
-                    <div className="mt-4 grid grid-cols-2 gap-2.5">
-                      <div className="rounded-xl border border-white/10 bg-[#02040e] px-4 py-4 text-center">
-                        <p className="font-display text-3xl font-black text-white">{teams.length}</p>
-                        <p
-                          className="mt-1 font-black uppercase text-white/40"
-                          style={{ fontSize: "0.55rem", letterSpacing: "0.2em" }}
-                        >
-                          Equipas
-                        </p>
-                      </div>
-                      <div className="rounded-xl border border-white/10 bg-[#02040e] px-4 py-4 text-center">
-                        <p className="font-display text-base font-black leading-snug text-white">
-                          {activeCategory.dateLabel}
-                        </p>
-                        <p
-                          className="mt-1 font-black uppercase text-white/40"
-                          style={{ fontSize: "0.55rem", letterSpacing: "0.2em" }}
-                        >
-                          Data
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
+                  <Trophy size={32} className="shrink-0 text-[#fed700] opacity-25" />
+                </div>
               </div>
+            ) : (
+              /* Countdown — dramatic scoreboard */
+              <div
+                className="relative overflow-hidden rounded-2xl"
+                style={{
+                  border: "1px solid rgba(254,215,0,0.2)",
+                  background: "#02040e",
+                  boxShadow: "0 0 40px rgba(254,215,0,0.06)",
+                }}
+              >
+                <div
+                  className="absolute inset-x-0 top-0 h-[2px]"
+                  style={{ background: "linear-gradient(90deg, transparent, #fed700 40%, #fed700 60%, transparent)" }}
+                />
+                {/* Title with horizontal rules */}
+                <div className="flex items-center gap-3 px-5 pt-4">
+                  <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(254,215,0,0.25))" }} />
+                  <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.58rem", letterSpacing: "0.32em" }}>
+                    Conta Regressiva · {activeCategory.label}
+                  </p>
+                  <span className="h-px flex-1" style={{ background: "linear-gradient(270deg, transparent, rgba(254,215,0,0.25))" }} />
+                </div>
+                {/* Digit tiles */}
+                <div className="grid grid-cols-4 gap-2.5 p-4 sm:gap-3 sm:p-5">
+                  {[
+                    { v: tl.d, label: "Dias" },
+                    { v: tl.h, label: "Horas" },
+                    { v: tl.m, label: "Min" },
+                    { v: tl.s, label: "Seg" },
+                  ].map(({ v, label }) => (
+                    <div
+                      key={label}
+                      className="flex flex-col items-center rounded-xl py-4 sm:py-5"
+                      style={{ background: "#0c1535", border: "1px solid rgba(254,215,0,0.1)", borderTop: "2px solid rgba(254,215,0,0.3)" }}
+                    >
+                      <span
+                        className="font-display font-black tabular-nums leading-none text-white"
+                        style={{ fontSize: "clamp(2rem, 8vw, 3rem)" }}
+                      >
+                        {pad(v)}
+                      </span>
+                      <span className="mt-2 font-black uppercase text-[#fed700]/55" style={{ fontSize: "0.55rem", letterSpacing: "0.16em" }}>
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Location pills */}
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/60">
+                <CalendarDays size={11} className="text-[#fed700]" />
+                {activeCategory.dateLabel}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/60">
+                <MapPin size={11} className="text-[#fed700]" />
+                Estádio N.S. Conceição · São Romão
+              </span>
             </div>
 
-            {/* ══════════ SPONSORS ══════════ */}
-            <div className="mt-12 border-t border-white/10 pt-10">
-              {/* Section header */}
-              <div className="mb-8 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className="h-px w-8 bg-[#fed700]" />
-                    <span
-                      className="font-black uppercase text-[#fed700]"
-                      style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}
-                    >
-                      Patrocinadores Oficiais
+            {/* Champion photo */}
+            {showStandings && champion && (
+              championImg ? (
+                <figure className="relative overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(254,215,0,0.4)", boxShadow: "0 0 32px rgba(254,215,0,0.08)" }}>
+                  <img
+                    src={championImg}
+                    alt={`Plantel campeão ${activeCategory.label} — ${champion.team.name}`}
+                    className="block aspect-[16/9] w-full object-cover sm:aspect-[21/9]"
+                    loading="lazy"
+                  />
+                  <figcaption className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[#fed700] px-3 py-1 shadow-lg">
+                    <Trophy size={11} className="text-[#06020d]" />
+                    <span className="font-black uppercase text-[#06020d]" style={{ fontSize: "0.58rem", letterSpacing: "0.16em" }}>
+                      Campeão · {activeCategory.label}
                     </span>
-                  </div>
-                  <p
-                    className="font-display font-black uppercase leading-none text-white"
-                    style={{ fontSize: "clamp(1.6rem, 4vw, 2.8rem)" }}
-                  >
-                    ADSR Cup <span className="text-[#fed700]">2026</span>
-                  </p>
-                </div>
-                <p className="text-sm text-white/45">{SPONSORS.length} parceiros confirmados</p>
-              </div>
-
-              {/* Sponsors grid — logo + always-visible name */}
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                {SPONSORS.map((sponsor) => (
-                  <div
-                    key={sponsor.name}
-                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0b1530] transition-colors duration-200 hover:border-[#fed700]/50"
-                  >
-                    {/* Logo area */}
-                    <div className={`relative aspect-video w-full overflow-hidden ${
-                      ('contain' in sponsor && sponsor.contain) || ('lightBg' in sponsor && sponsor.lightBg)
-                        ? 'bg-white'
-                        : 'bg-[#0b1530]'
-                    }`}>
-                      {sponsor.logo ? (
-                        <div className={`absolute inset-0 flex items-center justify-center ${'pad' in sponsor && (sponsor as any).pad ? 'p-3' : ''}`}>
-                          <img
-                            src={sponsor.logo}
-                            alt={sponsor.name}
-                            className={`w-full h-full opacity-90 transition-opacity duration-200 group-hover:opacity-100 ${'cover' in sponsor && (sponsor as any).cover ? 'object-cover' : 'object-contain'}`}
-                          />
-                        </div>
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center">
-                          <span className="text-center text-2xl font-black text-white/20">?</span>
-                        </div>
-                      )}
-                    </div>
-                    {/* Always-visible name bar */}
-                    <div className="border-t border-white/10 bg-[#060d1e] px-3 py-2.5">
-                      <p
-                        className="text-center font-bold leading-snug text-white/75 transition-colors duration-300 group-hover:text-white"
-                        style={{ fontSize: "0.65rem", letterSpacing: "0.04em" }}
-                      >
-                        {sponsor.name}
+                  </figcaption>
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#06020d]/97 via-[#06020d]/55 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-4 sm:p-5">
+                    <Crest {...champion.team} size="lg" />
+                    <div className="min-w-0">
+                      <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.58rem", letterSpacing: "0.22em" }}>
+                        Plantel Vencedor
+                      </p>
+                      <p className="mt-0.5 font-display text-xl font-black uppercase leading-none text-white sm:text-2xl">
+                        {champion.team.name}
                       </p>
                     </div>
+                  </div>
+                </figure>
+              ) : (
+                <div
+                  className="flex items-center gap-4 rounded-2xl p-4 sm:p-5"
+                  style={{ border: "1px solid rgba(254,215,0,0.35)", background: "#0c0e04" }}
+                >
+                  <Crest {...champion.team} size="lg" />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}>
+                      <Trophy size={11} className="mb-0.5 mr-1 inline" />
+                      Campeão · {activeCategory.label}
+                    </p>
+                    <p className="mt-1 font-display text-xl font-black uppercase leading-none text-white sm:text-2xl">
+                      {champion.team.name}
+                    </p>
+                    <p className="mt-1.5 text-xs text-white/35">Foto do plantel em breve</p>
+                  </div>
+                  <Trophy size={36} className="shrink-0 text-[#fed700] opacity-20" />
+                </div>
+              )
+            )}
+
+            {/* Standings + Awards side-by-side (or Teams if not completed) */}
+            {showStandings && activeStandings ? (
+              <div className={activeAwards.length > 0 ? "grid gap-4 lg:grid-cols-2 lg:items-start" : ""}>
+
+                {/* Standings */}
+                <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#02040e" }}>
+                  <div className="flex items-center gap-2.5 border-b border-white/8 px-4 py-3">
+                    <Trophy size={14} className="text-[#fed700]" aria-hidden />
+                    <p className="flex-1 font-black uppercase text-[#fed700]" style={{ fontSize: "0.62rem", letterSpacing: "0.22em" }}>
+                      Classificação Final
+                    </p>
+                    <span className="font-black uppercase text-white/20" style={{ fontSize: "0.55rem" }}>
+                      {activeCategory.label}
+                    </span>
+                  </div>
+                  {/* Column headers — only when full-width (no awards beside) */}
+                  {activeAwards.length === 0 && (
+                    <div className="hidden border-b border-white/[0.06] sm:flex sm:items-center">
+                      <div className="flex flex-1 items-center gap-3 px-4 py-2">
+                        <span className="w-6 text-center font-black uppercase text-white/20" style={{ fontSize: "0.58rem" }}>#</span>
+                        <span className="ml-9 font-black uppercase text-white/20" style={{ fontSize: "0.58rem", letterSpacing: "0.1em" }}>Equipa</span>
+                      </div>
+                      <div className="flex shrink-0 gap-0 border-l border-white/8">
+                        {["J", "V", "E", "D"].map((col) => (
+                          <span key={col} className="w-9 py-2 text-center font-black uppercase text-white/20" style={{ fontSize: "0.58rem" }}>{col}</span>
+                        ))}
+                        <span className="w-12 border-l border-white/8 py-2 text-center font-black uppercase text-[#fed700]" style={{ fontSize: "0.58rem" }}>Pts</span>
+                      </div>
+                    </div>
+                  )}
+                  <div className="divide-y divide-white/[0.05]">
+                    {(standingsExpanded ? activeStandings : activeStandings.slice(0, 5)).map((row) => (
+                      <div
+                        key={row.pos}
+                        className={`relative flex items-center ${row.isChampion ? "bg-[#fed700]/[0.06]" : ""}`}
+                      >
+                        {row.isChampion && <span className="absolute inset-y-0 left-0 w-[3px] bg-[#fed700]" />}
+                        <div className="flex flex-1 items-center gap-2.5 px-3 py-2.5">
+                          <span
+                            className={`w-5 shrink-0 text-center font-display font-black ${row.isChampion ? "text-[#fed700]" : "text-white/25"}`}
+                            style={{ fontSize: row.pos <= 3 ? "1rem" : "0.85rem" }}
+                          >
+                            {row.pos}
+                          </span>
+                          <Crest {...row.team} />
+                          <div className="min-w-0 flex-1">
+                            <div className="flex flex-wrap items-center gap-1.5">
+                              <p className="line-clamp-1 text-xs font-semibold text-white/90">{row.team.name}</p>
+                              {row.isChampion && (
+                                <span className="shrink-0 rounded-full bg-[#fed700] px-1.5 py-0.5 font-black uppercase text-[#010209]" style={{ fontSize: "0.5rem", letterSpacing: "0.08em" }}>
+                                  Campeão
+                                </span>
+                              )}
+                            </div>
+                            {/* Stats inline — always visible (replaces desktop-only panel in compact mode) */}
+                            <div className="mt-0.5 flex gap-2">
+                              {[{ k: "J", v: row.j }, { k: "V", v: row.v }, { k: "E", v: row.e }, { k: "D", v: row.d }].map(({ k, v }) => (
+                                <span key={k} className="font-black text-white/30" style={{ fontSize: "0.58rem" }}>
+                                  {k} <span className="text-white/55">{v}</span>
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        {/* Desktop stats panel — only in full-width mode */}
+                        {activeAwards.length === 0 && (
+                          <div className="hidden shrink-0 items-stretch border-l border-white/[0.06] sm:flex">
+                            {[row.j, row.v, row.e, row.d].map((v, i) => (
+                              <span key={i} className="flex w-9 items-center justify-center text-xs font-semibold text-white/40">{v}</span>
+                            ))}
+                            <div className={`flex w-12 items-center justify-center border-l border-white/[0.06] ${row.isChampion ? "bg-[#fed700]" : "bg-white/[0.06]"}`}>
+                              <span className={`font-display text-lg font-black leading-none ${row.isChampion ? "text-[#06020d]" : "text-white"}`}>{row.pts}</span>
+                            </div>
+                          </div>
+                        )}
+                        {/* Points badge — always in compact, mobile-only otherwise */}
+                        <div className={`mx-2.5 flex h-9 w-10 shrink-0 flex-col items-center justify-center rounded-lg ${activeAwards.length === 0 ? "sm:hidden" : ""} ${row.isChampion ? "bg-[#fed700]" : "bg-white/[0.07]"}`}>
+                          <span className="font-black uppercase" style={{ fontSize: "0.45rem", color: row.isChampion ? "#06020d" : "#9f8fc8" }}>Pts</span>
+                          <span className={`font-display text-lg font-black leading-none ${row.isChampion ? "text-[#06020d]" : "text-white"}`}>{row.pts}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {activeStandings.length > 5 && (
+                    <button
+                      type="button"
+                      onClick={() => setStandingsExpanded((v) => !v)}
+                      className="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-white/10 py-3 font-black uppercase text-white/40 transition-colors duration-200 hover:bg-white/[0.03] hover:text-white/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#fed700]"
+                      style={{ fontSize: "0.6rem", letterSpacing: "0.18em" }}
+                    >
+                      {standingsExpanded ? <>&#8593; Recolher</> : <>&#8595; Ver todos os {activeStandings.length} classificados</>}
+                    </button>
+                  )}
+                </div>
+
+                {/* Awards — beside standings */}
+                {activeAwards.length > 0 && (
+                  <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(107,86,255,0.25)", background: "#02040e" }}>
+                    <div className="flex items-center gap-2.5 border-b border-white/8 px-4 py-3">
+                      <Star size={13} className="text-[#fed700]" aria-hidden />
+                      <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.62rem", letterSpacing: "0.22em" }}>
+                        Prémios Individuais · {activeCategory.label}
+                      </p>
+                    </div>
+                    <div className="divide-y divide-white/[0.05]">
+                      {activeAwards.map((award) => {
+                        const Icon = award.icon;
+                        return (
+                          <article
+                            key={`${award.title}-${award.name}`}
+                            className="flex items-center gap-3 bg-[#02040e] p-4 transition-colors duration-150 hover:bg-[#0a0620]"
+                          >
+                            <AwardAvatar initials={award.initials} accent={award.accent} image={award.image} />
+                            <div className="min-w-0 flex-1">
+                              <p className="font-black uppercase text-white/38" style={{ fontSize: "0.6rem", letterSpacing: "0.1em" }}>
+                                {award.title}
+                              </p>
+                              <p className="mt-0.5 font-display text-sm font-black uppercase leading-tight text-white">{award.name}</p>
+                              {award.club && <p className="mt-0.5 text-[10px] font-semibold text-[#b9a9ee]">{award.club}</p>}
+                            </div>
+                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#1b1730]">
+                              <Icon size={16} className="text-[#fed700]" aria-hidden />
+                            </div>
+                          </article>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Teams grid */
+              <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#02040e" }}>
+                <div className="border-b border-white/8 px-4 py-3">
+                  <p className="font-black uppercase text-white/30" style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}>
+                    Equipas Confirmadas · {teams.length} equipas
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-px bg-white/[0.05] sm:grid-cols-3">
+                  {teams.map((team, i) => (
+                    <div
+                      key={`${team.name}-${i}`}
+                      className="flex items-center gap-2.5 bg-[#02040e] px-3 py-3 transition-colors duration-150 hover:bg-[#0b1530]"
+                    >
+                      <Crest {...team} />
+                      <p className="line-clamp-2 text-xs font-semibold leading-snug text-white/85">{team.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* RIGHT — padrinho + clubes */}
+          <div className="order-2 space-y-4 lg:sticky lg:top-24">
+
+            {/* Padrinho video */}
+            <article className="overflow-hidden rounded-2xl border border-white/10 bg-black">
+              <div className="flex items-center justify-between bg-[#06091a] px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+                <div>
+                  <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.2em" }}>
+                    Mensagem do Padrinho
+                  </p>
+                  <p className="mt-0.5 text-sm font-black text-white">Tomás Silva</p>
+                </div>
+                <span
+                  className="rounded-full bg-[#fed700] px-2.5 py-1 font-black uppercase text-[#010209]"
+                  style={{ fontSize: "0.55rem", letterSpacing: "0.12em" }}
+                >
+                  Vídeo Oficial
+                </span>
+              </div>
+              <video
+                className="block aspect-[9/16] max-h-[460px] w-full bg-black object-contain"
+                controls
+                playsInline
+                preload="metadata"
+                poster={PADRINHO_IMAGE}
+              >
+                <source src={PADRINHO_VIDEO} type="video/mp4" />
+              </video>
+            </article>
+
+            {/* Clubes participantes */}
+            <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#02040e" }}>
+              <div className="flex items-center gap-3 border-b border-white/[0.07] px-4 py-3">
+                <span className="h-px w-4 bg-[#fed700]/50" />
+                <p className="font-black uppercase text-white/45" style={{ fontSize: "0.58rem", letterSpacing: "0.26em" }}>
+                  Clubes Participantes
+                </p>
+                <span
+                  className="ml-auto rounded-full bg-[#fed700]/10 px-2 py-0.5 font-black uppercase text-[#fed700]"
+                  style={{ fontSize: "0.5rem", letterSpacing: "0.1em" }}
+                >
+                  {ALL_PARTICIPANTS.length}
+                </span>
+              </div>
+              {/* Mobile: 6 cols (legible logos) · sm+: 12 cols — all clubs, no scroll, logos only (name in tooltip) */}
+              <div className="grid grid-cols-6 gap-px bg-white/[0.04] sm:grid-cols-12">
+                {ALL_PARTICIPANTS.map((team, i) => (
+                  <div
+                    key={`${team.name}-${i}`}
+                    title={team.name}
+                    className="group relative bg-[#02040e] p-1 transition-colors duration-150 hover:bg-[#0c1530]"
+                    style={{ aspectRatio: "1/1" }}
+                  >
+                    {team.image ? (
+                      <img
+                        src={team.image}
+                        alt={team.name}
+                        className="absolute inset-0 h-full w-full object-contain p-0.5 transition-transform duration-200 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0 flex items-center justify-center text-[0.4rem] font-black text-white"
+                        style={{ background: `linear-gradient(135deg, ${team.c1 ?? "#1f398a"} 50%, ${team.c2 ?? "#fed700"} 50%)` }}
+                      >
+                        {team.initials}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
+
+          </div>
+        </div>
+
+        {/* ── SPONSORS ── */}
+        <div className="mt-14 pt-8" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+          <div className="mb-6 flex items-end justify-between">
+            <div>
+              <div className="mb-2 flex items-center gap-2.5">
+                <span className="h-px w-5 bg-[#fed700]" />
+                <span className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.26em" }}>
+                  Patrocinadores Oficiais
+                </span>
+              </div>
+              <p className="font-display font-black uppercase leading-none text-white" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)" }}>
+                ADSR Cup <span className="text-[#fed700]">2026</span>
+              </p>
+            </div>
+            <p className="text-xs text-white/30">{SPONSORS.length} parceiros</p>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            {SPONSORS.map((sponsor) => {
+              const bg = "bg" in sponsor ? (sponsor as { bg: string }).bg : "#ffffff";
+              return (
+              <div
+                key={sponsor.name}
+                title={sponsor.name}
+                className="group relative aspect-[4/3] overflow-hidden rounded-xl transition-all duration-200"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  background: bg,
+                }}
+                onMouseEnter={(e) => { (e.currentTarget.style as CSSStyleDeclaration).borderColor = "rgba(254,215,0,0.5)"; }}
+                onMouseLeave={(e) => { (e.currentTarget.style as CSSStyleDeclaration).borderColor = "rgba(255,255,255,0.12)"; }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center p-2">
+                  {sponsor.logo ? (
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span className="text-xl font-black text-gray-300">?</span>
+                  )}
+                </div>
+                {/* Slide-up name on hover */}
+                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#fed700] px-2 py-1.5 transition-transform duration-200 ease-out group-hover:translate-y-0">
+                  <p className="text-center font-black uppercase leading-tight text-[#010209]" style={{ fontSize: "0.52rem", letterSpacing: "0.06em" }}>
+                    {sponsor.name}
+                  </p>
+                </div>
+              </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
       <style>{`
-        /* ── Ticker scroll ── */
-        .adsr-ticker {
-          animation: adsr-ticker-scroll 28s linear infinite;
-          width: max-content;
-          will-change: transform;
-        }
-        .adsr-ticker-shell:hover .adsr-ticker {
-          animation-play-state: paused;
-        }
-        @keyframes adsr-ticker-scroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-
-        /* ── Tab hover shimmer ── */
-        .adsr-tab::after {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
-          pointer-events: none;
-        }
-
-        /* ── Reduced motion ── */
         @media (prefers-reduced-motion: reduce) {
-          .adsr-ticker { animation: none; }
+          * { transition-duration: 0ms !important; }
         }
       `}</style>
     </section>

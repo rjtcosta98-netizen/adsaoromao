@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const countdown = useCountdown(new Date('2026-06-13T09:00:00'));
   const PADRINHO_IMAGE = '/images/TACA/tomas-silva-padrinho.jpg';
 
-  const openCupCategory = (category: 'sub14' | 'sub12' | 'sub10' | 'sub16') => {
+  const openCupCategory = (category: 'sub14' | 'sub12' | 'sub8' | 'sub10' | 'sub16') => {
     window.dispatchEvent(new CustomEvent('adsr-cup-category', { detail: category }));
     const el = document.getElementById('adsr-cup');
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -403,7 +403,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           {/* CTA BUTTONS */}
           <div className="relative z-10 px-4 pb-4">
             <div className="grid grid-cols-2 gap-2">
-              {(['sub14', 'sub12', 'sub10', 'sub16'] as const).map((cat) => (
+              {(['sub14', 'sub12', 'sub8', 'sub10', 'sub16'] as const).map((cat) => (
                 <button
                   key={cat}
                   onClick={() => openCupCategory(cat)}
