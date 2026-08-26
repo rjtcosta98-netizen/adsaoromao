@@ -54,7 +54,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
           <h1 className="text-3xl font-bold text-navy-900 mb-4">Notícia não encontrada</h1>
           <button
             onClick={() => onNavigate('noticias')}
-            className="text-navy-900 font-bold text-sm border-b-2 border-transparent hover:border-yellow-400 transition-colors"
+            className="text-navy-900 font-bold text-sm border-b-2 border-transparent hover:border-gold-400 transition-colors"
           >
             Voltar às notícias
           </button>
@@ -82,7 +82,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
         {/* Back Button */}
         <button 
           onClick={() => onNavigate('noticias')}
-          className="absolute top-4 md:top-8 left-4 md:left-8 z-10 inline-flex items-center gap-2 text-white hover:text-yellow-400 font-semibold text-sm transition-colors"
+          className="absolute top-4 md:top-8 left-4 md:left-8 z-10 inline-flex items-center gap-2 text-white hover:text-gold-400 font-semibold text-sm transition-colors"
         >
           <ArrowLeft size={20} />
           Voltar
@@ -96,7 +96,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
         <header className="mb-8 md:mb-12">
           {/* Category & Meta */}
           <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-600">
-            <span className="inline-flex items-center gap-2 font-semibold text-yellow-600 uppercase tracking-wide">
+            <span className="inline-flex items-center gap-2 font-semibold text-gold-600 uppercase tracking-wide">
               <Tag size={16} />
               {news.category}
             </span>
@@ -119,7 +119,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
         </header>
 
         {/* Article Divider */}
-        <div className="h-1 bg-gradient-to-r from-yellow-400 to-transparent w-16 mb-12"></div>
+        <div className="h-1 bg-gradient-to-r from-gold-400 to-transparent w-16 mb-12"></div>
 
         {/* Article Content */}
         <div className="prose prose-lg max-w-none mb-12 md:mb-16">
@@ -143,7 +143,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
                 Os membros, adeptos e comunidade permanecem informados sobre todos os desenvolvimentos significativos através dos nossos canais de comunicação. A transparência e a partilha de informação são valores fundamentais que guiam a nossa organização.
               </p>
 
-              <blockquote className="border-l-4 border-yellow-400 pl-6 md:pl-8 my-10 md:my-12 italic text-gray-700 text-lg">
+              <blockquote className="border-l-4 border-gold-400 pl-6 md:pl-8 my-10 md:my-12 italic text-gray-700 text-lg">
                 "A dedicação, o trabalho em equipa e a visão clara são os pilares que sustentam o crescimento contínuo da Associação Desportiva de São Romão."
               </blockquote>
 
@@ -180,7 +180,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
                 <button
                   key={relatedItem.id}
                   onClick={() => onNavigate('noticia-detalhe', relatedItem.id)}
-                  className="group text-left bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-yellow-400 shadow-sm hover:shadow-lg transition-all"
+                  className="group text-left bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-gold-400 shadow-sm hover:shadow-lg transition-all"
                 >
                   <div className="relative h-40 md:h-48 overflow-hidden bg-gray-200">
                     <img 
@@ -190,13 +190,13 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
                     />
                   </div>
                   <div className="p-5 md:p-6">
-                    <span className="text-yellow-600 text-xs font-bold uppercase tracking-wider block mb-3">
+                    <span className="text-gold-600 text-xs font-bold uppercase tracking-wider block mb-3">
                       {relatedItem.date}
                     </span>
-                    <h3 className="font-bold text-lg text-navy-900 group-hover:text-yellow-600 transition-colors leading-tight line-clamp-2 mb-4">
+                    <h3 className="font-bold text-lg text-navy-900 group-hover:text-gold-600 transition-colors leading-tight line-clamp-2 mb-4">
                       {relatedItem.title}
                     </h3>
-                    <span className="text-navy-900 group-hover:text-yellow-600 font-semibold text-sm transition-colors inline-flex items-center gap-1">
+                    <span className="text-navy-900 group-hover:text-gold-600 font-semibold text-sm transition-colors inline-flex items-center gap-1">
                       Ler artigo →
                     </span>
                   </div>
@@ -219,7 +219,7 @@ export const NewsDetailPage: React.FC<NewsDetailPageProps> = ({ newsId, onNaviga
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => onNavigate('noticias')}
-              className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold px-8 py-3 rounded transition-colors"
+              className="w-full sm:w-auto bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold px-8 py-3 rounded transition-colors"
             >
               Ver todas as notícias
             </button>

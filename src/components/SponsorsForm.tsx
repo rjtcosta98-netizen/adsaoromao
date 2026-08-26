@@ -77,7 +77,7 @@ export const SponsorsForm: React.FC = () => {
 
             {/* Section Header */}
             <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-14">
-               <span className="text-yellow-400 font-bold tracking-[0.15em] text-[11px] sm:text-[11px] uppercase block mb-1.5 sm:mb-2">
+               <span className="text-gold-400 font-bold tracking-[0.15em] text-[11px] sm:text-[11px] uppercase block mb-1.5 sm:mb-2">
                   Parceria Oficial ADSR
                </span>
                <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-display font-bold text-white uppercase leading-tight">
@@ -100,21 +100,21 @@ export const SponsorsForm: React.FC = () => {
              <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent"></div>
              
              <div className="absolute inset-0 p-4 sm:p-8 md:p-12 flex flex-col justify-end">
-                <div className="bg-yellow-400 text-navy-900 font-bold text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded w-fit mb-2 sm:mb-3 md:mb-4 uppercase">
+                <div className="bg-gold-400 text-navy-900 font-bold text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded w-fit mb-2 sm:mb-3 md:mb-4 uppercase">
                    Parceria 2026
                 </div>
                 <h2 className="font-display font-bold text-lg sm:text-2xl md:text-4xl lg:text-5xl text-white uppercase leading-tight mb-2 sm:mb-3 md:mb-4">
-                   Junte a sua <br/> marca <span className="text-yellow-400">à nossa</span>
+                   Junte a sua <br/> marca <span className="text-gold-400">à nossa</span>
                 </h2>
-                <p className="text-gray-300 text-[11px] sm:text-xs md:text-base leading-relaxed mb-4 sm:mb-6 border-l-2 border-yellow-400 pl-2 sm:pl-3 md:pl-4">
+                <p className="text-gray-300 text-[11px] sm:text-xs md:text-base leading-relaxed mb-4 sm:mb-6 border-l-2 border-gold-400 pl-2 sm:pl-3 md:pl-4">
                    Transforme apoio em impacto: visibilidade local, proximidade com a comunidade e valores que unem.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-3 text-[10px] sm:text-xs md:text-sm text-gray-200">
-                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-yellow-400">✓</span> <span>Dossier Comercial 2026</span></div>
-                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-yellow-400">✓</span> <span>Planos flexíveis</span></div>
-                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-yellow-400">✓</span> <span>Presença no estádio</span></div>
-                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-yellow-400">✓</span> <span>Ativação digital</span></div>
+                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-gold-400">✓</span> <span>Dossier Comercial 2026</span></div>
+                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-gold-400">✓</span> <span>Planos flexíveis</span></div>
+                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-gold-400">✓</span> <span>Presença no estádio</span></div>
+                   <div className="flex items-center gap-1.5 sm:gap-2"><span className="text-gold-400">✓</span> <span>Ativação digital</span></div>
                 </div>
              </div>
           </div>
@@ -130,88 +130,88 @@ export const SponsorsForm: React.FC = () => {
 
              <form className="space-y-2.5 sm:space-y-3 md:space-y-5" onSubmit={handleSubmit}>
                 <div>
-                   <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Empresa</label>
+                   <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Empresa</label>
                    <input
                      type="text"
                      placeholder="Nome da Empresa"
                      value={formData.empresa}
                      onChange={handleChange('empresa')}
-                     className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600"
+                     className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600"
                    />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
                    <div>
-                      <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Responsável</label>
+                      <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Responsável</label>
                       <input
                          type="text"
                          placeholder="Seu nome"
                          value={formData.responsavel}
                          onChange={handleChange('responsavel')}
-                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600"
+                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600"
                       />
                    </div>
                    <div>
-                      <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Telemóvel</label>
+                      <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Telemóvel</label>
                       <input
                          type="text"
                          placeholder="912 345 678"
                          value={formData.telemovel}
                          onChange={handleChange('telemovel')}
-                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600"
+                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600"
                       />
                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 md:gap-4">
                    <div>
-                      <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Área de negócio</label>
+                      <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Área de negócio</label>
                       <input
                          type="text"
                          placeholder="Ex: Retail, Serviços"
                          value={formData.areaNegocio}
                          onChange={handleChange('areaNegocio')}
-                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600"
+                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600"
                       />
                    </div>
                    <div>
-                      <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Localidade</label>
+                      <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Localidade</label>
                       <input
                          type="text"
                          placeholder="São Romão"
                          value={formData.localidade}
                          onChange={handleChange('localidade')}
-                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600"
+                         className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600"
                       />
                    </div>
                 </div>
 
                 <div>
-                   <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">E-mail Corporativo</label>
+                   <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">E-mail Corporativo</label>
                    <input
                       type="email"
                       placeholder="geral@empresa.pt"
                       value={formData.email}
                       onChange={handleChange('email')}
-                      className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600"
+                      className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600"
                    />
                 </div>
 
                 <div>
-                   <label className="text-yellow-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Mensagem</label>
+                   <label className="text-gold-400 text-[11px] sm:text-[11px] md:text-[12px] font-bold uppercase tracking-widest block mb-0.5 sm:mb-1">Mensagem</label>
                    <textarea
                      rows={3}
                      placeholder="Como podemos colaborar?"
                      value={formData.mensagem}
                      onChange={handleChange('mensagem')}
-                     className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-yellow-400 focus:outline-none placeholder-gray-600 resize-none"
+                     className="w-full bg-navy-800 border border-navy-700 rounded px-2.5 sm:px-3 py-2 sm:py-2.5 md:py-3 text-white text-[12px] sm:text-sm focus:border-gold-400 focus:outline-none placeholder-gray-600 resize-none"
                    ></textarea>
                 </div>
 
                 <button
                    type="submit"
                    disabled={status === 'sending'}
-                   className="w-full bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-2.5 sm:py-3 md:py-4 rounded shadow-lg uppercase text-[10px] sm:text-[11px] md:text-xs tracking-widest transition-transform hover:-translate-y-1 mt-1 sm:mt-1.5 md:mt-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
+                   className="w-full bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-2.5 sm:py-3 md:py-4 rounded shadow-lg uppercase text-[10px] sm:text-[11px] md:text-xs tracking-widest transition-transform hover:-translate-y-1 mt-1 sm:mt-1.5 md:mt-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
                 >
                    {status === 'sending' ? (
                      <>

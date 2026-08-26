@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Section, SectionInner, SectionHeading } from './ui/Section';
 
 interface NewsSectionProps {
   onNavigate: (page: string, id?: number) => void;
@@ -28,51 +29,48 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
   const next = () => setStartIndex(i => Math.min(maxIndex, i + 1));
 
   return (
-    <div className="bg-white py-20 border-t border-gray-100">
-      <div className="container mx-auto px-4">
+    <Section tone="light" seam>
+      <SectionInner>
 
-        {/* Header */}
-        <div className="flex justify-between items-end mb-12">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-10 bg-yellow-400" />
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-900 uppercase">
-              Destaques do Clube
-            </h2>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex gap-2">
+        <SectionHeading
+          eyebrow="Notícias"
+          title="Destaques do Clube"
+          action={
+            <div className="flex items-center gap-3">
+              <div className="hidden md:flex gap-2">
+                <button
+                  onClick={prev}
+                  disabled={startIndex === 0}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-bone-200 bg-paper shadow-sm transition-all hover:border-gold-400 hover:shadow-card disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Anterior"
+                >
+                  <ChevronLeft size={16} className="text-navy-900" />
+                </button>
+                <button
+                  onClick={next}
+                  disabled={startIndex >= maxIndex}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-bone-200 bg-paper shadow-sm transition-all hover:border-gold-400 hover:shadow-card disabled:opacity-30 disabled:cursor-not-allowed"
+                  aria-label="Seguinte"
+                >
+                  <ChevronRight size={16} className="text-navy-900" />
+                </button>
+              </div>
               <button
-                onClick={prev}
-                disabled={startIndex === 0}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:border-yellow-400 hover:shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Anterior"
+                onClick={() => onNavigate('noticias')}
+                className="hidden md:flex items-center text-navy-900 font-bold text-xs uppercase tracking-widest border-b-2 border-gold-400 pb-0.5 transition-colors hover:text-gold-600"
               >
-                <ChevronLeft size={16} className="text-navy-900" />
-              </button>
-              <button
-                onClick={next}
-                disabled={startIndex >= maxIndex}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:border-yellow-400 hover:shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label="Seguinte"
-              >
-                <ChevronRight size={16} className="text-navy-900" />
+                Ver todas <ArrowRight size={15} className="ml-2" />
               </button>
             </div>
-            <button
-              onClick={() => onNavigate('noticias')}
-              className="hidden md:flex items-center text-navy-900 font-bold text-sm hover:text-blue-600 transition-colors"
-            >
-              VER TODAS <ArrowRight size={16} className="ml-2" />
-            </button>
-          </div>
-        </div>
+          }
+        />
 
         {/* Carousel row — always 3 columns on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleItems.map((item) => (
             <div
               key={item.id}
-              className="group bg-white rounded-lg overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+              className="group bg-paper rounded-2xl overflow-hidden border border-bone-200 shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col h-full"
             >
               <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                 <img
@@ -89,16 +87,16 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
               </div>
 
               <div className="p-5 sm:p-6 md:p-8 flex flex-col flex-grow">
-                <span className="text-gray-400 text-xs font-medium mb-3 block">{item.date}</span>
-                <h3 className="font-display font-bold text-xl text-navy-900 mb-4 leading-tight group-hover:text-blue-700 transition-colors">
+                <span className="text-navy-900/40 text-xs font-medium mb-3 block">{item.date}</span>
+                <h3 className="font-display font-bold text-xl text-navy-900 mb-4 leading-tight group-hover:text-navy-700 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-navy-900/60 text-sm leading-relaxed mb-6 flex-grow">
                   {item.excerpt}
                 </p>
                 <button
                   onClick={() => onNavigate('noticia-detalhe', item.id)}
-                  className="inline-block text-navy-900 font-bold text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-yellow-400 transition-all self-start cursor-pointer"
+                  className="inline-block text-navy-900 font-bold text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-gold-400 transition-all self-start cursor-pointer"
                 >
                   Ler Notícia
                 </button>
@@ -113,7 +111,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
             <button
               onClick={prev}
               disabled={startIndex === 0}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-bone-200 bg-paper shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Anterior"
             >
               <ChevronLeft size={16} className="text-navy-900" />
@@ -121,7 +119,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
             <button
               onClick={next}
               disabled={startIndex >= maxIndex}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-bone-200 bg-paper shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Seguinte"
             >
               <ChevronRight size={16} className="text-navy-900" />
@@ -143,7 +141,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
                 key={i}
                 onClick={() => setStartIndex(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === startIndex ? 'w-6 bg-yellow-400' : 'w-1.5 bg-gray-200 hover:bg-gray-300'
+                  i === startIndex ? 'w-6 bg-gold-400' : 'w-1.5 bg-bone-300 hover:bg-navy-900/30'
                 }`}
                 aria-label={`Ir para posição ${i + 1}`}
               />
@@ -151,8 +149,8 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
           </div>
         )}
 
-      </div>
-    </div>
+      </SectionInner>
+    </Section>
   );
 };
 

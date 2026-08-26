@@ -60,8 +60,8 @@ export const SponsorsList: React.FC = () => {
 
         {/* --- SECÇÃO SPONSOR PRINCIPAL --- */}
         <div className="text-center">
-           <div className="inline-block border-2 border-gradient-to-r from-yellow-400 via-amber-300 to-yellow-400 rounded-full px-10 py-3 mb-10 bg-gradient-to-r from-yellow-400/10 via-amber-300/10 to-yellow-400/10 shadow-lg shadow-yellow-400/20">
-              <span className="text-yellow-400 text-sm font-bold uppercase tracking-[0.3em]">✦ Sponsor Principal ✦</span>
+           <div className="inline-block border-2 border-gradient-to-r from-gold-400 via-amber-300 to-gold-400 rounded-full px-10 py-3 mb-10 bg-gradient-to-r from-gold-400/10 via-amber-300/10 to-gold-400/10 shadow-lg shadow-gold-400/20">
+              <span className="text-gold-400 text-sm font-bold uppercase tracking-[0.3em]">✦ Sponsor Principal ✦</span>
            </div>
            
            <div className="max-w-3xl mx-auto">
@@ -71,9 +71,9 @@ export const SponsorsList: React.FC = () => {
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="block bg-gradient-to-br from-navy-800/80 via-navy-900/90 to-navy-800/80 rounded-3xl border-2 border-yellow-400/30 relative shadow-2xl shadow-yellow-400/10 hover:shadow-yellow-400/30 hover:-translate-y-2 transition-all duration-500 group overflow-hidden"
+                   className="block bg-gradient-to-br from-navy-800/80 via-navy-900/90 to-navy-800/80 rounded-3xl border-2 border-gold-400/30 relative shadow-2xl shadow-gold-400/10 hover:shadow-gold-400/30 hover:-translate-y-2 transition-all duration-500 group overflow-hidden"
                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/5 via-transparent to-yellow-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-gold-400/5 via-transparent to-gold-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="h-56 md:h-64 overflow-hidden bg-white">
                       <img
                         src={sponsor.logo}
@@ -83,8 +83,8 @@ export const SponsorsList: React.FC = () => {
                       />
                     </div>
                     {sponsor.name && (
-                      <div className="bg-gradient-to-t from-navy-900 via-navy-900/95 to-transparent px-6 py-4 border-t border-yellow-400/20">
-                        <span className="text-white font-display text-lg uppercase tracking-widest group-hover:text-yellow-400 transition-colors">{sponsor.name}</span>
+                      <div className="bg-gradient-to-t from-navy-900 via-navy-900/95 to-transparent px-6 py-4 border-t border-gold-400/20">
+                        <span className="text-white font-display text-lg uppercase tracking-widest group-hover:text-gold-400 transition-colors">{sponsor.name}</span>
                       </div>
                     )}
                  </a>
@@ -94,8 +94,8 @@ export const SponsorsList: React.FC = () => {
         
         {/* --- SECÇÃO GOLD --- */}
         <div className="text-center">
-           <div className="inline-block border border-yellow-400 rounded-full px-8 py-2 mb-10 bg-yellow-400/5">
-              <span className="text-yellow-400 text-xs font-bold uppercase tracking-[0.2em]">Parceiros Gold</span>
+           <div className="inline-block border border-gold-400 rounded-full px-8 py-2 mb-10 bg-gold-400/5">
+              <span className="text-gold-400 text-xs font-bold uppercase tracking-[0.2em]">Parceiros Gold</span>
            </div>
            
            <div className="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
@@ -105,7 +105,7 @@ export const SponsorsList: React.FC = () => {
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="w-full md:w-[calc(50%-1rem)] bg-navy-800/50 rounded-2xl border border-white/5 relative shadow-lg hover:shadow-yellow-400/20 hover:-translate-y-1 transition-all duration-500 group overflow-hidden flex flex-col"
+                   className="w-full md:w-[calc(50%-1rem)] bg-navy-800/50 rounded-2xl border border-white/5 relative shadow-lg hover:shadow-gold-400/20 hover:-translate-y-1 transition-all duration-500 group overflow-hidden flex flex-col"
                  >
                     {sponsor.logo ? (
                       <>
@@ -119,13 +119,13 @@ export const SponsorsList: React.FC = () => {
                         </div>
                         {sponsor.name && (
                           <div className="bg-gradient-to-t from-navy-900 via-navy-900/95 to-navy-900/80 px-4 py-3">
-                            <span className="text-white/70 font-display text-sm uppercase tracking-wider group-hover:text-yellow-400 transition-colors">{sponsor.name}</span>
+                            <span className="text-white/70 font-display text-sm uppercase tracking-wider group-hover:text-gold-400 transition-colors">{sponsor.name}</span>
                           </div>
                         )}
                       </>
                     ) : (
                       <div className="flex items-center justify-center h-48 w-full">
-                         <span className="text-white/30 font-display text-2xl uppercase group-hover:text-yellow-400 font-bold transition-colors">{sponsor.name || 'Disponível'}</span>
+                         <span className="text-white/30 font-display text-2xl uppercase group-hover:text-gold-400 font-bold transition-colors">{sponsor.name || 'Disponível'}</span>
                       </div>
                     )}
                  </a>
@@ -207,8 +207,8 @@ export const SponsorsList: React.FC = () => {
 
         {/* --- SECÇÃO ADSR CUP --- */}
         <div className="text-center">
-           <div className="inline-flex items-center gap-2 border border-yellow-500/60 rounded-full px-8 py-2 mb-10 bg-gradient-to-r from-yellow-500/10 via-amber-400/5 to-yellow-500/10">
-              <span className="text-yellow-400 text-xs font-bold uppercase tracking-[0.2em]">🏆 Patrocinadores ADSR Cup</span>
+           <div className="inline-flex items-center gap-2 border border-gold-500/60 rounded-full px-8 py-2 mb-10 bg-gradient-to-r from-gold-500/10 via-amber-400/5 to-gold-500/10">
+              <span className="text-gold-400 text-xs font-bold uppercase tracking-[0.2em]">🏆 Patrocinadores ADSR Cup</span>
            </div>
            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 max-w-6xl mx-auto">
               {SPONSORS_DATA.adsrcup.map((sponsor) => (
@@ -217,9 +217,9 @@ export const SponsorsList: React.FC = () => {
                    href={sponsor.url}
                    target="_blank"
                    rel="noopener noreferrer"
-                   className="rounded-xl border border-yellow-400/15 bg-navy-800/60 hover:border-yellow-400/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col"
+                   className="rounded-xl border border-gold-400/15 bg-navy-800/60 hover:border-gold-400/40 hover:-translate-y-1 transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col"
                  >
-                    <div className={`relative h-28 overflow-hidden ${'lightBg' in sponsor && sponsor.lightBg ? 'bg-white' : 'bg-[#0b1530]'}`}>
+                    <div className={`relative h-28 overflow-hidden ${'lightBg' in sponsor && sponsor.lightBg ? 'bg-white' : 'bg-[#021A3C]'}`}>
                       <div className={`absolute inset-0 flex items-center justify-center ${'pad' in sponsor && (sponsor as any).pad ? 'p-3' : ''}`}>
                         <img
                           src={sponsor.logo}
@@ -229,8 +229,8 @@ export const SponsorsList: React.FC = () => {
                         />
                       </div>
                     </div>
-                    <div className="bg-navy-900/90 px-3 py-2 border-t border-yellow-400/10">
-                      <span className="text-white/50 font-display text-[10px] uppercase tracking-wider group-hover:text-yellow-400/80 transition-colors line-clamp-2 leading-tight block">{sponsor.name}</span>
+                    <div className="bg-navy-900/90 px-3 py-2 border-t border-gold-400/10">
+                      <span className="text-white/50 font-display text-[10px] uppercase tracking-wider group-hover:text-gold-400/80 transition-colors line-clamp-2 leading-tight block">{sponsor.name}</span>
                     </div>
                  </a>
               ))}

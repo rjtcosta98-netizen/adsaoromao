@@ -21,11 +21,11 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
         
         {/* Left Content */}
         <div className="lg:w-1/2">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
             Momentos eternizados em azul e ouro
           </span>
           <h1 className="font-display font-bold text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase leading-[0.9] mb-8">
-            Nossa História em <br/> <span className="text-yellow-400">Imagens</span>
+            Nossa História em <br/> <span className="text-gold-400">Imagens</span>
           </h1>
           
           <p className="text-gray-300 text-lg leading-relaxed max-w-xl mb-10">
@@ -33,7 +33,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
           </p>
           
           <div className="flex flex-wrap gap-4">
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-4 px-10 rounded shadow-[0_0_20px_rgba(255,215,0,0.3)] uppercase text-sm tracking-widest transition-transform hover:scale-105">
+            <button className="bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-4 px-10 rounded shadow-[0_0_20px_rgba(255,215,0,0.3)] uppercase text-sm tracking-widest transition-transform hover:scale-105">
               Ver Álbuns
             </button>
             <button className="bg-transparent border border-white text-white hover:bg-white/10 font-bold py-4 px-10 rounded uppercase text-sm tracking-widest transition-colors">
@@ -49,7 +49,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
            }}>
               {/* Card Header */}
               <div className="bg-gray-700/50 p-4 text-center border-b border-white/5">
-                 <span className="text-yellow-400 font-bold text-xs uppercase tracking-widest">Destaque da Semana</span>
+                 <span className="text-gold-400 font-bold text-xs uppercase tracking-widest">Destaque da Semana</span>
               </div>
               
               {/* Featured Image */}
@@ -75,7 +75,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
                        <span>3 de Maio, 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
-                       <ImageIcon size={14} className="text-yellow-400" />
+                       <ImageIcon size={14} className="text-gold-400" />
                        <span>20 Fotos</span>
                     </div>
                  </div>

@@ -61,7 +61,7 @@ export const ClubTimeline: React.FC = () => {
                 
                 {/* Content */}
                 <div className={`w-full md:w-[45%] pl-16 md:pl-0 ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                  <div className={`p-4 md:p-6 rounded-lg shadow-lg border-b-4 transition-transform duration-300 hover:-translate-y-1 ${event.highlight ? 'bg-yellow-50 border-yellow-400' : 'bg-white border-yellow-400'}`}>
+                  <div className={`p-4 md:p-6 rounded-lg shadow-lg border-b-4 transition-transform duration-300 hover:-translate-y-1 ${event.highlight ? 'bg-gold-50 border-gold-400' : 'bg-white border-gold-400'}`}>
                     <span className="text-navy-900 font-display font-bold text-2xl md:text-4xl block mb-1 md:mb-2">{event.year}</span>
                     <h3 className="text-base md:text-lg font-bold text-navy-900 uppercase mb-2">{event.title}</h3>
                     <p className="text-gray-500 text-xs md:text-sm leading-relaxed">{event.description}</p>
@@ -70,12 +70,12 @@ export const ClubTimeline: React.FC = () => {
 
                 {/* Dot - Desktop */}
                 <div className="relative z-10 w-8 h-8 rounded-full bg-navy-900 border-4 border-white shadow flex items-center justify-center shrink-0 hidden md:flex">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gold-400 rounded-full"></div>
                 </div>
 
                 {/* Dot - Mobile */}
                 <div className="absolute left-0 top-0 z-10 w-8 h-8 rounded-full bg-navy-900 border-4 border-gray-50 shadow flex items-center justify-center shrink-0 md:hidden">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-gold-400 rounded-full"></div>
                 </div>
 
                 {/* Empty Space for alignment - Desktop */}

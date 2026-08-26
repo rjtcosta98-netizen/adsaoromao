@@ -9,11 +9,18 @@ const SOCIAL_LINKS = {
 
 // Posts do Instagram para mostrar (atualizar periodicamente com os URLs dos posts)
 const INSTAGRAM_POSTS = [
-  'https://www.instagram.com/p/DZCMt9jMFhG/',
-  'https://www.instagram.com/p/DZBCodqML8X/',
-  'https://www.instagram.com/p/DZBA_D5MjvH/'
+  'https://www.instagram.com/p/DcerbvsDCQN/',
+  'https://www.instagram.com/p/Dcdw_Lzses5/',
+  'https://www.instagram.com/p/DcZoBH0jP1n/'
 
 ];
+
+const processInstagramEmbeds = () => {
+  const instagram = (window as any).instgrm;
+  if (instagram?.Embeds?.process) {
+    instagram.Embeds.process();
+  }
+};
 
 export const SocialFeed: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -52,17 +59,20 @@ export const SocialFeed: React.FC = () => {
   }, [isVisible]);
 
   return (
-    <section ref={sectionRef} className="bg-white py-16 md:py-20 lg:py-24 border-t border-gray-100">
-      <div className="container mx-auto px-4">
+    <section ref={sectionRef} className="section-y seam-light relative overflow-hidden bg-paper text-navy-900">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
-          <span className="text-blue-600 font-bold tracking-[0.2em] text-xs uppercase block mb-3">
-            #ADSRomao
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-900 uppercase mb-6">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span className="kicker-rule" aria-hidden="true" />
+            <span className="font-display text-[11px] font-semibold uppercase tracking-kicker text-gold-600">
+              #ADSRomao
+            </span>
+          </div>
+          <h2 className="font-display text-[clamp(1.85rem,5vw,3rem)] font-bold uppercase leading-[0.92] text-navy-900 mb-6">
             Siga-nos nas Redes
           </h2>
-          <p className="text-gray-500 text-sm mb-8 max-w-lg mx-auto">
+          <p className="text-navy-900/60 text-base mb-8 max-w-lg mx-auto leading-relaxed">
             Fica a par de tudo o que acontece no universo ADSR. Partilha a tua paixão usando a nossa hashtag oficial.
           </p>
 
@@ -72,7 +82,7 @@ export const SocialFeed: React.FC = () => {
               href={SOCIAL_LINKS.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 md:px-8 py-3 bg-navy-900 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+              className="flex items-center gap-2 px-6 md:px-8 py-3 bg-navy-900 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-gradient-to-r hover:from-[#833AB4] hover:to-[#E1306C] transition-all shadow-card hover:shadow-card-hover hover:-translate-y-1"
             >
               <Instagram size={18} /> @adsaoromao
             </a>
@@ -80,7 +90,7 @@ export const SocialFeed: React.FC = () => {
               href={SOCIAL_LINKS.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 md:px-8 py-3 bg-blue-600 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+              className="flex items-center gap-2 px-6 md:px-8 py-3 bg-navy-900 text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#1877F2] transition-all shadow-card hover:shadow-card-hover hover:-translate-y-1"
             >
               <Facebook size={18} /> AD São Romão
             </a>
@@ -122,7 +132,7 @@ export const SocialFeed: React.FC = () => {
             href={SOCIAL_LINKS.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-navy-900 font-bold text-sm uppercase tracking-wider hover:text-yellow-600 transition-colors group"
+            className="inline-flex items-center gap-2 text-navy-900 font-bold text-sm uppercase tracking-wider hover:text-gold-600 transition-colors group"
           >
             Ver mais no Instagram
             <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />

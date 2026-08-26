@@ -41,10 +41,10 @@ export const MembershipImpact: React.FC = () => {
 
       <div className="container mx-auto px-4 relative z-10">
          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[#032d61] uppercase">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[#032D61] uppercase">
               O Impacto da tua Quota
             </h2>
-            <div className="w-16 h-1 bg-yellow-400 mx-auto mt-3 md:mt-4 rounded-full"></div>
+            <div className="w-16 h-1 bg-gold-400 mx-auto mt-3 md:mt-4 rounded-full"></div>
          </div>
 
          {/* Destino Direto do Investimento */}
@@ -62,7 +62,7 @@ export const MembershipImpact: React.FC = () => {
                {impactAreas.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-navy-50 to-white border border-navy-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-gold-400 rounded-lg flex items-center justify-center flex-shrink-0">
                            <area.icon className="text-navy-900" size={24} strokeWidth={2} />
                         </div>
                         <div>
@@ -81,10 +81,10 @@ export const MembershipImpact: React.FC = () => {
 
          {/* Meta Próxima */}
          <div className="max-w-3xl mx-auto text-center">
-            <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-2xl p-8 md:p-10 shadow-xl">
+            <div className="bg-gradient-to-r from-gold-400 to-gold-500 rounded-2xl p-8 md:p-10 shadow-xl">
                <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-navy-900 rounded-full flex items-center justify-center">
-                     <Target className="text-yellow-400" size={32} strokeWidth={2} />
+                     <Target className="text-gold-400" size={32} strokeWidth={2} />
                   </div>
                </div>
                <h3 className="text-navy-900 font-display font-bold text-xl md:text-2xl uppercase mb-3">

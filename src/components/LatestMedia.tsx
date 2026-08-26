@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Camera, Play, X, ArrowRight } from 'lucide-react';
 import { GALLERY_ALBUMS, GALLERY_VIDEOS, GalleryVideo } from '../constants';
+import { Section, SectionInner, SectionHeading } from './ui/Section';
 
 interface LatestMediaProps {
   onNavigate: (page: string, id?: number) => void;
@@ -24,18 +25,14 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
   };
 
   return (
-    <section className="bg-[#f5f5f5] py-10 sm:py-14 md:py-20">
-      <div className="container mx-auto px-3 sm:px-4">
+    <Section tone="light" seam>
+      <SectionInner>
 
-        <div className="text-center mb-8 sm:mb-10 md:mb-14">
-          <span className="text-[#1f398a] font-bold tracking-[0.2em] text-xs uppercase block mb-2 sm:mb-3">
-            Última Hora
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#1f398a] uppercase">
-            Galeria & <span className="text-yellow-500">Vídeo</span>
-          </h2>
-          <div className="w-12 sm:w-16 h-1 bg-yellow-400 mx-auto mt-3 sm:mt-4 rounded-full"></div>
-        </div>
+        <SectionHeading
+          eyebrow="Última hora"
+          title={<>Galeria &amp; <span className="text-navy-700">Vídeo</span></>}
+          align="center"
+        />
 
         {/* 3 Albums */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-4 sm:mb-5 md:mb-6">
@@ -53,24 +50,24 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
                 height={400}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1f398a] via-[#1f398a]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#053975] via-[#053975]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
 
               {/* Badge */}
               <div className="absolute top-3 left-3 flex items-center gap-2">
-                <span className="bg-yellow-400 text-[#1f398a] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                <span className="bg-gold-400 text-[#053975] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
                   <Camera size={12} /> {album.photos.length} Fotos
                 </span>
               </div>
 
               <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5">
-                <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                <span className="text-gold-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
                   {album.subtitle}
                 </span>
-                <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-yellow-400 transition-colors">
+                <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-gold-400 transition-colors">
                   {album.title}
                 </h3>
                 <p className="text-gray-300 text-xs">{album.date}</p>
-                <div className="mt-2 flex items-center gap-1.5 text-yellow-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="mt-2 flex items-center gap-1.5 text-gold-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
                   Ver Álbum <ArrowRight size={13} />
                 </div>
               </div>
@@ -92,30 +89,30 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1f398a] via-[#1f398a]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#053975] via-[#053975]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
 
               {/* Play button */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1f398a]/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Play className="text-yellow-400 fill-yellow-400 ml-0.5" size={20} />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#053975]/80 backdrop-blur border-2 border-gold-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Play className="text-gold-400 fill-gold-400 ml-0.5" size={20} />
                 </div>
               </div>
 
               {/* Badge */}
               <div className="absolute top-3 left-3">
-                <span className="bg-yellow-400 text-[#1f398a] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                <span className="bg-gold-400 text-[#053975] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
                   <Play size={12} /> Vídeo
                 </span>
               </div>
 
               <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5">
-                <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                <span className="text-gold-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
                   {video.subtitle}
                 </span>
-                <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-yellow-400 transition-colors">
+                <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-gold-400 transition-colors">
                   {video.title}
                 </h3>
-                <div className="mt-2 flex items-center gap-1.5 text-yellow-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="mt-2 flex items-center gap-1.5 text-gold-400 text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
                   Assistir <ArrowRight size={13} />
                 </div>
               </div>
@@ -128,13 +125,13 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
         <div className="text-center mt-8 sm:mt-10">
           <button
             onClick={() => onNavigate('galeria')}
-            className="bg-[#1f398a] hover:bg-[#162a6b] text-white font-bold py-3 px-8 rounded-full uppercase text-xs tracking-widest transition-all inline-flex items-center gap-2 shadow-lg"
+            className="bg-navy-900 hover:bg-navy-700 text-white font-bold py-3 px-8 rounded-full uppercase text-xs tracking-widest transition-all inline-flex items-center gap-2 shadow-card"
           >
             Ver Toda a Galeria <ArrowRight size={16} />
           </button>
         </div>
 
-      </div>
+      </SectionInner>
 
       {/* Video Modal */}
       {activeVideo && (
@@ -151,7 +148,7 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
           </button>
 
           <div className="absolute top-2 left-2 md:top-4 md:left-4 text-left px-3 py-2 bg-black/60 backdrop-blur-sm rounded-lg md:max-w-xs z-10">
-            <span className="text-yellow-400 text-[10px] md:text-xs font-bold uppercase tracking-wider block mb-1">{activeVideo.subtitle}</span>
+            <span className="text-gold-400 text-[10px] md:text-xs font-bold uppercase tracking-wider block mb-1">{activeVideo.subtitle}</span>
             <h3 className="font-display font-bold text-xs md:text-sm lg:text-base text-white uppercase leading-tight">
               {activeVideo.title}
             </h3>
@@ -169,6 +166,6 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
           </div>
         </div>
       )}
-    </section>
+    </Section>
   );
 };

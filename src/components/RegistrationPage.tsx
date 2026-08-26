@@ -16,11 +16,11 @@ export const RegistrationPage: React.FC = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/30 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2"></div>
         
         <div className="container mx-auto px-3 sm:px-4 relative z-10 text-center">
-          <span className="text-yellow-400 font-bold tracking-[0.15em] text-[11px] sm:text-xs uppercase block mb-2 sm:mb-3 md:mb-4">
+          <span className="text-gold-400 font-bold tracking-[0.15em] text-[11px] sm:text-xs uppercase block mb-2 sm:mb-3 md:mb-4">
             Época 2025/2026
           </span>
           <h1 className="font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-7xl text-white uppercase leading-tight sm:leading-none mb-3 sm:mb-4 md:mb-6">
-            Junta-te à <span className="text-yellow-400">Equipa</span>
+            Junta-te à <span className="text-gold-400">Equipa</span>
           </h1>
           <p className="text-gray-300 text-[12px] sm:text-sm md:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto">
              Preenche o formulário oficial abaixo para formalizar a tua inscrição na Associação Desportiva de São Romão.
@@ -44,7 +44,7 @@ export const RegistrationPage: React.FC = () => {
                   {/* Loading State */}
                   {isLoading && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-50 z-0">
-                      <div className="w-8 sm:w-10 h-8 sm:h-10 border-3 sm:border-4 border-navy-900 border-t-yellow-400 rounded-full animate-spin mb-2 sm:mb-4"></div>
+                      <div className="w-8 sm:w-10 h-8 sm:h-10 border-3 sm:border-4 border-navy-900 border-t-gold-400 rounded-full animate-spin mb-2 sm:mb-4"></div>
                       <span className="text-[11px] sm:text-xs font-bold text-navy-900 uppercase tracking-widest">A carregar formulário...</span>
                     </div>
                   )}
@@ -76,7 +76,7 @@ export const RegistrationPage: React.FC = () => {
            <div className="lg:w-1/3 space-y-4 sm:space-y-6 md:space-y-8">
               
               {/* Why Join Box */}
-              <div className="bg-navy-900 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 text-white shadow-lg sm:shadow-xl border-t-4 border-yellow-400">
+              <div className="bg-navy-900 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 text-white shadow-lg sm:shadow-xl border-t-4 border-gold-400">
                  <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl uppercase mb-3 sm:mb-4 md:mb-6">Porquê a ADSR?</h3>
                  <ul className="space-y-2 sm:space-y-3 md:space-y-4">
                     {[
@@ -88,7 +88,7 @@ export const RegistrationPage: React.FC = () => {
                        'Kit de Treino Oficial'
                     ].map((item, idx) => (
                        <li key={idx} className="flex items-start gap-2 sm:gap-3 text-[11px] sm:text-xs md:text-sm">
-                          <Check className="text-yellow-400 shrink-0 w-4 sm:w-4 md:w-5 h-4 sm:h-4 md:h-5 mt-0.5" />
+                          <Check className="text-gold-400 shrink-0 w-4 sm:w-4 md:w-5 h-4 sm:h-4 md:h-5 mt-0.5" />
                           <span className="text-gray-300 leading-snug">{item}</span>
                        </li>
                     ))}

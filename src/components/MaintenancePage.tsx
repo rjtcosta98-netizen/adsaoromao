@@ -52,7 +52,7 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none" style={{ background: '#05111f' }}>
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden select-none" style={{ background: '#021A3C' }}>
 
       {/* Field lines background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
@@ -72,16 +72,16 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
         </svg>
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(5,17,31,0.4) 0%, rgba(5,17,31,0.85) 70%, #05111f 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(2,26,60,0.4) 0%, rgba(2,26,60,0.85) 70%, #021A3C 100%)' }} />
       </div>
 
       {/* Top accent bar */}
-      <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(90deg, #1d4ed8, #facc15, #1d4ed8)' }} />
+      <div className="absolute top-0 left-0 right-0 h-1 z-10" style={{ background: 'linear-gradient(90deg, #0A4E8F, #FFD700, #0A4E8F)' }} />
 
       {/* Floating orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-        <div className="absolute rounded-full opacity-[0.06] blur-[100px]" style={{ width: 400, height: 400, top: '-10%', right: '-5%', background: '#1d4ed8', animation: 'orb-a 12s ease-in-out infinite' }} />
-        <div className="absolute rounded-full opacity-[0.05] blur-[120px]" style={{ width: 500, height: 500, bottom: '-15%', left: '-10%', background: '#facc15', animation: 'orb-b 16s ease-in-out infinite' }} />
+        <div className="absolute rounded-full opacity-[0.06] blur-[100px]" style={{ width: 400, height: 400, top: '-10%', right: '-5%', background: '#0A4E8F', animation: 'orb-a 12s ease-in-out infinite' }} />
+        <div className="absolute rounded-full opacity-[0.05] blur-[120px]" style={{ width: 500, height: 500, bottom: '-15%', left: '-10%', background: '#FFD700', animation: 'orb-b 16s ease-in-out infinite' }} />
       </div>
 
       {/* Main content */}
@@ -93,12 +93,12 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
           className="relative cursor-pointer mb-6 sm:mb-8"
           style={{ animation: mounted ? 'drop-in 0.7s cubic-bezier(0.16,1,0.3,1) both' : 'none' }}
         >
-          <div className="absolute inset-0 rounded-full blur-[40px] opacity-40" style={{ background: 'radial-gradient(circle, #facc15, transparent 70%)' }} />
+          <div className="absolute inset-0 rounded-full blur-[40px] opacity-40" style={{ background: 'radial-gradient(circle, #FFD700, transparent 70%)' }} />
           <img
             src={LOGO_URL}
             alt="AD São Romão"
             draggable="false"
-            className="relative z-10 object-contain drop-shadow-[0_0_30px_rgba(250,204,21,0.25)]"
+            className="relative z-10 object-contain drop-shadow-[0_0_30px_rgba(255,215,0,0.25)]"
             style={{ width: 80, height: 80 }}
           />
         </div>
@@ -107,13 +107,13 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 sm:mb-6 border"
           style={{
-            background: 'rgba(250,204,21,0.06)',
-            borderColor: 'rgba(250,204,21,0.2)',
+            background: 'rgba(255,215,0,0.06)',
+            borderColor: 'rgba(255,215,0,0.2)',
             animation: mounted ? 'fade-up 0.7s 0.15s both' : 'none',
           }}
         >
-          <Wrench size={12} className="text-yellow-400" style={{ animation: 'spin-slow 4s linear infinite' }} />
-          <span className="text-yellow-400 text-[11px] font-bold tracking-[0.25em] uppercase">Em Manutenção</span>
+          <Wrench size={12} className="text-gold-400" style={{ animation: 'spin-slow 4s linear infinite' }} />
+          <span className="text-gold-400 text-[11px] font-bold tracking-[0.25em] uppercase">Em Manutenção</span>
         </div>
 
         {/* Headline */}
@@ -128,7 +128,7 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
           Voltamos
           <br />
           <span style={{
-            background: 'linear-gradient(135deg, #facc15 0%, #fbbf24 50%, #f59e0b 100%)',
+            background: 'linear-gradient(135deg, #FFD700 0%, #FFD700 50%, #B8890B 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}>
@@ -163,10 +163,10 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
           style={{ animation: mounted ? 'fade-up 0.8s 0.5s both' : 'none' }}
         >
           {[
-            { href: 'https://facebook.com/adsaoromao', icon: Facebook, label: 'Facebook', color: '#3b82f6' },
-            { href: 'https://instagram.com/adsaoromao', icon: Instagram, label: 'Instagram', color: '#ec4899' },
+            { href: 'https://facebook.com/adsaoromao', icon: Facebook, label: 'Facebook', color: '#0A4E8F' },
+            { href: 'https://instagram.com/adsaoromao', icon: Instagram, label: 'Instagram', color: '#E1306C' },
             { href: 'https://www.youtube.com/@ADS%C3%83OROM%C3%83O', icon: Youtube, label: 'YouTube', color: '#ef4444' },
-            { href: 'mailto:adsr.romao@gmail.com', icon: Mail, label: 'Email', color: '#facc15' },
+            { href: 'mailto:adsr.romao@gmail.com', icon: Mail, label: 'Email', color: '#FFD700' },
           ].map(({ href, icon: Icon, label, color }) => (
             <a
               key={href}
@@ -215,7 +215,7 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
 
       {/* Bottom accent bar */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 z-10 overflow-hidden">
-        <div className="h-full w-[200%]" style={{ background: 'linear-gradient(90deg, transparent, #1d4ed8, #facc15, #1d4ed8, transparent)', animation: 'bar-slide 3s linear infinite' }} />
+        <div className="h-full w-[200%]" style={{ background: 'linear-gradient(90deg, transparent, #0A4E8F, #FFD700, #0A4E8F, transparent)', animation: 'bar-slide 3s linear infinite' }} />
       </div>
 
       {/* Hidden admin login modal */}
@@ -228,7 +228,7 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
           <div
             className="relative w-full max-w-sm rounded-2xl border overflow-hidden"
             style={{
-              background: 'linear-gradient(160deg, #0a1929, #051525)',
+              background: 'linear-gradient(160deg, #021A3C, #021A3C)',
               borderColor: 'rgba(255,255,255,0.08)',
               animation: 'modal-in 0.3s ease-out both',
               boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
@@ -238,14 +238,14 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
               <X size={14} className="text-white/50" />
             </button>
 
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 blur-[60px] opacity-30 rounded-full pointer-events-none" style={{ background: '#facc15' }} />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 blur-[60px] opacity-30 rounded-full pointer-events-none" style={{ background: '#FFD700' }} />
 
             <div className="relative p-8 pt-10">
               <div className="flex justify-center mb-5">
                 <div className="relative">
-                  <div className="absolute inset-0 blur-2xl opacity-40 scale-150 rounded-full" style={{ background: '#facc15' }} />
-                  <div className="relative w-14 h-14 rounded-full border flex items-center justify-center" style={{ background: 'rgba(250,204,21,0.1)', borderColor: 'rgba(250,204,21,0.25)' }}>
-                    <Lock size={22} className="text-yellow-400" />
+                  <div className="absolute inset-0 blur-2xl opacity-40 scale-150 rounded-full" style={{ background: '#FFD700' }} />
+                  <div className="relative w-14 h-14 rounded-full border flex items-center justify-center" style={{ background: 'rgba(255,215,0,0.1)', borderColor: 'rgba(255,215,0,0.25)' }}>
+                    <Lock size={22} className="text-gold-400" />
                   </div>
                 </div>
               </div>
@@ -284,9 +284,9 @@ export const MaintenancePage: React.FC<MaintenancePageProps> = ({ onLaunch }) =>
                   type="submit"
                   className="w-full py-3 rounded-xl font-bold text-sm transition-all duration-200"
                   style={{
-                    background: 'linear-gradient(135deg, #eab308, #facc15)',
-                    color: '#05111f',
-                    boxShadow: '0 4px 20px rgba(250,204,21,0.25)',
+                    background: 'linear-gradient(135deg, #FFD700, #FFD700)',
+                    color: '#021A3C',
+                    boxShadow: '0 4px 20px rgba(255,215,0,0.25)',
                   }}
                 >
                   Entrar

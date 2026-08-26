@@ -21,7 +21,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             Voltar ao início
           </button>
           <div className="flex items-center gap-3 mb-4">
-            <Shield className="text-yellow-400" size={32} />
+            <Shield className="text-gold-400" size={32} />
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white uppercase">
               Política de Privacidade
             </h1>
@@ -38,7 +38,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 1. Responsável pelo Tratamento */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               1. Responsável pelo Tratamento de Dados
             </h2>
             <p>
@@ -50,15 +50,15 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             </p>
             <div className="bg-gray-50 rounded-xl p-6 mt-4 space-y-2 text-sm">
               <div className="flex items-center gap-2">
-                <MapPin size={16} className="text-yellow-500" />
+                <MapPin size={16} className="text-gold-500" />
                 <span>Estádio Nossa Senhora da Conceição, 6270-273 São Romão, Seia</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail size={16} className="text-yellow-500" />
+                <Mail size={16} className="text-gold-500" />
                 <span>geral@adsaoromao.pt</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone size={16} className="text-yellow-500" />
+                <Phone size={16} className="text-gold-500" />
                 <span>+351 925 228 934</span>
               </div>
             </div>
@@ -66,7 +66,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 2. Dados Pessoais Recolhidos */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               2. Dados Pessoais Recolhidos
             </h2>
             <p>No âmbito da utilização deste website, podemos recolher os seguintes dados pessoais:</p>
@@ -82,7 +82,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 3. Finalidades */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               3. Finalidades do Tratamento
             </h2>
             <p>Os dados pessoais recolhidos são tratados para as seguintes finalidades:</p>
@@ -100,7 +100,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 4. Base Legal */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               4. Base Legal do Tratamento
             </h2>
             <p>O tratamento dos dados pessoais tem como base legal, conforme aplicável:</p>
@@ -114,7 +114,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 5. Partilha de Dados */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               5. Partilha de Dados com Terceiros
             </h2>
             <p>Os dados pessoais poderão ser partilhados com:</p>
@@ -132,7 +132,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 6. Conservação */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               6. Prazo de Conservação
             </h2>
             <p>Os dados pessoais são conservados apenas pelo período necessário à finalidade para que foram recolhidos:</p>
@@ -147,7 +147,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 7. Direitos */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               7. Direitos do Titular dos Dados
             </h2>
             <p>Nos termos do RGPD e da Lei n.º 58/2019, o titular dos dados tem os seguintes direitos:</p>
@@ -162,14 +162,14 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             </ul>
             <p className="mt-4">
               Para exercer qualquer um destes direitos, contacte-nos através do e-mail{' '}
-              <a href="mailto:geral@adsaoromao.pt" className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2">
+              <a href="mailto:geral@adsaoromao.pt" className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2">
                 geral@adsaoromao.pt
               </a>.
             </p>
             <p className="mt-2">
               Tem igualmente o direito de apresentar reclamação junto da{' '}
               <strong>Comissão Nacional de Proteção de Dados (CNPD)</strong> —{' '}
-              <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer" className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2">
+              <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer" className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2">
                 www.cnpd.pt
               </a>.
             </p>
@@ -177,7 +177,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 8. Segurança */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               8. Medidas de Segurança
             </h2>
             <p>
@@ -195,7 +195,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           {/* 9. Alterações */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               9. Alterações à Política de Privacidade
             </h2>
             <p>

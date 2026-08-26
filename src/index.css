@@ -2,13 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════
+   TOKENS DE MARCA — fonte única de verdade
+   Espelha tailwind.config.js. Usar para CSS puro,
+   gradientes e sombras; nunca escrever hex à mão.
+   ═══════════════════════════════════════════════ */
+
+:root {
+  /* Superfícies — só existem duas de página: paper e navy/ink */
+  --adsr-ink: #010B1C;
+  --adsr-navy-950: #021A3C;
+  --adsr-navy-900: #032D61;
+  --adsr-navy-800: #053975;
+  --adsr-navy-700: #0A4E8F;
+  --adsr-paper: #FFFFFF;
+  --adsr-bone: #F4F6FA;
+  --adsr-bone-200: #E6EAF2;
+
+  /* Acento — um só dourado */
+  --adsr-gold: #FFD700;
+  --adsr-gold-soft: #FFE04D;
+  --adsr-gold-deep: #B8890B;
+  --adsr-gold-tint: #FFF4C2;
+
+  /* Ritmo vertical das secções da homepage */
+  --adsr-section-y: 3.5rem;
+
+  color-scheme: light;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --adsr-section-y: 5rem;
+  }
+}
+
 body {
-  background-color: #032d61;
+  background-color: var(--adsr-navy-900);
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Barlow', system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════
+   RITMO DE SECÇÃO — todas as secções da homepage
+   respiram na mesma métrica
+   ═══════════════════════════════════════════════ */
+
+.section-y {
+  padding-top: var(--adsr-section-y);
+  padding-bottom: var(--adsr-section-y);
+}
+
+/* Régua dourada: a assinatura visual repetida do site.
+   Aparece antes de cada eyebrow de secção. */
+.kicker-rule {
+  display: inline-block;
+  width: 2.25rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--adsr-gold) 0%, var(--adsr-gold-deep) 100%);
+}
+
+/* Costura entre secções claras consecutivas — evita o efeito
+   de "bandas" que surgia de vários cinzentos quase iguais */
+.seam-light {
+  border-top: 1px solid var(--adsr-bone-200);
+}
+
+.seam-dark {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ═══════════════════════════════════════════════
@@ -119,11 +183,11 @@ body {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(74, 168, 255, 0), 0 0 0 0 rgba(255, 215, 0, 0);
+    box-shadow: 0 0 0 0 rgba(143,199,255, 0), 0 0 0 0 rgba(255, 215, 0, 0);
   }
 
   50% {
-    box-shadow: 0 0 14px 1px rgba(74, 168, 255, 0.25), 0 0 22px 1px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 14px 1px rgba(143,199,255, 0.25), 0 0 22px 1px rgba(255, 215, 0, 0.3);
   }
 }
 
@@ -287,7 +351,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #ffd700;
+  color: #FFD700;
   font-size: 1.05rem;
   text-shadow: 0 0 14px rgba(3, 45, 97, 0.65), 0 0 20px rgba(255, 215, 0, 0.32);
   animation: global-party-chant-pop 2.4s ease-in-out forwards;
@@ -462,7 +526,7 @@ body {
 .global-party-flares {
   background:
     radial-gradient(circle at 14% 12%, rgba(255, 215, 0, 0.28), transparent 32%),
-    radial-gradient(circle at 88% 16%, rgba(74, 168, 255, 0.28), transparent 34%),
+    radial-gradient(circle at 88% 16%, rgba(143,199,255, 0.28), transparent 34%),
     radial-gradient(circle at 50% 88%, rgba(255, 215, 0, 0.16), transparent 38%);
   mix-blend-mode: screen;
   animation: global-party-flares-pulse 2.8s ease-in-out infinite;
@@ -485,7 +549,7 @@ body {
 .global-party-white-space-ink {
   background:
     radial-gradient(circle at 15% 28%, rgba(3, 45, 97, 0.2), transparent 38%),
-    radial-gradient(circle at 82% 26%, rgba(2, 60, 130, 0.2), transparent 40%),
+    radial-gradient(circle at 82% 26%, rgba(5,57,117, 0.2), transparent 40%),
     radial-gradient(circle at 48% 68%, rgba(3, 45, 97, 0.12), transparent 45%);
   mix-blend-mode: multiply;
   animation: global-party-ink-shift 5s ease-in-out infinite;
@@ -515,9 +579,9 @@ body {
   background:
     linear-gradient(to top, rgba(3, 45, 97, 0.65) 0%, transparent 44%),
     radial-gradient(ellipse at 10% 102%, rgba(255, 215, 0, 0.25), transparent 38%),
-    radial-gradient(ellipse at 35% 102%, rgba(74, 168, 255, 0.24), transparent 40%),
+    radial-gradient(ellipse at 35% 102%, rgba(143,199,255, 0.24), transparent 40%),
     radial-gradient(ellipse at 62% 102%, rgba(255, 215, 0, 0.22), transparent 36%),
-    radial-gradient(ellipse at 86% 102%, rgba(74, 168, 255, 0.26), transparent 40%);
+    radial-gradient(ellipse at 86% 102%, rgba(143,199,255, 0.26), transparent 40%);
   mix-blend-mode: screen;
   animation: global-party-crowd-wave 2.4s ease-in-out infinite;
 }
@@ -556,11 +620,11 @@ body {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(248, 212, 35, 0);
+    box-shadow: 0 0 0 0 rgba(255,215,0, 0);
   }
 
   50% {
-    box-shadow: 0 0 18px 4px rgba(248, 212, 35, 0.18);
+    box-shadow: 0 0 18px 4px rgba(255,215,0, 0.18);
   }
 }
 

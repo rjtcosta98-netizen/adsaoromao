@@ -76,11 +76,11 @@ export const TeamsPage: React.FC = () => {
 
         {/* Content */}
         <div className="relative z-20 container mx-auto px-4 sm:px-6 text-center">
-          <span className="text-yellow-400 font-bold tracking-[0.15em] text-[10px] sm:text-xs uppercase block mb-2 sm:mb-4">
+          <span className="text-gold-400 font-bold tracking-[0.15em] text-[10px] sm:text-xs uppercase block mb-2 sm:mb-4">
             Do Benjamim ao Sénior
           </span>
           <h1 className="font-display font-bold text-2xl sm:text-4xl md:text-6xl lg:text-8xl text-white uppercase leading-tight sm:leading-none mb-3 sm:mb-6 drop-shadow-lg">
-            As Nossas <br/> <span className="text-yellow-400">Equipas</span>
+            As Nossas <br/> <span className="text-gold-400">Equipas</span>
           </h1>
           <p className="text-gray-300 text-[12px] sm:text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-12">
             Conheça os rostos que defendem as cores da AD São Romão. Da Equipa Principal às nossas Camadas Jovens.
@@ -101,8 +101,8 @@ export const TeamsPage: React.FC = () => {
                 onClick={() => setActiveCategory(category)}
                 className={`px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 whitespace-nowrap ${
                   activeCategory === category
-                    ? 'bg-yellow-400 text-navy-900 shadow-[0_0_15px_rgba(255,215,0,0.3)] scale-105'
-                    : 'bg-transparent border border-white/20 text-gray-400 hover:border-yellow-400 hover:text-white'
+                    ? 'bg-gold-400 text-navy-900 shadow-[0_0_15px_rgba(255,215,0,0.3)] scale-105'
+                    : 'bg-transparent border border-white/20 text-gray-400 hover:border-gold-400 hover:text-white'
                 }`}
               >
                 {category}
@@ -120,7 +120,7 @@ export const TeamsPage: React.FC = () => {
           {TROPHIES_BY_CATEGORY[activeCategory] && TROPHIES_BY_CATEGORY[activeCategory].length > 0 && (
             <div className="mb-8 sm:mb-10 md:mb-14">
               <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
-                <div className="w-1 h-5 sm:h-6 md:h-8 bg-yellow-400"></div>
+                <div className="w-1 h-5 sm:h-6 md:h-8 bg-gold-400"></div>
                 <h2 className="font-display font-bold text-lg sm:text-xl md:text-3xl text-white uppercase">
                   Troféus
                 </h2>
@@ -130,14 +130,14 @@ export const TeamsPage: React.FC = () => {
                 {TROPHIES_BY_CATEGORY[activeCategory].map((trophy, index) => (
                   <div
                     key={`${trophy.title}-${index}`}
-                    className="group bg-gradient-to-br from-yellow-400/10 to-blue-500/10 border border-yellow-400/20 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-lg hover:shadow-xl hover:border-yellow-400/50 transition-all duration-300"
+                    className="group bg-gradient-to-br from-gold-400/10 to-blue-500/10 border border-gold-400/20 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-lg hover:shadow-xl hover:border-gold-400/50 transition-all duration-300"
                   >
                     <div className="flex items-start gap-2 sm:gap-3">
-                      <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-yellow-400/20 flex items-center justify-center flex-shrink-0">
-                        <Trophy className="text-yellow-400" size={18} />
+                      <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-full bg-gold-400/20 flex items-center justify-center flex-shrink-0">
+                        <Trophy className="text-gold-400" size={18} />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-yellow-400 font-bold text-[11px] sm:text-xs uppercase tracking-widest mb-0.5">{trophy.year}</p>
+                        <p className="text-gold-400 font-bold text-[11px] sm:text-xs uppercase tracking-widest mb-0.5">{trophy.year}</p>
                         <h3 className="text-white font-display font-bold text-sm sm:text-base md:text-lg uppercase leading-tight break-words">
                           {trophy.title}
                         </h3>
@@ -159,7 +159,7 @@ export const TeamsPage: React.FC = () => {
                 
                 {/* Section Title */}
                 <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
-                  <div className="w-1 h-5 sm:h-6 md:h-8 bg-yellow-400"></div>
+                  <div className="w-1 h-5 sm:h-6 md:h-8 bg-gold-400"></div>
                   <h2 className="font-display font-bold text-lg sm:text-xl md:text-3xl text-white uppercase">
                     {section.title}
                   </h2>
@@ -168,7 +168,7 @@ export const TeamsPage: React.FC = () => {
                 {/* Team Photo - if exists */}
                 {section.members.length === 1 && section.members[0].isTeamPhoto ? (
                   <div className="flex justify-center items-center mb-8 sm:mb-12 md:mb-16">
-                    <div className="w-full max-w-3xl group relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl shadow-xl border border-yellow-400/20 hover:border-yellow-400/50 transition-all duration-500">
+                    <div className="w-full max-w-3xl group relative overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl shadow-xl border border-gold-400/20 hover:border-gold-400/50 transition-all duration-500">
                       <div className="relative">
                         <img 
                           src={section.members[0].image} 
@@ -183,9 +183,9 @@ export const TeamsPage: React.FC = () => {
                         {/* Treinador Info */}
                         <div className="absolute bottom-0 left-0 w-full p-3 sm:p-6 md:p-8">
                           <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                            <div className="w-1 h-6 sm:h-8 md:h-12 bg-yellow-400"></div>
+                            <div className="w-1 h-6 sm:h-8 md:h-12 bg-gold-400"></div>
                             <div>
-                              <p className="text-yellow-400 font-bold text-[11px] sm:text-xs md:text-sm uppercase tracking-widest mb-0.5 md:mb-1">Treinador</p>
+                              <p className="text-gold-400 font-bold text-[11px] sm:text-xs md:text-sm uppercase tracking-widest mb-0.5 md:mb-1">Treinador</p>
                               <h3 className="font-display font-bold text-base sm:text-2xl md:text-4xl text-white uppercase leading-tight">
                                 {section.members[0].name}
                               </h3>
@@ -218,7 +218,7 @@ export const TeamsPage: React.FC = () => {
                               {/* Text Overlay */}
                               <div className="absolute bottom-0 left-0 w-full p-1.5 sm:p-3">
                                 <h3 className="font-display font-bold text-[11px] sm:text-sm md:text-base text-white uppercase leading-tight truncate">{member.name}</h3>
-                                <p className="text-yellow-400 font-bold text-[10px] sm:text-[11px] uppercase tracking-widest truncate">{member.role}</p>
+                                <p className="text-gold-400 font-bold text-[10px] sm:text-[11px] uppercase tracking-widest truncate">{member.role}</p>
                               </div>
                             </div>
                           </>
@@ -238,7 +238,7 @@ export const TeamsPage: React.FC = () => {
                               {/* Number */}
                               {member.number && (
                                 <div className="absolute top-1 sm:top-2 md:top-4 right-1 sm:right-2 md:right-4 z-20">
-                                  <span className="font-display font-bold text-lg sm:text-2xl md:text-4xl text-yellow-400 drop-shadow-md opacity-80">{member.number}</span>
+                                  <span className="font-display font-bold text-lg sm:text-2xl md:text-4xl text-gold-400 drop-shadow-md opacity-80">{member.number}</span>
                                 </div>
                               )}
 
@@ -247,7 +247,7 @@ export const TeamsPage: React.FC = () => {
 
                               {/* Name Overlay */}
                               <div className="absolute bottom-0 left-0 w-full p-1.5 sm:p-3 z-30 bg-gradient-to-t from-navy-900 to-transparent pt-4 sm:pt-6 md:pt-8">
-                                <h3 className="font-display font-bold text-[11px] sm:text-xs md:text-base text-white uppercase leading-tight group-hover:text-yellow-400 transition-colors truncate">{member.name}</h3>
+                                <h3 className="font-display font-bold text-[11px] sm:text-xs md:text-base text-white uppercase leading-tight group-hover:text-gold-400 transition-colors truncate">{member.name}</h3>
                               </div>
                             </div>
                           </>

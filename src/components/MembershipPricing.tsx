@@ -24,28 +24,28 @@ export const MembershipPricing: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         
         <div className="text-center mb-10 md:mb-16">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 md:mb-3">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 md:mb-3">
             Escolha o seu lugar na história
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white uppercase">
             Categorias de Sócio
           </h2>
-          <div className="w-16 h-1 bg-yellow-400 mx-auto mt-4 rounded-full"></div>
+          <div className="w-16 h-1 bg-gold-400 mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div className="flex justify-center">
           <div className="w-full max-w-md relative">
              
              {/* Main Card - Mantém o bg-navy-900 para garantir leitura, mas agora destaca-se do fundo global */}
-             <div className="bg-navy-900/90 backdrop-blur-sm rounded-2xl md:rounded-3xl border-2 border-yellow-400 p-6 md:p-8 lg:p-12 relative shadow-[0_0_50px_rgba(255,215,0,0.15)]">
+             <div className="bg-navy-900/90 backdrop-blur-sm rounded-2xl md:rounded-3xl border-2 border-gold-400 p-6 md:p-8 lg:p-12 relative shadow-[0_0_50px_rgba(255,215,0,0.15)]">
                 {/* Popular Badge */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-navy-900 font-bold text-[10px] md:text-xs px-4 md:px-6 py-1.5 md:py-2 rounded-full uppercase tracking-wider md:tracking-widest shadow-lg whitespace-nowrap">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold-400 text-navy-900 font-bold text-[10px] md:text-xs px-4 md:px-6 py-1.5 md:py-2 rounded-full uppercase tracking-wider md:tracking-widest shadow-lg whitespace-nowrap">
                   Mais Popular
                 </div>
 
                 <div className="text-center mb-6 md:mb-8 mt-4 md:mt-0">
                    <h3 className="text-white font-display font-bold text-2xl md:text-3xl uppercase mb-2">Sócio Efetivo</h3>
-                   <div className="flex items-end justify-center gap-1 text-yellow-400">
+                   <div className="flex items-end justify-center gap-1 text-gold-400">
                       <span className="text-5xl md:text-6xl font-display font-bold">25€</span>
                       <span className="text-lg md:text-xl font-medium mb-1 md:mb-2 opacity-80">/ano</span>
                    </div>
@@ -60,8 +60,8 @@ export const MembershipPricing: React.FC = () => {
                      'Prioridade na compra de bilhetes extra'
                    ].map((item, idx) => (
                       <li key={idx} className="flex items-center text-gray-300 text-xs md:text-sm">
-                         <div className="bg-yellow-400/10 p-1 rounded-full mr-2 md:mr-3 shrink-0">
-                           <Check className="text-yellow-400 w-3.5 h-3.5 md:w-4 md:h-4" strokeWidth={3} />
+                         <div className="bg-gold-400/10 p-1 rounded-full mr-2 md:mr-3 shrink-0">
+                           <Check className="text-gold-400 w-3.5 h-3.5 md:w-4 md:h-4" strokeWidth={3} />
                          </div>
                          {item}
                       </li>
@@ -75,7 +75,7 @@ export const MembershipPricing: React.FC = () => {
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 md:py-4 rounded-lg uppercase tracking-wider md:tracking-widest text-xs md:text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-yellow-400/20"
+                  className="w-full bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-3 md:py-4 rounded-lg uppercase tracking-wider md:tracking-widest text-xs md:text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-gold-400/20"
                 >
                    Escolher Plano
                 </button>

@@ -45,14 +45,14 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
             onClick={() => {
               onNavigate('home');
             }}
-            className="inline-flex items-center text-yellow-400 hover:text-yellow-500 font-bold text-xs transition-colors mb-2 md:mb-3"
+            className="inline-flex items-center text-gold-400 hover:text-gold-500 font-bold text-xs transition-colors mb-2 md:mb-3"
           >
             <ArrowLeft size={14} className="mr-1.5" />
             Voltar
           </button>
           
           <h1 className="font-display font-bold text-2xl md:text-3xl lg:text-5xl text-white uppercase leading-tight mb-1 md:mb-2">
-            Todas as <br className="hidden sm:block" /> <span className="text-yellow-400">Notícias</span>
+            Todas as <br className="hidden sm:block" /> <span className="text-gold-400">Notícias</span>
           </h1>
           <p className="text-gray-300 text-xs md:text-sm lg:text-base max-w-3xl leading-relaxed">
             Fique atualizado com os destaques do clube
@@ -70,7 +70,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
               {!showSearch ? (
                 <button
                   onClick={() => setShowSearch(true)}
-                  className="lg:hidden w-full flex items-center justify-center gap-2 text-gray-600 bg-white border border-gray-300 rounded-lg py-2 text-xs hover:border-yellow-400 transition-colors"
+                  className="lg:hidden w-full flex items-center justify-center gap-2 text-gray-600 bg-white border border-gray-300 rounded-lg py-2 text-xs hover:border-gold-400 transition-colors"
                 >
                   <Search size={16} />
                   Procurar notícias...
@@ -85,7 +85,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       autoFocus
-                      className="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:border-yellow-400 focus:outline-none transition-colors text-xs"
+                      className="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:border-gold-400 focus:outline-none transition-colors text-xs"
                     />
                   </div>
                   <button
@@ -107,7 +107,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                   placeholder="Procurar notícias..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full max-w-md pl-12 pr-4 py-2 lg:py-3 rounded-lg border border-gray-300 focus:border-yellow-400 focus:outline-none transition-colors font-medium text-sm"
+                  className="w-full max-w-md pl-12 pr-4 py-2 lg:py-3 rounded-lg border border-gray-300 focus:border-gold-400 focus:outline-none transition-colors font-medium text-sm"
                 />
               </div>
             </div>
@@ -122,7 +122,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                 className={`px-2.5 md:px-3 lg:px-4 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs lg:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap shadow-sm hover:shadow-md ${
                   selectedCategory === category
                     ? 'bg-navy-900 text-white shadow-md'
-                    : 'bg-white text-navy-900 border border-gray-300 hover:border-yellow-400 hover:bg-yellow-50'
+                    : 'bg-white text-navy-900 border border-gray-300 hover:border-gold-400 hover:bg-gold-50'
                 }`}
               >
                 {category}
@@ -144,7 +144,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                     onClick={() => {
                       onNavigate('noticia-detalhe', news.id);
                     }}
-                    className="group bg-white rounded-lg md:rounded-xl overflow-hidden border border-gray-100 shadow-md hover:shadow-lg sm:hover:shadow-2xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1 sm:hover:-translate-y-3 cursor-pointer hover:border-yellow-400/30"
+                    className="group bg-white rounded-lg md:rounded-xl overflow-hidden border border-gray-100 shadow-md hover:shadow-lg sm:hover:shadow-2xl transition-all duration-300 flex flex-col h-full hover:-translate-y-1 sm:hover:-translate-y-3 cursor-pointer hover:border-gold-400/30"
                   >
                     {/* Image */}
                     <div className="relative h-32 sm:h-40 md:h-48 lg:h-56 xl:h-64 overflow-hidden bg-gray-100">
@@ -167,7 +167,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                         {news.date}
                       </span>
                       
-                      <h3 className="font-display font-bold text-sm md:text-base lg:text-lg xl:text-xl text-navy-900 mb-2 md:mb-3 leading-tight group-hover:text-yellow-600 transition-colors line-clamp-3">
+                      <h3 className="font-display font-bold text-sm md:text-base lg:text-lg xl:text-xl text-navy-900 mb-2 md:mb-3 leading-tight group-hover:text-gold-600 transition-colors line-clamp-3">
                         {news.title}
                       </h3>
                       
@@ -180,7 +180,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                           e.stopPropagation();
                           onNavigate('noticia-detalhe', news.id);
                         }}
-                        className="inline-flex items-center text-navy-900 font-bold text-[10px] md:text-xs lg:text-sm uppercase tracking-widest border-b-2 border-transparent hover:border-yellow-400 transition-all self-start group/btn"
+                        className="inline-flex items-center text-navy-900 font-bold text-[10px] md:text-xs lg:text-sm uppercase tracking-widest border-b-2 border-transparent hover:border-gold-400 transition-all self-start group/btn"
                       >
                         Ler Notícia
                         <ArrowLeft size={12} className="md:w-3.5 md:h-3.5 ml-1.5 md:ml-2 group-hover/btn:translate-x-0.5 transition-transform -rotate-180" />
@@ -198,7 +198,7 @@ export const NewsPage: React.FC<NewsPageProps> = ({ onNavigate, activePage = 'no
                   setSelectedCategory('TODAS');
                   setSearchTerm('');
                 }}
-                className="text-navy-900 font-bold text-sm md:text-base border-b-2 border-transparent hover:border-yellow-400 transition-colors"
+                className="text-navy-900 font-bold text-sm md:text-base border-b-2 border-transparent hover:border-gold-400 transition-colors"
               >
                 Limpar filtros
               </button>

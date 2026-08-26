@@ -19,7 +19,7 @@ export const AlbumDetailPage: React.FC<AlbumDetailPageProps> = ({ albumId, onNav
           <h2 className="text-white text-2xl mb-4">Álbum não encontrado</h2>
           <button
             onClick={() => onNavigate('galeria')}
-            className="bg-yellow-400 text-navy-900 px-6 py-3 rounded-full font-bold hover:bg-yellow-500 transition-colors"
+            className="bg-gold-400 text-navy-900 px-6 py-3 rounded-full font-bold hover:bg-gold-500 transition-colors"
           >
             Voltar à Galeria
           </button>
@@ -35,7 +35,7 @@ export const AlbumDetailPage: React.FC<AlbumDetailPageProps> = ({ albumId, onNav
         <div className="container mx-auto px-4 py-12">
           <button
             onClick={() => onNavigate('galeria')}
-            className="flex items-center gap-2 text-gray-400 hover:text-yellow-400 transition-colors mb-6"
+            className="flex items-center gap-2 text-gray-400 hover:text-gold-400 transition-colors mb-6"
           >
             <ArrowLeft size={20} />
             <span className="text-sm font-bold uppercase tracking-wider">Voltar à Galeria</span>
@@ -64,7 +64,7 @@ export const AlbumDetailPage: React.FC<AlbumDetailPageProps> = ({ albumId, onNav
                 <Share2 size={18} />
                 <span className="text-sm font-bold">Partilhar</span>
               </button>
-              <button className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-navy-900 px-4 py-3 rounded-lg transition-colors">
+              <button className="flex items-center gap-2 bg-gold-400 hover:bg-gold-500 text-navy-900 px-4 py-3 rounded-lg transition-colors">
                 <Download size={18} />
                 <span className="text-sm font-bold">Descarregar</span>
               </button>
@@ -79,7 +79,7 @@ export const AlbumDetailPage: React.FC<AlbumDetailPageProps> = ({ albumId, onNav
           {album.photos.map((photo) => (
             <div
               key={photo.id}
-              className="group relative aspect-[4/3] rounded-lg overflow-hidden bg-navy-800 border border-white/10 hover:border-yellow-400/50 transition-all cursor-pointer"
+              className="group relative aspect-[4/3] rounded-lg overflow-hidden bg-navy-800 border border-white/10 hover:border-gold-400/50 transition-all cursor-pointer"
             >
               <img
                 src={photo.url}

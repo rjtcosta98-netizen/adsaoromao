@@ -10,7 +10,7 @@ interface RecruitmentCTAProps {
 
 export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) => {
   return (
-    <div className="relative bg-navy-900 py-12 md:py-24 overflow-hidden group">
+    <div className="section-y relative bg-navy-900 text-white overflow-hidden group">
       {/* Background Image with Parallax feel */}
       <div 
         className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
@@ -24,49 +24,49 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
           
           <div className="max-w-2xl text-center md:text-left">
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 md:gap-3 mb-4">
-               <span className="bg-yellow-400 text-navy-900 text-[11px] md:text-xs font-bold px-2 md:px-3 py-1 rounded uppercase tracking-wider">
+               <span className="bg-gold-400 text-navy-900 text-[11px] md:text-xs font-bold px-2 md:px-3 py-1 rounded uppercase tracking-wider">
                  Captações Abertas 2025/26
                </span>
-               <span className="text-gray-300 text-[11px] md:text-xs font-bold uppercase tracking-wider">
+               <span className="text-white/70 text-[11px] md:text-xs font-bold uppercase tracking-wider">
                  Todos os Escalões
                </span>
             </div>
 
             <h2 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl text-white uppercase leading-none mb-4 md:mb-6">
               O Teu Futuro <br/>
-              Começa <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-200">Aqui</span>
+              Começa <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-200">Aqui</span>
             </h2>
             
-            <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8 leading-relaxed max-w-lg mx-auto md:mx-0 border-l-4 border-yellow-400 pl-4 md:pl-6">
+            <p className="text-white/70 text-base md:text-lg mb-6 md:mb-8 leading-relaxed max-w-lg mx-auto md:mx-0 border-l-4 border-gold-400 pl-4 md:pl-6">
               Sonhas ser jogador? A AD São Romão é uma entidade formadora certificada. Vem aprender, crescer e vencer com a nossa camisola.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4 md:gap-6 mb-8 md:mb-10">
                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 p-2 rounded-full text-yellow-400">
+                  <div className="bg-white/10 p-2 rounded-full text-gold-400">
                     <Trophy size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
                     <span className="block text-white font-bold text-xs md:text-sm uppercase">Competição</span>
-                    <span className="text-[11px] md:text-xs text-gray-400">Campeonatos Distritais</span>
+                    <span className="text-[11px] md:text-xs text-white/55">Campeonatos Distritais</span>
                   </div>
                </div>
                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 p-2 rounded-full text-yellow-400">
+                  <div className="bg-white/10 p-2 rounded-full text-gold-400">
                     <Users size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
                     <span className="block text-white font-bold text-xs md:text-sm uppercase">Formação</span>
-                    <span className="text-[11px] md:text-xs text-gray-400">Certificada FPF</span>
+                    <span className="text-[11px] md:text-xs text-white/55">Certificada FPF</span>
                   </div>
                </div>
                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 p-2 rounded-full text-yellow-400">
+                  <div className="bg-white/10 p-2 rounded-full text-gold-400">
                     <Star size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
                     <span className="block text-white font-bold text-xs md:text-sm uppercase">Valores</span>
-                    <span className="text-[11px] md:text-xs text-gray-400">Respeito & Ética</span>
+                    <span className="text-[11px] md:text-xs text-white/55">Respeito & Ética</span>
                   </div>
                </div>
             </div>
@@ -75,7 +75,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
               onClick={() => {
                 onNavigate && onNavigate('inscricoes');
               }}
-              className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-[0_0_20px_rgba(255,215,0,0.4)] uppercase text-xs md:text-sm tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2 md:gap-3"
+              className="w-full sm:w-auto bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-3 md:py-4 px-8 md:px-10 rounded-full shadow-[0_0_20px_rgba(255,215,0,0.4)] uppercase text-xs md:text-sm tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2 md:gap-3"
             >
               Fazer Pré-Inscrição <ArrowRight size={18} className="md:w-5 md:h-5" />
             </button>
@@ -94,7 +94,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
                 </div>
                 <div className="text-center">
                    <p className="text-white font-display uppercase text-xl font-bold">Próximo Craque</p>
-                   <p className="text-yellow-400 text-xs font-bold uppercase tracking-widest">AD São Romão</p>
+                   <p className="text-gold-400 text-xs font-bold uppercase tracking-widest">AD São Romão</p>
                 </div>
              </div>
           </div>

@@ -6,9 +6,9 @@ export const Calendar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-900 uppercase">
-            Próximos <span className="text-yellow-400">Jogos</span>
+            Próximos <span className="text-gold-400">Jogos</span>
           </h2>
-          <span className="rounded-full border border-yellow-400/40 bg-yellow-400/15 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-navy-900">
+          <span className="rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-navy-900">
             Época 25/26 terminada
           </span>
         </div>

@@ -104,7 +104,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       <div className="min-h-screen bg-navy-900 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl p-10 max-w-md w-full shadow-2xl">
            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-navy-900 text-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-900 text-gold-400 rounded-full flex items-center justify-center mx-auto mb-4">
                  <Settings size={32} />
               </div>
               <h2 className="text-2xl font-bold text-navy-900 uppercase">Administração ADSR</h2>
@@ -117,11 +117,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                    type="password" 
                    value={password}
                    onChange={(e) => setPassword(e.target.value)}
-                   className="w-full bg-gray-100 border border-gray-200 p-3 rounded focus:outline-none focus:border-yellow-400 transition-colors"
+                   className="w-full bg-gray-100 border border-gray-200 p-3 rounded focus:outline-none focus:border-gold-400 transition-colors"
                    placeholder="Introduza a senha..."
                  />
               </div>
-              <button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 rounded uppercase tracking-widest text-sm transition-colors">
+              <button type="submit" className="w-full bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-3 rounded uppercase tracking-widest text-sm transition-colors">
                  Entrar
               </button>
            </form>
@@ -139,14 +139,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       {/* Desktop Sidebar */}
       <aside className="w-64 bg-navy-900 text-white fixed h-full hidden md:flex flex-col z-20">
         <div className="p-6 border-b border-navy-800">
-          <h2 className="font-display font-bold text-2xl uppercase tracking-wider">ADSR <span className="text-yellow-400">Admin</span></h2>
+          <h2 className="font-display font-bold text-2xl uppercase tracking-wider">ADSR <span className="text-gold-400">Admin</span></h2>
         </div>
         <nav className="flex-1 p-4 space-y-2">
           {([['matches', Trophy, 'Resultados'], ['news', Newspaper, 'Notícias'], ['store', ShoppingBag, 'Loja'], ['voting', Vote, 'Votação']] as const).map(([tab, Icon, label]) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-bold uppercase tracking-wide transition-colors ${activeTab === tab ? 'bg-yellow-400 text-navy-900' : 'hover:bg-navy-800 text-gray-300'}`}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded text-sm font-bold uppercase tracking-wide transition-colors ${activeTab === tab ? 'bg-gold-400 text-navy-900' : 'hover:bg-navy-800 text-gray-300'}`}
             >
               <Icon size={18} /> {label}
             </button>
@@ -164,7 +164,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
         {/* Mobile Header */}
         <header className="md:hidden sticky top-0 z-10 bg-navy-900 text-white flex items-center justify-between px-4 py-3 shadow-lg">
-          <span className="font-display font-bold text-lg uppercase tracking-wider">ADSR <span className="text-yellow-400">Admin</span></span>
+          <span className="font-display font-bold text-lg uppercase tracking-wider">ADSR <span className="text-gold-400">Admin</span></span>
           <button onClick={onLogout} className="flex items-center gap-1.5 text-red-400 text-xs font-bold uppercase">
             <LogOut size={14} /> Sair
           </button>
@@ -197,7 +197,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                           type="text"
                           value={match.category}
                           onChange={(e) => updateMatch(match.id, { category: e.target.value })}
-                          className="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm font-bold text-navy-900 focus:outline-none focus:border-yellow-400"
+                          className="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-sm font-bold text-navy-900 focus:outline-none focus:border-gold-400"
                         />
                       </div>
                       <div className="shrink-0">
@@ -205,7 +205,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                         <select
                           value={match.status}
                           onChange={(e) => updateMatch(match.id, { status: e.target.value as any })}
-                          className="bg-white border border-gray-200 rounded px-2 py-1.5 text-xs font-bold uppercase focus:outline-none focus:border-yellow-400"
+                          className="bg-white border border-gray-200 rounded px-2 py-1.5 text-xs font-bold uppercase focus:outline-none focus:border-gold-400"
                         >
                           <option value="Finalizado">Finalizado</option>
                           <option value="Em Breve">Em Breve</option>
@@ -219,7 +219,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                         type="text"
                         value={match.homeTeam}
                         onChange={(e) => updateMatch(match.id, { homeTeam: e.target.value })}
-                        className="flex-1 min-w-0 text-right bg-white border border-gray-200 rounded px-2 py-1.5 text-sm font-bold text-navy-900 focus:outline-none focus:border-yellow-400"
+                        className="flex-1 min-w-0 text-right bg-white border border-gray-200 rounded px-2 py-1.5 text-sm font-bold text-navy-900 focus:outline-none focus:border-gold-400"
                       />
                       <div className="flex items-center gap-1 bg-white px-2 py-1 rounded shadow-sm shrink-0">
                         <input
@@ -240,7 +240,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                         type="text"
                         value={match.awayTeam}
                         onChange={(e) => updateMatch(match.id, { awayTeam: e.target.value })}
-                        className="flex-1 min-w-0 text-left bg-white border border-gray-200 rounded px-2 py-1.5 text-sm font-bold text-navy-900 focus:outline-none focus:border-yellow-400"
+                        className="flex-1 min-w-0 text-left bg-white border border-gray-200 rounded px-2 py-1.5 text-sm font-bold text-navy-900 focus:outline-none focus:border-gold-400"
                       />
                     </div>
                   </div>
@@ -286,20 +286,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                             type="text"
                             value={item.date}
                             onChange={(e) => updateNews(item.id, { date: e.target.value })}
-                            className="text-gray-400 text-xs font-bold bg-transparent border-b border-transparent hover:border-gray-300 focus:outline-none focus:border-yellow-400 min-w-0"
+                            className="text-gray-400 text-xs font-bold bg-transparent border-b border-transparent hover:border-gray-300 focus:outline-none focus:border-gold-400 min-w-0"
                           />
                         </div>
                         <input
                           type="text"
                           value={item.title}
                           onChange={(e) => updateNews(item.id, { title: e.target.value })}
-                          className="w-full font-display font-bold text-base text-navy-900 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-yellow-400 outline-none"
+                          className="w-full font-display font-bold text-base text-navy-900 bg-transparent border-b border-transparent hover:border-gray-300 focus:border-gold-400 outline-none"
                         />
                         <textarea
                           value={item.excerpt}
                           onChange={(e) => updateNews(item.id, { excerpt: e.target.value })}
                           rows={2}
-                          className="w-full text-sm text-gray-500 bg-transparent border border-transparent hover:border-gray-200 rounded p-1 focus:border-yellow-400 outline-none resize-none"
+                          className="w-full text-sm text-gray-500 bg-transparent border border-transparent hover:border-gray-200 rounded p-1 focus:border-gold-400 outline-none resize-none"
                         />
                       </div>
                       <div className="flex sm:items-start justify-end sm:justify-start">
@@ -362,14 +362,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                           type="text"
                           value={product.name}
                           onChange={(e) => updateProduct(product.id, { name: e.target.value })}
-                          className="w-full font-bold text-navy-900 text-sm border-b border-transparent hover:border-gray-300 focus:border-yellow-400 outline-none"
+                          className="w-full font-bold text-navy-900 text-sm border-b border-transparent hover:border-gray-300 focus:border-gold-400 outline-none"
                         />
                         <div className="flex items-center gap-1">
                           <input
                             type="number"
                             value={product.price}
                             onChange={(e) => updateProduct(product.id, { price: e.target.value + '€' })}
-                            className="w-16 font-bold text-lg text-navy-900 border-b border-transparent hover:border-gray-300 focus:border-yellow-400 outline-none"
+                            className="w-16 font-bold text-lg text-navy-900 border-b border-transparent hover:border-gray-300 focus:border-gold-400 outline-none"
                           />
                           <span className="font-bold">€</span>
                         </div>
@@ -378,7 +378,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                             type="checkbox"
                             checked={product.isNew}
                             onChange={(e) => updateProduct(product.id, { isNew: e.target.checked })}
-                            className="rounded text-navy-900 focus:ring-yellow-400"
+                            className="rounded text-navy-900 focus:ring-gold-400"
                           />
                           Marcar como Novo
                         </label>
@@ -495,7 +495,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-bold uppercase tracking-wide transition-colors ${activeTab === tab ? 'text-yellow-400' : 'text-gray-500'}`}
+            className={`flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-bold uppercase tracking-wide transition-colors ${activeTab === tab ? 'text-gold-400' : 'text-gray-500'}`}
           >
             <Icon size={20} />
             {label}

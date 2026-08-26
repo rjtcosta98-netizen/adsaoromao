@@ -23,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
   const navLinks = [
     { name: 'INICIO', id: 'home', icon: Home },
     { name: 'CLUBE', id: 'clube', icon: Trophy },
+    { name: 'ADSR CUP', id: 'adsr-cup', icon: Trophy },
     { name: 'EQUIPAS', id: 'equipas', icon: Users },
     { name: 'INSCRIÇÕES', id: 'inscricoes', icon: UserPlus }, 
     { name: 'SÓCIOS', id: 'socios', icon: Heart },
@@ -34,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
 
   return (
     <>
-    <nav className="sticky top-0 z-[60] bg-[#012d60] backdrop-blur-sm border-b border-navy-700 shadow-lg">
+    <nav className="sticky top-0 z-[60] bg-[#032D61] backdrop-blur-sm border-b border-navy-700 shadow-lg">
       <div className="max-w-7xl mx-auto pl-2 pr-4 sm:pl-3 sm:pr-6 lg:pl-4 lg:pr-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
@@ -45,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
             <img className="h-10 w-10 md:h-12 md:w-12 object-contain" src={LOGO_URL} alt="AD São Romão Logo" />
             <div className="flex flex-col">
               <span className="font-display font-bold text-base md:text-xl leading-none tracking-wider">AD SÃO ROMÃO</span>
-              <span className="text-yellow-400 text-[11px] md:text-xs font-bold tracking-[0.1em] md:tracking-[0.15em]">JUNTOS E FORTES</span>
+              <span className="text-gold-400 text-[11px] md:text-xs font-bold tracking-[0.1em] md:tracking-[0.15em]">JUNTOS E FORTES</span>
             </div>
           </div>
 
@@ -58,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
                 className={`${
                   activePage === link.id 
                     ? 'text-white border-b-2 border-white' 
-                    : 'text-gray-300 hover:text-white hover:border-b-2 hover:border-yellow-400'
+                    : 'text-white/70 hover:text-white hover:border-b-2 hover:border-gold-400'
                 } text-xs font-medium transition-all duration-200 py-2 px-2 xl:px-3 uppercase`}
               >
                 {link.name}
@@ -70,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
           <div className="hidden lg:flex items-center space-x-4">
             <button 
               onClick={() => handleNavClick('loja')}
-              className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 px-3 py-2 rounded-full font-bold text-xs transition-colors shadow-lg shadow-yellow-400/20 flex items-center gap-2"
+              className="bg-gold-400 hover:bg-gold-500 text-navy-900 px-3 py-2 rounded-full font-bold text-xs transition-colors shadow-lg shadow-gold-400/20 flex items-center gap-2"
             >
               <img 
                 src="https://cdn-img.zerozero.pt/img/logos/equipas/8062_imgbank.png" 
@@ -81,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
             </button>
             <button
               onClick={onOpenCart}
-              className="relative text-white hover:text-yellow-400 p-2 rounded-full transition-colors"
+              className="relative text-white hover:text-gold-400 p-2 rounded-full transition-colors"
               aria-label="Abrir carrinho"
             >
               <ShoppingBag size={20} strokeWidth={2.5} />
@@ -97,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
           <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={onOpenCart}
-              className="relative text-white hover:text-yellow-400 p-2 transition-colors"
+              className="relative text-white hover:text-gold-400 p-2 transition-colors"
               aria-label="Abrir carrinho"
             >
               <ShoppingBag size={22} strokeWidth={2.5} />
@@ -109,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
             </button>
             <button 
               onClick={() => setIsOpen(!isOpen)} 
-              className="text-white hover:text-yellow-400 p-2 transition-colors relative z-[70]"
+              className="text-white hover:text-gold-400 p-2 transition-colors relative z-[70]"
             >
               {isOpen ? <X size={26} strokeWidth={2.5} /> : <Menu size={26} strokeWidth={2.5} />}
             </button>
@@ -135,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
                     className={`w-full flex items-center gap-4 px-5 py-3 rounded-xl transition-all duration-300 group ${
                       activePage === link.id
                         ? 'bg-white/10 text-white shadow-lg'
-                        : 'text-gray-300 hover:bg-white/10 hover:text-white active:scale-95'
+                        : 'text-white/70 hover:bg-white/10 hover:text-white active:scale-95'
                     }`}
                     style={{
                       animationDelay: `${index * 40}ms`,
@@ -155,10 +156,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
             </div>
 
             {/* Store CTA */}
-            <div className="px-4 py-6 border-t-2 border-yellow-400/20">
+            <div className="px-4 py-6 border-t-2 border-gold-400/20">
               <button 
                 onClick={() => handleNavClick('loja')}
-                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-navy-900 px-6 py-4 rounded-xl font-bold text-base transition-all shadow-xl shadow-yellow-400/30 flex items-center justify-center gap-3 active:scale-95 hover:shadow-2xl"
+                className="w-full bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-600 text-navy-900 px-6 py-4 rounded-xl font-bold text-base transition-all shadow-xl shadow-gold-400/30 flex items-center justify-center gap-3 active:scale-95 hover:shadow-2xl"
               >
                 <ShoppingBag size={22} strokeWidth={2.5} />
                 LOJA ONLINE
@@ -172,20 +173,20 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
                 href="https://elementgroup.pt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-navy-800/80 to-navy-900/80 border border-white/10 hover:border-yellow-400/40 rounded-2xl px-6 py-5 transition-all duration-300 mb-4"
+                className="group flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-navy-800/80 to-navy-900/80 border border-white/10 hover:border-gold-400/40 rounded-2xl px-6 py-5 transition-all duration-300 mb-4"
               >
-                <span className="text-blue-400 group-hover:text-yellow-400 transition-colors text-2xl font-mono font-bold">{'</>'}</span>
+                <span className="text-blue-400 group-hover:text-gold-400 transition-colors text-2xl font-mono font-bold">{'</>'}</span>
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-medium">
+                  <span className="text-white/45 text-[10px] uppercase tracking-[0.2em] font-medium">
                     Desenvolvido por
                   </span>
-                  <span className="font-bold text-white group-hover:text-yellow-400 transition-colors text-base tracking-wider">
+                  <span className="font-bold text-white group-hover:text-gold-400 transition-colors text-base tracking-wider">
                     ELEMENTGROUP.PT
                   </span>
                 </div>
               </a>
               
-              <p className="text-gray-500 text-[10px] text-center leading-relaxed">
+              <p className="text-white/45 text-[10px] text-center leading-relaxed">
                 AD São Romão © 2026 | Todos os direitos reservados
               </p>
             </div>

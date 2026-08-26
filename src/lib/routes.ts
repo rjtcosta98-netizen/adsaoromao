@@ -14,6 +14,7 @@ export const ROUTE_MAP: Record<string, string> = {
   privacidade: '/privacidade',
   termos: '/termos',
   cookies: '/cookies',
+  'adsr-cup': '/adsr-cup',
 };
 
 // Reverse map: URL path to page ID

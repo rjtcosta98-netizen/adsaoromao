@@ -21,7 +21,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
             Voltar ao início
           </button>
           <div className="flex items-center gap-3 mb-4">
-            <FileText className="text-yellow-400" size={32} />
+            <FileText className="text-gold-400" size={32} />
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white uppercase">
               Termos e Condições
             </h1>
@@ -38,7 +38,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 1. Identificação */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               1. Identificação da Entidade
             </h2>
             <p>
@@ -56,7 +56,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 2. Objeto */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               2. Objeto e Âmbito
             </h2>
             <p>
@@ -79,7 +79,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 3. Propriedade Intelectual */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               3. Propriedade Intelectual
             </h2>
             <p>
@@ -97,7 +97,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 4. Sócios */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               4. Inscrição de Sócios
             </h2>
             <p>A inscrição como sócio da ADSR através do Website está sujeita às seguintes condições:</p>
@@ -112,7 +112,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 5. Loja Online */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               5. Loja Online
             </h2>
             <p>
@@ -137,7 +137,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
             </p>
             <p className="mt-2">
               Para exercer este direito, deve contactar a ADSR através do e-mail{' '}
-              <a href="mailto:geral@adsaoromao.pt" className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2">
+              <a href="mailto:geral@adsaoromao.pt" className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2">
                 geral@adsaoromao.pt
               </a>, indicando a intenção de devolver o artigo.
             </p>
@@ -154,7 +154,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 6. Responsabilidade */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               6. Limitação de Responsabilidade
             </h2>
             <p>A ADSR não garante:</p>
@@ -172,7 +172,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 7. Links Externos */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               7. Ligações a Websites Externos
             </h2>
             <p>
@@ -184,7 +184,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 8. Lei Aplicável */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               8. Lei Aplicável e Resolução de Litígios
             </h2>
             <p>
@@ -199,7 +199,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
                 href="https://ec.europa.eu/consumers/odr" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2"
+                className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2"
               >
                 https://ec.europa.eu/consumers/odr
               </a>, 
@@ -210,7 +210,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 9. Livro de Reclamações */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               9. Livro de Reclamações
             </h2>
             <p>
@@ -221,7 +221,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
                 href="https://www.livroreclamacoes.pt" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2"
+                className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2"
               >
                 www.livroreclamacoes.pt
               </a>.
@@ -230,7 +230,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           {/* 10. Alterações */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               10. Alterações aos Termos e Condições
             </h2>
             <p>

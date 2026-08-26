@@ -3,7 +3,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Hero } from './Hero';
 import { LatestMedia } from './LatestMedia';
-import { EventsSection } from './EventsSection';
 import { ClubHighlights } from './ClubHighlights';
 // import { LatestResults } from './LatestResults';
 // import { Calendar } from './Calendar';
@@ -12,7 +11,8 @@ import { LIVESTREAM_CONFIG } from '../constants';
 
 // Lazy load below-fold components for faster initial paint
 const Standings = lazy(() => import('./Standings').then(m => ({ default: m.Standings })));
-const PlayerVoting = lazy(() => import('./PlayerVoting').then(m => ({ default: m.PlayerVoting })));
+const BestPlayersSection = lazy(() => import('./BestPlayersSection').then(m => ({ default: m.BestPlayersSection })));
+const UpcomingMatchesByLevel = lazy(() => import('./UpcomingMatchesByLevel').then(m => ({ default: m.UpcomingMatchesByLevel })));
 const RecruitmentCTA = lazy(() => import('./RecruitmentCTA').then(m => ({ default: m.RecruitmentCTA })));
 const NewsSection = lazy(() => import('./NewsSection').then(m => ({ default: m.NewsSection })));
 const GallerySection = lazy(() => import('./GallerySection').then(m => ({ default: m.GallerySection })));
@@ -31,19 +31,29 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
+    /*
+     * Ritmo da homepage: blocos claros e blocos escuros alternados de forma
+     * deliberada. Antes havia quatro cinzentos claros quase iguais seguidos,
+     * que se liam como bandas acidentais; agora as superfícies são só duas.
+     *
+     * A ordem também mudou: o calendário sobe acima da votação de melhor
+     * jogador — quem chega ao site quer primeiro saber quando se joga.
+     */
     <div className="relative">
       <Hero onNavigate={onNavigate} />
       {LIVESTREAM_CONFIG.enabled && <LivestreamSection />}
-      <PlayerVoting />
-      <EventsSection />
+      <Suspense fallback={<LazyFallback />}>
+        <UpcomingMatchesByLevel />
+      </Suspense>
+      <Suspense fallback={<LazyFallback />}>
+        <BestPlayersSection />
+      </Suspense>
       <LatestMedia onNavigate={onNavigate} />
       <ClubHighlights onNavigate={onNavigate} />
       {/* <LatestResults /> */}
       {/* <Calendar /> */}
       <Suspense fallback={<LazyFallback />}>
         <Standings />
-      </Suspense>
-      <Suspense fallback={<LazyFallback />}>
       </Suspense>
       <Suspense fallback={<LazyFallback />}>
         <RecruitmentCTA onNavigate={onNavigate} />

@@ -14,11 +14,11 @@ export const ClubHistory: React.FC = () => {
         ></div>
       
         <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3 md:mb-4">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3 md:mb-4">
             Desde 10/10/1962
           </span>
           <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-8xl text-white uppercase leading-none mb-4 md:mb-6">
-            História do <br/> <span className="text-yellow-400">Clube</span>
+            História do <br/> <span className="text-gold-400">Clube</span>
           </h1>
           <div className="animate-bounce">
             <ArrowDown className="text-white mx-auto w-8 h-8" />
@@ -30,10 +30,10 @@ export const ClubHistory: React.FC = () => {
       <div className="bg-navy-900 py-16 md:py-24 border-t border-white/5">
         <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-8 md:gap-12">
             <div className="lg:w-1/2">
-               <span className="text-yellow-400 font-bold text-4xl md:text-5xl lg:text-6xl font-display mb-3 md:mb-4 block">
+               <span className="text-gold-400 font-bold text-4xl md:text-5xl lg:text-6xl font-display mb-3 md:mb-4 block">
                  64 ANOS <br/> DE HISTÓRIA
                </span>
-               <div className="h-2 w-24 bg-yellow-400 mb-6 md:mb-8"></div>
+               <div className="h-2 w-24 bg-gold-400 mb-6 md:mb-8"></div>
                <p className="text-white text-base md:text-lg leading-relaxed mb-4 md:mb-6">
                  Fundada a 10 de Outubro de 1962, a Associação Desportiva de São Romão ostenta um palmarés que orgulha toda a região.
                </p>

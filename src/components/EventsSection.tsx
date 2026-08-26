@@ -319,10 +319,10 @@ const ALL_PARTICIPANTS: CupTeam[] = (() => {
 })();
 
 const SPONSORS = [
-  { name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/elementgroup.png", bg: "#0d1117" },
+  { name: "Element Group - Soluções Digitais", logo: "/images/patrocinadoresadsrcup/elementgroup.png", bg: "#010B1C" },
   { name: "CDT Equipamentos", logo: "/images/patrocinadoresadsrcup/cdt.png" },
   { name: "FDM CARTERET, NJ", logo: "/images/patrocinadoresadsrcup/fdm.png" },
-  { name: "Alves Bandeira", logo: "/images/patrocinadoresadsrcup/alvesbandeira.png", bg: "#1a3a8c" },
+  { name: "Alves Bandeira", logo: "/images/patrocinadoresadsrcup/alvesbandeira.png", bg: "#053975" },
   { name: "Climahotel", logo: "/images/patrocinadoresadsrcup/climahotel.png" },
   { name: "Intermarché - São Romão", logo: "/images/patrocinadoresadsrcup/intermarche-sao-romao.png" },
   { name: "Garcia & Gouveia - Serralharia Civil", logo: "/images/patrocinadoresadsrcup/garciaegouveia.png", lightBg: true },
@@ -339,7 +339,7 @@ const SPONSORS = [
   { name: "Montês Gin", logo: "/images/patrocinadoresadsrcup/montes.png" },
   { name: "Beijo gelado", logo: "/images/patrocinadoresadsrcup/Beijogelado.jpeg", lightBg: true },
   { name: "Ricardo Mota Félix - Mecânica Auto", logo: "/images/patrocinadoresadsrcup/ricardomota.png" },
-  { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", bg: "#f0f0f0" },
+  { name: "Armando Pereira", logo: "/images/patrocinadoresadsrcup/armando.png", bg: "#F4F6FA" },
   { name: "Grupo Martinauto", logo: "/images/patrocinadoresadsrcup/grupo.png", bg: "#009ed4" },
   { name: "VISOR - Estúdios fotógrafos", logo: "/images/patrocinadoresadsrcup/visor.png", lightBg: true },
   { name: "A&F - Mediação de Seguros", logo: "/images/patrocinadoresadsrcup/AF.jpeg", bg: "#1e5f87" },
@@ -362,8 +362,8 @@ const getTimeLeft = (targetDate: string) => {
 
 const Crest: React.FC<CupTeam & { size?: "sm" | "lg" }> = ({
   initials,
-  c1 = "#1f398a",
-  c2 = "#fed700",
+  c1 = "#053975",
+  c2 = "#FFD700",
   image,
   size = "sm",
 }) => {
@@ -390,13 +390,13 @@ const Crest: React.FC<CupTeam & { size?: "sm" | "lg" }> = ({
 const AwardAvatar: React.FC<Pick<CupAward, "initials" | "accent" | "image">> = ({ initials, accent, image }) => {
   const ring =
     accent === "gold"
-      ? "border-[#fed700] shadow-[0_0_16px_rgba(254,215,0,0.45)]"
+      ? "border-[#FFD700] shadow-[0_0_16px_rgba(255,215,0,0.45)]"
       : accent === "violet"
-        ? "border-[#b99cff] shadow-[0_0_16px_rgba(185,156,255,0.38)]"
+        ? "border-[#FFD700] shadow-[0_0_16px_rgba(255,215,0,0.38)]"
         : "border-[#8fc7ff] shadow-[0_0_16px_rgba(143,199,255,0.32)]";
 
   return (
-    <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-[3px] bg-[#070a18] overflow-hidden ${ring}`}>
+    <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-[3px] bg-[#010B1C] overflow-hidden ${ring}`}>
       {image ? (
         <img src={image} alt={initials} className="h-full w-full object-cover" />
       ) : (
@@ -451,7 +451,7 @@ export const EventsSection: React.FC = () => {
   const doneCount = CUP_CATEGORIES.filter((c) => c.completed).length;
 
   return (
-    <section id="adsr-cup" className="relative scroll-mt-24" style={{ background: "#010209" }}>
+    <section id="adsr-cup" className="relative scroll-mt-24" style={{ background: "#010B1C" }}>
 
       {/* ── BACKGROUND ── */}
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -459,7 +459,7 @@ export const EventsSection: React.FC = () => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "linear-gradient(rgba(1,2,9,0.91), rgba(1,2,9,0.91)), url('/images/adsrcuphero.png')",
+            backgroundImage: "linear-gradient(rgba(1,11,28,0.91), rgba(1,11,28,0.91)), url('/images/adsrcuphero.png')",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center top",
@@ -469,24 +469,24 @@ export const EventsSection: React.FC = () => {
         <div
           className="absolute inset-0 opacity-[0.045]"
           style={{
-            backgroundImage: "radial-gradient(rgba(254,215,0,0.6) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(rgba(255,215,0,0.6) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
         {/* Gold top bar */}
         <div
           className="absolute inset-x-0 top-0 h-[3px]"
-          style={{ background: "linear-gradient(90deg, transparent, #fed700 25%, #fed700 75%, transparent)" }}
+          style={{ background: "linear-gradient(90deg, transparent, #FFD700 25%, #FFD700 75%, transparent)" }}
         />
         {/* Ambient gold glow top-left */}
         <div
           className="absolute -left-48 -top-48 h-[700px] w-[700px] rounded-full opacity-[0.07]"
-          style={{ background: "radial-gradient(circle, #fed700, transparent 65%)" }}
+          style={{ background: "radial-gradient(circle, #FFD700, transparent 65%)" }}
         />
         {/* Purple glow bottom-right for depth */}
         <div
           className="absolute -bottom-48 -right-48 h-[600px] w-[600px] rounded-full opacity-[0.04]"
-          style={{ background: "radial-gradient(circle, #6b56ff, transparent 65%)" }}
+          style={{ background: "radial-gradient(circle, #0A4E8F, transparent 65%)" }}
         />
       </div>
 
@@ -497,8 +497,8 @@ export const EventsSection: React.FC = () => {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <div className="mb-3 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
-                <span className="h-px w-5 bg-[#fed700]" />
-                <span className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}>
+                <span className="h-px w-5 bg-[#FFD700]" />
+                <span className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}>
                   IV Edição · Torneio Único de Formação
                 </span>
               </div>
@@ -507,7 +507,7 @@ export const EventsSection: React.FC = () => {
                   style={{
                     fontSize: "clamp(2.4rem, 8vw, 4.4rem)",
                     letterSpacing: "-0.025em",
-                    backgroundImage: "linear-gradient(180deg, #fff5c0 0%, #fed700 50%, #c8890a 100%)",
+                    backgroundImage: "linear-gradient(180deg, #FFF4C2 0%, #FFD700 50%, #B8890B 100%)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -524,7 +524,7 @@ export const EventsSection: React.FC = () => {
                     letterSpacing: "0.02em",
                     color: "transparent",
                     WebkitTextFillColor: "transparent",
-                    WebkitTextStroke: "2px rgba(254,215,0,0.45)",
+                    WebkitTextStroke: "2px rgba(255,215,0,0.45)",
                   }}
                 >
                   2026
@@ -564,7 +564,7 @@ export const EventsSection: React.FC = () => {
           {/* Gradient divider */}
           <div
             className="mt-8 h-px"
-            style={{ background: "linear-gradient(90deg, #fed700 0%, rgba(254,215,0,0.18) 35%, transparent 70%)" }}
+            style={{ background: "linear-gradient(90deg, #FFD700 0%, rgba(255,215,0,0.18) 35%, transparent 70%)" }}
           />
         </header>
 
@@ -581,7 +581,7 @@ export const EventsSection: React.FC = () => {
             {CUP_CATEGORIES.map((category) => {
               const isActive = category.id === activeCategoryId;
               const isDone = category.completed === true;
-              const accent = isDone ? "#4ade80" : "#fed700";
+              const accent = isDone ? "#4ade80" : "#FFD700";
               return (
                 <button
                   key={category.id}
@@ -589,9 +589,9 @@ export const EventsSection: React.FC = () => {
                   role="tab"
                   onClick={() => selectCategory(category.id)}
                   aria-selected={isActive}
-                  className="group relative flex min-w-[8.5rem] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fed700]"
+                  className="group relative flex min-w-[8.5rem] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD700]"
                   style={{
-                    background: isActive ? `rgba(${isDone ? "74,222,128" : "254,215,0"},0.09)` : "#060b1a",
+                    background: isActive ? `rgba(${isDone ? "74,222,128" : "254,215,0"},0.09)` : "#010B1C",
                     border: `1px solid ${isActive ? `${accent}50` : "rgba(255,255,255,0.07)"}`,
                     boxShadow: isActive ? `0 0 20px ${accent}18` : "none",
                   }}
@@ -666,7 +666,7 @@ export const EventsSection: React.FC = () => {
                       {activeCategory.label} · {activeCategory.dateLabel}
                     </p>
                   </div>
-                  <Trophy size={32} className="shrink-0 text-[#fed700] opacity-25" />
+                  <Trophy size={32} className="shrink-0 text-[#FFD700] opacity-25" />
                 </div>
               </div>
             ) : (
@@ -674,22 +674,22 @@ export const EventsSection: React.FC = () => {
               <div
                 className="relative overflow-hidden rounded-2xl"
                 style={{
-                  border: "1px solid rgba(254,215,0,0.2)",
-                  background: "#02040e",
-                  boxShadow: "0 0 40px rgba(254,215,0,0.06)",
+                  border: "1px solid rgba(255,215,0,0.2)",
+                  background: "#010B1C",
+                  boxShadow: "0 0 40px rgba(255,215,0,0.06)",
                 }}
               >
                 <div
                   className="absolute inset-x-0 top-0 h-[2px]"
-                  style={{ background: "linear-gradient(90deg, transparent, #fed700 40%, #fed700 60%, transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, #FFD700 40%, #FFD700 60%, transparent)" }}
                 />
                 {/* Title with horizontal rules */}
                 <div className="flex items-center gap-3 px-5 pt-4">
-                  <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(254,215,0,0.25))" }} />
-                  <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.58rem", letterSpacing: "0.32em" }}>
+                  <span className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25))" }} />
+                  <p className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.58rem", letterSpacing: "0.32em" }}>
                     Conta Regressiva · {activeCategory.label}
                   </p>
-                  <span className="h-px flex-1" style={{ background: "linear-gradient(270deg, transparent, rgba(254,215,0,0.25))" }} />
+                  <span className="h-px flex-1" style={{ background: "linear-gradient(270deg, transparent, rgba(255,215,0,0.25))" }} />
                 </div>
                 {/* Digit tiles */}
                 <div className="grid grid-cols-4 gap-2.5 p-4 sm:gap-3 sm:p-5">
@@ -702,7 +702,7 @@ export const EventsSection: React.FC = () => {
                     <div
                       key={label}
                       className="flex flex-col items-center rounded-xl py-4 sm:py-5"
-                      style={{ background: "#0c1535", border: "1px solid rgba(254,215,0,0.1)", borderTop: "2px solid rgba(254,215,0,0.3)" }}
+                      style={{ background: "#021A3C", border: "1px solid rgba(255,215,0,0.1)", borderTop: "2px solid rgba(255,215,0,0.3)" }}
                     >
                       <span
                         className="font-display font-black tabular-nums leading-none text-white"
@@ -710,7 +710,7 @@ export const EventsSection: React.FC = () => {
                       >
                         {pad(v)}
                       </span>
-                      <span className="mt-2 font-black uppercase text-[#fed700]/55" style={{ fontSize: "0.55rem", letterSpacing: "0.16em" }}>
+                      <span className="mt-2 font-black uppercase text-[#FFD700]/55" style={{ fontSize: "0.55rem", letterSpacing: "0.16em" }}>
                         {label}
                       </span>
                     </div>
@@ -722,11 +722,11 @@ export const EventsSection: React.FC = () => {
             {/* Location pills */}
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/60">
-                <CalendarDays size={11} className="text-[#fed700]" />
+                <CalendarDays size={11} className="text-[#FFD700]" />
                 {activeCategory.dateLabel}
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/60">
-                <MapPin size={11} className="text-[#fed700]" />
+                <MapPin size={11} className="text-[#FFD700]" />
                 Estádio N.S. Conceição · São Romão
               </span>
             </div>
@@ -734,24 +734,24 @@ export const EventsSection: React.FC = () => {
             {/* Champion photo */}
             {showStandings && champion && (
               championImg ? (
-                <figure className="relative overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(254,215,0,0.4)", boxShadow: "0 0 32px rgba(254,215,0,0.08)" }}>
+                <figure className="relative overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,215,0,0.4)", boxShadow: "0 0 32px rgba(255,215,0,0.08)" }}>
                   <img
                     src={championImg}
                     alt={`Plantel campeão ${activeCategory.label} — ${champion.team.name}`}
                     className="block aspect-[16/9] w-full object-cover sm:aspect-[21/9]"
                     loading="lazy"
                   />
-                  <figcaption className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[#fed700] px-3 py-1 shadow-lg">
-                    <Trophy size={11} className="text-[#06020d]" />
-                    <span className="font-black uppercase text-[#06020d]" style={{ fontSize: "0.58rem", letterSpacing: "0.16em" }}>
+                  <figcaption className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[#FFD700] px-3 py-1 shadow-lg">
+                    <Trophy size={11} className="text-[#010B1C]" />
+                    <span className="font-black uppercase text-[#010B1C]" style={{ fontSize: "0.58rem", letterSpacing: "0.16em" }}>
                       Campeão · {activeCategory.label}
                     </span>
                   </figcaption>
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#06020d]/97 via-[#06020d]/55 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#010B1C]/97 via-[#010B1C]/55 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-4 sm:p-5">
                     <Crest {...champion.team} size="lg" />
                     <div className="min-w-0">
-                      <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.58rem", letterSpacing: "0.22em" }}>
+                      <p className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.58rem", letterSpacing: "0.22em" }}>
                         Plantel Vencedor
                       </p>
                       <p className="mt-0.5 font-display text-xl font-black uppercase leading-none text-white sm:text-2xl">
@@ -763,11 +763,11 @@ export const EventsSection: React.FC = () => {
               ) : (
                 <div
                   className="flex items-center gap-4 rounded-2xl p-4 sm:p-5"
-                  style={{ border: "1px solid rgba(254,215,0,0.35)", background: "#0c0e04" }}
+                  style={{ border: "1px solid rgba(255,215,0,0.35)", background: "#010B1C" }}
                 >
                   <Crest {...champion.team} size="lg" />
                   <div className="min-w-0 flex-1">
-                    <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}>
+                    <p className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}>
                       <Trophy size={11} className="mb-0.5 mr-1 inline" />
                       Campeão · {activeCategory.label}
                     </p>
@@ -776,7 +776,7 @@ export const EventsSection: React.FC = () => {
                     </p>
                     <p className="mt-1.5 text-xs text-white/35">Foto do plantel em breve</p>
                   </div>
-                  <Trophy size={36} className="shrink-0 text-[#fed700] opacity-20" />
+                  <Trophy size={36} className="shrink-0 text-[#FFD700] opacity-20" />
                 </div>
               )
             )}
@@ -786,10 +786,10 @@ export const EventsSection: React.FC = () => {
               <div className={activeAwards.length > 0 ? "grid gap-4 lg:grid-cols-2 lg:items-start" : ""}>
 
                 {/* Standings */}
-                <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#02040e" }}>
+                <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#010B1C" }}>
                   <div className="flex items-center gap-2.5 border-b border-white/8 px-4 py-3">
-                    <Trophy size={14} className="text-[#fed700]" aria-hidden />
-                    <p className="flex-1 font-black uppercase text-[#fed700]" style={{ fontSize: "0.62rem", letterSpacing: "0.22em" }}>
+                    <Trophy size={14} className="text-[#FFD700]" aria-hidden />
+                    <p className="flex-1 font-black uppercase text-[#FFD700]" style={{ fontSize: "0.62rem", letterSpacing: "0.22em" }}>
                       Classificação Final
                     </p>
                     <span className="font-black uppercase text-white/20" style={{ fontSize: "0.55rem" }}>
@@ -807,7 +807,7 @@ export const EventsSection: React.FC = () => {
                         {["J", "V", "E", "D"].map((col) => (
                           <span key={col} className="w-9 py-2 text-center font-black uppercase text-white/20" style={{ fontSize: "0.58rem" }}>{col}</span>
                         ))}
-                        <span className="w-12 border-l border-white/8 py-2 text-center font-black uppercase text-[#fed700]" style={{ fontSize: "0.58rem" }}>Pts</span>
+                        <span className="w-12 border-l border-white/8 py-2 text-center font-black uppercase text-[#FFD700]" style={{ fontSize: "0.58rem" }}>Pts</span>
                       </div>
                     </div>
                   )}
@@ -815,12 +815,12 @@ export const EventsSection: React.FC = () => {
                     {(standingsExpanded ? activeStandings : activeStandings.slice(0, 5)).map((row) => (
                       <div
                         key={row.pos}
-                        className={`relative flex items-center ${row.isChampion ? "bg-[#fed700]/[0.06]" : ""}`}
+                        className={`relative flex items-center ${row.isChampion ? "bg-[#FFD700]/[0.06]" : ""}`}
                       >
-                        {row.isChampion && <span className="absolute inset-y-0 left-0 w-[3px] bg-[#fed700]" />}
+                        {row.isChampion && <span className="absolute inset-y-0 left-0 w-[3px] bg-[#FFD700]" />}
                         <div className="flex flex-1 items-center gap-2.5 px-3 py-2.5">
                           <span
-                            className={`w-5 shrink-0 text-center font-display font-black ${row.isChampion ? "text-[#fed700]" : "text-white/25"}`}
+                            className={`w-5 shrink-0 text-center font-display font-black ${row.isChampion ? "text-[#FFD700]" : "text-white/25"}`}
                             style={{ fontSize: row.pos <= 3 ? "1rem" : "0.85rem" }}
                           >
                             {row.pos}
@@ -830,7 +830,7 @@ export const EventsSection: React.FC = () => {
                             <div className="flex flex-wrap items-center gap-1.5">
                               <p className="line-clamp-1 text-xs font-semibold text-white/90">{row.team.name}</p>
                               {row.isChampion && (
-                                <span className="shrink-0 rounded-full bg-[#fed700] px-1.5 py-0.5 font-black uppercase text-[#010209]" style={{ fontSize: "0.5rem", letterSpacing: "0.08em" }}>
+                                <span className="shrink-0 rounded-full bg-[#FFD700] px-1.5 py-0.5 font-black uppercase text-[#010B1C]" style={{ fontSize: "0.5rem", letterSpacing: "0.08em" }}>
                                   Campeão
                                 </span>
                               )}
@@ -851,15 +851,15 @@ export const EventsSection: React.FC = () => {
                             {[row.j, row.v, row.e, row.d].map((v, i) => (
                               <span key={i} className="flex w-9 items-center justify-center text-xs font-semibold text-white/40">{v}</span>
                             ))}
-                            <div className={`flex w-12 items-center justify-center border-l border-white/[0.06] ${row.isChampion ? "bg-[#fed700]" : "bg-white/[0.06]"}`}>
-                              <span className={`font-display text-lg font-black leading-none ${row.isChampion ? "text-[#06020d]" : "text-white"}`}>{row.pts}</span>
+                            <div className={`flex w-12 items-center justify-center border-l border-white/[0.06] ${row.isChampion ? "bg-[#FFD700]" : "bg-white/[0.06]"}`}>
+                              <span className={`font-display text-lg font-black leading-none ${row.isChampion ? "text-[#010B1C]" : "text-white"}`}>{row.pts}</span>
                             </div>
                           </div>
                         )}
                         {/* Points badge — always in compact, mobile-only otherwise */}
-                        <div className={`mx-2.5 flex h-9 w-10 shrink-0 flex-col items-center justify-center rounded-lg ${activeAwards.length === 0 ? "sm:hidden" : ""} ${row.isChampion ? "bg-[#fed700]" : "bg-white/[0.07]"}`}>
-                          <span className="font-black uppercase" style={{ fontSize: "0.45rem", color: row.isChampion ? "#06020d" : "#9f8fc8" }}>Pts</span>
-                          <span className={`font-display text-lg font-black leading-none ${row.isChampion ? "text-[#06020d]" : "text-white"}`}>{row.pts}</span>
+                        <div className={`mx-2.5 flex h-9 w-10 shrink-0 flex-col items-center justify-center rounded-lg ${activeAwards.length === 0 ? "sm:hidden" : ""} ${row.isChampion ? "bg-[#FFD700]" : "bg-white/[0.07]"}`}>
+                          <span className="font-black uppercase" style={{ fontSize: "0.45rem", color: row.isChampion ? "#010B1C" : "#93A7C4" }}>Pts</span>
+                          <span className={`font-display text-lg font-black leading-none ${row.isChampion ? "text-[#010B1C]" : "text-white"}`}>{row.pts}</span>
                         </div>
                       </div>
                     ))}
@@ -868,7 +868,7 @@ export const EventsSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setStandingsExpanded((v) => !v)}
-                      className="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-white/10 py-3 font-black uppercase text-white/40 transition-colors duration-200 hover:bg-white/[0.03] hover:text-white/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#fed700]"
+                      className="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-white/10 py-3 font-black uppercase text-white/40 transition-colors duration-200 hover:bg-white/[0.03] hover:text-white/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#FFD700]"
                       style={{ fontSize: "0.6rem", letterSpacing: "0.18em" }}
                     >
                       {standingsExpanded ? <>&#8593; Recolher</> : <>&#8595; Ver todos os {activeStandings.length} classificados</>}
@@ -878,10 +878,10 @@ export const EventsSection: React.FC = () => {
 
                 {/* Awards — beside standings */}
                 {activeAwards.length > 0 && (
-                  <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(107,86,255,0.25)", background: "#02040e" }}>
+                  <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(10, 78, 143,0.25)", background: "#010B1C" }}>
                     <div className="flex items-center gap-2.5 border-b border-white/8 px-4 py-3">
-                      <Star size={13} className="text-[#fed700]" aria-hidden />
-                      <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.62rem", letterSpacing: "0.22em" }}>
+                      <Star size={13} className="text-[#FFD700]" aria-hidden />
+                      <p className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.62rem", letterSpacing: "0.22em" }}>
                         Prémios Individuais · {activeCategory.label}
                       </p>
                     </div>
@@ -891,7 +891,7 @@ export const EventsSection: React.FC = () => {
                         return (
                           <article
                             key={`${award.title}-${award.name}`}
-                            className="flex items-center gap-3 bg-[#02040e] p-4 transition-colors duration-150 hover:bg-[#0a0620]"
+                            className="flex items-center gap-3 bg-[#010B1C] p-4 transition-colors duration-150 hover:bg-[#010B1C]"
                           >
                             <AwardAvatar initials={award.initials} accent={award.accent} image={award.image} />
                             <div className="min-w-0 flex-1">
@@ -899,10 +899,10 @@ export const EventsSection: React.FC = () => {
                                 {award.title}
                               </p>
                               <p className="mt-0.5 font-display text-sm font-black uppercase leading-tight text-white">{award.name}</p>
-                              {award.club && <p className="mt-0.5 text-[10px] font-semibold text-[#b9a9ee]">{award.club}</p>}
+                              {award.club && <p className="mt-0.5 text-[10px] font-semibold text-[#FFE04D]">{award.club}</p>}
                             </div>
-                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#1b1730]">
-                              <Icon size={16} className="text-[#fed700]" aria-hidden />
+                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#021A3C]">
+                              <Icon size={16} className="text-[#FFD700]" aria-hidden />
                             </div>
                           </article>
                         );
@@ -913,7 +913,7 @@ export const EventsSection: React.FC = () => {
               </div>
             ) : (
               /* Teams grid */
-              <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#02040e" }}>
+              <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#010B1C" }}>
                 <div className="border-b border-white/8 px-4 py-3">
                   <p className="font-black uppercase text-white/30" style={{ fontSize: "0.6rem", letterSpacing: "0.22em" }}>
                     Equipas Confirmadas · {teams.length} equipas
@@ -923,7 +923,7 @@ export const EventsSection: React.FC = () => {
                   {teams.map((team, i) => (
                     <div
                       key={`${team.name}-${i}`}
-                      className="flex items-center gap-2.5 bg-[#02040e] px-3 py-3 transition-colors duration-150 hover:bg-[#0b1530]"
+                      className="flex items-center gap-2.5 bg-[#010B1C] px-3 py-3 transition-colors duration-150 hover:bg-[#021A3C]"
                     >
                       <Crest {...team} />
                       <p className="line-clamp-2 text-xs font-semibold leading-snug text-white/85">{team.name}</p>
@@ -939,15 +939,15 @@ export const EventsSection: React.FC = () => {
 
             {/* Padrinho video */}
             <article className="overflow-hidden rounded-2xl border border-white/10 bg-black">
-              <div className="flex items-center justify-between bg-[#06091a] px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+              <div className="flex items-center justify-between bg-[#010B1C] px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
                 <div>
-                  <p className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.2em" }}>
+                  <p className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.6rem", letterSpacing: "0.2em" }}>
                     Mensagem do Padrinho
                   </p>
                   <p className="mt-0.5 text-sm font-black text-white">Tomás Silva</p>
                 </div>
                 <span
-                  className="rounded-full bg-[#fed700] px-2.5 py-1 font-black uppercase text-[#010209]"
+                  className="rounded-full bg-[#FFD700] px-2.5 py-1 font-black uppercase text-[#010B1C]"
                   style={{ fontSize: "0.55rem", letterSpacing: "0.12em" }}
                 >
                   Vídeo Oficial
@@ -965,14 +965,14 @@ export const EventsSection: React.FC = () => {
             </article>
 
             {/* Clubes participantes */}
-            <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#02040e" }}>
+            <div className="overflow-hidden rounded-2xl" style={{ border: "1px solid rgba(255,255,255,0.09)", background: "#010B1C" }}>
               <div className="flex items-center gap-3 border-b border-white/[0.07] px-4 py-3">
-                <span className="h-px w-4 bg-[#fed700]/50" />
+                <span className="h-px w-4 bg-[#FFD700]/50" />
                 <p className="font-black uppercase text-white/45" style={{ fontSize: "0.58rem", letterSpacing: "0.26em" }}>
                   Clubes Participantes
                 </p>
                 <span
-                  className="ml-auto rounded-full bg-[#fed700]/10 px-2 py-0.5 font-black uppercase text-[#fed700]"
+                  className="ml-auto rounded-full bg-[#FFD700]/10 px-2 py-0.5 font-black uppercase text-[#FFD700]"
                   style={{ fontSize: "0.5rem", letterSpacing: "0.1em" }}
                 >
                   {ALL_PARTICIPANTS.length}
@@ -984,7 +984,7 @@ export const EventsSection: React.FC = () => {
                   <div
                     key={`${team.name}-${i}`}
                     title={team.name}
-                    className="group relative bg-[#02040e] p-1 transition-colors duration-150 hover:bg-[#0c1530]"
+                    className="group relative bg-[#010B1C] p-1 transition-colors duration-150 hover:bg-[#021A3C]"
                     style={{ aspectRatio: "1/1" }}
                   >
                     {team.image ? (
@@ -997,7 +997,7 @@ export const EventsSection: React.FC = () => {
                     ) : (
                       <div
                         className="absolute inset-0 flex items-center justify-center text-[0.4rem] font-black text-white"
-                        style={{ background: `linear-gradient(135deg, ${team.c1 ?? "#1f398a"} 50%, ${team.c2 ?? "#fed700"} 50%)` }}
+                        style={{ background: `linear-gradient(135deg, ${team.c1 ?? "#053975"} 50%, ${team.c2 ?? "#FFD700"} 50%)` }}
                       >
                         {team.initials}
                       </div>
@@ -1015,13 +1015,13 @@ export const EventsSection: React.FC = () => {
           <div className="mb-6 flex items-end justify-between">
             <div>
               <div className="mb-2 flex items-center gap-2.5">
-                <span className="h-px w-5 bg-[#fed700]" />
-                <span className="font-black uppercase text-[#fed700]" style={{ fontSize: "0.6rem", letterSpacing: "0.26em" }}>
+                <span className="h-px w-5 bg-[#FFD700]" />
+                <span className="font-black uppercase text-[#FFD700]" style={{ fontSize: "0.6rem", letterSpacing: "0.26em" }}>
                   Patrocinadores Oficiais
                 </span>
               </div>
               <p className="font-display font-black uppercase leading-none text-white" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)" }}>
-                ADSR Cup <span className="text-[#fed700]">2026</span>
+                ADSR Cup <span className="text-[#FFD700]">2026</span>
               </p>
             </div>
             <p className="text-xs text-white/30">{SPONSORS.length} parceiros</p>
@@ -1039,7 +1039,7 @@ export const EventsSection: React.FC = () => {
                   border: "1px solid rgba(255,255,255,0.12)",
                   background: bg,
                 }}
-                onMouseEnter={(e) => { (e.currentTarget.style as CSSStyleDeclaration).borderColor = "rgba(254,215,0,0.5)"; }}
+                onMouseEnter={(e) => { (e.currentTarget.style as CSSStyleDeclaration).borderColor = "rgba(255,215,0,0.5)"; }}
                 onMouseLeave={(e) => { (e.currentTarget.style as CSSStyleDeclaration).borderColor = "rgba(255,255,255,0.12)"; }}
               >
                 <div className="absolute inset-0 flex items-center justify-center p-2">
@@ -1054,8 +1054,8 @@ export const EventsSection: React.FC = () => {
                   )}
                 </div>
                 {/* Slide-up name on hover */}
-                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#fed700] px-2 py-1.5 transition-transform duration-200 ease-out group-hover:translate-y-0">
-                  <p className="text-center font-black uppercase leading-tight text-[#010209]" style={{ fontSize: "0.52rem", letterSpacing: "0.06em" }}>
+                <div className="absolute inset-x-0 bottom-0 translate-y-full bg-[#FFD700] px-2 py-1.5 transition-transform duration-200 ease-out group-hover:translate-y-0">
+                  <p className="text-center font-black uppercase leading-tight text-[#010B1C]" style={{ fontSize: "0.52rem", letterSpacing: "0.06em" }}>
                     {sponsor.name}
                   </p>
                 </div>

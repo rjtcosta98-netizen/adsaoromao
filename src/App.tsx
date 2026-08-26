@@ -28,6 +28,7 @@ const AdminDashboard   = lazy(() => import('@/components/AdminDashboard').then(m
 const PrivacyPolicyPage = lazy(() => import('@/components/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
 const TermsPage        = lazy(() => import('@/components/TermsPage').then(m => ({ default: m.TermsPage })));
 const VotingPage       = lazy(() => import('@/pages/VotingPage').then(m => ({ default: m.VotingPage })));
+const AdsRCupPage      = lazy(() => import('@/pages/AdsRCupPage').then(m => ({ default: m.AdsRCupPage })));
 const CookiePolicyPage = lazy(() => import('@/components/CookiePolicyPage').then(m => ({ default: m.CookiePolicyPage })));
 
 // ══════════════════════════════════════════════════════════
@@ -164,6 +165,7 @@ function AppShell() {
             <Route path="/termos" element={<TermsPage />} />
             <Route path="/cookies" element={<CookiePolicyPage />} />
             <Route path="/votacao" element={<VotingPage />} />
+            <Route path="/adsr-cup" element={<AdsRCupPage />} />
           </Routes>
         </Suspense>
       </main>

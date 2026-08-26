@@ -22,11 +22,11 @@ export const ContactsHero: React.FC = () => {
 
       <div className="relative z-20 pt-28 sm:pt-32 md:pt-36 pb-20 sm:pb-24 md:pb-28">
         <div className="container mx-auto px-4 text-center">
-          <span className="inline-block bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 font-bold tracking-[0.2em] text-[10px] sm:text-xs uppercase px-4 py-1.5 rounded-full mb-5">
+          <span className="inline-block bg-gold-400/10 border border-gold-400/30 text-gold-400 font-bold tracking-[0.2em] text-[10px] sm:text-xs uppercase px-4 py-1.5 rounded-full mb-5">
             Estamos aqui para ti
           </span>
           <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white uppercase leading-none mb-5">
-            Fale <span className="text-yellow-400">Connosco</span>
+            Fale <span className="text-gold-400">Connosco</span>
           </h1>
           <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed">
             Tens dúvidas sobre inscrições, quotas ou parcerias? Estamos prontos para ajudar.
@@ -46,12 +46,12 @@ export const ContactsHero: React.FC = () => {
                 <Wrapper
                   key={card.label}
                   {...wrapperProps}
-                  className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-5 text-center hover:bg-white/10 hover:border-yellow-400/30 transition-all duration-300 cursor-pointer"
+                  className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-5 text-center hover:bg-white/10 hover:border-gold-400/30 transition-all duration-300 cursor-pointer"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-yellow-400/10 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-yellow-400/20 transition-colors">
-                    <Icon size={18} className="text-yellow-400 sm:w-5 sm:h-5" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gold-400/10 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-gold-400/20 transition-colors">
+                    <Icon size={18} className="text-gold-400 sm:w-5 sm:h-5" />
                   </div>
-                  <p className="text-[10px] sm:text-xs text-yellow-400 font-bold uppercase tracking-wider mb-1">{card.label}</p>
+                  <p className="text-[10px] sm:text-xs text-gold-400 font-bold uppercase tracking-wider mb-1">{card.label}</p>
                   <p className="text-white text-[11px] sm:text-xs leading-snug">{card.value}</p>
                 </Wrapper>
               );

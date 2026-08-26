@@ -21,7 +21,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
             Voltar ao início
           </button>
           <div className="flex items-center gap-3 mb-4">
-            <Cookie className="text-yellow-400" size={32} />
+            <Cookie className="text-gold-400" size={32} />
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white uppercase">
               Política de Cookies
             </h1>
@@ -38,7 +38,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 1. O que são Cookies */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               1. O que são Cookies?
             </h2>
             <p>
@@ -57,7 +57,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 2. Tipos de Cookies */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               2. Tipos de Cookies Utilizados
             </h2>
 
@@ -112,7 +112,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 3. Cookies Essenciais */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               3. Cookies Estritamente Necessários
             </h2>
             <p>
@@ -129,7 +129,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 4. Cookies Funcionais */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               4. Cookies Funcionais
             </h2>
             <p>
@@ -145,7 +145,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 5. Cookies de Terceiros */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               5. Cookies de Terceiros
             </h2>
             <p>
@@ -156,19 +156,19 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
             <ul className="list-disc pl-6 space-y-2 mt-3">
               <li>
                 <strong>Supabase</strong> — base de dados e autenticação —{' '}
-                <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400 decoration-2">
+                <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400 decoration-2">
                   Política de Privacidade
                 </a>
               </li>
               <li>
                 <strong>Cloudinary</strong> — alojamento de imagens —{' '}
-                <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400 decoration-2">
+                <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400 decoration-2">
                   Política de Privacidade
                 </a>
               </li>
               <li>
                 <strong>Google Fonts</strong> — tipografias —{' '}
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400 decoration-2">
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400 decoration-2">
                   Política de Privacidade
                 </a>
               </li>
@@ -177,7 +177,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 6. Gestão de Cookies */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               6. Como Gerir os Cookies
             </h2>
             <p>
@@ -193,25 +193,25 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
             <div className="bg-gray-50 rounded-xl p-6 mt-2 space-y-3 text-sm">
               <p>
                 <strong>Google Chrome:</strong>{' '}
-                <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400">
+                <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400">
                   Gerir cookies no Chrome
                 </a>
               </p>
               <p>
                 <strong>Mozilla Firefox:</strong>{' '}
-                <a href="https://support.mozilla.org/pt/kb/cookies-informacao-que-websites-guardam-no-seu-computador" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400">
+                <a href="https://support.mozilla.org/pt/kb/cookies-informacao-que-websites-guardam-no-seu-computador" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400">
                   Gerir cookies no Firefox
                 </a>
               </p>
               <p>
                 <strong>Safari:</strong>{' '}
-                <a href="https://support.apple.com/pt-pt/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400">
+                <a href="https://support.apple.com/pt-pt/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400">
                   Gerir cookies no Safari
                 </a>
               </p>
               <p>
                 <strong>Microsoft Edge:</strong>{' '}
-                <a href="https://support.microsoft.com/pt-pt/microsoft-edge/eliminar-cookies-no-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-yellow-400">
+                <a href="https://support.microsoft.com/pt-pt/microsoft-edge/eliminar-cookies-no-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" className="text-navy-900 underline decoration-gold-400">
                   Gerir cookies no Edge
                 </a>
               </p>
@@ -224,7 +224,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 7. Consentimento */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               7. Consentimento
             </h2>
             <p>
@@ -241,28 +241,28 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           {/* 8. Mais Informações */}
           <section>
-            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-yellow-400 pl-4">
+            <h2 className="font-display text-xl md:text-2xl font-bold text-navy-900 uppercase mb-4 border-l-4 border-gold-400 pl-4">
               8. Mais Informações
             </h2>
             <p>
               Para mais informações sobre a forma como tratamos os seus dados pessoais, consulte a nossa{' '}
               <a
                 href="/privacidade"
-                className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2"
+                className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2"
               >
                 Política de Privacidade
               </a>.
             </p>
             <p className="mt-3">
               Para questões sobre cookies, contacte-nos através de{' '}
-              <a href="mailto:geral@adsaoromao.pt" className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2">
+              <a href="mailto:geral@adsaoromao.pt" className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2">
                 geral@adsaoromao.pt
               </a>.
             </p>
             <p className="mt-3">
               Pode igualmente obter mais informações junto da{' '}
               <strong>Comissão Nacional de Proteção de Dados (CNPD)</strong> —{' '}
-              <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer" className="text-navy-900 font-semibold underline decoration-yellow-400 decoration-2">
+              <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer" className="text-navy-900 font-semibold underline decoration-gold-400 decoration-2">
                 www.cnpd.pt
               </a>.
             </p>

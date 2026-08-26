@@ -1,275 +1,88 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { TEAM_LOGOS } from '../constants';
+import React from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
-// ── Match target: 3 May 2025, 15:15 local time ──────────────────────────────
-const CUP_DATE = new Date('2025-05-03T15:15:00');
-
-function useCountdown(target: Date) {
-  const calc = () => {
-    const diff = target.getTime() - Date.now();
-    if (diff <= 0) return { d: 0, h: 0, m: 0, s: 0 };
-    const d = Math.floor(diff / 86_400_000);
-    const h = Math.floor((diff % 86_400_000) / 3_600_000);
-    const m = Math.floor((diff % 3_600_000) / 60_000);
-    const s = Math.floor((diff % 60_000) / 1_000);
-    return { d, h, m, s };
-  };
-  const [time, setTime] = useState(calc);
-  useEffect(() => {
-    const id = setInterval(() => setTime(calc()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  return time;
+interface CupBannerProps {
+  onNavigate: (page: string) => void;
 }
 
-// ── Particle spark (CSS animated, no canvas) ────────────────────────────────
-const SPARKS = Array.from({ length: 18 }, (_, i) => ({
-  id: i,
-  left: `${5 + (i * 5.4) % 92}%`,
-  delay: `${(i * 0.37) % 3}s`,
-  dur: `${2.8 + (i * 0.19) % 1.8}s`,
-  size: i % 3 === 0 ? 5 : i % 3 === 1 ? 3 : 4,
-  opacity: 0.55 + (i % 4) * 0.1,
-}));
+const CUP_BANNER_STYLES = `
+  @keyframes cup-poster-reveal {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-// ── Unit box ─────────────────────────────────────────────────────────────────
-const Unit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
-  <div className="flex flex-col items-center">
-    <div
-      className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl flex items-center justify-center font-black text-2xl sm:text-3xl md:text-4xl text-[#0a0e1a] overflow-hidden"
-      style={{
-        background: 'linear-gradient(145deg, #f9d423, #e8b800)',
-        boxShadow: '0 4px 20px rgba(248,212,35,0.45), inset 0 1px 0 rgba(255,255,255,0.35)',
-        fontFamily: "'Bebas Neue', 'Impact', sans-serif",
-        letterSpacing: '-0.02em',
-      }}
-    >
-      {/* inner grain */}
-      <div className="absolute inset-0 opacity-[0.07]"
-        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }}
-      />
-      {String(value).padStart(2, '0')}
-    </div>
-    <span className="mt-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-yellow-400/70">
-      {label}
-    </span>
-  </div>
-);
+  .cup-poster-reveal {
+    animation: cup-poster-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 
-// ── Main component ───────────────────────────────────────────────────────────
-export const CupBanner: React.FC = () => {
-  const { d, h, m, s } = useCountdown(CUP_DATE);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  @media (prefers-reduced-motion: reduce) {
+    .cup-poster-reveal { animation: none; }
+  }
+`;
 
-  const homeLogo  = TEAM_LOGOS['Guarda FC']    || '';
-  const awayLogo  = TEAM_LOGOS['AD São Romão'] || '';
-
-  const past = d === 0 && h === 0 && m === 0 && s === 0;
+export const CupBanner: React.FC<CupBannerProps> = ({ onNavigate }) => {
+  const colors = {
+    '--cup-ink': '#010B1C',
+    '--cup-blue': '#053975',
+    '--cup-yellow': '#FFD700',
+    '--cup-white': '#ffffff',
+  } as React.CSSProperties;
 
   return (
-    <div
-      ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{
-        background: 'linear-gradient(160deg, #030510 0%, #080d24 40%, #0a1030 65%, #040812 100%)',
-        minHeight: '460px',
-      }}
+    <section
+      id="adsr-cup-banner"
+      className="relative scroll-mt-20 overflow-hidden bg-[var(--cup-ink)] px-3 py-10 sm:px-6 sm:py-14 lg:px-10 lg:py-16"
+      style={colors}
     >
-      {/* ── Stadium light beams ── */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        {['-30deg', '5deg', '38deg'].map((rot, i) => (
-          <div key={i} className="absolute top-0"
-            style={{
-              left: `${18 + i * 26}%`,
-              width: '2px',
-              height: '70%',
-              background: 'linear-gradient(to bottom, rgba(248,212,35,0.22), transparent)',
-              transform: `rotate(${rot})`,
-              transformOrigin: 'top center',
-              filter: 'blur(18px)',
-              opacity: 0.7,
-            }}
-          />
-        ))}
-      </div>
+      <style>{CUP_BANNER_STYLES}</style>
 
-      {/* ── Falling gold sparks ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden>
-        {SPARKS.map(p => (
-          <div key={p.id} className="absolute rounded-full"
-            style={{
-              left: p.left,
-              top: '-8px',
-              width: p.size,
-              height: p.size,
-              background: '#f8d423',
-              opacity: p.opacity,
-              animation: `sparkFall ${p.dur} ${p.delay} linear infinite`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* ── Grain texture overlay ── */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.045]"
-        style={{
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-        }}
-        aria-hidden
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-45 [background-image:radial-gradient(circle_at_18%_20%,var(--cup-blue),transparent_38%),radial-gradient(circle_at_85%_85%,rgba(255,215,0,0.13),transparent_24%)]"
       />
 
-      {/* ── Diagonal gold ribbon ── */}
-      <div className="absolute left-0 right-0 overflow-hidden pointer-events-none" aria-hidden
-        style={{ top: '50%', transform: 'translateY(-50%) rotate(-2.8deg)', zIndex: 0 }}
+      <button
+        type="button"
+        onClick={() => onNavigate('adsr-cup')}
+        className="cup-poster-reveal group relative mx-auto block w-full max-w-[1500px] cursor-pointer overflow-hidden rounded-[1.4rem] border border-white/20 bg-[var(--cup-blue)] text-left shadow-[0_28px_90px_rgba(0,0,0,0.52)] outline-none transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-[var(--cup-yellow)] hover:shadow-[0_36px_110px_rgba(0,0,0,0.68),0_0_36px_rgba(255,215,0,0.13)] focus-visible:ring-4 focus-visible:ring-[var(--cup-yellow)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--cup-ink)]"
       >
-        <div style={{
-          height: '3px',
-          background: 'linear-gradient(90deg, transparent, rgba(248,212,35,0.18) 20%, rgba(248,212,35,0.35) 50%, rgba(248,212,35,0.18) 80%, transparent)',
-          filter: 'blur(1px)',
-        }} />
-      </div>
-
-      {/* ── Content ── */}
-      <div className="relative z-10 container mx-auto px-4 py-10 sm:py-14 flex flex-col items-center text-center">
-
-        {/* Competition label */}
-        <div className="flex items-center gap-2 mb-5">
-          <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-yellow-400/60" />
-          <span
-            className="text-yellow-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em]"
-            style={{ textShadow: '0 0 12px rgba(248,212,35,0.5)' }}
-          >
-            Taça de Honra Distrital da Guarda · Quartos de Final
-          </span>
-          <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-yellow-400/60" />
-        </div>
-
-        {/* Trophy + Teams row */}
-        <div className="flex items-center justify-center gap-4 sm:gap-8 md:gap-14 w-full max-w-2xl mb-8">
-
-          {/* Home logo */}
-          <div className="flex flex-col items-center gap-2 flex-1">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full blur-xl opacity-30"
-                style={{ background: 'radial-gradient(circle, #f8d423, transparent)' }} />
-              <img src={homeLogo} alt="Guarda FC"
-                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain drop-shadow-[0_4px_16px_rgba(248,212,35,0.3)]"
-              />
-            </div>
-            <span className="text-white/80 text-[11px] sm:text-xs font-bold uppercase tracking-wide">Guarda FC</span>
-          </div>
-
-          {/* Central trophy */}
-          <div className="flex flex-col items-center gap-1 relative">
-            {/* glow ring */}
-            <div className="absolute inset-0 rounded-full pointer-events-none"
-              style={{
-                background: 'radial-gradient(circle, rgba(248,212,35,0.18) 0%, transparent 70%)',
-                filter: 'blur(20px)',
-                animation: 'trophyPulse 2.5s ease-in-out infinite',
-              }}
+        <div className="relative aspect-[9/14] overflow-hidden bg-[var(--cup-blue)] sm:aspect-[4/3] md:aspect-video">
+          <picture className="absolute inset-0 block h-full w-full">
+            <source media="(max-width: 767px)" srcSet="/images/adsrcuphero-mobile.png" />
+            <img
+              src="/images/adsrcuphero.png"
+              alt="Cartaz oficial da ADSR Cup 2026, torneio de futebol de formação em São Romão"
+              className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+              loading="lazy"
             />
-            {/* trophy emoji with float */}
-            <span
-              className="text-5xl sm:text-6xl md:text-7xl select-none"
-              style={{
-                animation: 'trophyFloat 3s ease-in-out infinite',
-                filter: 'drop-shadow(0 0 18px rgba(248,212,35,0.6))',
-              }}
-            >
-              🏆
-            </span>
-            <span
-              className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] mt-1"
-              style={{ color: '#f8d423', textShadow: '0 0 8px rgba(248,212,35,0.7)' }}
-            >
-              vs
-            </span>
-          </div>
+          </picture>
 
-          {/* Away logo */}
-          <div className="flex flex-col items-center gap-2 flex-1">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full blur-xl opacity-40"
-                style={{ background: 'radial-gradient(circle, #3b82f6, transparent)' }} />
-              <img src={awayLogo} alt="AD São Romão"
-                className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain drop-shadow-[0_4px_20px_rgba(59,130,246,0.35)]"
-                style={{ transform: 'scale(1.15)' }}
-              />
-            </div>
-            <span className="text-blue-300 text-[11px] sm:text-xs font-black uppercase tracking-wide">AD São Romão</span>
-          </div>
-        </div>
+          <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(1,11,28,0.16)]" />
 
-        {/* Date line */}
-        <p className="text-gray-400 text-xs sm:text-sm font-medium mb-6 tracking-wide">
-          <span className="text-white font-semibold">3 de Maio de 2025</span>
-          {' · '}
-          <span className="text-yellow-400 font-bold">15:15</span>
-          {' · '}
-          Estádio Municipal da Guarda
-        </p>
-
-        {/* Countdown */}
-        {!past ? (
-          <div className="flex flex-col items-center gap-3">
-            <p className="text-gray-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold">
-              Contagem decrescente
-            </p>
-            <div className="flex items-end gap-2 sm:gap-3 md:gap-4">
-              <Unit value={d} label="dias" />
-              <span className="text-yellow-400 font-black text-2xl sm:text-3xl mb-3 sm:mb-4 leading-none"
-                style={{ animation: 'colonBlink 1s step-start infinite' }}>:</span>
-              <Unit value={h} label="horas" />
-              <span className="text-yellow-400 font-black text-2xl sm:text-3xl mb-3 sm:mb-4 leading-none"
-                style={{ animation: 'colonBlink 1s step-start infinite' }}>:</span>
-              <Unit value={m} label="minutos" />
-              <span className="text-yellow-400 font-black text-2xl sm:text-3xl mb-3 sm:mb-4 leading-none"
-                style={{ animation: 'colonBlink 1s step-start infinite' }}>:</span>
-              <Unit value={s} label="segundos" />
-            </div>
-          </div>
-        ) : (
-          <div className="text-yellow-400 font-black text-xl sm:text-2xl uppercase tracking-widest"
-            style={{ textShadow: '0 0 20px rgba(248,212,35,0.6)' }}
-          >
-            🏆 É hoje! Força São Romão! 🏆
-          </div>
-        )}
-
-        {/* Autocarro pill */}
-        <div className="mt-6 flex items-center gap-2 bg-white/5 border border-yellow-400/20 rounded-full px-4 py-2 backdrop-blur-sm">
-          <span className="text-base">🚌</span>
-          <span className="text-gray-300 text-[11px] sm:text-xs">
-            Autocarro disponível ·{' '}
-            <span className="text-yellow-400 font-bold">10€ por pessoa</span>
-            {' '}· ida e volta
+          <span className="absolute right-4 top-4 inline-flex items-center gap-2 rounded-full border border-white/35 bg-[var(--cup-ink)]/70 px-3 py-2 font-cup text-[0.65rem] font-bold uppercase tracking-[0.18em] text-[var(--cup-white)] backdrop-blur-md sm:right-6 sm:top-6 sm:px-4 sm:text-xs">
+            <span className="h-2 w-2 rounded-full bg-[var(--cup-yellow)] shadow-[0_0_12px_var(--cup-yellow)]" />
+            IV edição
           </span>
         </div>
 
-      </div>
+        <div className="relative grid gap-5 bg-[var(--cup-yellow)] px-5 py-5 sm:px-7 md:grid-cols-[1fr_auto] md:items-center lg:px-10 lg:py-6">
+          <div>
+            <p className="font-cup text-[0.68rem] font-bold uppercase tracking-[0.25em] text-[var(--cup-ink)]/65 sm:text-xs">
+              A competição de formação da Serra da Estrela
+            </p>
+            <p className="mt-1 font-display text-2xl font-bold uppercase leading-tight text-[var(--cup-ink)] sm:text-3xl">
+              Toda a emoção. Todas as equipas. Um só lugar.
+            </p>
+          </div>
 
-      {/* ── Keyframes injected inline ── */}
-      <style>{`
-        @keyframes sparkFall {
-          0%   { transform: translateY(-10px) scale(1);   opacity: 0; }
-          10%  { opacity: 1; }
-          90%  { opacity: 0.6; }
-          100% { transform: translateY(110vh) scale(0.4); opacity: 0; }
-        }
-        @keyframes trophyFloat {
-          0%, 100% { transform: translateY(0px);  }
-          50%       { transform: translateY(-10px); }
-        }
-        @keyframes trophyPulse {
-          0%, 100% { opacity: 0.18; transform: scale(1);   }
-          50%       { opacity: 0.40; transform: scale(1.15); }
-        }
-        @keyframes colonBlink {
-          0%, 49% { opacity: 1; }
-          50%, 100% { opacity: 0.15; }
-        }
-      `}</style>
-    </div>
+          <span className="inline-flex min-h-12 w-fit items-center gap-4 rounded-full bg-[var(--cup-ink)] px-5 py-3 font-cup text-sm font-extrabold uppercase tracking-[0.14em] text-[var(--cup-white)] transition-colors duration-200 group-hover:bg-[var(--cup-blue)] sm:px-6 sm:text-base">
+            Entrar na ADSR Cup
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--cup-yellow)] text-[var(--cup-ink)]">
+              <ArrowUpRight size={18} strokeWidth={2.7} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </span>
+        </div>
+      </button>
+    </section>
   );
 };

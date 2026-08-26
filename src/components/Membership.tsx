@@ -10,7 +10,7 @@ interface MembershipProps {
 
 export const Membership: React.FC<MembershipProps> = ({ onNavigate }) => {
   return (
-    <div id="socios" className="relative bg-navy-900 py-12 md:py-20 lg:py-24 overflow-hidden">
+    <div id="socios" className="section-y relative overflow-hidden bg-navy-900 text-white">
        {/* Background Textures */}
        <div 
         className="absolute inset-0 z-0 bg-cover bg-center opacity-100"
@@ -23,15 +23,18 @@ export const Membership: React.FC<MembershipProps> = ({ onNavigate }) => {
           
           {/* Left Content: Call to Action */}
           <div className="lg:w-1/2 text-center lg:text-left">
-            <span className="text-yellow-400 font-bold tracking-[0.15em] md:tracking-[0.2em] text-[11px] md:text-xs uppercase block mb-3 md:mb-4 border-b-2 border-yellow-400 inline-block pb-1">
-              Faz parte da família
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white uppercase leading-[0.95] md:leading-[0.9] mb-5 md:mb-8 drop-shadow-lg">
+            <div className="mb-4 flex items-center justify-center gap-3 lg:justify-start">
+              <span className="kicker-rule" aria-hidden="true" />
+              <span className="font-display text-[11px] font-semibold uppercase tracking-kicker text-gold-400">
+                Faz parte da família
+              </span>
+            </div>
+            <h2 className="font-display text-[clamp(2.1rem,6.5vw,3.75rem)] font-bold text-white uppercase leading-[0.9] mb-5 md:mb-8 drop-shadow-lg">
               O Teu Lugar é No <br/>
-              <span className="text-yellow-400">São Romão</span>
+              <span className="text-gold-400">São Romão</span>
             </h2>
-            
-            <p className="text-gray-300 max-w-lg mx-auto lg:mx-0 mb-6 md:mb-8 text-sm md:text-base leading-relaxed">
+
+            <p className="text-white/65 max-w-lg mx-auto lg:mx-0 mb-6 md:mb-8 text-base leading-relaxed">
               Mais do que um adepto, sê o motor do nosso crescimento. Apoia o desporto local e desfruta de benefícios exclusivos.
             </p>
 
@@ -42,7 +45,7 @@ export const Membership: React.FC<MembershipProps> = ({ onNavigate }) => {
                 'Voto direto nas decisões do clube'
               ].map((benefit, idx) => (
                 <li key={idx} className="flex items-start text-white text-xs md:text-sm font-bold tracking-wide">
-                  <Check className="text-yellow-400 mr-2 md:mr-3 h-4 w-4 md:h-5 md:w-5 stroke-[3px] flex-shrink-0 mt-0.5" />
+                  <Check className="text-gold-400 mr-2 md:mr-3 h-4 w-4 md:h-5 md:w-5 stroke-[3px] flex-shrink-0 mt-0.5" />
                   <span>{benefit}</span>
                 </li>
               ))}
@@ -51,7 +54,7 @@ export const Membership: React.FC<MembershipProps> = ({ onNavigate }) => {
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-md mx-auto lg:mx-0">
               <button 
                 onClick={() => onNavigate && onNavigate('socios')}
-                className="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 md:py-4 px-6 md:px-8 rounded shadow-lg shadow-yellow-400/20 uppercase text-xs md:text-sm tracking-widest transition-all hover:scale-105"
+                className="w-full sm:w-auto bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-3 md:py-4 px-6 md:px-8 rounded shadow-lg shadow-gold-400/20 uppercase text-xs md:text-sm tracking-widest transition-all hover:scale-105"
               >
                 Quero ser Sócio
               </button>
