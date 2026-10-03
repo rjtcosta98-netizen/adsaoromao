@@ -37,7 +37,7 @@ export const ClubVideo: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 opacity-50"></div>
       
       <div className="container mx-auto px-4 relative z-10 text-center">
-        <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
+        <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-4">
             Documentário
         </span>
         <h2 className="text-4xl md:text-5xl font-display font-bold text-white uppercase mb-12">
@@ -63,7 +63,7 @@ export const ClubVideo: React.FC = () => {
                 className={`absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 cursor-pointer ${isPlaying ? 'opacity-0 hover:opacity-100' : 'opacity-100'}`}
                 onClick={handlePlay}
               >
-                 <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg shadow-yellow-400/30 group-hover:scale-110 transition-transform duration-300">
+                 <div className="w-20 h-20 bg-gold-400 rounded-full flex items-center justify-center shadow-lg shadow-gold-400/30 group-hover:scale-110 transition-transform duration-300">
                     {isPlaying ? (
                       <Pause className="text-navy-900 w-8 h-8" fill="currentColor" />
                     ) : (

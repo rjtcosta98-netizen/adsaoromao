@@ -197,7 +197,7 @@ export function VotingPage() {
 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+              <div className="inline-flex items-center gap-2 bg-gold-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
                 <Trophy size={14} />
                 Época {SEASON}
               </div>
@@ -208,7 +208,7 @@ export function VotingPage() {
                 Vota no melhor jogador sénior da época {SEASON}. Cada adepto pode votar uma vez.
               </p>
               {voteStatus === 'soon' && (
-                <p className="mt-2 text-yellow-400/80 text-xs font-medium">
+                <p className="mt-2 text-gold-400/80 text-xs font-medium">
                   Votação abre a {VOTE_START.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long' })}
                 </p>
               )}
@@ -224,7 +224,7 @@ export function VotingPage() {
               )}
             </div>
             <div className="flex items-center gap-2 bg-white/10 rounded-2xl px-5 py-3 text-white self-start sm:self-auto">
-              <Users size={18} className="text-yellow-400" />
+              <Users size={18} className="text-gold-400" />
               <span className="font-display font-bold text-lg">{candidates.length}</span>
               <span className="text-white/60 text-sm">candidatos</span>
             </div>
@@ -275,7 +275,7 @@ export function VotingPage() {
         {(voteStatus === 'soon' || voteStatus === 'open') && (
           <>
             {voteStatus === 'soon' && (
-              <div className="flex items-center justify-center gap-2 bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto text-sm font-medium">
+              <div className="flex items-center justify-center gap-2 bg-gold-50 border border-gold-200 text-gold-800 rounded-xl py-3 px-6 mb-8 max-w-sm mx-auto text-sm font-medium">
                 🗓️ Votação abre a {VOTE_START.toLocaleDateString('pt-PT', { day: 'numeric', month: 'long' })} — conhece já os candidatos!
               </div>
             )}
@@ -306,7 +306,7 @@ export function VotingPage() {
                       key={player.id}
                       className={`bg-white rounded-2xl shadow-sm border-2 transition-all duration-300 overflow-hidden flex flex-col
                         ${isVoted
-                          ? 'border-yellow-400 shadow-lg shadow-yellow-100'
+                          ? 'border-gold-400 shadow-lg shadow-gold-100'
                           : 'border-gray-100 hover:border-navy-800/20 hover:shadow-md'}`}
                     >
                       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
@@ -317,8 +317,8 @@ export function VotingPage() {
                           className="w-full h-full object-cover object-top"
                         />
                         {isVoted && (
-                          <div className="absolute inset-0 bg-yellow-400/10 flex items-end justify-center pb-3">
-                            <span className="bg-yellow-400 text-navy-900 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                          <div className="absolute inset-0 bg-gold-400/10 flex items-end justify-center pb-3">
+                            <span className="bg-gold-400 text-navy-900 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                               <CheckCircle size={12} /> O teu voto
                             </span>
                           </div>
@@ -337,7 +337,7 @@ export function VotingPage() {
                             disabled={!canVote || voting}
                             className={`mt-3 w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200
                               ${isVoted
-                                ? 'bg-yellow-400 text-navy-900 cursor-default'
+                                ? 'bg-gold-400 text-navy-900 cursor-default'
                                 : !canVote
                                   ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
                                   : 'bg-navy-900 hover:bg-navy-800 text-white active:scale-95'}`}

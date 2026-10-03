@@ -38,19 +38,19 @@ export const MembershipBenefits: React.FC = () => {
       <div className="container mx-auto px-4">
         
         <div className="text-center mb-16">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3">
             Porquê ser sócio?
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#032d61] uppercase">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#032D61] uppercase">
             Benefícios Exclusivos
           </h2>
-          <div className="w-24 h-1.5 bg-yellow-400 mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1.5 bg-gold-400 mx-auto mt-6 rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
           {benefits.map((benefit, index) => (
             <div key={index} className="bg-navy-800 border border-yellow/100 rounded-2xl p-8 hover:bg-navy-700 transition-colors duration-300 group">
-              <div className="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg border border-yellow-400]">
+              <div className="w-14 h-14 bg-navy-900 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg border border-gold-400]">
                 {benefit.image ? (
                   <img
                     src={benefit.image}
@@ -58,10 +58,10 @@ export const MembershipBenefits: React.FC = () => {
                     className="w-8 h-8 object-contain"
                   />
                 ) : (
-                  <benefit.icon className="text-yellow-400 w-7 h-7" />
+                  <benefit.icon className="text-gold-400 w-7 h-7" />
                 )}
               </div>
-              <h3 className="text-yellow-400 font-display font-bold text-xl uppercase mb-4 leading-tight">
+              <h3 className="text-gold-400 font-display font-bold text-xl uppercase mb-4 leading-tight">
                 {benefit.title}
               </h3>
               <p className="text-white text-sm leading-relaxed">
@@ -72,11 +72,11 @@ export const MembershipBenefits: React.FC = () => {
         </div>
 
         {/* Banner Strip (Screenshot 3) */}
-        <div className="bg-gradient-to-r from-navy-800 to-navy-700 rounded-lg p-1 relative overflow-hidden shadow-2xl border-l-4 border-yellow-400">
+        <div className="bg-gradient-to-r from-navy-800 to-navy-700 rounded-lg p-1 relative overflow-hidden shadow-2xl border-l-4 border-gold-400">
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
            <div className="relative py-12 px-4 text-center">
               <p className="text-xl md:text-2xl text-white font-medium">
-                A tua quota de apenas <span className="text-yellow-400 font-bold">25€/ano</span> ajuda a formar os nossos jovens atletas.
+                A tua quota de apenas <span className="text-gold-400 font-bold">25€/ano</span> ajuda a formar os nossos jovens atletas.
               </p>
            </div>
         </div>

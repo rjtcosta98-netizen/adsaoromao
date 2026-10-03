@@ -12,6 +12,45 @@ body {
 }
 
 /* ═══════════════════════════════════════════════
+   TOKENS E RITMO DE SECÇÃO — usados pelas páginas
+   do sistema de cor (Sócios, Livestream, ui/Section)
+   ═══════════════════════════════════════════════ */
+
+:root {
+  --adsr-bone-200: #E6EAF2;
+  --adsr-gold: #FFD700;
+  --adsr-gold-deep: #B8890B;
+  --adsr-section-y: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --adsr-section-y: 5rem;
+  }
+}
+
+.section-y {
+  padding-top: var(--adsr-section-y);
+  padding-bottom: var(--adsr-section-y);
+}
+
+/* Régua dourada antes de cada eyebrow de secção */
+.kicker-rule {
+  display: inline-block;
+  width: 2.25rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--adsr-gold) 0%, var(--adsr-gold-deep) 100%);
+}
+
+.seam-light {
+  border-top: 1px solid var(--adsr-bone-200);
+}
+
+.seam-dark {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ═══════════════════════════════════════════════
    ANIMATIONS
    ═══════════════════════════════════════════════ */
 

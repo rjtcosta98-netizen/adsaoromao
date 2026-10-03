@@ -12,7 +12,7 @@ export const ClubMuseum: React.FC = () => {
           
           {/* Left Side Content */}
           <div className="lg:w-1/2">
-            <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3 border-b-2 border-yellow-400 inline-block pb-1">
+            <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3 border-b-2 border-gold-400 inline-block pb-1">
               O Coração do Clube
             </span>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white uppercase mb-6 md:mb-8">
@@ -26,7 +26,7 @@ export const ClubMuseum: React.FC = () => {
             <div className="space-y-3 md:space-y-4">
               {/* Card 1 */}
               <div className="bg-navy-800 p-3 md:p-4 rounded-lg flex items-start gap-3 md:gap-4 hover:bg-navy-700 transition-colors cursor-default border border-white/5">
-                 <div className="bg-yellow-400/10 p-2 md:p-3 rounded-full text-yellow-400 shrink-0">
+                 <div className="bg-gold-400/10 p-2 md:p-3 rounded-full text-gold-400 shrink-0">
                     <Trophy size={18} className="md:w-5 md:h-5" />
                  </div>
                  <div>
@@ -37,7 +37,7 @@ export const ClubMuseum: React.FC = () => {
               
               {/* Card 2 */}
               <div className="bg-navy-800 p-3 md:p-4 rounded-lg flex items-start gap-3 md:gap-4 hover:bg-navy-700 transition-colors cursor-default border border-white/5">
-                 <div className="bg-yellow-400/10 p-2 md:p-3 rounded-full text-yellow-400 shrink-0">
+                 <div className="bg-gold-400/10 p-2 md:p-3 rounded-full text-gold-400 shrink-0">
                     <FileText size={18} className="md:w-5 md:h-5" />
                  </div>
                  <div>
@@ -48,7 +48,7 @@ export const ClubMuseum: React.FC = () => {
 
                {/* Card 3 */}
               <div className="bg-navy-800 p-3 md:p-4 rounded-lg flex items-start gap-3 md:gap-4 hover:bg-navy-700 transition-colors cursor-default border border-white/5">
-                 <div className="bg-yellow-400/10 p-2 md:p-3 rounded-full text-yellow-400 shrink-0">
+                 <div className="bg-gold-400/10 p-2 md:p-3 rounded-full text-gold-400 shrink-0">
                     <Coffee size={18} className="md:w-5 md:h-5" />
                  </div>
                  <div>
@@ -71,7 +71,7 @@ export const ClubMuseum: React.FC = () => {
              </div>
 
              {/* Sticker Badge */}
-             <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 z-30 bg-yellow-400 text-navy-900 p-2 md:p-4 rounded-lg shadow-lg md:shadow-xl -rotate-6 transform hover:rotate-0 transition-transform">
+             <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 z-30 bg-gold-400 text-navy-900 p-2 md:p-4 rounded-lg shadow-lg md:shadow-xl -rotate-6 transform hover:rotate-0 transition-transform">
                 <span className="text-[11px] md:text-[12px] font-bold uppercase block tracking-wider">Fundação</span>
                 <span className="text-lg md:text-2xl font-display font-bold uppercase block leading-none">10 OUT 1962</span>
              </div>

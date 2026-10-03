@@ -60,10 +60,10 @@ export const ClubManagement: React.FC = () => {
         return {
           wrapper: "bg-navy-900 border-navy-800",
           title: "text-white",
-          roleBadge: "bg-yellow-400 text-navy-900 font-bold",
+          roleBadge: "bg-gold-400 text-navy-900 font-bold",
           socioLabel: "text-gray-400",
           socioValue: "text-white",
-          iconColor: "text-yellow-400"
+          iconColor: "text-gold-400"
         };
       case 'minimal': // Conselho Fiscal
         return {
@@ -81,7 +81,7 @@ export const ClubManagement: React.FC = () => {
           roleBadge: "bg-navy-50 text-navy-900 font-bold border border-navy-100",
           socioLabel: "text-gray-400",
           socioValue: "text-navy-900",
-          iconColor: "text-yellow-500"
+          iconColor: "text-gold-500"
         };
     }
   };
@@ -98,7 +98,7 @@ export const ClubManagement: React.FC = () => {
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-navy-900 uppercase mb-3 md:mb-4">
             Corpos Gerentes
           </h2>
-          <div className="w-16 md:w-20 h-1 md:h-1.5 bg-yellow-400 mx-auto rounded-full"></div>
+          <div className="w-16 md:w-20 h-1 md:h-1.5 bg-gold-400 mx-auto rounded-full"></div>
         </div>
 
         {/* Lista de Órgãos */}
@@ -110,7 +110,7 @@ export const ClubManagement: React.FC = () => {
               <div key={groupIndex} className="relative">
                 
                 {/* Título da Secção */}
-                <div className="flex flex-col gap-2 mb-6 md:mb-8 border-l-4 border-yellow-400 pl-3 md:pl-4">
+                <div className="flex flex-col gap-2 mb-6 md:mb-8 border-l-4 border-gold-400 pl-3 md:pl-4">
                   <h3 className="text-lg md:text-2xl font-display font-bold text-navy-900 uppercase">
                     {group.title}
                   </h3>

@@ -8,13 +8,37 @@ export default {
     extend: {
       colors: {
         'navy': {
+          300: '#8FC7FF',
           700: '#1e3a5f',
           800: '#053975',
           900: '#032d61',
+          950: '#021A3C',
         },
         'yellow': {
           400: '#FFD700',
           500: '#E6C200',
+        },
+        // Tokens do sistema de cor usados pelas páginas Clube, Sócios, Loja,
+        // Contactos, etc. `gold-400` é o mesmo dourado que `yellow-400`.
+        'gold': {
+          50: '#FFFBEA',
+          100: '#FFF4C2',
+          200: '#FFE98A',
+          300: '#FFE04D',
+          400: '#FFD700',
+          500: '#E6BE00',
+          600: '#B8890B',
+          700: '#8C6708',
+          800: '#6B4E06',
+          900: '#4A3604',
+        },
+        'ink': '#010B1C',
+        'paper': '#FFFFFF',
+        'bone': {
+          DEFAULT: '#F4F6FA',
+          100: '#F9FAFC',
+          200: '#E6EAF2',
+          300: '#D3DAE7',
         },
       },
       fontFamily: {

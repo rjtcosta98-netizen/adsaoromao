@@ -34,7 +34,7 @@ export const StoreCart: React.FC<StoreCartProps> = ({ isOpen, onClose, items, on
             {/* Header */}
             <div className="p-3 sm:p-4 md:p-6 border-b border-gray-100 flex justify-between items-center bg-navy-900 text-white">
                <div className="flex items-center gap-2">
-                  <ShoppingBag size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-yellow-400" />
+                  <ShoppingBag size={18} className="sm:w-5 sm:h-5 md:w-6 md:h-6 text-gold-400" />
                   <h2 className="font-display font-bold text-base sm:text-lg md:text-xl uppercase tracking-wide">O Teu Carrinho</h2>
                </div>
                <button onClick={onClose} className="p-2 sm:p-1.5 md:p-2 hover:bg-navy-800 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
@@ -94,7 +94,7 @@ export const StoreCart: React.FC<StoreCartProps> = ({ isOpen, onClose, items, on
                            </div>
                            
                            <div className="mt-2 md:mt-3 text-right">
-                              <span className="font-bold text-yellow-500 text-sm md:text-base">
+                              <span className="font-bold text-gold-500 text-sm md:text-base">
                                 {item.price}
                               </span>
                            </div>
@@ -109,7 +109,7 @@ export const StoreCart: React.FC<StoreCartProps> = ({ isOpen, onClose, items, on
                <div className="p-4 md:p-6 bg-gray-50 border-t border-gray-200">
                   <button 
                     onClick={onCheckout}
-                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 md:py-4 rounded-lg uppercase tracking-widest text-xs md:text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
+                    className="w-full bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-3 md:py-4 rounded-lg uppercase tracking-widest text-xs md:text-sm transition-all flex items-center justify-center gap-2 shadow-lg"
                   >
                      Pedir Cotação <ArrowRight size={16} className="md:w-[18px] md:h-[18px]" />
                   </button>

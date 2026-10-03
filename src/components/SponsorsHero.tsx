@@ -22,13 +22,13 @@ export const SponsorsHero: React.FC = () => {
         
         {/* Left Content */}
         <div className="lg:w-1/2">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 md:mb-4">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 md:mb-4">
             Crescemos juntos com a comunidade
           </span>
           <h1 className="font-display font-bold text-3xl md:text-5xl lg:text-6xl text-white uppercase leading-tight md:leading-none mb-1 md:mb-2">
             Nossos Parceiros &
           </h1>
-          <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-yellow-400 uppercase leading-tight md:leading-none mb-4 md:mb-8">
+          <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-gold-400 uppercase leading-tight md:leading-none mb-4 md:mb-8">
             Patrocinadores
           </h1>
           
@@ -44,7 +44,7 @@ export const SponsorsHero: React.FC = () => {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-2 md:py-3 px-6 md:px-8 rounded shadow-lg uppercase text-xs md:text-sm tracking-widest transition-transform hover:scale-105"
+              className="bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-2 md:py-3 px-6 md:px-8 rounded shadow-lg uppercase text-xs md:text-sm tracking-widest transition-transform hover:scale-105"
             >
               Ver Lista
             </button>
@@ -56,17 +56,17 @@ export const SponsorsHero: React.FC = () => {
            <div className="bg-navy-800 rounded-lg md:rounded-xl overflow-hidden shadow-2xl border border-white/10 transform hover:-translate-y-2 transition-transform duration-300">
               {/* Card Header */}
               <div className="bg-gray-700/50 p-3 md:p-4 text-center border-b border-white/5">
-                 <span className="text-yellow-400 font-bold text-xs uppercase tracking-widest">Oportunidade de Marca</span>
+                 <span className="text-gold-400 font-bold text-xs uppercase tracking-widest">Oportunidade de Marca</span>
               </div>
               
               {/* Card Body */}
               <div className="p-6 md:p-10 flex flex-col items-center text-center bg-gradient-to-b from-navy-800 to-navy-900">
-                 <div className="mb-4 md:mb-6 text-yellow-400 opacity-80">
+                 <div className="mb-4 md:mb-6 text-gold-400 opacity-80">
                     <Handshake size={48} strokeWidth={1.5} className="md:w-16 md:h-16" />
                  </div>
                  
                  <h3 className="font-display font-bold text-2xl md:text-3xl text-white uppercase mb-1 md:mb-2">O Seu Logo Aqui</h3>
-                 <span className="text-yellow-400 font-bold text-xs uppercase tracking-widest mb-4 md:mb-8 block">Parceiro Oficial ADSR</span>
+                 <span className="text-gold-400 font-bold text-xs uppercase tracking-widest mb-4 md:mb-8 block">Parceiro Oficial ADSR</span>
                  
                  <p className="text-gray-400 text-xs mb-4 md:mb-8 border-t border-white/10 pt-3 md:pt-6">
                     Associe a sua marca a um clube histórico e impacte centenas de pessoas semanalmente.

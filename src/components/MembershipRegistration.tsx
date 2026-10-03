@@ -12,13 +12,13 @@ export const MembershipRegistration: React.FC = () => {
         
         {/* Cabeçalho da Secção */}
         <div className="text-center mb-8 md:mb-12">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 md:mb-3">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 md:mb-3">
             Processo 100% Digital
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-5xl font-display font-bold text-white uppercase mb-4 md:mb-6">
             Ficha de Inscrição
           </h2>
-          <div className="w-16 h-1 bg-yellow-400 mx-auto mb-4 md:mb-6 rounded-full"></div>
+          <div className="w-16 h-1 bg-gold-400 mx-auto mb-4 md:mb-6 rounded-full"></div>
           <p className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base">
              Preenche os teus dados abaixo. A inscrição é processada diretamente pela nossa plataforma oficial de gestão de sócios.
           </p>
@@ -32,7 +32,7 @@ export const MembershipRegistration: React.FC = () => {
                {/* Traffic Lights */}
                <div className="flex gap-1.5 md:gap-2">
                   <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/80"></div>
-                  <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gold-500/80"></div>
                   <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80"></div>
                </div>
                

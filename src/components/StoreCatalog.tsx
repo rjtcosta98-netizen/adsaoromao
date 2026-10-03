@@ -69,12 +69,12 @@ export const StoreCatalog: React.FC<StoreCatalogProps> = ({ onAddToCart }) => {
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
            {filteredProducts.map(product => (
-              <div key={product.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border-2 border-gray-100 hover:border-yellow-400 group">
+              <div key={product.id} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border-2 border-gray-100 hover:border-gold-400 group">
                  
                  {/* Image Section */}
                  <div className="relative bg-gradient-to-b from-gray-50 to-gray-100 overflow-hidden h-40 sm:h-48 md:h-56 flex items-center justify-center p-2 sm:p-3">
                     {product.isNew && (
-                       <span className="absolute top-2 left-2 bg-yellow-400 text-navy-900 text-[10px] sm:text-xs font-bold px-2.5 py-1 uppercase tracking-wide rounded-full shadow-lg z-10">
+                       <span className="absolute top-2 left-2 bg-gold-400 text-navy-900 text-[10px] sm:text-xs font-bold px-2.5 py-1 uppercase tracking-wide rounded-full shadow-lg z-10">
                           Novo
                        </span>
                     )}
@@ -90,7 +90,7 @@ export const StoreCatalog: React.FC<StoreCatalogProps> = ({ onAddToCart }) => {
 
                  {/* Content Section */}
                  <div className="p-3 sm:p-4 bg-white">
-                    <span className="text-yellow-500 text-[11px] sm:text-xs font-bold uppercase tracking-wide block mb-1.5">{product.category}</span>
+                    <span className="text-gold-500 text-[11px] sm:text-xs font-bold uppercase tracking-wide block mb-1.5">{product.category}</span>
                     <h3 className="font-display font-bold text-navy-900 text-xs sm:text-sm leading-tight mb-3 line-clamp-2 h-8 sm:h-10">
                        {product.name}
                     </h3>
@@ -106,8 +106,8 @@ export const StoreCatalog: React.FC<StoreCatalogProps> = ({ onAddToCart }) => {
                                   onClick={() => handleSizeSelect(product.id, size)}
                                   className={`w-10 h-10 sm:w-9 sm:h-9 rounded text-[11px] sm:text-xs font-bold flex items-center justify-center transition-all ${
                                      (selectedSizes[product.id] === size || (!selectedSizes[product.id] && size === product.sizes![0]))
-                                     ? 'bg-yellow-400 text-navy-900 border-2 border-yellow-400 shadow-md'
-                                     : 'bg-gray-100 text-gray-700 border-2 border-gray-200 hover:border-yellow-400'
+                                     ? 'bg-gold-400 text-navy-900 border-2 border-gold-400 shadow-md'
+                                     : 'bg-gray-100 text-gray-700 border-2 border-gray-200 hover:border-gold-400'
                                   }`}
                                 >
                                    {size}
@@ -119,12 +119,12 @@ export const StoreCatalog: React.FC<StoreCatalogProps> = ({ onAddToCart }) => {
 
                     {/* Price and Button */}
                     <div className="flex justify-between items-center gap-2">
-                       <div className="text-lg sm:text-xl font-black text-yellow-500">
+                       <div className="text-lg sm:text-xl font-black text-gold-500">
                           {product.price}
                        </div>
                        <button 
                          onClick={() => handleAddClick(product)}
-                         className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 p-2.5 sm:p-2.5 rounded-full shadow-lg transition-all hover:scale-110 active:scale-95 font-bold flex items-center justify-center flex-shrink-0 min-w-[44px] min-h-[44px]"
+                         className="bg-gold-400 hover:bg-gold-500 text-navy-900 p-2.5 sm:p-2.5 rounded-full shadow-lg transition-all hover:scale-110 active:scale-95 font-bold flex items-center justify-center flex-shrink-0 min-w-[44px] min-h-[44px]"
                          title="Adicionar ao Carrinho"
                        >
                           <ShoppingCart size={16} className="sm:w-5 sm:h-5" />

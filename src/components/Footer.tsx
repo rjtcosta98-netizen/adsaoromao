@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Column 1: Brand */}
           <div className="space-y-4 md:space-y-6">
             <img src={LOGO_URL} alt="AD São Romão" className="w-16 md:w-24 h-16 md:h-24 object-contain" loading="lazy" width={96} height={96} />
-            <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
+            <p className="text-white/60 text-xs md:text-sm leading-relaxed">
               O coração da Serra da Estrela bate aqui. <br/>
               Desde 1962, a formar campeões e cidadãos.
             </p>
@@ -50,8 +50,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Column 2: O Clube */}
           <div>
-            <h4 className="font-display font-bold uppercase text-sm md:text-lg mb-3 md:mb-6 border-b-2 border-yellow-400 inline-block pb-1">O Clube</h4>
-            <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-400">
+            <h4 className="font-display font-bold uppercase text-sm md:text-lg mb-3 md:mb-6 border-b-2 border-gold-400 inline-block pb-1">O Clube</h4>
+            <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-white/60">
               <li><a href="/clube" className="hover:text-white transition-colors">História e Palmarés</a></li>
               <li><a href="/socio" className="hover:text-white transition-colors">Área de Sócio</a></li>
               <li><a href="/inscricoes" className="hover:text-white transition-colors">Recrutamento</a></li>
@@ -61,8 +61,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Column 3: Futebol */}
           <div>
-            <h4 className="font-display font-bold uppercase text-sm md:text-lg mb-3 md:mb-6 border-b-2 border-yellow-400 inline-block pb-1">Futebol</h4>
-            <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-gray-400">
+            <h4 className="font-display font-bold uppercase text-sm md:text-lg mb-3 md:mb-6 border-b-2 border-gold-400 inline-block pb-1">Futebol</h4>
+            <ul className="space-y-2 md:space-y-3 text-xs md:text-sm text-white/60">
               <li><a href="/equipas" className="hover:text-white transition-colors">Equipa Principal</a></li>
               <li><a href="/equipas" className="hover:text-white transition-colors">Escalões de Formação</a></li>
             </ul>
@@ -70,18 +70,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Column 4: Contactos */}
           <div>
-             <h4 className="font-display font-bold uppercase text-sm md:text-lg mb-3 md:mb-6 border-b-2 border-yellow-400 inline-block pb-1">Contactos</h4>
-             <ul className="space-y-2 md:space-y-4 text-xs md:text-sm text-gray-400">
+             <h4 className="font-display font-bold uppercase text-sm md:text-lg mb-3 md:mb-6 border-b-2 border-gold-400 inline-block pb-1">Contactos</h4>
+             <ul className="space-y-2 md:space-y-4 text-xs md:text-sm text-white/60">
                <li className="flex items-start gap-2 md:gap-3">
-                 <MapPin className="text-yellow-400 shrink-0 mt-0.5 md:mt-1 w-4 md:w-4" />
+                 <MapPin className="text-gold-400 shrink-0 mt-0.5 md:mt-1 w-4 md:w-4" />
                  <span>Praça de São Pedro, N°1 A<br/> 6270-287 São Romão</span>
                </li>
                <li className="flex items-center gap-2 md:gap-3">
-                 <Phone className="text-yellow-400 shrink-0 w-4 md:w-4" />
+                 <Phone className="text-gold-400 shrink-0 w-4 md:w-4" />
                  <span>+351 968 966 375</span>
                </li>
                <li className="flex items-center gap-2 md:gap-3">
-                 <Mail className="text-yellow-400 shrink-0 w-4 md:w-4" />
+                 <Mail className="text-gold-400 shrink-0 w-4 md:w-4" />
                  <span>geral@adsaoromao.pt</span>
                </li>
              </ul>
@@ -91,23 +91,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Livro de Reclamações & Credits & Legal */}
         <div className="border-t border-navy-800 mt-8 md:mt-12 pt-4 md:pt-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-4 text-[11px] md:text-xs text-gray-500 flex-wrap">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-4 text-[11px] md:text-xs text-white/45 flex-wrap">
             {/* Left: Copyright */}
             <p>&copy; 2026 ADSR. Todos os direitos reservados.</p>
 
             {/* Center: Links Legais & Livro de Reclamações */}
             <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-center">
               <a href="/privacidade" className="hover:text-white transition-colors">Privacidade</a>
-              <span className="text-gray-600">•</span>
+              <span className="text-white/30">•</span>
               <a href="/termos" className="hover:text-white transition-colors">Termos</a>
-              <span className="text-gray-600">•</span>
+              <span className="text-white/30">•</span>
               <a href="/cookies" className="hover:text-white transition-colors">Cookies</a>
-              <span className="text-gray-600">•</span>
+              <span className="text-white/30">•</span>
               <a 
                 href="https://www.livroreclamacoes.pt" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-yellow-400 hover:text-yellow-300 transition-colors font-bold"
+                className="text-gold-400 hover:text-gold-300 transition-colors font-bold"
                 title="Livro de Reclamações Eletrónico"
               >
                 Reclamações
@@ -119,13 +119,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               href="https://elementgroup.pt" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 border border-blue-500/30 hover:border-yellow-400/50 rounded-full px-4 py-2 transition-all duration-300"
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 border border-blue-500/30 hover:border-gold-400/50 rounded-full px-4 py-2 transition-all duration-300"
             >
-              <span className="text-blue-400 group-hover:text-yellow-400 transition-colors text-sm font-mono font-bold">{'</>'}</span>
-              <span className="text-gray-400 group-hover:text-white/80 transition-colors text-xs font-medium">
+              <span className="text-blue-400 group-hover:text-gold-400 transition-colors text-sm font-mono font-bold">{'</>'}</span>
+              <span className="text-white/60 group-hover:text-white transition-colors text-xs font-medium">
                 Desenvolvido por
               </span>
-              <span className="font-bold text-white group-hover:text-yellow-400 transition-colors text-xs tracking-wide">
+              <span className="font-bold text-white group-hover:text-gold-400 transition-colors text-xs tracking-wide">
                 ELEMENTGROUP.PT
               </span>
             </a>

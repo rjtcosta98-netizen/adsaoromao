@@ -57,14 +57,14 @@ export const LivestreamSection: React.FC = () => {
   const awayLogo = getTeamLogo(awayTeam);
 
   return (
-    <section className="relative bg-navy-900 border-t border-white/5 overflow-hidden">
+    <section className="section-y relative overflow-hidden bg-navy-900 text-white seam-dark">
       {/* Background atmosphere */}
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
         style={{
           background:
-            'radial-gradient(ellipse 70% 60% at 50% 0%, rgba(220,38,38,0.12) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 60% at 50% 0%, rgba(239,68,68,0.12) 0%, transparent 70%)',
         }}
       />
       {/* Subtle grain */}
@@ -77,7 +77,7 @@ export const LivestreamSection: React.FC = () => {
         }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -86,9 +86,9 @@ export const LivestreamSection: React.FC = () => {
             <span
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase"
               style={{
-                background: 'rgba(220,38,38,0.18)',
-                border: '1.5px solid rgba(220,38,38,0.55)',
-                color: '#f87171',
+                background: 'rgba(239,68,68,0.18)',
+                border: '1.5px solid rgba(239,68,68,0.55)',
+                color: '#EF4444',
               }}
             >
               <span
@@ -125,7 +125,7 @@ export const LivestreamSection: React.FC = () => {
             className="relative rounded-2xl overflow-hidden shadow-2xl"
             style={{
               border: '1.5px solid rgba(255,255,255,0.08)',
-              background: '#010f1f',
+              background: '#010B1C',
             }}
           >
             {hasStream ? (
@@ -151,7 +151,7 @@ export const LivestreamSection: React.FC = () => {
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'radial-gradient(circle 240px at 50% 50%, rgba(220,38,38,0.12) 0%, transparent 70%)',
+                      'radial-gradient(circle 240px at 50% 50%, rgba(239,68,68,0.12) 0%, transparent 70%)',
                   }}
                 />
                 <div className="relative z-10 flex flex-col items-center gap-6">
@@ -159,8 +159,8 @@ export const LivestreamSection: React.FC = () => {
                   <div
                     className="flex items-center justify-center w-16 h-16 rounded-full"
                     style={{
-                      background: 'rgba(220,38,38,0.15)',
-                      border: '1.5px solid rgba(220,38,38,0.4)',
+                      background: 'rgba(239,68,68,0.15)',
+                      border: '1.5px solid rgba(239,68,68,0.4)',
                     }}
                   >
                     <Radio className="w-8 h-8 text-red-400" />
@@ -317,7 +317,7 @@ export const LivestreamSection: React.FC = () => {
                 <span className="text-white/50 text-xs tracking-wide">{competition}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Clock className="w-3.5 h-3.5 text-yellow-400 flex-shrink-0" />
+                <Clock className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
                 <span className="text-white/50 text-xs tracking-wide">
                   {new Date(matchDateTime).toLocaleDateString('pt-PT', {
                     weekday: 'long',
@@ -338,9 +338,9 @@ export const LivestreamSection: React.FC = () => {
                 className="mt-auto flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold tracking-wide transition-all duration-200 hover:brightness-110 active:scale-95"
                 style={{
                   fontFamily: 'Oswald, sans-serif',
-                  background: 'rgba(255,0,0,0.18)',
-                  border: '1.5px solid rgba(255,0,0,0.4)',
-                  color: '#ff6b6b',
+                  background: 'rgba(239,68,68,0.18)',
+                  border: '1.5px solid rgba(239,68,68,0.4)',
+                  color: '#EF4444',
                   letterSpacing: '0.1em',
                 }}
               >

@@ -14,7 +14,7 @@ export const MembershipLogin: React.FC = () => {
       
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[128px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-400/5 rounded-full blur-[128px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-400/5 rounded-full blur-[128px] pointer-events-none"></div>
 
       <div className="max-w-5xl w-full bg-navy-800 rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[500px] border border-white/5 relative z-10">
         
@@ -28,7 +28,7 @@ export const MembershipLogin: React.FC = () => {
            
            <div className="absolute bottom-12 left-12 right-12">
               <h2 className="font-display font-bold text-4xl text-white uppercase leading-none mb-4">
-                 A tua casa <br/> <span className="text-yellow-400">Digital</span>
+                 A tua casa <br/> <span className="text-gold-400">Digital</span>
               </h2>
               <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
                  Acede ao teu cartão de sócio, quotas e benefícios exclusivos através do nosso portal seguro.
@@ -58,12 +58,12 @@ export const MembershipLogin: React.FC = () => {
             className="group w-full max-w-xs bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 md:py-4 rounded-xl uppercase tracking-wider md:tracking-widest text-xs md:text-sm transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 md:gap-3 transform hover:-translate-y-1 active:scale-95"
           >
              <span>Aceder ao Portal</span>
-             <ExternalLink size={16} className="text-yellow-400 group-hover:translate-x-1 transition-transform" />
+             <ExternalLink size={16} className="text-gold-400 group-hover:translate-x-1 transition-transform" />
           </a>
 
           <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-gray-100 w-full max-w-xs">
              <p className="text-xs text-gray-400 mb-2">Esqueceste-te dos dados?</p>
-             <a href="https://v5.quotagest.pt/portal/db/login" target="_blank" className="text-navy-900 font-bold text-xs hover:text-yellow-600 underline decoration-yellow-400">
+             <a href="https://v5.quotagest.pt/portal/db/login" target="_blank" className="text-navy-900 font-bold text-xs hover:text-gold-600 underline decoration-gold-400">
                 Recuperar Senha
              </a>
           </div>

@@ -90,7 +90,7 @@ export const ContactsContent: React.FC = () => {
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
               {/* Form Header */}
               <div className="bg-navy-900 px-6 sm:px-8 md:px-10 py-6 sm:py-8">
-                <span className="text-yellow-400 font-bold tracking-[0.2em] text-[10px] sm:text-xs uppercase block mb-2">
+                <span className="text-gold-400 font-bold tracking-[0.2em] text-[10px] sm:text-xs uppercase block mb-2">
                   Formulário de Contacto
                 </span>
                 <h3 className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-white uppercase">
@@ -136,7 +136,7 @@ export const ContactsContent: React.FC = () => {
                           onChange={handleChange}
                           placeholder="O teu nome"
                           required
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-yellow-400 focus:bg-white focus:outline-none transition-all"
+                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-gold-400 focus:bg-white focus:outline-none transition-all"
                         />
                       </div>
                       <div>
@@ -150,7 +150,7 @@ export const ContactsContent: React.FC = () => {
                           onChange={handleChange}
                           placeholder="teu.email@exemplo.com"
                           required
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-yellow-400 focus:bg-white focus:outline-none transition-all"
+                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-gold-400 focus:bg-white focus:outline-none transition-all"
                         />
                       </div>
                     </div>
@@ -167,7 +167,7 @@ export const ContactsContent: React.FC = () => {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="+351 912 345 678"
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-yellow-400 focus:bg-white focus:outline-none transition-all"
+                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-gold-400 focus:bg-white focus:outline-none transition-all"
                         />
                       </div>
                       <div>
@@ -178,7 +178,7 @@ export const ContactsContent: React.FC = () => {
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 focus:border-yellow-400 focus:bg-white focus:outline-none transition-all appearance-none"
+                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 focus:border-gold-400 focus:bg-white focus:outline-none transition-all appearance-none"
                         >
                           {SUBJECTS.map(s => (
                             <option key={s.value} value={s.value}>{s.label}</option>
@@ -199,7 +199,7 @@ export const ContactsContent: React.FC = () => {
                         rows={5}
                         required
                         placeholder="Descreve o motivo do teu contacto..."
-                        className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-yellow-400 focus:bg-white focus:outline-none transition-all resize-none"
+                        className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3 sm:py-3.5 text-sm text-gray-800 placeholder-gray-400 focus:border-gold-400 focus:bg-white focus:outline-none transition-all resize-none"
                       />
                     </div>
 
@@ -246,21 +246,21 @@ export const ContactsContent: React.FC = () => {
             {/* Sede Social */}
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8">
               <h3 className="font-display font-bold text-base sm:text-lg text-navy-900 uppercase mb-5 flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gold-400 rounded-lg flex items-center justify-center">
                   <MapPin size={16} className="text-navy-900" />
                 </div>
                 Sede Social
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <MapPin size={16} className="text-yellow-500 mt-0.5 shrink-0" />
+                  <MapPin size={16} className="text-gold-500 mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-gray-800">Praça de São Pedro, N°1</p>
                     <p className="text-xs text-gray-500 mt-0.5">6270-287 São Romão</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Phone size={16} className="text-yellow-500 shrink-0" />
+                  <Phone size={16} className="text-gold-500 shrink-0" />
                   <div>
                     <a href="tel:+351968966375" className="text-sm font-semibold text-gray-800 hover:text-navy-900 transition-colors">
                       +351 968 966 375
@@ -269,13 +269,13 @@ export const ContactsContent: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail size={16} className="text-yellow-500 shrink-0" />
+                  <Mail size={16} className="text-gold-500 shrink-0" />
                   <a href="mailto:geral@adsaoromao.pt" className="text-sm font-semibold text-gray-800 hover:text-navy-900 transition-colors">
                     geral@adsaoromao.pt
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Clock size={16} className="text-yellow-500 mt-0.5 shrink-0" />
+                  <Clock size={16} className="text-gold-500 mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm font-semibold text-gray-800">Horário da Secretaria</p>
                     <p className="text-xs text-gray-500 mt-0.5">Seg – Sex: 18:00 – 20:00</p>
@@ -288,13 +288,13 @@ export const ContactsContent: React.FC = () => {
             {/* Departamentos */}
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8">
               <h3 className="font-display font-bold text-base sm:text-lg text-navy-900 uppercase mb-5 flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gold-400 rounded-lg flex items-center justify-center">
                   <Users size={16} className="text-navy-900" />
                 </div>
                 Departamentos
               </h3>
               <div className="space-y-3">
-                <div className="bg-gray-50 rounded-xl p-4 hover:bg-yellow-50 transition-colors group">
+                <div className="bg-gray-50 rounded-xl p-4 hover:bg-gold-50 transition-colors group">
                   <p className="text-xs font-bold text-navy-900 uppercase tracking-wider mb-1">Direção / Geral</p>
                   <a href="mailto:geral@adsaoromao.pt" className="text-sm text-gray-500 group-hover:text-navy-900 transition-colors break-all">
                     geral@adsaoromao.pt
@@ -305,7 +305,7 @@ export const ContactsContent: React.FC = () => {
 
             {/* Redes Sociais */}
             <div className="bg-navy-900 rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-8 text-white relative overflow-hidden">
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-yellow-400 rounded-full blur-[80px] opacity-15" />
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-gold-400 rounded-full blur-[80px] opacity-15" />
               <h3 className="font-display font-bold text-base sm:text-lg uppercase mb-4 relative z-10">
                 Segue-nos nas Redes
               </h3>
@@ -330,7 +330,7 @@ export const ContactsContent: React.FC = () => {
       <div className="bg-white border-t border-gray-200">
         <div className="container mx-auto px-4 py-10 sm:py-14 max-w-6xl">
           <div className="text-center mb-8">
-            <span className="text-yellow-500 font-bold tracking-[0.2em] text-[10px] sm:text-xs uppercase block mb-2">
+            <span className="text-gold-500 font-bold tracking-[0.2em] text-[10px] sm:text-xs uppercase block mb-2">
               Como chegar
             </span>
             <h3 className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-navy-900 uppercase">

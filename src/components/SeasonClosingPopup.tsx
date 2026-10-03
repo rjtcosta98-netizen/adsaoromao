@@ -86,7 +86,7 @@ export const SeasonClosingPopup: React.FC = () => {
     >
       <div
         ref={dialogRef}
-        className="relative grid w-full max-h-[92svh] overflow-hidden rounded-t-2xl border border-yellow-400/25 bg-[#06112d] shadow-2xl sm:max-w-4xl sm:grid-cols-[minmax(280px,0.95fr)_1fr] sm:rounded-2xl"
+        className="relative grid w-full max-h-[92svh] overflow-hidden rounded-t-2xl border border-gold-400/25 bg-[#021A3C] shadow-2xl sm:max-w-4xl sm:grid-cols-[minmax(280px,0.95fr)_1fr] sm:rounded-2xl"
         role="dialog"
         aria-modal="true"
         aria-labelledby="season-closing-title"
@@ -97,27 +97,27 @@ export const SeasonClosingPopup: React.FC = () => {
           ref={closeButtonRef}
           type="button"
           onClick={close}
-          className="absolute right-3 top-3 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white transition-colors hover:bg-black focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          className="absolute right-3 top-3 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white transition-colors hover:bg-black focus:outline-none focus:ring-2 focus:ring-gold-400"
           aria-label="Fechar popup do encerramento da época"
         >
           <X size={22} />
         </button>
 
-        <div className="flex justify-center bg-[#06112d] pt-3 sm:hidden">
+        <div className="flex justify-center bg-[#021A3C] pt-3 sm:hidden">
           <div className="h-1 w-10 rounded-full bg-white/25" />
         </div>
 
-        <div className="relative min-h-[220px] bg-[#020817] sm:min-h-full">
+        <div className="relative min-h-[220px] bg-[#010B1C] sm:min-h-full">
           <img
             src={POSTER_SRC}
             alt="Cartaz Encerramento da Epoca 25/26 AD Sao Romao"
             className="h-full max-h-[38svh] w-full object-cover object-top sm:max-h-none"
           />
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#06112d] to-transparent sm:hidden" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#021A3C] to-transparent sm:hidden" />
         </div>
 
         <div className="overflow-y-auto px-5 pb-5 pt-4 sm:px-7 sm:py-7">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-yellow-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#06112d]">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-gold-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#021A3C]">
             <Medal size={13} />
             Epoca 25/26
           </div>
@@ -127,7 +127,7 @@ export const SeasonClosingPopup: React.FC = () => {
             className="font-display text-2xl font-black uppercase leading-none text-white sm:text-4xl"
           >
             Encerramento da Epoca
-            <span className="block text-yellow-400">AD Sao Romao</span>
+            <span className="block text-gold-400">AD Sao Romao</span>
           </h2>
 
           <p id="season-closing-description" className="mt-3 text-sm font-semibold leading-relaxed text-white/80 sm:text-base">
@@ -137,14 +137,14 @@ export const SeasonClosingPopup: React.FC = () => {
 
           <div className="mt-5 grid gap-2">
             <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.07] px-3 py-3">
-              <CalendarDays size={18} className="shrink-0 text-yellow-400" />
+              <CalendarDays size={18} className="shrink-0 text-gold-400" />
               <div>
                 <p className="text-xs font-black uppercase tracking-widest text-white/45">Quando</p>
                 <p className="text-sm font-black text-white">Sabado, 23 Maio · 15h00</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.07] px-3 py-3">
-              <MapPin size={18} className="shrink-0 text-yellow-400" />
+              <MapPin size={18} className="shrink-0 text-gold-400" />
               <div>
                 <p className="text-xs font-black uppercase tracking-widest text-white/45">Onde</p>
                 <p className="text-sm font-black text-white">Estadio N.S. Conceicao · Sao Romao</p>
@@ -152,8 +152,8 @@ export const SeasonClosingPopup: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-5 rounded-lg border border-yellow-400/30 bg-yellow-400/10 p-4">
-            <p className="text-xs font-black uppercase tracking-widest text-yellow-300">Mensagem principal</p>
+          <div className="mt-5 rounded-lg border border-gold-400/30 bg-gold-400/10 p-4">
+            <p className="text-xs font-black uppercase tracking-widest text-gold-300">Mensagem principal</p>
             <p className="mt-1 text-sm font-bold text-white">
               Vem celebrar a epoca, agradecer a todos e fechar 25/26 juntos e fortes.
             </p>
@@ -164,7 +164,7 @@ export const SeasonClosingPopup: React.FC = () => {
               href={calendarUrl.toString()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-yellow-400 px-4 py-3 text-center text-xs font-black uppercase tracking-widest text-[#06112d] transition-colors hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-[#06112d]"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-gold-400 px-4 py-3 text-center text-xs font-black uppercase tracking-widest text-[#021A3C] transition-colors hover:bg-gold-500 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2 focus:ring-offset-[#021A3C]"
             >
               Guardar data
             </a>
@@ -172,7 +172,7 @@ export const SeasonClosingPopup: React.FC = () => {
               href={`https://wa.me/?text=${whatsappText}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/[0.18] bg-white/8 px-4 py-3 text-center text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-white/[0.14] focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-[#06112d]"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/[0.18] bg-white/8 px-4 py-3 text-center text-xs font-black uppercase tracking-widest text-white transition-colors hover:bg-white/[0.14] focus:outline-none focus:ring-2 focus:ring-gold-400 focus:ring-offset-2 focus:ring-offset-[#021A3C]"
             >
               <Share2 size={15} />
               Partilhar

@@ -14,13 +14,13 @@ export const GalleryAlbums: React.FC<GalleryAlbumsProps> = ({ onNavigate }) => {
       <div className="container mx-auto px-3 sm:px-4">
         
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 sm:mb-3">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-2 sm:mb-3">
             Explorar Memórias
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white uppercase">
-            Álbuns <span className="text-yellow-400">Recentes</span>
+            Álbuns <span className="text-gold-400">Recentes</span>
           </h2>
-          <div className="w-12 sm:w-16 h-1 bg-yellow-400 mx-auto mt-3 sm:mt-4 rounded-full"></div>
+          <div className="w-12 sm:w-16 h-1 bg-gold-400 mx-auto mt-3 sm:mt-4 rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 md:mb-16">
@@ -46,19 +46,19 @@ export const GalleryAlbums: React.FC<GalleryAlbumsProps> = ({ onNavigate }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/50 to-transparent opacity-90 group-hover:opacity-80 transition-opacity"></div>
 
               {/* Badge */}
-              <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 bg-yellow-400 text-navy-900 text-[11px] sm:text-[12px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-lg">
+              <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 bg-gold-400 text-navy-900 text-[11px] sm:text-[12px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-lg">
                 {album.photos.length} Fotos
               </div>
 
               {/* Content */}
               <div className="absolute bottom-0 left-0 w-full p-4 sm:p-6 md:p-8">
-                 <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-white uppercase mb-1 sm:mb-2 leading-tight group-hover:text-yellow-400 transition-colors">
+                 <h3 className="font-display font-bold text-lg sm:text-xl md:text-2xl text-white uppercase mb-1 sm:mb-2 leading-tight group-hover:text-gold-400 transition-colors">
                    {album.title}
                  </h3>
                  <p className="text-gray-300 text-xs sm:text-sm">
                    {album.subtitle}
                  </p>
-                 <div className="mt-2 sm:mt-3 md:mt-4 w-8 sm:w-10 md:w-12 h-1 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                 <div className="mt-2 sm:mt-3 md:mt-4 w-8 sm:w-10 md:w-12 h-1 bg-gold-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
               </div>
             </div>
           ))}

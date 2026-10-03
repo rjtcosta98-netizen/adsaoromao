@@ -11,9 +11,9 @@ const SUPPORT_MESSAGES = [
 
 export const CupSupportBanner: React.FC = () => {
   return (
-    <div className="sticky top-16 z-[50] border-b border-yellow-400/40 bg-gradient-to-r from-navy-900/95 via-blue-900/95 to-navy-900/95 backdrop-blur-sm">
+    <div className="sticky top-16 z-[50] border-b border-gold-400/40 bg-gradient-to-r from-navy-900/95 via-blue-900/95 to-navy-900/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex items-center gap-3 overflow-hidden">
-        <div className="hidden sm:flex items-center gap-1.5 text-yellow-300 flex-shrink-0">
+        <div className="hidden sm:flex items-center gap-1.5 text-gold-300 flex-shrink-0">
           <Trophy size={14} />
           <Megaphone size={13} />
         </div>
@@ -23,7 +23,7 @@ export const CupSupportBanner: React.FC = () => {
             <span
               key={`${message}-${idx}`}
               className={`text-[10px] sm:text-xs font-black uppercase tracking-[0.14em] whitespace-nowrap ${
-                idx % 2 === 0 ? 'text-yellow-300' : 'text-blue-200'
+                idx % 2 === 0 ? 'text-gold-300' : 'text-blue-200'
               }`}
             >
               {message}

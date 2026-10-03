@@ -5,8 +5,8 @@ import { Shield } from 'lucide-react';
 
 export const MemberArea: React.FC = () => {
   return (
-    <div className="bg-gray-100 py-12 md:py-20 flex items-center justify-center px-4">
-      <div className="max-w-4xl w-full bg-white rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[500px]">
+    <div className="section-y bg-paper seam-light flex items-center justify-center px-4">
+      <div className="max-w-4xl w-full bg-bone rounded-2xl md:rounded-[2rem] shadow-card-hover border border-bone-200 overflow-hidden flex flex-col md:flex-row min-h-[500px]">
         
         {/* Left Side: Dark Blue Info */}
         <div className="md:w-1/2 bg-navy-900 relative p-8 md:p-12 flex flex-col justify-center overflow-hidden group">
@@ -27,11 +27,11 @@ export const MemberArea: React.FC = () => {
           {/* --- FIM: Imagem de Fundo --- */}
 
           {/* Background Elements (Movi para z-0 para ficarem atrás do texto mas sobre a img) */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20 translate-x-1/2 -translate-y-1/2 z-0"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400 rounded-full blur-[100px] opacity-10 -translate-x-1/2 translate-y-1/2 z-0"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400 rounded-full blur-[100px] opacity-[0.12] translate-x-1/2 -translate-y-1/2 z-0"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold-400 rounded-full blur-[100px] opacity-10 -translate-x-1/2 translate-y-1/2 z-0"></div>
           
           <div className="relative z-10">
-            <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-4 md:mb-6">
+            <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-4 md:mb-6">
               Comunidade ADSR
             </span>
             
@@ -43,7 +43,7 @@ export const MemberArea: React.FC = () => {
               469
             </div>
             
-            <span className="text-yellow-400 font-bold text-lg md:text-xl uppercase tracking-widest block mb-8 md:mb-12">
+            <span className="text-gold-400 font-bold text-lg md:text-xl uppercase tracking-widest block mb-8 md:mb-12">
               Sócios Ativos
             </span>
             
@@ -58,7 +58,7 @@ export const MemberArea: React.FC = () => {
           
           <div className="mb-6 md:mb-8">
             <div className="w-14 h-14 md:w-16 md:h-16 bg-navy-900 rounded-full flex items-center justify-center mb-4 md:mb-6">
-               <Shield className="text-yellow-400 w-7 h-7 md:w-8 md:h-8" strokeWidth={2} />
+               <Shield className="text-gold-400 w-7 h-7 md:w-8 md:h-8" strokeWidth={2} />
             </div>
             
             <h2 className="font-display font-bold text-navy-900 text-2xl md:text-3xl uppercase tracking-wide mb-4 md:mb-6">
@@ -80,7 +80,7 @@ export const MemberArea: React.FC = () => {
 
           <div className="border-t border-gray-100 pt-6 md:pt-8 text-center md:text-left">
             <span className="text-navy-900 text-sm">
-              Ainda não é? <a href="#socios" className="font-bold underline decoration-yellow-400 decoration-2 hover:text-blue-600 transition-colors">Quero ser sócio</a>
+              Ainda não é? <a href="#socios" className="font-bold underline decoration-gold-400 decoration-2 hover:text-blue-600 transition-colors">Quero ser sócio</a>
             </span>
           </div>
           </div>

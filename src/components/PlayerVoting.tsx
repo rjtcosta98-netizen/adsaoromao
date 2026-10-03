@@ -76,7 +76,7 @@ async function checkVoteInSupabase(fp: string): Promise<number | null> {
 // Countdown unit box
 const Unit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
   <div className="flex flex-col items-center gap-1">
-    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-navy-900 rounded-xl flex items-center justify-center font-display font-black text-2xl sm:text-3xl text-yellow-400 shadow-sm">
+    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-navy-900 rounded-xl flex items-center justify-center font-display font-black text-2xl sm:text-3xl text-gold-400 shadow-sm">
       {String(value).padStart(2, '0')}
     </div>
     <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">{label}</span>
@@ -93,9 +93,9 @@ const SoccerBall: React.FC<{ size?: number; className?: string; style?: React.CS
   <svg width={size} height={size} viewBox="0 0 100 100" className={className} style={style} aria-hidden>
     <defs>
       <radialGradient id="vbBody" cx="38%" cy="32%" r="75%">
-        <stop offset="0%" stopColor="#1b3a73" />
-        <stop offset="55%" stopColor="#0c2150" />
-        <stop offset="100%" stopColor="#05122f" />
+        <stop offset="0%" stopColor="#053975" />
+        <stop offset="55%" stopColor="#021A3C" />
+        <stop offset="100%" stopColor="#021A3C" />
       </radialGradient>
       <radialGradient id="vbSheen" cx="34%" cy="28%" r="40%">
         <stop offset="0%" stopColor="rgba(255,255,255,0.5)" />
@@ -152,7 +152,7 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         dur: 4.4 + (i % 6) * 0.8,
         size: 5 + (i % 4) * 2,
         rot: (i * 47) % 360,
-        color: ['#FFD700', '#caa53d', '#021d40', '#0a2a55'][i % 4],
+        color: ['#FFD700', '#B8890B', '#021A3C', '#032D61'][i % 4],
       })),
     [],
   );
@@ -206,7 +206,7 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         @keyframes sv-aura { to { transform: rotate(360deg); } }
         @keyframes sv-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
         .sv-shimmer {
-          background: linear-gradient(100deg,#caa53d 0%,#FFD700 18%,#fff7d6 32%,#FFD700 46%,#caa53d 64%,#FFD700 100%);
+          background: linear-gradient(100deg,#B8890B 0%,#FFD700 18%,#FFF4C2 32%,#FFD700 46%,#B8890B 64%,#FFD700 100%);
           background-size: 220% auto;
           -webkit-background-clip: text; background-clip: text;
           -webkit-text-fill-color: transparent; color: transparent;
@@ -215,7 +215,7 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         .sv-pitch { transform: perspective(620px) rotateX(60deg); transform-origin: 50% 100%; }
         .sv-beam {
           position: absolute; top: -34%; width: 56%; height: 130%; filter: blur(34px);
-          background: linear-gradient(180deg, rgba(255,200,0,0.22), rgba(255,215,0,0.05) 55%, transparent 80%);
+          background: linear-gradient(180deg, rgba(255,215,0,0.22), rgba(255,215,0,0.05) 55%, transparent 80%);
         }
         @media (prefers-reduced-motion: reduce) {
           .sv-anim { animation: none !important; }
@@ -227,7 +227,7 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(120% 80% at 50% -8%, rgba(255,200,0,0.14), rgba(255,215,0,0) 50%), radial-gradient(80% 60% at 50% 100%, rgba(2,29,64,0.05), rgba(2,29,64,0) 60%)',
+            'radial-gradient(120% 80% at 50% -8%, rgba(255,215,0,0.14), rgba(255,215,0,0) 50%), radial-gradient(80% 60% at 50% 100%, rgba(2,26,60,0.05), rgba(2,26,60,0) 60%)',
         }}
       />
       {/* Floodlights */}
@@ -239,7 +239,7 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
       <div className="pointer-events-none absolute inset-x-0 bottom-[-14%] mx-auto h-[78%] w-[160%] opacity-70">
         <div className="sv-pitch relative h-full w-full">
           {/* halfway line */}
-          <div className="absolute left-0 right-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(2,29,64,.12),transparent)' }} />
+          <div className="absolute left-0 right-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg,transparent,rgba(2,26,60,.12),transparent)' }} />
           {/* centre circle */}
           <div className="absolute left-1/2 top-1/2 h-[40%] w-[30%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-navy-900/10" />
           {/* centre spot */}
@@ -258,8 +258,8 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
               left: `${s.left}%`,
               width: s.size,
               height: s.size,
-              background: s.bright ? '#e0b520' : '#FFD700',
-              boxShadow: `0 0 ${s.bright ? 8 : 5}px rgba(224,170,20,${s.bright ? .5 : .35})`,
+              background: s.bright ? '#FFD700' : '#FFD700',
+              boxShadow: `0 0 ${s.bright ? 8 : 5}px rgba(255,215,0,${s.bright ? .5 : .35})`,
               animation: `sv-rise ${s.dur}s ${s.delay}s ease-in infinite`,
             }}
           />
@@ -287,11 +287,11 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
         {/* Result kicker */}
         <div
-          className="sv-anim inline-flex items-center gap-2.5 rounded-md border border-yellow-400/50 bg-navy-900/[0.03] px-4 py-1.5 shadow-[inset_0_0_18px_rgba(255,215,0,0.06)]"
+          className="sv-anim inline-flex items-center gap-2.5 rounded-md border border-gold-400/50 bg-navy-900/[0.03] px-4 py-1.5 shadow-[inset_0_0_18px_rgba(255,215,0,0.06)]"
           style={{ animation: 'sv-reveal .7s .05s both' }}
         >
-          <Crown size={13} className="text-[#b8860b]" strokeWidth={2.2} />
-          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9a7209]">
+          <Crown size={13} className="text-[#B8890B]" strokeWidth={2.2} />
+          <span className="font-display text-[11px] font-semibold uppercase tracking-[0.28em] text-[#B8890B]">
             Resultado oficial · Época {season}
           </span>
         </div>
@@ -306,14 +306,14 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
             className="sv-anim absolute -top-6 left-1/2 z-20 -translate-x-1/2 sm:-top-7"
             style={{ animation: 'sv-float 3.6s ease-in-out infinite' }}
           >
-            <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-yellow-400/50 bg-[#04132c] shadow-[0_10px_28px_-8px_rgba(0,0,0,.8)] sm:h-14 sm:w-14">
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-gold-400/50 bg-[#021A3C] shadow-[0_10px_28px_-8px_rgba(0,0,0,.8)] sm:h-14 sm:w-14">
               <div className="absolute inset-0 rounded-full blur-lg" style={{ background: 'radial-gradient(circle,rgba(255,215,0,.5),transparent 65%)' }} />
-              <Crown size={24} className="relative text-yellow-400 drop-shadow-[0_0_10px_rgba(255,215,0,.6)] sm:w-[26px]" strokeWidth={1.8} fill="rgba(255,215,0,0.18)" />
+              <Crown size={24} className="relative text-gold-400 drop-shadow-[0_0_10px_rgba(255,215,0,.6)] sm:w-[26px]" strokeWidth={1.8} fill="rgba(255,215,0,0.18)" />
             </div>
           </div>
 
           {/* the framed banner */}
-          <div className="sv-anim relative overflow-hidden rounded-xl border-2 border-yellow-400/70 shadow-[0_34px_90px_-24px_rgba(0,0,0,.85),0_0_60px_rgba(255,215,0,.22)] sm:rounded-2xl" style={{ animation: 'sv-float 5s ease-in-out infinite' }}>
+          <div className="sv-anim relative overflow-hidden rounded-xl border-2 border-gold-400/70 shadow-[0_34px_90px_-24px_rgba(0,0,0,.85),0_0_60px_rgba(255,215,0,.22)] sm:rounded-2xl" style={{ animation: 'sv-float 5s ease-in-out infinite' }}>
             <img
               src={WINNER.poster}
               alt={`${WINNER.name} — Jogador do Ano da época ${season}, eleito pelos adeptos da AD São Romão`}
@@ -345,7 +345,7 @@ const ClosedVerdict: React.FC<{ season: string }> = ({ season }) => {
           className="sv-anim mt-8 font-display text-xl font-bold uppercase tracking-tight text-navy-900 sm:mt-9 sm:text-2xl"
           style={{ animation: 'sv-reveal .7s .5s both' }}
         >
-          Parabéns, <span className="text-[#b8860b]">{WINNER.name}</span>!
+          Parabéns, <span className="text-[#B8890B]">{WINNER.name}</span>!
         </p>
         <p
           className="sv-anim mx-auto mt-3 max-w-md text-[13px] leading-relaxed text-navy-900/55"
@@ -487,7 +487,7 @@ export const PlayerVoting: React.FC = () => {
   // ── Shared header ────────────────────────────────────────────────────────────
   const header = (
     <div className="text-center mb-8">
-      <div className="inline-flex items-center gap-2 bg-yellow-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+      <div className="inline-flex items-center gap-2 bg-gold-400 text-navy-900 font-display font-bold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
         <Trophy size={14} />
         Época {SEASON}
       </div>
@@ -607,7 +607,7 @@ export const PlayerVoting: React.FC = () => {
                       key={player.id}
                       className={`flex-1 min-w-0 bg-white rounded-2xl shadow-sm border-2 transition-all duration-300 overflow-hidden flex flex-col
                         ${isVoted
-                          ? 'border-yellow-400 shadow-lg shadow-yellow-100'
+                          ? 'border-gold-400 shadow-lg shadow-gold-100'
                           : 'border-gray-100 hover:border-navy-800/20 hover:shadow-md'}`}
                     >
                       <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
@@ -618,8 +618,8 @@ export const PlayerVoting: React.FC = () => {
                           className="w-full h-full object-cover object-top"
                         />
                         {isVoted && (
-                          <div className="absolute inset-0 bg-yellow-400/10 flex items-end justify-center pb-3">
-                            <span className="bg-yellow-400 text-navy-900 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                          <div className="absolute inset-0 bg-gold-400/10 flex items-end justify-center pb-3">
+                            <span className="bg-gold-400 text-navy-900 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                               <CheckCircle size={12} /> O teu voto
                             </span>
                           </div>
@@ -637,7 +637,7 @@ export const PlayerVoting: React.FC = () => {
                           disabled={!canVote || voting}
                           className={`mt-4 w-full py-2 rounded-xl text-xs font-bold font-display uppercase tracking-wider transition-all duration-200
                             ${isVoted
-                              ? 'bg-yellow-400 text-navy-900 cursor-default'
+                              ? 'bg-gold-400 text-navy-900 cursor-default'
                               : !canVote
                                 ? 'bg-gray-100 text-gray-300 cursor-not-allowed'
                                 : 'bg-navy-900 hover:bg-navy-800 text-white active:scale-95'}`}
@@ -710,7 +710,7 @@ export const PlayerVoting: React.FC = () => {
         return (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
             <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 flex flex-col items-center gap-5 animate-fade-in-down">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-yellow-400 shadow-md">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-gold-400 shadow-md">
                 <img
                   src={pendingPlayer.image_url}
                   alt={pendingPlayer.name}
@@ -743,7 +743,7 @@ export const PlayerVoting: React.FC = () => {
                     setPendingVoteId(null);
                   }}
                   disabled={voting}
-                  className="flex-1 py-2.5 rounded-xl bg-yellow-400 hover:bg-yellow-300 text-navy-900 text-sm font-bold font-display uppercase tracking-wider transition-all duration-200 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="flex-1 py-2.5 rounded-xl bg-gold-400 hover:bg-gold-300 text-navy-900 text-sm font-bold font-display uppercase tracking-wider transition-all duration-200 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   {voting ? <Loader2 size={16} className="animate-spin" /> : <Trophy size={16} />}
                   {voting ? 'A votar...' : 'Confirmar'}

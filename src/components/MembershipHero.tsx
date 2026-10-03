@@ -18,12 +18,12 @@ export const MembershipHero: React.FC = () => {
         
         {/* Left Content */}
         <div className="lg:w-1/2 pt-6 md:pt-10 lg:pt-0">
-          <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3 md:mb-4">
+          <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-3 md:mb-4">
             Faz parte da nossa família desde 1962
           </span>
           <h1 className="font-display font-bold text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-white uppercase leading-[0.9] mb-6 md:mb-8">
             Orgulho em ser <br/>
-            <span className="text-yellow-400">Sócio ADSR</span>
+            <span className="text-gold-400">Sócio ADSR</span>
           </h1>
           <p className="text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed max-w-xl mb-8 md:mb-10">
             Mais do que um apoio, a tua quota é a força que mantém viva a nossa história. Apoia o desporto local e desfruta de benefícios exclusivos.
@@ -36,7 +36,7 @@ export const MembershipHero: React.FC = () => {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 px-6 md:py-4 md:px-8 rounded shadow-[0_0_20px_rgba(255,215,0,0.3)] uppercase text-xs md:text-sm tracking-wider md:tracking-widest transition-transform hover:scale-105 active:scale-95"
+              className="bg-gold-400 hover:bg-gold-500 text-navy-900 font-bold py-3 px-6 md:py-4 md:px-8 rounded shadow-[0_0_20px_rgba(255,215,0,0.3)] uppercase text-xs md:text-sm tracking-wider md:tracking-widest transition-transform hover:scale-105 active:scale-95"
             >
               Quero ser Sócio
             </button>

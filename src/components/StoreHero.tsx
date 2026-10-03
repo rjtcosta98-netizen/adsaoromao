@@ -16,11 +16,11 @@ export const StoreHero: React.FC = () => {
       
       <div className="container mx-auto px-4 relative z-20 flex justify-between items-end">
          <div>
-            <span className="text-yellow-400 font-bold tracking-[0.2em] text-xs uppercase block mb-1 md:mb-2">
+            <span className="text-gold-400 font-bold tracking-[0.2em] text-xs uppercase block mb-1 md:mb-2">
                Coleção Oficial 2025/2026
             </span>
             <h1 className="font-display font-bold text-3xl md:text-5xl lg:text-7xl text-white uppercase leading-tight md:leading-none">
-               ADSR <span className="text-yellow-400">Store</span>
+               ADSR <span className="text-gold-400">Store</span>
             </h1>
          </div>
       </div>
