@@ -764,3 +764,98 @@ body {
 img {
   content-visibility: auto;
 }
+
+/* ═══════════════════════════════════════════════
+   ÉPOCA A COMEÇAR — espera pelo arranque da época
+   ═══════════════════════════════════════════════ */
+
+@keyframes epoca-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.epoca-sweep::before {
+  content: '';
+  position: absolute;
+  inset: -40% -10%;
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(255, 215, 0, 0.14) 50%,
+    transparent 65%
+  );
+  animation: epoca-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes epoca-ponto {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.epoca-ponto {
+  animation: epoca-ponto 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .epoca-sweep::before,
+  .epoca-ponto {
+    animation: none;
+  }
+
+  .epoca-sweep::before {
+    opacity: 0.5;
+  }
+}
+
+@keyframes epoca-anel {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+.epoca-anel {
+  animation: epoca-anel 1.7s ease-in-out infinite;
+  box-shadow: 0 0 34px rgba(255, 215, 0, 0.18);
+}
+
+@keyframes epoca-flutua {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.epoca-crest {
+  animation: epoca-flutua 3.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .epoca-anel,
+  .epoca-crest {
+    animation: none;
+  }
+}

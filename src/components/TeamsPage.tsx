@@ -1,9 +1,11 @@
 
 
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ArrowDown, Trophy } from 'lucide-react';
 import { SQUAD_DATA, LOGO_URL } from '../constants';
 import { SquadSection } from '../types';
+import { slugEscalao } from '../lib/escaloes';
 
 const SQUAD = SQUAD_DATA as Record<string, SquadSection[]>;
 
@@ -55,9 +57,15 @@ const TROPHIES_BY_CATEGORY: Record<string, Array<{ title: string; year: string; 
 };
 
 export const TeamsPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<keyof typeof SQUAD_DATA>('SENIORES');
-
+  const { hash } = useLocation();
   const categories = Object.keys(SQUAD_DATA) as Array<keyof typeof SQUAD_DATA>;
+
+  // A homepage liga directamente a um escalão (/equipas#juvenis-u16); sem
+  // âncora, ou com uma âncora desconhecida, abre nos seniores.
+  const [activeCategory, setActiveCategory] = useState<keyof typeof SQUAD_DATA>(() => {
+    const alvo = decodeURIComponent(hash.replace('#', ''));
+    return categories.find((c) => slugEscalao(String(c)) === alvo) ?? 'SENIORES';
+  });
 
   return (
     <div id="equipas" className="min-h-screen bg-navy-900">
@@ -197,11 +205,27 @@ export const TeamsPage: React.FC = () => {
                   </div>
                 ) : (
                   /* Players Grid - Responsive */
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+                  <div className={`grid gap-2 sm:gap-3 md:gap-4 lg:gap-6 ${
+                    section.members.some((m) => m.isPromoCard)
+                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+                      : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+                  }`}>
                     {section.members.map((member) => (
                       <div key={member.id} className="group relative overflow-hidden rounded-lg bg-navy-800 border border-white/5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 sm:hover:-translate-y-1">
                         
-                        {member.role === 'Treinador' || member.role === 'Treinador Adjunto' || member.role === 'Analista & Tr. GR' || section.title === 'Equipa Técnica' ? (
+                        {member.isPromoCard ? (
+                          /* Promo Card - artwork completo, sem sobreposições */
+                          <div className="aspect-[4/5] overflow-hidden relative bg-navy-800">
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              loading="lazy"
+                              width={600}
+                              height={750}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          </div>
+                        ) : member.role === 'Treinador' || member.role === 'Treinador Adjunto' || member.role === 'Analista & Tr. GR' || section.title === 'Equipa Técnica' ? (
                           /* Technical Staff Card */
                           <>
                             <div className="aspect-[3/4] overflow-hidden relative bg-gradient-to-b from-gray-700 to-navy-900">

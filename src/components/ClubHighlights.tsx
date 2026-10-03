@@ -16,19 +16,17 @@ export const ClubHighlights: React.FC<ClubHighlightsProps> = ({ onNavigate }) =>
   if (highlightedNews.length === 0) return null;
 
   return (
-    <section className="bg-white py-16 border-t border-gray-100">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-navy-900 py-16">
 
-        {/* Header — centrado em desktop */}
-        <div className="flex flex-col items-center text-center mb-10 gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-0.5 bg-yellow-400" />
-            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-              Novidades
-            </p>
-            <div className="w-6 h-0.5 bg-yellow-400" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-900 uppercase leading-none">
+      {/* Halo dourado único da secção (spec de superfície) */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(255,215,0,0.10),transparent_38%)]"></div>
+
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Header — padrão do site: barra amarela + título, sem kicker por cima */}
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-10">
+          <div className="h-5 w-1 bg-yellow-400 sm:h-6 md:h-8"></div>
+          <h2 className="font-display text-lg font-bold uppercase text-white sm:text-xl md:text-3xl">
             Informações do Clube
           </h2>
         </div>
@@ -39,17 +37,17 @@ export const ClubHighlights: React.FC<ClubHighlightsProps> = ({ onNavigate }) =>
             <article
               key={item.id}
               onClick={() => onNavigate('noticia-detalhe', item.id)}
-              className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+              className="group cursor-pointer rounded-lg border border-white/12 bg-[#03153a]/58 backdrop-blur-md shadow-[0_22px_70px_rgba(0,0,0,0.35)] hover:border-yellow-400/40 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col"
             >
               {/* Image */}
-              <div className="relative h-56 md:h-64 overflow-hidden bg-gray-100">
+              <div className="relative h-56 md:h-64 overflow-hidden bg-white/[0.07]">
                 <img
                   src={item.imageUrl}
                   alt={item.title}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-navy-900 text-white text-[10px] font-black px-2.5 py-1 uppercase tracking-wider rounded-sm shadow">
+                <span className="absolute top-3 left-3 bg-yellow-400 text-navy-900 text-[10px] font-black px-2.5 py-1 uppercase tracking-wider rounded-sm">
                   {item.category}
                 </span>
                 {/* Bottom gradient overlay */}
@@ -59,16 +57,16 @@ export const ClubHighlights: React.FC<ClubHighlightsProps> = ({ onNavigate }) =>
               {/* Body */}
               <div className="p-6 md:p-7 flex flex-col flex-grow">
                 <div className="flex items-center gap-1.5 text-gray-400 text-xs mb-3">
-                  <Calendar size={11} />
+                  <Calendar size={11} className="text-yellow-400" />
                   <span>{item.date}</span>
                 </div>
-                <h3 className="font-display font-bold text-xl md:text-2xl text-navy-900 leading-snug mb-3 group-hover:text-blue-700 transition-colors line-clamp-2">
+                <h3 className="font-display font-bold text-xl md:text-2xl text-white leading-snug mb-3 group-hover:text-yellow-400 transition-colors line-clamp-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 flex-grow">
+                <p className="text-gray-300 text-sm leading-relaxed line-clamp-3 flex-grow">
                   {item.excerpt}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-navy-900 font-bold text-xs uppercase tracking-widest border-b-2 border-transparent group-hover:border-yellow-400 transition-all self-start">
+                <span className="mt-5 inline-flex items-center gap-1.5 text-white font-bold text-xs uppercase tracking-widest border-b-2 border-transparent group-hover:border-yellow-400 transition-all self-start">
                   Ler notícia <ArrowRight size={12} />
                 </span>
               </div>

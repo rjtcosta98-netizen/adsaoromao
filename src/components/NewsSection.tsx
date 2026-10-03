@@ -1,6 +1,5 @@
 
 
-
 import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -28,14 +27,17 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
   const next = () => setStartIndex(i => Math.min(maxIndex, i + 1));
 
   return (
-    <div className="bg-white py-20 border-t border-gray-100">
-      <div className="container mx-auto px-4">
+    <div className="relative overflow-hidden bg-white py-12 sm:py-16 md:py-24">
+      {/* Halo navy único e subtil da secção, conforme a spec da superfície clara */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(3,45,97,0.05),transparent_45%)]" />
+
+      <div className="container relative z-10 mx-auto px-4">
 
         {/* Header */}
-        <div className="flex justify-between items-end mb-12">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-10 bg-yellow-400" />
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-navy-900 uppercase">
+        <div className="mb-8 flex items-end justify-between gap-4 sm:mb-12">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <div className="h-5 w-1 bg-yellow-400 sm:h-6 md:h-8"></div>
+            <h2 className="font-display text-lg font-bold uppercase text-navy-900 sm:text-xl md:text-3xl">
               Destaques do Clube
             </h2>
           </div>
@@ -44,23 +46,23 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
               <button
                 onClick={prev}
                 disabled={startIndex === 0}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:border-yellow-400 hover:shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-900/15 bg-white text-navy-900 transition-all hover:border-yellow-400 hover:bg-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Anterior"
               >
-                <ChevronLeft size={16} className="text-navy-900" />
+                <ChevronLeft size={16} />
               </button>
               <button
                 onClick={next}
                 disabled={startIndex >= maxIndex}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm transition-all hover:border-yellow-400 hover:shadow-md disabled:opacity-30 disabled:cursor-not-allowed"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-900/15 bg-white text-navy-900 transition-all hover:border-yellow-400 hover:bg-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
                 aria-label="Seguinte"
               >
-                <ChevronRight size={16} className="text-navy-900" />
+                <ChevronRight size={16} />
               </button>
             </div>
             <button
               onClick={() => onNavigate('noticias')}
-              className="hidden md:flex items-center text-navy-900 font-bold text-sm hover:text-blue-600 transition-colors"
+              className="hidden md:flex items-center text-navy-900 font-bold text-sm hover:text-navy-800 transition-colors"
             >
               VER TODAS <ArrowRight size={16} className="ml-2" />
             </button>
@@ -68,37 +70,41 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
         </div>
 
         {/* Carousel row — always 3 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {visibleItems.map((item) => (
             <div
               key={item.id}
-              className="group bg-white rounded-lg overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+              className="group flex h-full flex-col overflow-hidden rounded-lg border border-navy-900/10 bg-white shadow-[0_18px_50px_rgba(3,21,58,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/60 hover:shadow-[0_24px_60px_rgba(3,21,58,0.12)]"
             >
-              <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+              {/* Imagem: conteúdo principal do cartão, proporção fixa 16:10 */}
+              <div className="relative aspect-[16/10] overflow-hidden">
                 <img
                   src={item.imageUrl}
                   alt={item.title}
                   loading="lazy"
                   width={400}
-                  height={256}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  height={250}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 bg-navy-900 text-white text-[11px] font-bold px-3 py-1 uppercase tracking-wider rounded-sm">
-                  {item.category}
-                </span>
+                {/* Gradiente de baixo para cima para o texto assentar sobre a foto */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#03153a] via-[#03153a]/45 to-transparent" />
+                <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5">
+                  <span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-yellow-400">
+                    {item.category} · {item.date}
+                  </span>
+                  <h3 className="font-display text-base font-bold uppercase leading-tight text-white sm:text-lg">
+                    {item.title}
+                  </h3>
+                </div>
               </div>
 
-              <div className="p-5 sm:p-6 md:p-8 flex flex-col flex-grow">
-                <span className="text-gray-400 text-xs font-medium mb-3 block">{item.date}</span>
-                <h3 className="font-display font-bold text-xl text-navy-900 mb-4 leading-tight group-hover:text-blue-700 transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+              <div className="flex flex-grow flex-col p-5 sm:p-6">
+                <p className="mb-5 flex-grow text-sm leading-relaxed text-gray-600">
                   {item.excerpt}
                 </p>
                 <button
                   onClick={() => onNavigate('noticia-detalhe', item.id)}
-                  className="inline-block text-navy-900 font-bold text-xs uppercase tracking-widest border-b-2 border-transparent hover:border-yellow-400 transition-all self-start cursor-pointer"
+                  className="inline-block self-start border-b-2 border-transparent text-xs font-bold uppercase tracking-widest text-navy-900 transition-all hover:border-yellow-400 cursor-pointer"
                 >
                   Ler Notícia
                 </button>
@@ -113,18 +119,18 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
             <button
               onClick={prev}
               disabled={startIndex === 0}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-900/15 bg-white text-navy-900 transition-all hover:border-yellow-400 hover:bg-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Anterior"
             >
-              <ChevronLeft size={16} className="text-navy-900" />
+              <ChevronLeft size={16} />
             </button>
             <button
               onClick={next}
               disabled={startIndex >= maxIndex}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm disabled:opacity-30 disabled:cursor-not-allowed"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-navy-900/15 bg-white text-navy-900 transition-all hover:border-yellow-400 hover:bg-yellow-400 disabled:opacity-30 disabled:cursor-not-allowed"
               aria-label="Seguinte"
             >
-              <ChevronRight size={16} className="text-navy-900" />
+              <ChevronRight size={16} />
             </button>
           </div>
           <button
@@ -143,7 +149,7 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
                 key={i}
                 onClick={() => setStartIndex(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === startIndex ? 'w-6 bg-yellow-400' : 'w-1.5 bg-gray-200 hover:bg-gray-300'
+                  i === startIndex ? 'w-6 bg-yellow-400' : 'w-1.5 bg-navy-900/20 hover:bg-navy-900/30'
                 }`}
                 aria-label={`Ir para posição ${i + 1}`}
               />
@@ -155,4 +161,3 @@ export const NewsSection: React.FC<NewsSectionProps> = ({ onNavigate }) => {
     </div>
   );
 };
-

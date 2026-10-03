@@ -43,3 +43,6 @@ tsconfig.tsbuildinfo
 *.mp4
 *.avi
 *.mkv
+
+# Logs do agendamento launchd
+logs/

@@ -24,10 +24,16 @@ export default defineConfig({
         // Chunks estáveis por domínio — maximize cache hit rate
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react-dom')) return 'vendor-react-dom';
-            if (id.includes('react-router') || id.includes('react')) return 'vendor-react';
-            if (id.includes('@supabase')) return 'vendor-supabase';
+            // lucide-react e react-router-dom contêm "react" no caminho: têm de
+            // ser testados ANTES do runtime do React.
             if (id.includes('lucide-react')) return 'vendor-ui';
+            if (id.includes('@supabase')) return 'vendor-supabase';
+            // React, ReactDOM, o router e o scheduler ficam num único chunk.
+            // Separá-los parte a inicialização CJS do React em produção
+            // ("Cannot set properties of undefined (setting 'Children')").
+            if (/[\\/]node_modules[\\/](react|react-dom|react-is|react-router|react-router-dom|scheduler|use-sync-external-store|object-assign|@remix-run)[\\/]/.test(id)) {
+              return 'vendor-react';
+            }
           }
           // Chunk separado para páginas pesadas
           if (id.includes('src/components/GalleryPage') || id.includes('src/components/GalleryAlbums') || id.includes('src/components/GalleryVideos')) return 'page-gallery';

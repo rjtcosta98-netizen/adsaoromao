@@ -3,19 +3,19 @@
 import React, { lazy, Suspense } from 'react';
 import { Hero } from './Hero';
 import { LatestMedia } from './LatestMedia';
-import { EventsSection } from './EventsSection';
 import { ClubHighlights } from './ClubHighlights';
-// import { LatestResults } from './LatestResults';
 // import { Calendar } from './Calendar';
 import { LivestreamSection } from './LivestreamSection';
 import { LIVESTREAM_CONFIG } from '../constants';
 
 // Lazy load below-fold components for faster initial paint
+const LatestResults = lazy(() => import('./LatestResults').then(m => ({ default: m.LatestResults })));
 const Standings = lazy(() => import('./Standings').then(m => ({ default: m.Standings })));
-const PlayerVoting = lazy(() => import('./PlayerVoting').then(m => ({ default: m.PlayerVoting })));
+const BestPlayersSection = lazy(() => import('./BestPlayersSection').then(m => ({ default: m.BestPlayersSection })));
+const UpcomingMatchesByLevel = lazy(() => import('./UpcomingMatchesByLevel').then(m => ({ default: m.UpcomingMatchesByLevel })));
 const RecruitmentCTA = lazy(() => import('./RecruitmentCTA').then(m => ({ default: m.RecruitmentCTA })));
 const NewsSection = lazy(() => import('./NewsSection').then(m => ({ default: m.NewsSection })));
-const GallerySection = lazy(() => import('./GallerySection').then(m => ({ default: m.GallerySection })));
+const EscaloesSection = lazy(() => import('./EscaloesSection').then(m => ({ default: m.EscaloesSection })));
 const StoreSection = lazy(() => import('./StoreSection').then(m => ({ default: m.StoreSection })));
 const HistoryStats = lazy(() => import('./HistoryStats').then(m => ({ default: m.HistoryStats })));
 const Sponsors = lazy(() => import('./Sponsors').then(m => ({ default: m.Sponsors })));
@@ -34,11 +34,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     <div className="relative">
       <Hero onNavigate={onNavigate} />
       {LIVESTREAM_CONFIG.enabled && <LivestreamSection />}
-      <PlayerVoting />
-      <EventsSection />
+      <Suspense fallback={<LazyFallback />}>
+        <BestPlayersSection />
+      </Suspense>
+      <Suspense fallback={<LazyFallback />}>
+        <UpcomingMatchesByLevel />
+      </Suspense>
       <LatestMedia onNavigate={onNavigate} />
       <ClubHighlights onNavigate={onNavigate} />
-      {/* <LatestResults /> */}
+      <Suspense fallback={<LazyFallback />}>
+        <LatestResults />
+      </Suspense>
       {/* <Calendar /> */}
       <Suspense fallback={<LazyFallback />}>
         <Standings />
@@ -52,7 +58,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <NewsSection onNavigate={onNavigate} />
       </Suspense>
       <Suspense fallback={<LazyFallback />}>
-        <GallerySection onNavigate={onNavigate} />
+        <EscaloesSection onNavigate={onNavigate} />
       </Suspense>
       <Suspense fallback={<LazyFallback />}>
         <StoreSection onNavigate={onNavigate} />

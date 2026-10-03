@@ -24,25 +24,26 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
   };
 
   return (
-    <section className="bg-[#f5f5f5] py-10 sm:py-14 md:py-20">
-      <div className="container mx-auto px-3 sm:px-4">
+    <section className="relative overflow-hidden bg-white py-10 sm:py-14 md:py-20">
+      {/* Halo navy único e subtil da secção (superfície clara) */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(3,45,97,0.05),transparent_45%)]"></div>
 
-        <div className="text-center mb-8 sm:mb-10 md:mb-14">
-          <span className="text-[#1f398a] font-bold tracking-[0.2em] text-xs uppercase block mb-2 sm:mb-3">
-            Última Hora
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-[#1f398a] uppercase">
-            Galeria & <span className="text-yellow-500">Vídeo</span>
+      <div className="container relative z-10 mx-auto px-3 sm:px-4">
+
+        {/* Header — padrão do site: barra amarela + título, sem kicker */}
+        <div className="mb-8 flex items-center gap-2 sm:mb-10 sm:gap-3 md:mb-14 md:gap-4">
+          <div className="h-5 w-1 bg-yellow-400 sm:h-6 md:h-8"></div>
+          <h2 className="font-display text-lg font-bold uppercase text-navy-900 sm:text-xl md:text-3xl">
+            Galeria &amp; Vídeo
           </h2>
-          <div className="w-12 sm:w-16 h-1 bg-yellow-400 mx-auto mt-3 sm:mt-4 rounded-full"></div>
         </div>
 
-        {/* 3 Albums */}
+        {/* 3 Albums — proporção consistente 4:3 */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 mb-4 sm:mb-5 md:mb-6">
           {latestAlbums.map((album) => (
             <div
               key={album.id}
-              className="group relative aspect-[9/16] lg:aspect-auto rounded-xl md:rounded-2xl overflow-hidden border border-black/5 shadow-xl cursor-pointer"
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-navy-900/10 bg-white shadow-[0_18px_50px_rgba(3,21,58,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/60 hover:shadow-[0_24px_60px_rgba(3,21,58,0.12)]"
               onClick={() => onNavigate('album-detalhe', album.id)}
             >
               <img
@@ -50,20 +51,21 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
                 alt={album.title}
                 loading="lazy"
                 width={600}
-                height={400}
+                height={450}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1f398a] via-[#1f398a]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+              {/* Gradiente de baixo para cima para o texto assentar sobre a foto */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#03153a] via-[#03153a]/50 to-transparent" />
 
               {/* Badge */}
               <div className="absolute top-3 left-3 flex items-center gap-2">
-                <span className="bg-yellow-400 text-[#1f398a] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                <span className="bg-yellow-400 text-navy-900 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
                   <Camera size={12} /> {album.photos.length} Fotos
                 </span>
               </div>
 
               <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5">
-                <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                <span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-yellow-400">
                   {album.subtitle}
                 </span>
                 <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-yellow-400 transition-colors">
@@ -78,12 +80,12 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
           ))}
         </div>
 
-        {/* 4 Latest Videos — 2×2 grid */}
+        {/* 4 Latest Videos — 2×2 grid, mesma proporção 4:3 */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {latestVideos.map((video, i) => (
             <div
               key={i}
-              className="group relative aspect-[9/16] rounded-xl md:rounded-2xl overflow-hidden border border-black/5 shadow-xl cursor-pointer"
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-navy-900/10 bg-white shadow-[0_18px_50px_rgba(3,21,58,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/60 hover:shadow-[0_24px_60px_rgba(3,21,58,0.12)]"
               onClick={() => openVideo(video)}
             >
               <img
@@ -92,24 +94,24 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1f398a] via-[#1f398a]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#03153a] via-[#03153a]/50 to-transparent" />
 
               {/* Play button */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#1f398a]/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-navy-900/80 backdrop-blur border-2 border-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Play className="text-yellow-400 fill-yellow-400 ml-0.5" size={20} />
                 </div>
               </div>
 
               {/* Badge */}
               <div className="absolute top-3 left-3">
-                <span className="bg-yellow-400 text-[#1f398a] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
+                <span className="bg-yellow-400 text-navy-900 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
                   <Play size={12} /> Vídeo
                 </span>
               </div>
 
               <div className="absolute bottom-0 left-0 w-full p-4 sm:p-5">
-                <span className="text-yellow-400 text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                <span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.22em] text-yellow-400">
                   {video.subtitle}
                 </span>
                 <h3 className="font-display font-bold text-sm sm:text-base md:text-lg text-white uppercase mb-1 leading-tight group-hover:text-yellow-400 transition-colors">
@@ -128,7 +130,7 @@ export const LatestMedia: React.FC<LatestMediaProps> = ({ onNavigate }) => {
         <div className="text-center mt-8 sm:mt-10">
           <button
             onClick={() => onNavigate('galeria')}
-            className="bg-[#1f398a] hover:bg-[#162a6b] text-white font-bold py-3 px-8 rounded-full uppercase text-xs tracking-widest transition-all inline-flex items-center gap-2 shadow-lg"
+            className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold py-3 px-8 rounded-full uppercase text-xs tracking-widest transition-all inline-flex items-center gap-2 shadow-lg shadow-yellow-400/20 hover:shadow-yellow-400/40"
           >
             Ver Toda a Galeria <ArrowRight size={16} />
           </button>

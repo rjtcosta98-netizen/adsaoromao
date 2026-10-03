@@ -366,142 +366,246 @@ export const SQUAD_DATA = {
     {
       title: 'Equipa Técnica',
       members: [
-        { id: 1, name: 'Rui Fernandes', role: 'Treinador', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/Rui%20Fernandes%20ADSR?updatedAt=1773052752856' },
-        { id: 2, name: 'Tiago Jesus', role: 'Treinador Adjunto', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/Tiago%20Jesus%20ADSR?updatedAt=1773052869173' },
-        { id: 3, name: 'Nelson Rebelo', role: 'Analista & Tr. GR', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/NELSON%20REBELO%20ADSR?updatedAt=1773052834136' }, // Placeholder logic
+        { id: 1, name: 'Rui Fernandes', role: 'Treinador', image: '/images/SENIORES2627/ruifernandes.jpeg' },
+        { id: 2, name: 'Tiago Jesus', role: 'Treinador Adjunto', image: '/images/SENIORES2627/tiagojesus.jpeg' },
+        { id: 3, name: 'Nelson Rebelo', role: 'Analista & Tr. GR', image: '/images/SENIORES2627/nelsonrebelo.jpeg' },
+        { id: 4, name: 'Luís Silva', role: '', image: '/images/SENIORES2627/luissilva.jpeg' },
+        { id: 5, name: 'Hélio Vaz', role: 'Fisioterapeuta', image: '/images/SENIORES2627/799645639_3592350407601006_969885448471897405_n.jpeg' },
       ]
     },
     {
       title: 'Guarda-Redes',
       members: [
-        { id: 10, name: 'Rafael Santos', role: 'Guarda-Redes', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.23%20(2).jpeg' },
-        { id: 11, name: 'Duarte Cabral', role: 'Guarda-Redes', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.25%20(3).jpeg' },
+        { id: 10, name: 'Rafael Santos', role: 'Guarda-Redes', image: '/images/SENIORES2627/rafaelsantos.jpeg' },
+        { id: 11, name: 'Duarte Cabral', role: 'Guarda-Redes', image: '/images/SENIORES2627/duartecabral.jpeg' },
       ]
     },
     {
       title: 'Defesas',
       members: [
-        { id: 20, name: 'FRIIKIQUE', role: 'Defesa Central', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(1).jpeg' },
-        { id: 21, name: 'AFONSO CLARA', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28%20(1).jpeg' },
-        { id: 22, name: 'JOÃO FREIRE', role: 'Defesa Central', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(4).jpeg' },
-        { id: 23, name: 'MIGUEL BRITO', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.25%20(1).jpeg?updatedAt=1773052555510' },
-        { id: 24, name: 'ALBANO FERRÃO', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(5).jpeg' },
-        { id: 25, name: 'JOÃO COSTA', role: 'Defesa Lateral', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28%20(3).jpeg' },
-        { id: 27, name: 'BERNARDO', role: 'Defesa Central', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28%20(2).jpeg' },
+        { id: 20, name: 'Friikique', role: 'Defesa Central', image: '/images/SENIORES2627/friikique.jpeg' },
+        { id: 21, name: 'Afonso Clara', role: 'Defesa Lateral', image: '/images/SENIORES2627/afonsoclara.jpeg' },
+        { id: 22, name: 'Miguel Brito', role: 'Defesa Lateral', image: '/images/SENIORES2627/miguelbrito.jpeg' },
+        { id: 23, name: 'João Costa', role: 'Defesa Lateral', image: '/images/SENIORES2627/joaocosta.jpeg' },
+        { id: 24, name: 'Bernardo Miranda', role: 'Defesa Central', image: '/images/SENIORES2627/bernardomiranda.jpeg' },
+        { id: 25, name: 'João Freire', role: 'Defesa Central', image: '/images/SENIORES2627/joaofreire.png' },
+        { id: 26, name: 'Miguel Figueiredo', role: 'Defesa', image: '/images/SENIORES2627/WhatsApp Image 2026-09-24 at 08.04.58.jpeg' },
+        { id: 27, name: 'Albano Ferrão', role: 'Defesa', image: '/images/SENIORES2627/WhatsApp Image 2026-09-24 at 08.04.58 (1).jpeg' },
       ]
     },
-     {
+    {
       title: 'Médios',
       members: [
-        { id: 28, name: 'LUIS NUNES', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.25%20(5).jpeg' },
-        { id: 29, name: 'GABRIEL CRUZ', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26.jpeg' },
-        { id: 30, name: 'JOÃO MARQUES', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.25%20(2).jpeg' },
-        { id: 31, name: 'MARIO NUNES', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(2).jpeg' },
-        { id: 32, name: 'TIAGO LEMOS', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(3).jpeg' },
-        { id: 33, name: 'RUI COSME', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27.jpeg' },
-        { id: 34, name: 'LUIS MARTINS', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.26%20(4).jpeg' },
-        { id: 35, name: 'PAULO JORGE', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(2).jpeg' },
-        { id: 36, name: 'KEVIN', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(5).jpeg' },
-        { id: 37, name: 'PEDRO SOUSA', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(1).jpeg' },
-        { id: 38, name: 'ALIDIO MENDES', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.28.jpeg' },
-
+        { id: 30, name: 'Gabriel Cruz', role: '', image: '/images/SENIORES2627/gabrielcruz.jpeg' },
+        { id: 31, name: 'João Marques', role: '', image: '/images/SENIORES2627/joaomarques.jpeg' },
+        { id: 32, name: 'Mário Nunes', role: '', image: '/images/SENIORES2627/marionunes.jpeg' },
+        { id: 33, name: 'Luís Martins', role: '', image: '/images/SENIORES2627/luismartiins.jpeg' },
+        { id: 34, name: 'Paulo Jorge', role: '', image: '/images/SENIORES2627/paulojorge.jpeg' },
+        { id: 35, name: 'Pedro Sousa', role: '', image: '/images/SENIORES2627/pedrosousa.jpg' },
       ]
     },
-     {
+    {
       title: 'Avançados',
       members: [
-        { id: 40, name: 'ADERITO PERES', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.25.jpeg' },
-        { id: 41, name: 'SANDRO GOMES', role: '', image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.08.27%20(3).jpeg' },
+        { id: 40, name: 'Adérito Peres', role: '', image: '/images/SENIORES2627/aderitoperes.jpeg' },
+        { id: 41, name: 'Sandro Gomes', role: '', image: '/images/SENIORES2627/WhatsApp Image 2026-09-24 at 08.04.58 (2).jpeg' },
+        { id: 42, name: 'Miguel Simões', role: '', image: '/images/SENIORES2627/WhatsApp Image 2026-09-24 at 08.05.42.jpeg' },
+      ]
+    },
+    {
+      title: 'Novas Contratações',
+      members: [
+        { id: 50, name: 'Dinis Silva', role: '', image: '/images/SENIORES2627/dinissilva.jpeg' },
+        { id: 51, name: 'Eduardo Trigo', role: '', image: '/images/SENIORES2627/eduardotrigo.jpeg' },
+        { id: 52, name: 'Iuri Marques', role: '', image: '/images/SENIORES2627/iurimarques.jpeg' },
+        { id: 53, name: 'Lucas Lima', role: '', image: '/images/SENIORES2627/lucaslima.jpeg' },
+        { id: 54, name: 'Luís Valladares', role: '', image: '/images/SENIORES2627/luisvalladares.jpeg' },
+        { id: 55, name: 'Martim Garcia', role: '', image: '/images/SENIORES2627/martimgarcia.jpeg' },
+        { id: 56, name: 'Miguel Santos', role: '', image: '/images/SENIORES2627/miguelsantos.jpeg' },
+        { id: 57, name: 'Tomás Borges', role: '', image: '/images/SENIORES2627/tomasborges.jpeg' },
+        { id: 58, name: 'Cristóvão Simão', role: '', image: '/images/SENIORES2627/cristovaosimao.jpeg' },
       ]
     }
   ],
   'JUNIORES (U19)': [
     {
-      title: 'Plantel Completo',
+      title: 'Equipa Técnica',
       members: [
-        { 
-          id: 101, 
-          name: 'João Coimbra', 
-          role: 'Treinador', 
-          image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-23%20at%2014.45.34.jpeg',
-          isTeamPhoto: true
-        }
+        { id: 101, name: 'José Carlos Garcia', role: 'Treinador Principal', image: '/images/sub19-26:27/josecarlosgarcia.jpeg' },
+      ]
+    },
+    {
+      title: 'Plantel 26/27',
+      members: [
+        { id: 111, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/1.jpeg', isPromoCard: true },
+        { id: 112, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/2.jpeg', isPromoCard: true },
+        { id: 113, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/3.jpeg', isPromoCard: true },
+        { id: 114, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/4.jpeg', isPromoCard: true },
+        { id: 115, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/5.jpeg', isPromoCard: true },
+        { id: 116, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/6.jpeg', isPromoCard: true },
+        { id: 117, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/7.jpeg', isPromoCard: true },
+        { id: 118, name: 'Juniores Sub-19 26/27', role: '', image: '/images/sub19-26:27/8.jpeg', isPromoCard: true },
       ]
     }
   ],
   'JUVENIS (U16)': [
     {
-      title: 'Plantel Completo',
+      title: 'Equipa Técnica',
       members: [
-        { 
-          id: 201, 
-          name: 'Gonçalo Tavares', 
-          role: 'Treinador', 
-          image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-23%20at%2014.38.47.jpeg',
-          isTeamPhoto: true
-        }
+        { id: 300, name: 'Gonçalo Tavares', role: 'Treinador Principal', image: '/images/sub162627/773881956_1331024242139261_4046581083557434890_n.jpeg' },
+      ]
+    },
+    {
+      title: 'Plantel 26/27',
+      members: [
+        { id: 310, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/792235763_2347551832682412_6554701914244230165_n.jpeg', isPromoCard: true },
+        { id: 301, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/798743024_1561862721701267_9198059538531093102_n.jpeg', isPromoCard: true },
+        { id: 302, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/799264516_1077922645173786_6140805007784243922_n.jpeg', isPromoCard: true },
+        { id: 303, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/801326649_1076975411858429_7701152713922892275_n.jpeg', isPromoCard: true },
+        { id: 304, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/801439514_2633866043715161_615102906896838304_n.jpeg', isPromoCard: true },
+        { id: 305, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/801641675_1395051399457026_7976913040322895650_n.jpeg', isPromoCard: true },
+        { id: 306, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/801786043_1630168642112112_2811122261701840495_n.jpeg', isPromoCard: true },
+        { id: 307, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/801869950_2429956960863564_7042394536564891760_n.jpeg', isPromoCard: true },
+        { id: 308, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/801885398_1072516322161777_8318828921606603782_n.jpeg', isPromoCard: true },
+        { id: 309, name: 'Juvenis Sub-16 26/27', role: '', image: '/images/sub162627/802002774_2604496500011500_2412020513568870212_n.jpeg', isPromoCard: true },
       ]
     }
   ],
     'INICIADOS (U14)': [
     {
-      title: 'Plantel Completo',
+      title: 'Equipa Técnica',
       members: [
-        { 
-          id: 202, 
-          name: 'Prof. Davide Oliveira', 
-          role: 'Treinador', 
-          image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/2da4292a-348b-4892-acc4-0f50cc163cab.jpeg',
-          isTeamPhoto: true
-        }
+        { id: 400, name: 'Davide Oliveira', role: 'Treinador Principal', image: '/images/sub142627/785214466_857452930666471_4458435807174082770_n.jpeg' },
+        { id: 399, name: 'Daniel Valentim', role: 'Coordenador Formação', image: '/images/sub142627/783286633_1050927470892921_7702595104563905258_n.jpeg' },
+      ]
+    },
+    {
+      title: 'Plantel 26/27',
+      members: [
+        { id: 401, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/800826384_1442943957702597_1176998413977460124_n.jpeg', isPromoCard: true },
+        { id: 402, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/803076817_1555587575890706_8814074333547788401_n.jpeg', isPromoCard: true },
+        { id: 403, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/803324140_1622649746240633_5131862375171705474_n.jpeg', isPromoCard: true },
+        { id: 404, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/803369079_1005154535919313_552148029863808575_n.jpeg', isPromoCard: true },
+        { id: 405, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/804959176_1636277477881998_5063334653687251928_n.jpeg', isPromoCard: true },
+        { id: 406, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/805027948_1640739520961179_7493590057977166564_n.jpeg', isPromoCard: true },
+        { id: 407, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/805747852_1417340510329508_3708961386539522130_n.jpeg', isPromoCard: true },
+        { id: 408, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/805784503_1620688769396804_1468892467861411582_n.jpeg', isPromoCard: true },
+        { id: 409, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/805784513_1417168560379366_25159218673126600_n.jpeg', isPromoCard: true },
+        { id: 410, name: 'Iniciados Sub-14 26/27', role: '', image: '/images/sub142627/805900300_2762850990778571_749212273482854701_n.jpeg', isPromoCard: true },
       ]
     }
   ],
     'INFANTIS (U12)': [
     {
-      title: 'Plantel Completo',
+      title: 'Equipa Técnica',
       members: [
-        { 
-          id: 203, 
-          name: 'Eduardo Marques', 
-          role: 'Treinador', 
-          image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-23%20at%2014.34.59.jpeg',
-          isTeamPhoto: true
-        }
+        { id: 500, name: 'Eduardo Marques', role: 'Treinador Principal', image: '/images/sub12/774350245_1048250111450787_1451430451308406354_n.jpeg' },
+      ]
+    },
+    {
+      title: 'Plantel 26/27',
+      members: [
+        { id: 501, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/800483002_979871121805632_7098857492713410986_n.jpeg', isPromoCard: true },
+        { id: 502, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/808469491_4556604924591910_3961555560244605812_n.jpeg', isPromoCard: true },
+        { id: 503, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/808661766_2895458190831780_6908622402836153853_n.jpeg', isPromoCard: true },
+        { id: 504, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/808786972_1115896360871867_8868479475074918478_n.jpeg', isPromoCard: true },
+        { id: 505, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809107193_1978014242908689_5268907267150673487_n.jpeg', isPromoCard: true },
+        { id: 506, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809168010_2889746744744714_3419125033322112936_n.jpeg', isPromoCard: true },
+        { id: 507, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809602415_28909408938656496_577627912918759107_n.jpeg', isPromoCard: true },
+        { id: 508, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809616458_1402983957943407_9203720901468580872_n.jpeg', isPromoCard: true },
+        { id: 509, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809645774_937072798950142_7844373352138786411_n.jpeg', isPromoCard: true },
+        { id: 510, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809655985_1609090997609854_4196651765826622279_n.jpeg', isPromoCard: true },
+        { id: 511, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/809730107_1335264735134303_5364493303132242306_n.jpeg', isPromoCard: true },
+        { id: 512, name: 'Infantis Sub-12 26/27', role: '', image: '/images/sub12/810051771_1076874718039600_6620992516853699384_n.jpeg', isPromoCard: true },
       ]
     }
   ],
  'BENJAMINS (U10)': [
     {
-      title: 'Plantel Completo',
+      title: 'Equipa Técnica',
       members: [
-        { 
-          id: 203, 
-          name: 'Válter Santos e Cláudio Silva', 
-          role: 'Treinadores', 
-          image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/4444.png',
-          isTeamPhoto: true
-        }
+        { id: 699, name: 'Valter Santos', role: 'Treinador Principal', image: '/images/sub102627/775281936_1562951411848930_5382577479657924335_n.jpeg' },
+        { id: 700, name: 'Diogo Pereira', role: 'Treinador Principal', image: '/images/sub102627/775259812_2852598708460574_6444092786230306033_n.jpeg' },
+      ]
+    },
+    {
+      title: 'Plantel 26/27',
+      members: [
+        { id: 701, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/808124356_1685699276888492_3413033187619890252_n.jpeg', isPromoCard: true },
+        { id: 702, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/809616073_2124438344822010_2945074676134293570_n.jpeg', isPromoCard: true },
+        { id: 703, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/809845375_2317355032409390_7306881457616187518_n.jpeg', isPromoCard: true },
+        { id: 704, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/809876214_1856431208855645_7144449182562481693_n.jpeg', isPromoCard: true },
+        { id: 705, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810051775_2611869869232765_6082122631679598341_n.jpeg', isPromoCard: true },
+        { id: 706, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810148768_1080928811204963_8149476428270742489_n.jpeg', isPromoCard: true },
+        { id: 707, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810215423_1612927110285520_2982497830514934077_n.jpeg', isPromoCard: true },
+        { id: 708, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810246552_1513179267243164_7425019074807855741_n.jpeg', isPromoCard: true },
+        { id: 709, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810319732_1942108839787283_2519450564338654523_n.jpeg', isPromoCard: true },
+        { id: 710, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810449142_1060050993305666_2121721787019748902_n.jpeg', isPromoCard: true },
+        { id: 711, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810556703_2137264720231781_7974755435624499246_n.jpeg', isPromoCard: true },
+        { id: 712, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810593802_1013470411705698_6262591989890949068_n.jpeg', isPromoCard: true },
+        { id: 713, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810593959_1371448868041032_4115885916482906859_n.jpeg', isPromoCard: true },
+        { id: 714, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810623986_5078934955666468_6284104748694336750_n.jpeg', isPromoCard: true },
+        { id: 715, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/810931459_2531784263929388_9047350632766951299_n.jpeg', isPromoCard: true },
+        { id: 716, name: 'Benjamins Sub-10 26/27', role: '', image: '/images/sub102627/811028542_936040349564253_5861378464923904688_n.jpeg', isPromoCard: true },
       ]
     }
   ],
  'TRAQUINAS (U8)': [
     {
-      title: 'Plantel Completo',
+      title: 'Equipa Técnica',
       members: [
-        { 
-          id: 203, 
-          name: 'FRIKIQUE', 
-          role: 'Treinador', 
-          image: 'https://ik.imagekit.io/elementgroup/ADSR/ADSR%20EQUIPAS/WhatsApp%20Image%202026-02-24%20at%2009.09.14.jpeg',
-          isTeamPhoto: true
-        }
+        { id: 600, name: 'Ricardo Mendes', role: 'Treinador Principal', image: '/images/sub82627/ri.jpeg' },
+      ]
+    },
+    {
+      title: 'Plantel 26/27',
+      members: [
+        { id: 601, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/793337085_1610516580744813_1347715388280438818_n.jpeg', isPromoCard: true },
+        { id: 602, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/793351436_1783688289333486_4523638509228910078_n.jpeg', isPromoCard: true },
+        { id: 603, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/795776047_1384688930462852_7573860088162202326_n.jpeg', isPromoCard: true },
+        { id: 604, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/800484475_1783606232677000_1165865555158169287_n.jpeg', isPromoCard: true },
+        { id: 605, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/812315042_1756847265601237_3050962143658597496_n.jpeg', isPromoCard: true },
+        { id: 606, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/812427425_1989971228535715_8612563527695643284_n.jpeg', isPromoCard: true },
+        { id: 607, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/813101594_1088075920848209_5930534728564688932_n.jpeg', isPromoCard: true },
+        { id: 608, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/813698118_1080804128028015_2593771581408495095_n.jpeg', isPromoCard: true },
+        { id: 609, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/813715435_1051718254359004_1432499739189842357_n.jpeg', isPromoCard: true },
+        { id: 610, name: 'Traquinas Sub-8 26/27', role: '', image: '/images/sub82627/813825541_1806809980341970_2460360953126007077_n.jpeg', isPromoCard: true },
       ]
     }
   ],};
 
 // GALLERY ALBUMS - Adicione aqui os seus álbuns de fotos
 export const GALLERY_ALBUMS = [
+  {
+    id: 20,
+    title: '1ª Liga Futebol CIMA Tavfer - Seniores 26/27 - 1ª Jornada',
+    subtitle: 'AD São Romão vs UD Os Pinhelenses',
+    date: '27 Setembro 2026',
+    coverImage: '/images/JOGOSSENIORES/LIGA2627J1/01.jpg',
+    photos: [
+      { id: 1, url: '/images/JOGOSSENIORES/LIGA2627J1/01.jpg' },
+      { id: 2, url: '/images/JOGOSSENIORES/LIGA2627J1/02.jpg' },
+      { id: 3, url: '/images/JOGOSSENIORES/LIGA2627J1/03.jpg' },
+      { id: 4, url: '/images/JOGOSSENIORES/LIGA2627J1/04.jpg' },
+      { id: 5, url: '/images/JOGOSSENIORES/LIGA2627J1/05.jpg' },
+      { id: 6, url: '/images/JOGOSSENIORES/LIGA2627J1/06.jpg' },
+      { id: 7, url: '/images/JOGOSSENIORES/LIGA2627J1/07.jpg' },
+      { id: 8, url: '/images/JOGOSSENIORES/LIGA2627J1/08.jpg' },
+      { id: 9, url: '/images/JOGOSSENIORES/LIGA2627J1/09.jpg' },
+      { id: 10, url: '/images/JOGOSSENIORES/LIGA2627J1/10.jpg' },
+      { id: 11, url: '/images/JOGOSSENIORES/LIGA2627J1/11.jpg' },
+      { id: 12, url: '/images/JOGOSSENIORES/LIGA2627J1/12.jpg' },
+      { id: 13, url: '/images/JOGOSSENIORES/LIGA2627J1/13.jpg' },
+      { id: 14, url: '/images/JOGOSSENIORES/LIGA2627J1/14.jpg' },
+      { id: 15, url: '/images/JOGOSSENIORES/LIGA2627J1/15.jpg' },
+      { id: 16, url: '/images/JOGOSSENIORES/LIGA2627J1/16.jpg' },
+      { id: 17, url: '/images/JOGOSSENIORES/LIGA2627J1/17.jpg' },
+      { id: 18, url: '/images/JOGOSSENIORES/LIGA2627J1/18.jpg' },
+      { id: 19, url: '/images/JOGOSSENIORES/LIGA2627J1/19.jpg' },
+      { id: 20, url: '/images/JOGOSSENIORES/LIGA2627J1/20.jpg' },
+      { id: 21, url: '/images/JOGOSSENIORES/LIGA2627J1/21.jpg' },
+    ]
+  },
   {
     id: 1,
     title: '1/4 TAÇA DE HONRA - Guarda FC vs AD São Romão',

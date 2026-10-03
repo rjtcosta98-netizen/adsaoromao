@@ -72,6 +72,7 @@ export interface SquadMember {
   image: string;
   number?: number;
   isTeamPhoto?: boolean;
+  isPromoCard?: boolean;
 }
 
 export interface SquadSection {

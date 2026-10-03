@@ -20,6 +20,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         display: ['Oswald', 'sans-serif'],
+        cup: ['Barlow Condensed', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fade-in 0.5s ease-in-out',

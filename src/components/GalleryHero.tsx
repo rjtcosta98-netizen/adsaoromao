@@ -45,7 +45,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
         {/* Right Content - Featured Album Card */}
         <div className="lg:w-5/12 w-full">
            <div className="bg-navy-800 rounded-2xl overflow-hidden shadow-2xl border border-white/10 transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer" onClick={() => {
-              onNavigate?.('album-detalhe', 1);
+              onNavigate?.('album-detalhe', 20);
            }}>
               {/* Card Header */}
               <div className="bg-gray-700/50 p-4 text-center border-b border-white/5">
@@ -55,7 +55,7 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
               {/* Featured Image */}
               <div className="aspect-video relative group cursor-pointer overflow-hidden">
                  <img 
-                    src="/images/JOGOSSENIORES/TACAQUARTOS/09.jpg" 
+                    src="/images/JOGOSSENIORES/LIGA2627J1/01.jpg" 
                     alt="Destaque" 
                     loading="lazy"
                     width={600}
@@ -67,23 +67,23 @@ export const GalleryHero: React.FC<GalleryHeroProps> = ({ onNavigate }) => {
 
               {/* Card Body */}
               <div className="p-8 text-center bg-navy-800">
-                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">1/4 FINAL TAÇA DE HONRA - Guarda FC vs AD São Romão</h3>
+                 <h3 className="font-display font-bold text-3xl text-white uppercase mb-4">1ª Liga Futebol CIMA Tavfer - Seniores 26/27 - 1ª Jornada</h3>
                  
                  <div className="flex items-center justify-center gap-6 text-gray-400 text-xs mb-8">
                     <div className="flex items-center gap-2">
                        <Calendar size={14} className="text-red-500" />
-                       <span>3 de Maio, 2026</span>
+                       <span>27 de Setembro, 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                        <ImageIcon size={14} className="text-yellow-400" />
-                       <span>20 Fotos</span>
+                       <span>21 Fotos</span>
                     </div>
                  </div>
                  
                  <button 
                     onClick={(e) => {
                       e.stopPropagation();
-                      onNavigate?.('album-detalhe', 1);
+                      onNavigate?.('album-detalhe', 20);
                     }}
                     className="w-full bg-white hover:bg-gray-100 text-navy-900 font-bold py-4 rounded uppercase text-xs tracking-widest transition-colors shadow-lg"
                  >

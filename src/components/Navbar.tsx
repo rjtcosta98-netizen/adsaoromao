@@ -23,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activePage, onNavigate, onOpenCa
   const navLinks = [
     { name: 'INICIO', id: 'home', icon: Home },
     { name: 'CLUBE', id: 'clube', icon: Trophy },
+    { name: 'ADSR CUP', id: 'adsr-cup', icon: Trophy },
     { name: 'EQUIPAS', id: 'equipas', icon: Users },
     { name: 'INSCRIÇÕES', id: 'inscricoes', icon: UserPlus }, 
     { name: 'SÓCIOS', id: 'socios', icon: Heart },

@@ -1,6 +1,5 @@
 
 
-
 import React from 'react';
 import { ArrowRight, Trophy, Users, Star } from 'lucide-react';
 
@@ -11,13 +10,14 @@ interface RecruitmentCTAProps {
 export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) => {
   return (
     <div className="relative bg-navy-900 py-12 md:py-24 overflow-hidden group">
-      {/* Background Image with Parallax feel */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+      {/* Superfície em camadas (spec): imagem de contexto a 20%, véu, gradiente diagonal e halo dourado único */}
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-20 transition-transform duration-1000 group-hover:scale-105"
         style={{ backgroundImage: 'url("https://ik.imagekit.io/elementgroup/ADSR/ADSR%20Equipa?updatedAt=1772916779826")' }}
       ></div>
-      <div className="absolute inset-0 bg-navy-900/90 mix-blend-multiply"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/80 to-transparent"></div>
+      <div className="absolute inset-0 bg-navy-900/70"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(3,21,58,0.95)_0%,rgba(3,21,58,0.72)_42%,rgba(3,21,58,0.34)_100%)]"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,215,0,0.10),transparent_38%)]"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
@@ -34,7 +34,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
 
             <h2 className="font-display font-bold text-4xl sm:text-5xl md:text-7xl text-white uppercase leading-none mb-4 md:mb-6">
               O Teu Futuro <br/>
-              Começa <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-200">Aqui</span>
+              Começa <span className="text-yellow-400">Aqui</span>
             </h2>
             
             <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8 leading-relaxed max-w-lg mx-auto md:mx-0 border-l-4 border-yellow-400 pl-4 md:pl-6">
@@ -43,7 +43,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
 
             <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-4 md:gap-6 mb-8 md:mb-10">
                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 p-2 rounded-full text-yellow-400">
+                  <div className="bg-white/[0.07] p-2 rounded-full text-yellow-400">
                     <Trophy size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
@@ -52,7 +52,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
                   </div>
                </div>
                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 p-2 rounded-full text-yellow-400">
+                  <div className="bg-white/[0.07] p-2 rounded-full text-yellow-400">
                     <Users size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
@@ -61,7 +61,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
                   </div>
                </div>
                <div className="flex items-center gap-3">
-                  <div className="bg-white/10 p-2 rounded-full text-yellow-400">
+                  <div className="bg-white/[0.07] p-2 rounded-full text-yellow-400">
                     <Star size={18} className="md:w-5 md:h-5" />
                   </div>
                   <div>
@@ -85,7 +85,7 @@ export const RecruitmentCTA: React.FC<RecruitmentCTAProps> = ({ onNavigate }) =>
           <div className="hidden md:block relative">
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px]"></div>
              
-             <div className="relative bg-white/5 backdrop-blur-md border border-white/20 p-8 rounded-2xl max-w-xs transform rotate-3 hover:rotate-0 transition-transform duration-500">
+             <div className="relative bg-[#03153a]/58 backdrop-blur-md border border-white/12 p-8 rounded-lg shadow-[0_22px_70px_rgba(0,0,0,0.35)] max-w-xs transform rotate-3 hover:rotate-0 hover:border-yellow-400/40 transition-all duration-500">
                 <div className="aspect-[4/5] bg-gray-800 rounded-lg overflow-hidden mb-4 relative">
                    <img src="https://ik.imagekit.io/elementgroup/ADSR/ADSR%20SUB%2010" alt="Atleta" loading="lazy" width={320} height={400} className="object-cover w-full h-full opacity-80" />
                    <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-navy-900 to-transparent">
