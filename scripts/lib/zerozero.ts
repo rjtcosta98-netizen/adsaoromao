@@ -176,7 +176,8 @@ const SENIORES = { nome: 'Seniores', ordem: 8 };
  */
 const LETRAS: Record<string, number> = { A: 7, B: 6, C: 5, D: 4, E: 3, F: 2, G: 1 };
 
-export function escalaoDe(texto: string): { escalao: string; escalao_ordem: number } {
+/** Escalão de formação indicado no texto, ou null se o texto não o indicar. */
+function escalaoFormacao(texto: string): { escalao: string; escalao_ordem: number } | null {
   const numero = texto.match(/\b(?:S|Sub-?)\s?(\d{1,2})\b/i);
   if (numero) {
     const n = Number(numero[1]);
@@ -191,7 +192,11 @@ export function escalaoDe(texto: string): { escalao: string; escalao_ordem: numb
     if (hit) return { escalao: hit.nome, escalao_ordem: hit.ordem };
   }
 
-  return { escalao: SENIORES.nome, escalao_ordem: SENIORES.ordem };
+  return null;
+}
+
+export function escalaoDe(texto: string): { escalao: string; escalao_ordem: number } {
+  return escalaoFormacao(texto) ?? { escalao: SENIORES.nome, escalao_ordem: SENIORES.ordem };
 }
 
 /** "2025/2026" | "2025/26" | "25/26" -> "2025/2026" */
@@ -334,11 +339,16 @@ export async function lerJogos(teamId: number, epocaId?: number): Promise<JogoRo
     const resultado = ['V', 'E', 'D'].includes(forma) ? forma : null;
     const edicao = row.match(/href="\/edicao\/[^"]*?\/(\d+)"/);
 
+    // A página da equipa sénior (id do clube) também lista jogos de edições de
+    // formação — ex. "AF Guarda Juniores A Liga Dapplin 2026/2027". Se a
+    // competição indicar o escalão, vale esse; senão, o do título da página.
+    const doJogo = escalaoFormacao(c[7]) ?? { escalao, escalao_ordem };
+
     jogos.push({
       zz_match_id: Number(idm[1]),
       zz_team_id: teamId,
-      escalao,
-      escalao_ordem,
+      escalao: doJogo.escalao,
+      escalao_ordem: doJogo.escalao_ordem,
       epoca,
       data: c[1],
       hora: /^\d{1,2}:\d{2}$/.test(c[2]) ? c[2] : null,
@@ -421,7 +431,7 @@ export async function recolher(): Promise<Recolha> {
 
   const pedidos = [...teamIds].flatMap((teamId) => [...epocas].map((ep) => ({ teamId, ep })));
 
-  const jogos: JogoRow[] = [];
+  const lidos: JogoRow[] = [];
   const vistos = new Set<number>();
 
   await emLotes(pedidos, 3, async ({ teamId, ep }) => {
@@ -429,12 +439,23 @@ export async function recolher(): Promise<Recolha> {
       for (const jogo of await lerJogos(teamId, ep)) {
         if (vistos.has(jogo.zz_match_id)) continue;
         vistos.add(jogo.zz_match_id);
-        jogos.push(jogo);
+        lidos.push(jogo);
       }
     } catch (err) {
       avisos.push(`Jogos da equipa ${teamId} (época ${ep}) falharam: ${(err as Error).message}`);
     }
   });
+
+  // O zerozero chega a ter o mesmo jogo de formação em duas edições, uma
+  // pendurada na equipa sénior e outra na equipa do escalão, com ids de jogo
+  // diferentes. Fica uma só cópia, preferindo a da equipa do escalão.
+  const unicos = new Map<string, JogoRow>();
+  for (const jogo of lidos) {
+    const chave = `${jogo.escalao}|${jogo.data}|${jogo.adversario}|${jogo.casa}`;
+    const atual = unicos.get(chave);
+    if (!atual || (atual.zz_team_id === CLUB_ID && jogo.zz_team_id !== CLUB_ID)) unicos.set(chave, jogo);
+  }
+  const jogos = [...unicos.values()];
 
   return { epoca, epocaId, classificacoes, jogos, avisos };
 }
