@@ -1,8 +1,10 @@
 /**
- * Sincronização zerozero -> Supabase.
+ * Sincronização FPF + zerozero -> Supabase.
  *
- * Corre dentro de uma Edge Function, que recebe SUPABASE_URL e
- * SUPABASE_SERVICE_ROLE_KEY automaticamente do runtime.
+ * A FPF (resultados.fpf.pt) é a fonte dos escalões em ESCALOES_FPF; o zerozero
+ * só escreve os restantes. A recolha FPF precisa do Chrome instalado, por isso
+ * só corre no script local (`npm run sync`) — numa Edge Function falha e segue
+ * apenas com o zerozero.
  *
  * Estratégia: upsert de tudo o que veio do zerozero e, a seguir, remoção das
  * linhas antigas que esta corrida não tocou. Se a recolha vier vazia, aborta
@@ -10,6 +12,7 @@
  */
 
 import { recolher, type Recolha } from './zerozero.ts';
+import { ESCALOES_FPF, recolherFPF, type RecolhaFPF } from './fpf.ts';
 
 /**
  * Lê variáveis de ambiente tanto em Deno (Edge Function) como em Node (o
@@ -82,12 +85,33 @@ export async function sincronizar(origem = 'cron'): Promise<Resultado> {
   const inicio = Date.now();
   const marca = new Date().toISOString();
 
-  const recolha: Recolha = await recolher();
+  // FPF primeiro: é a fonte oficial dos escalões em ESCALOES_FPF. Se falhar
+  // por inteiro, segue só com o zerozero e os dados FPF já gravados ficam.
+  let fpf: RecolhaFPF | null = null;
+  try {
+    fpf = await recolherFPF();
+  } catch (err) {
+    console.error('Recolha FPF falhou:', (err as Error).message);
+  }
+
+  const zz: Recolha = await recolher();
+  const daFPF = (escalao: string) => ESCALOES_FPF.includes(escalao);
+
+  const recolha: Recolha = {
+    ...zz,
+    classificacoes: [...(fpf?.classificacoes ?? []), ...zz.classificacoes.filter((c) => !daFPF(c.escalao))],
+    jogos: [...(fpf?.jogos ?? []), ...zz.jogos.filter((j) => !daFPF(j.escalao))],
+    avisos: [
+      ...(fpf ? fpf.avisos : ['Recolha FPF falhou — mantidos os dados FPF anteriores']),
+      ...(fpf?.semLogo.length ? [`FPF sem nome/logo mapeado: ${fpf.semLogo.join(', ')}`] : []),
+      ...zz.avisos,
+    ],
+  };
 
   // Rede de segurança: recolha vazia significa quase sempre HTML mudado ou
-  // bloqueio do zerozero — nunca deve traduzir-se em apagar o que está online.
+  // bloqueio das fontes — nunca deve traduzir-se em apagar o que está online.
   if (recolha.classificacoes.length === 0 && recolha.jogos.length === 0) {
-    throw new Error('Recolha vazia — nada foi escrito. Verificar o parser ou bloqueio do zerozero.');
+    throw new Error('Recolha vazia — nada foi escrito. Verificar os parsers ou bloqueio das fontes.');
   }
 
   // ── Classificações ──
@@ -130,13 +154,34 @@ export async function sincronizar(origem = 'cron'): Promise<Resultado> {
 
   if (jogos.length > 0) {
     await upsert('jogos', 'zz_match_id', jogos);
-    const equipas = [...new Set(jogos.map((j) => j.zz_team_id))];
-    const epocas = [...new Set(jogos.map((j) => j.epoca))];
-    removidosJogos = await limparObsoletos(
-      'jogos',
-      `zz_team_id=in.(${equipas.join(',')})&epoca=in.${lista(epocas)}`,
-      marca,
-    );
+    const zzJogos = jogos.filter((j) => !daFPF(j.escalao));
+    const equipas = [...new Set(zzJogos.map((j) => j.zz_team_id))];
+    const epocas = [...new Set(zzJogos.map((j) => j.epoca))];
+    if (equipas.length > 0) {
+      removidosJogos = await limparObsoletos(
+        'jogos',
+        `zz_team_id=in.(${equipas.join(',')})&epoca=in.${lista(epocas)}`,
+        marca,
+      );
+    }
+  }
+
+  // Escalões FPF lidos por inteiro: sai tudo o que esta corrida não escreveu
+  // nessa época — jogos entretanto retirados e as linhas antigas do zerozero.
+  if (fpf?.epoca && fpf.escaloesCompletos.length > 0) {
+    const filtro = `escalao=in.${lista(fpf.escaloesCompletos)}&epoca=eq.${encodeURIComponent(fpf.epoca)}`;
+    removidosJogos += await limparObsoletos('jogos', filtro, marca);
+    if (fpf.classificacoes.length > 0) {
+      const comTabela = [...new Set(fpf.classificacoes.map((c) => c.escalao))]
+        .filter((e) => fpf.escaloesCompletos.includes(e));
+      if (comTabela.length > 0) {
+        removidosClass += await limparObsoletos(
+          'classificacoes',
+          `escalao=in.${lista(comTabela)}&epoca=eq.${encodeURIComponent(fpf.epoca)}`,
+          marca,
+        );
+      }
+    }
   }
 
   const resultado: Resultado = {
