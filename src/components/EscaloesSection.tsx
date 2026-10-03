@@ -59,47 +59,62 @@ export const EscaloesSection: React.FC<EscaloesSectionProps> = ({ onNavigate }) 
           </span>
         </div>
 
-        {/* Os sete escalões vivem numa única linha. Abaixo de lg não cabem, por
-            isso a linha passa a carrossel com scroll horizontal e snap. */}
-        <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4 lg:overflow-visible lg:pb-0">
-          {escaloes.map((escalao) => (
-            <button
-              key={escalao.nome}
-              type="button"
-              onClick={() => navegar(`/equipas#${slugEscalao(escalao.nome)}`)}
-              aria-label={`Ver plantel ${escalao.nome}`}
-              className="group relative aspect-[4/5] w-[58%] flex-none snap-start overflow-hidden rounded-lg border border-white/12 bg-[#03153a]/58 text-left shadow-[0_22px_70px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:border-yellow-400/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 sm:w-[32%] md:w-[24%] lg:w-auto lg:flex-1 lg:basis-0"
+        {/* A fotografia é o conteúdo: a capa aparece com a luz original.
+            Seniores ocupa duas colunas — a foto de equipa é 3:2 e as artworks
+            da formação são 4:5, e numa grelha de 4 colunas o cartão duplo fica
+            praticamente em 3:2. */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+          {escaloes.map((escalao) => {
+            const principal = escalao.nome === 'SENIORES';
+            return (
+              <button
+                key={escalao.nome}
+                type="button"
+                onClick={() => navegar(`/equipas#${slugEscalao(escalao.nome)}`)}
+                aria-label={`Ver plantel ${escalao.nome}`}
+                className={`group flex flex-col overflow-hidden rounded-lg bg-navy-800 text-left shadow-[0_18px_40px_-12px_rgba(0,0,0,0.55)] ring-1 ring-white/10 transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_28px_60px_-14px_rgba(0,0,0,0.65)] hover:ring-2 hover:ring-yellow-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${
+                  principal ? 'col-span-2 md:col-span-3 lg:col-span-2' : ''
+                }`}
+              >
+                {/* A imagem fica inteira e sem véu: as artworks da formação já
+                    trazem o nome impresso em baixo, por isso o rótulo vive numa
+                    faixa própria e nunca se sobrepõe à arte. */}
+                <div
+                  className={`relative w-full overflow-hidden ${
+                    principal ? 'aspect-[3/2] md:aspect-[21/9] lg:aspect-auto lg:min-h-0 lg:flex-1' : 'aspect-[4/5]'
+                  }`}
+                >
+                  <img
+                    src={escalao.capa}
+                    alt={escalao.nome}
+                    loading="lazy"
+                    width={principal ? 1200 : 600}
+                    height={principal ? 800 : 750}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                  />
+                </div>
 
-            >
-              <img
-                src={escalao.capa}
-                alt={escalao.nome}
-                loading="lazy"
-                width={600}
-                height={750}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-
-              {/* Gradiente de baixo para cima para o texto assentar sobre a foto */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#03153a] via-[#03153a]/85 to-[#03153a]/10"></div>
-
-              <div className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-yellow-400 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy-900 shadow-lg sm:right-4 sm:top-4 sm:px-3 sm:text-xs">
-                <Camera size={12} />
-                {escalao.fotografias}
-              </div>
-
-              <div className="absolute bottom-0 left-0 w-full p-3 sm:p-4 lg:p-3 xl:p-4">
-                <h3 className="font-display text-base font-bold uppercase leading-tight text-white transition-colors duration-300 group-hover:text-yellow-400 sm:text-lg lg:text-base xl:text-lg">
-                  {escalao.titulo}
-                </h3>
-                {escalao.sigla && (
-                  <p className="mt-0.5 text-[11px] font-bold uppercase tracking-[0.2em] text-yellow-400">
-                    {escalao.sigla}
-                  </p>
-                )}
-              </div>
-            </button>
-          ))}
+                <div className="flex items-center justify-between gap-3 border-t border-white/10 px-3 py-3 sm:px-4 sm:py-3.5">
+                  <div className="flex min-w-0 items-baseline gap-2">
+                    <h3
+                      className={`truncate font-display font-bold uppercase leading-none text-white transition-colors duration-300 group-hover:text-yellow-400 ${
+                        principal ? 'text-xl sm:text-2xl' : 'text-base sm:text-lg'
+                      }`}
+                    >
+                      {escalao.titulo}
+                    </h3>
+                    {escalao.sigla && (
+                      <span className="text-xs font-bold uppercase tracking-[0.15em] text-yellow-400">{escalao.sigla}</span>
+                    )}
+                  </div>
+                  <span className="flex flex-none items-center gap-1 text-xs font-semibold tabular-nums text-white/70">
+                    <Camera size={13} aria-hidden="true" />
+                    {escalao.fotografias}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         {/* CTA */}

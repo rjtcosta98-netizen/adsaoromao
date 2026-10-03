@@ -40,16 +40,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <Suspense fallback={<LazyFallback />}>
         <UpcomingMatchesByLevel />
       </Suspense>
-      <LatestMedia onNavigate={onNavigate} />
-      <ClubHighlights onNavigate={onNavigate} />
       <Suspense fallback={<LazyFallback />}>
         <LatestResults />
       </Suspense>
+      <LatestMedia onNavigate={onNavigate} />
+      <ClubHighlights onNavigate={onNavigate} />
       {/* <Calendar /> */}
       <Suspense fallback={<LazyFallback />}>
         <Standings />
-      </Suspense>
-      <Suspense fallback={<LazyFallback />}>
       </Suspense>
       <Suspense fallback={<LazyFallback />}>
         <RecruitmentCTA onNavigate={onNavigate} />
